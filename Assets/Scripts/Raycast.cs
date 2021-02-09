@@ -10,22 +10,37 @@ public class Raycast : MonoBehaviour
     private FideleManager interactionLauncher;
     private Interaction interactionReceiver;
 
-    public float clickingTime;
-    private float currentClickingTime;
-    
+    public float interactionClickingTime;
+    private float currentInteractionClickingTime;
+
+    public float movemementClickingTime;
+    private float currentMovementClickingTime;
+
     public bool isLookingForInteraction = false;
     
+    private Movement myCurrentMovement;
     private Interaction myCurrentInteraction;
 
     // Start is called before the first frame update
     void Start()
     {
-        currentClickingTime = clickingTime;
+        currentInteractionClickingTime = interactionClickingTime;
+        currentMovementClickingTime = movemementClickingTime;
     }
 
     // Update is called once per frame
     void Update()
-    {     
+    {
+        if (Input.GetMouseButton(0))
+        {
+            LookForMovement();
+        }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            LookForDisplaying();
+        }
+
         if (Input.GetMouseButton(0) && isLookingForInteraction == false)
         {
             LookForInteractionLauncher();
@@ -43,8 +58,58 @@ public class Raycast : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0))
         {
-            currentClickingTime = clickingTime;
+            currentMovementClickingTime = movemementClickingTime;
+            currentInteractionClickingTime = interactionClickingTime;
         }
+    }
+
+    void LookForMovement()
+    {
+        Debug.Log("Test movement");
+
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity);
+
+        if (hit.collider != null && hit.collider.gameObject.GetComponent<Movement>() && hit.collider.gameObject.GetComponent<FideleManager>().currentCamp == 0)
+        {
+            Debug.Log("Touch");
+            myCurrentMovement = hit.collider.gameObject.GetComponentInParent<Movement>();
+            currentMovementClickingTime -= Time.deltaTime;
+
+            if (currentMovementClickingTime <= 0)
+            {
+                hit.collider.gameObject.GetComponentInParent<FideleManager>().isSelectable = false;
+                isLookingForInteraction = false;
+                myCurrentMovement.MovingCharacter();
+                if (myCurrentInteraction)
+                {
+                    myCurrentInteraction = null;
+                }
+            }
+        }
+        else
+        {
+            currentMovementClickingTime = movemementClickingTime;
+            Debug.Log("Rien");
+        }
+    }
+    
+    void LookForDisplaying()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity);
+
+        if (hit.collider != null)    
+        {
+            if (hit.collider.gameObject.GetComponent<FideleManager>() && hit.collider.gameObject.GetComponent<FideleManager>().isDisplayed == false)
+            {
+                hit.collider.gameObject.GetComponent<FideleManager>().DisplayInformations();
+            }
+            else
+            {
+                hit.collider.gameObject.GetComponent<FideleManager>().HideInformations();
+            }
+        }        
     }
 
     void LookForInteractionLauncher()
@@ -75,11 +140,11 @@ public class Raycast : MonoBehaviour
             Debug.Log("Lancement de l'interaction");
             interactionReceiver = hit.collider.gameObject.GetComponentInChildren<Interaction>();//L'élément Interactif devient l'interactionReceiver
 
-            currentClickingTime -= Time.deltaTime; //Timer de clic actif
+            currentInteractionClickingTime -= Time.deltaTime; //Timer de clic actif
 
-            if (interactionReceiver.canInteract == true && currentClickingTime <= 0) //Si l'interactionReceiver est Interactif et que le timer de clic est fini...
+            if (interactionReceiver.canInteract == true && currentInteractionClickingTime <= 0 && !interactionLauncher.GetComponentInChildren<Interaction>().alreadyInteractedList.Contains(interactionReceiver)) //Si l'interactionReceiver est Interactif et que le timer de clic est fini...
             {
-                currentClickingTime = clickingTime; //Reset timer
+                currentInteractionClickingTime = interactionClickingTime; //Reset timer
 
                 switch (interactionReceiver.interactionType) //Quel type d'interaction porte l'interactionReceiver ?
                 {
@@ -104,9 +169,11 @@ public class Raycast : MonoBehaviour
 
                 foreach (Interaction myCollideInteraction in interactionLauncher.GetComponentInChildren<Interaction>().myCollideInteractionList)
                 {
-                    myCollideInteraction.canInteract = false; //L'élément avec lequel il peut intéragir devient Interacif
+                    myCollideInteraction.canInteract = false; //L'élément avec lequel il peut intéragir devient non interacif
                     myCollideInteraction.mySpriteSlot.sprite = null;
                 }
+
+                interactionLauncher.GetComponentInChildren<Interaction>().alreadyInteractedList.Add(interactionReceiver);
 
                 isLookingForInteraction = false; //L'interactionLauncher ne cherche plus d'interaction
             }
@@ -125,7 +192,8 @@ public class Raycast : MonoBehaviour
             Debug.Log(hit.transform.gameObject);
 
             if (hit.transform.GetComponent<Interaction>() != null && hit.transform.GetComponent<Interaction>().canInteract && hit.transform.GetComponent<Interaction>() != interactionLauncher
-                && hit.transform.GetComponentInParent<FideleManager>().currentCamp != interactionLauncher.GetComponentInParent<FideleManager>().currentCamp)
+                && hit.transform.GetComponentInParent<FideleManager>().currentCamp != interactionLauncher.GetComponentInParent<FideleManager>().currentCamp
+                && !interactionLauncher.GetComponentInChildren<Interaction>().alreadyInteractedList.Contains(hit.transform.GetComponent<Interaction>()))
             {
                 if (myCurrentInteraction == null)
                 {
@@ -182,6 +250,7 @@ public class Raycast : MonoBehaviour
             {
                 myCurrentInteraction.mySpriteSlot.sprite = null;
                 interactionLauncher.GetComponentInChildren<Interaction>().mySpriteSlot.sprite = null;
+                myCurrentInteraction = null;
             }
 
             foreach (Interaction myCollideInteraction in interactionLauncher.GetComponentInChildren<Interaction>().myCollideInteractionList)
@@ -192,7 +261,7 @@ public class Raycast : MonoBehaviour
                 myCollideInteraction.canInteract = false;
             }
 
-            currentClickingTime = clickingTime;
+            currentInteractionClickingTime = interactionClickingTime;
             isLookingForInteraction = false;
         }
     }

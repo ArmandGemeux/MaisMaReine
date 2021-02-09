@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering.Universal;
 
 public class FideleManager : MonoBehaviour
 {
@@ -31,9 +32,13 @@ public class FideleManager : MonoBehaviour
 
     public enum Camp { Fidele, Roi, Bandit, Calamite}
     public Camp currentCamp;
-
-
+    
     public bool isSelectable = false;
+    public bool isDisplayed = false;
+
+
+    public Light2D myLight;
+    public Canvas myCanvas;
 
     // Start is called before the first frame update
     void Start()
@@ -45,5 +50,28 @@ public class FideleManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void DisplayInformations()
+    {
+        isDisplayed = true;
+
+        if (currentCamp == 0)
+        {
+            Debug.Log("Changement de lumière");
+            myCanvas.enabled = true;
+            //myLight.enabled = true;
+        }
+    }
+
+    public void HideInformations()
+    {
+        isDisplayed = false;
+
+        if (currentCamp == 0)
+        {
+            myCanvas.enabled = false;
+            //myLight.enabled = false;
+        }
     }
 }

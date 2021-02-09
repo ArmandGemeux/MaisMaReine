@@ -17,6 +17,9 @@ public class Interaction : MonoBehaviour
     public List <Interaction> myCollideInteractionList;
     public List<FideleManager> myCollideCharacterList;
 
+    public List<Interaction> alreadyInteractedList;
+
+
     public Interaction myCollideInteraction;
     private FideleManager myCollideCharacter;
 
@@ -30,6 +33,8 @@ public class Interaction : MonoBehaviour
 
     public SpriteRenderer mySpriteSlot;
 
+    private bool testBool = false;
+
     private void Awake()
     {
         fideleManager = GetComponentInParent<FideleManager>();
@@ -40,12 +45,17 @@ public class Interaction : MonoBehaviour
     {
         myCollideInteractionList = new List<Interaction>();
         myCollideCharacterList = new List<FideleManager>();
+
+        alreadyInteractedList = new List<Interaction>();
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        if (testBool)
+        {
+            fideleManager.isSelectable = true; //cet objet devient sélectionnable
+        }
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
@@ -75,13 +85,13 @@ public class Interaction : MonoBehaviour
 
     public void OnTriggerStay2D(Collider2D collision)
     {
-        if (myCollideInteraction && hasInteract == false)
+        if (myCollideInteraction && !alreadyInteractedList.Contains(myCollideInteraction))
         {
             if (myCollideCharacter.currentCamp.ToString() != fideleManager.currentCamp.ToString())
             {
                 if (fideleManager.currentCamp.ToString() == myGM.currentCampTurn.ToString())
                 {
-                    fideleManager.isSelectable = true; //cet objet devient sélectionnable
+                    testBool = true;
                 }
             }
         }
@@ -101,7 +111,7 @@ public class Interaction : MonoBehaviour
                 myCollideInteraction.canInteract = false;
             }
         }
-
+        testBool = false;
         myCollideInteractionList.Remove(collision.GetComponent<Interaction>());
         myCollideCharacterList.Remove(collision.GetComponentInParent<FideleManager>());
     }
