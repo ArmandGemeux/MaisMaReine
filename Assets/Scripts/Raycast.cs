@@ -70,10 +70,10 @@ public class Raycast : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity);
 
-        if (hit.collider != null && hit.collider.gameObject.GetComponent<Movement>() && hit.collider.gameObject.GetComponent<FideleManager>().currentCamp == 0)
+        if (hit.collider != null && hit.collider.gameObject.GetComponentInChildren<Movement>() && hit.collider.gameObject.GetComponent<FideleManager>().currentCamp == 0)
         {
             Debug.Log("Touch");
-            myCurrentMovement = hit.collider.gameObject.GetComponentInParent<Movement>();
+            myCurrentMovement = hit.collider.gameObject.GetComponentInChildren<Movement>();
             currentMovementClickingTime -= Time.deltaTime;
 
             if (currentMovementClickingTime <= 0)
@@ -105,7 +105,7 @@ public class Raycast : MonoBehaviour
             {
                 hit.collider.gameObject.GetComponent<FideleManager>().DisplayInformations();
             }
-            else
+            else if(hit.collider.gameObject.GetComponent<FideleManager>() && hit.collider.gameObject.GetComponent<FideleManager>().isDisplayed == true)
             {
                 hit.collider.gameObject.GetComponent<FideleManager>().HideInformations();
             }

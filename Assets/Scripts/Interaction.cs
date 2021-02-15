@@ -55,7 +55,7 @@ public class Interaction : MonoBehaviour
         if (testBool)
         {
             fideleManager.isSelectable = true; //cet objet devient sélectionnable
-        }
+        }        
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
@@ -91,6 +91,7 @@ public class Interaction : MonoBehaviour
             {
                 if (fideleManager.currentCamp.ToString() == myGM.currentCampTurn.ToString())
                 {
+                    Debug.Log("Encore !");
                     testBool = true;
                 }
             }

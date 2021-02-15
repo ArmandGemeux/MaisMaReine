@@ -10,7 +10,7 @@ public class Movement : MonoBehaviour
     private bool isMoving = false;
     private bool hasMoved = false;
 
-    public GameObject mySprite;
+    //public GameObject myCollideZone;
     public GameObject myMoveZone;
 
     // Start is called before the first frame update
@@ -22,11 +22,12 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(isMoving);
         if (isMoving && Input.GetMouseButton(0))
         {
             mousePosition = Input.mousePosition;
             mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
-            mySprite.transform.position = Vector2.Lerp(mySprite.transform.position, mousePosition, moveSpeed);
+            transform.position = Vector2.Lerp(transform.position, mousePosition, moveSpeed);
         }
         else if (Input.GetMouseButtonUp(0))
         {
@@ -37,7 +38,6 @@ public class Movement : MonoBehaviour
 
     public void MovingCharacter()
     {
-        Debug.Log("IL BOUUUUUUUUUUGE");
         isMoving = true;
     }
 
