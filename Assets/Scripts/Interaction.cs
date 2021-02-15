@@ -33,7 +33,7 @@ public class Interaction : MonoBehaviour
 
     public SpriteRenderer mySpriteSlot;
 
-    private bool testBool = false;
+    private bool isColliding = false;
 
     private void Awake()
     {
@@ -52,7 +52,7 @@ public class Interaction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (testBool)
+        if (isColliding)
         {
             fideleManager.isSelectable = true; //cet objet devient sélectionnable
         }        
@@ -92,7 +92,7 @@ public class Interaction : MonoBehaviour
                 if (fideleManager.currentCamp.ToString() == myGM.currentCampTurn.ToString())
                 {
                     Debug.Log("Encore !");
-                    testBool = true;
+                    isColliding = true;
                 }
             }
         }
@@ -112,7 +112,7 @@ public class Interaction : MonoBehaviour
                 myCollideInteraction.canInteract = false;
             }
         }
-        testBool = false;
+        isColliding = false;
         myCollideInteractionList.Remove(collision.GetComponent<Interaction>());
         myCollideCharacterList.Remove(collision.GetComponentInParent<FideleManager>());
     }

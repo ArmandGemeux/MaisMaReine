@@ -85,6 +85,7 @@ public class Raycast : MonoBehaviour
                 {
                     myCurrentInteraction = null;
                 }
+                myCurrentMovement = null;
             }
         }
         else
