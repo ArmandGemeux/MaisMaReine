@@ -16,6 +16,7 @@ public class Movement : MonoBehaviour
 
     //public GameObject myCollideZone;
     public GameObject myMoveZone;
+    public Collider2D myInteractionZone;
 
     // Start is called before the first frame update
     void Start()
@@ -29,15 +30,14 @@ public class Movement : MonoBehaviour
         if (isMoving && Input.GetMouseButton(0))
         {
             Debug.Log("IsLandable : " + isLanbable);
+            myInteractionZone.enabled = false;
+
             mousePosition = Input.mousePosition;
             mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
             transform.position = Vector2.Lerp(transform.position, mousePosition, moveSpeed);
         }
         else if (isMoving && Input.GetMouseButtonUp(0))
         {
-            isMoving = false;
-            hasMoved = true;
-
             if (isLanbable)
             {
                 transform.parent.position = transform.position;
@@ -47,6 +47,11 @@ public class Movement : MonoBehaviour
             {
                 transform.localPosition = Vector3.zero;
             }
+
+            isMoving = false;
+            hasMoved = true;
+
+            myInteractionZone.enabled = true;
         }
     }
 

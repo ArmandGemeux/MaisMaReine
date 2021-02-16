@@ -68,7 +68,19 @@ public class Interaction : MonoBehaviour
             myCollideInteractionList.Add(collision.GetComponent<Interaction>());
             myCollideCharacterList.Add(collision.GetComponentInParent<FideleManager>());
 
-            foreach (Interaction myCollideInteraction in myCollideInteractionList)
+            if (!alreadyInteractedList.Contains(myCollideInteraction))
+            {
+                if (myCollideCharacter.currentCamp.ToString() != fideleManager.currentCamp.ToString())
+                {
+                    if (fideleManager.currentCamp.ToString() == myGM.currentCampTurn.ToString())
+                    {
+                        Debug.Log("Encore !");
+                        isColliding = true;
+                    }
+                }
+            }
+
+            /*foreach (Interaction myCollideInteraction in myCollideInteractionList)
             {
                 if (fideleManager.currentCamp.ToString() == myGM.currentCampTurn.ToString())//et que c'est le tour de cet objet...
                 {
@@ -79,13 +91,13 @@ public class Interaction : MonoBehaviour
                         Debug.Log(fideleManager.currentCamp + " interagit avec " + myCollideCharacter.currentCamp);
                     }
                 }
-            }
+            }*/
         }
     }
 
     public void OnTriggerStay2D(Collider2D collision)
     {
-        if (myCollideInteraction && !alreadyInteractedList.Contains(myCollideInteraction))
+        /*if (myCollideInteraction && !alreadyInteractedList.Contains(myCollideInteraction))
         {
             if (myCollideCharacter.currentCamp.ToString() != fideleManager.currentCamp.ToString())
             {
@@ -95,7 +107,7 @@ public class Interaction : MonoBehaviour
                     isColliding = true;
                 }
             }
-        }
+        }*/
     }
 
     public void OnTriggerExit2D(Collider2D collision)

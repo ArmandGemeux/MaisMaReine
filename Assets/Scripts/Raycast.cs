@@ -36,7 +36,7 @@ public class Raycast : MonoBehaviour
             LookForMovement();
         }
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(1))
         {
             LookForDisplaying();
         }
@@ -78,7 +78,7 @@ public class Raycast : MonoBehaviour
 
             if (currentMovementClickingTime <= 0)
             {
-                hit.collider.gameObject.GetComponentInParent<FideleManager>().isSelectable = false;
+                hit.collider.gameObject.GetComponent<FideleManager>().isSelectable = false;
                 isLookingForInteraction = false;
                 myCurrentMovement.MovingCharacter();
                 if (myCurrentInteraction)
@@ -118,9 +118,9 @@ public class Raycast : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity);
 
-        if (hit.collider != null && hit.collider.gameObject.GetComponentInParent<FideleManager>().isSelectable && isLookingForInteraction == false) //Si le raycast touche un fidèle qui est selectionnable...
+        if (hit.collider != null && hit.collider.gameObject.GetComponent<FideleManager>().isSelectable && isLookingForInteraction == false) //Si le raycast touche un fidèle qui est selectionnable...
         {
-            interactionLauncher = hit.collider.gameObject.GetComponentInParent<FideleManager>(); //Ce fidèle devient l'interactionLauncher
+            interactionLauncher = hit.collider.gameObject.GetComponent<FideleManager>(); //Ce fidèle devient l'interactionLauncher
 
             foreach (Interaction myCollideInteraction in interactionLauncher.GetComponentInChildren<Interaction>().myCollideInteractionList)
             {
@@ -190,36 +190,34 @@ public class Raycast : MonoBehaviour
 
         if (hit.collider != null)
         {
-            Debug.Log(hit.transform.gameObject);
-
-            if (hit.transform.GetComponent<Interaction>() != null && hit.transform.GetComponent<Interaction>().canInteract && hit.transform.GetComponent<Interaction>() != interactionLauncher
-                && hit.transform.GetComponentInParent<FideleManager>().currentCamp != interactionLauncher.GetComponentInParent<FideleManager>().currentCamp
-                && !interactionLauncher.GetComponentInChildren<Interaction>().alreadyInteractedList.Contains(hit.transform.GetComponent<Interaction>()))
+            if (hit.transform.GetComponentInChildren<Interaction>() != null && hit.transform.GetComponentInChildren<Interaction>().canInteract && hit.transform.GetComponentInChildren<Interaction>() != interactionLauncher
+                && hit.transform.GetComponent<FideleManager>().currentCamp != interactionLauncher.GetComponent<FideleManager>().currentCamp
+                && !interactionLauncher.GetComponentInChildren<Interaction>().alreadyInteractedList.Contains(hit.transform.GetComponentInChildren<Interaction>()))
             {
                 if (myCurrentInteraction == null)
                 {
-                    switch (hit.transform.GetComponent<Interaction>().interactionType)//Quel type d'interaction porte l'élément interactif ?
+                    switch (hit.transform.GetComponentInChildren<Interaction>().interactionType)//Quel type d'interaction porte l'élément interactif ?
                     {
                         case InteractionType.Dialogue:
-                            hit.transform.GetComponent<Interaction>().mySpriteSlot.sprite = hit.transform.GetComponent<Interaction>().dialogueIcon;
-                            interactionLauncher.GetComponentInChildren<Interaction>().mySpriteSlot.sprite = hit.transform.GetComponent<Interaction>().dialogueIcon;
+                            hit.transform.GetComponentInChildren<Interaction>().mySpriteSlot.sprite = hit.transform.GetComponentInChildren<Interaction>().dialogueIcon;
+                            interactionLauncher.GetComponentInChildren<Interaction>().mySpriteSlot.sprite = hit.transform.GetComponentInChildren<Interaction>().dialogueIcon;
                             break;
                         case InteractionType.Recrutement:
-                            hit.transform.GetComponent<Interaction>().mySpriteSlot.sprite = hit.transform.GetComponent<Interaction>().recrutementIcon;
-                            interactionLauncher.GetComponentInChildren<Interaction>().mySpriteSlot.sprite = hit.transform.GetComponent<Interaction>().recrutementIcon;
+                            hit.transform.GetComponentInChildren<Interaction>().mySpriteSlot.sprite = hit.transform.GetComponentInChildren<Interaction>().recrutementIcon;
+                            interactionLauncher.GetComponentInChildren<Interaction>().mySpriteSlot.sprite = hit.transform.GetComponentInChildren<Interaction>().recrutementIcon;
                             break;
                         case InteractionType.Combat:
-                            hit.transform.GetComponent<Interaction>().mySpriteSlot.sprite = hit.transform.GetComponent<Interaction>().combatIcon;
-                            interactionLauncher.GetComponentInChildren<Interaction>().mySpriteSlot.sprite = hit.transform.GetComponent<Interaction>().combatIcon;
+                            hit.transform.GetComponentInChildren<Interaction>().mySpriteSlot.sprite = hit.transform.GetComponentInChildren<Interaction>().combatIcon;
+                            interactionLauncher.GetComponentInChildren<Interaction>().mySpriteSlot.sprite = hit.transform.GetComponentInChildren<Interaction>().combatIcon;
                             break;
                         case InteractionType.Event:
                             break;
                         default:
                             break;
                     }
-                    myCurrentInteraction = hit.transform.GetComponent<Interaction>();
+                    myCurrentInteraction = hit.transform.GetComponentInChildren<Interaction>();
                 }
-                else if (myCurrentInteraction != null && myCurrentInteraction != hit.transform.GetComponent<Interaction>())
+                else if (myCurrentInteraction != null && myCurrentInteraction != hit.transform.GetComponentInChildren<Interaction>())
                 {
                     Debug.Log("changement d'interaction");
 
