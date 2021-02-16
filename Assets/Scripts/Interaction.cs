@@ -55,7 +55,15 @@ public class Interaction : MonoBehaviour
         if (isColliding)
         {
             fideleManager.isSelectable = true; //cet objet devient sélectionnable
-        }        
+        }
+
+        if (myCollideCharacterList.Contains(myCollideCharacter))
+        {
+            foreach (FideleManager myCollideCharacter in myCollideCharacterList)
+            {
+                myCollideCharacter.DisplayInteraction();
+            }
+        }
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
@@ -79,35 +87,7 @@ public class Interaction : MonoBehaviour
                     }
                 }
             }
-
-            /*foreach (Interaction myCollideInteraction in myCollideInteractionList)
-            {
-                if (fideleManager.currentCamp.ToString() == myGM.currentCampTurn.ToString())//et que c'est le tour de cet objet...
-                {
-                    if (myCollideCharacter.currentCamp.ToString() != fideleManager.currentCamp.ToString())//et que l'élément interactif n'est pas du même camp que cet objet, alors...
-                    {
-                        Debug.Log("Do Something");
-                        Debug.Log("Tour :" + myGM.currentCampTurn);
-                        Debug.Log(fideleManager.currentCamp + " interagit avec " + myCollideCharacter.currentCamp);
-                    }
-                }
-            }*/
         }
-    }
-
-    public void OnTriggerStay2D(Collider2D collision)
-    {
-        /*if (myCollideInteraction && !alreadyInteractedList.Contains(myCollideInteraction))
-        {
-            if (myCollideCharacter.currentCamp.ToString() != fideleManager.currentCamp.ToString())
-            {
-                if (fideleManager.currentCamp.ToString() == myGM.currentCampTurn.ToString())
-                {
-                    Debug.Log("Encore !");
-                    isColliding = true;
-                }
-            }
-        }*/
     }
 
     public void OnTriggerExit2D(Collider2D collision)

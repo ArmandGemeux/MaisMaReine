@@ -20,6 +20,7 @@ public class Raycast : MonoBehaviour
     
     private Movement myCurrentMovement;
     private Interaction myCurrentInteraction;
+    //private FideleManager myDisplayedCharacter;
 
     // Start is called before the first frame update
     void Start()
@@ -36,10 +37,10 @@ public class Raycast : MonoBehaviour
             LookForMovement();
         }
 
-        if (Input.GetMouseButtonDown(1))
+        /*if (Input.GetMouseButtonDown(1))
         {
             LookForDisplaying();
-        }
+        }*/
 
         if (Input.GetMouseButton(0) && isLookingForInteraction == false)
         {
@@ -95,7 +96,7 @@ public class Raycast : MonoBehaviour
         }
     }
     
-    void LookForDisplaying()
+    /*void LookForDisplaying()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity);
@@ -104,14 +105,12 @@ public class Raycast : MonoBehaviour
         {
             if (hit.collider.gameObject.GetComponent<FideleManager>() && hit.collider.gameObject.GetComponent<FideleManager>().isDisplayed == false)
             {
-                hit.collider.gameObject.GetComponent<FideleManager>().DisplayInformations();
-            }
-            else if(hit.collider.gameObject.GetComponent<FideleManager>() && hit.collider.gameObject.GetComponent<FideleManager>().isDisplayed == true)
-            {
-                hit.collider.gameObject.GetComponent<FideleManager>().HideInformations();
+                myDisplayedCharacter = hit.collider.gameObject.GetComponent<FideleManager>();
+                myDisplayedCharacter.DisplayInformations();
+                Debug.Log("Wow on montre des choses");
             }
         }        
-    }
+    }*/
 
     void LookForInteractionLauncher()
     {
@@ -124,7 +123,10 @@ public class Raycast : MonoBehaviour
 
             foreach (Interaction myCollideInteraction in interactionLauncher.GetComponentInChildren<Interaction>().myCollideInteractionList)
             {
-                myCollideInteraction.canInteract = true; //L'élément avec lequel il peut intéragir devient Interacif
+                myCollideInteraction.canInteract = true;
+                myCollideInteraction.GetComponentInParent<FideleManager>().myInteractionZoneSprite.enabled = true;
+                    
+                //L'élément avec lequel il peut intéragir devient Interacif
             }
 
             isLookingForInteraction = true; //L'interactionLauncher cherche une interaction

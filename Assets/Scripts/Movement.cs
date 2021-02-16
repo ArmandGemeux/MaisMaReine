@@ -47,17 +47,20 @@ public class Movement : MonoBehaviour
             {
                 transform.localPosition = Vector3.zero;
             }
+            GetComponentInParent<FideleManager>().HideMovement();
 
             isMoving = false;
             hasMoved = true;
 
             myInteractionZone.enabled = true;
+
         }
     }
 
     public void MovingCharacter()
     {
         isMoving = true;
+        GetComponentInParent<FideleManager>().DisplayMovement();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
