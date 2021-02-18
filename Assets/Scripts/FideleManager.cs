@@ -34,14 +34,16 @@ public class FideleManager : MonoBehaviour
     public Camp currentCamp;
     
     public bool isSelectable = false;
-    public bool isDisplayed = false;
+    public bool isInformationsDisplayed = false;
+    public bool isInteractionDisplayed = false;
+    public bool isMovementDisplayed = false;
 
-
-    private bool isMoving = false;
 
     public Canvas myStatisticsCanvas;
     public SpriteRenderer myInteractionZoneSprite;
     public SpriteRenderer myMovementZoneSprite;
+
+    private bool canDisplayInteraction = false;
 
     private Animator myAnim;
 
@@ -54,7 +56,7 @@ public class FideleManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isSelectable)
+        if (isSelectable && isInteractionDisplayed == false)
         {
             DisplayInteraction();
         }
@@ -62,72 +64,86 @@ public class FideleManager : MonoBehaviour
 
     public void DisplayInformations()
     {
-        isDisplayed = true;
-
         myStatisticsCanvas.enabled = true;
-        myInteractionZoneSprite.enabled = true;
+        DisplayInteraction();
         DisplayMovement();
+
+        isInformationsDisplayed = true;
     }
 
     public void HideInformations()
     {
-        isDisplayed = false;
-
         myStatisticsCanvas.enabled = false;
-        myInteractionZoneSprite.enabled = false;
-        //HideMovement();
+        HideInteraction();
+        HideMovement();
+
+        isInformationsDisplayed = false;
     }
 
     public void DisplayMovement()
     {
-        //myMovementZoneSprite.enabled = true;
-        myAnim.SetTrigger("Activate");
-        myStatisticsCanvas.enabled = false;
-        isMoving = true;
+        if (isMovementDisplayed == false)
+        {
+            myAnim.SetTrigger("ActivateMovement");
+            isMovementDisplayed = true;
+        }
     }
 
     public void HideMovement()
     {
-        //myMovementZoneSprite.enabled = false;
-        myAnim.SetTrigger("Activate");
-        myInteractionZoneSprite.enabled = false;
-        isMoving = false;
+        if (isMovementDisplayed)
+        {
+            myAnim.SetTrigger("ActivateMovement");
+            isMovementDisplayed = false;
+        }
     }
 
     public void DisplayInteraction()
     {
-        myInteractionZoneSprite.enabled = true;
+        if (isInteractionDisplayed == false)
+        {
+            myAnim.SetTrigger("ActivateInteraction");
+            isInteractionDisplayed = true;
+        }
     }
 
     public void HideInteraction()
     {
-        myInteractionZoneSprite.enabled = false;
+        if (isInteractionDisplayed)
+        {
+            myAnim.SetTrigger("ActivateInteraction");
+            isInteractionDisplayed = false;
+        }
     }
 
     public void OnMouseOver()
     {
-        //Debug.Log("Survol");
+        DisplayInteraction();
 
-        myInteractionZoneSprite.enabled = true;
-
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1) && isInformationsDisplayed == false)
         {
             DisplayInformations();
+        }
+        else if (Input.GetMouseButtonDown(1) && isInformationsDisplayed)
+        {
+            HideInformations();
         }
     }
 
     public void OnMouseExit()
     {
-        if (isMoving == false)
+        HideInteraction();
+
+        /*if (isMoving == false && isInteractionDisplayed == false)
         {
-            myInteractionZoneSprite.enabled = false;
-        }
+            HideInteraction();
+        }*/
 
         //Debug.Log("Pas survol");
-        if (isDisplayed && isMoving == false)
+        /*if (isInformationsDisplayed && isMoving == false)
         {
             HideInformations();
             HideMovement();
-        }
+        }*/
     }
 }

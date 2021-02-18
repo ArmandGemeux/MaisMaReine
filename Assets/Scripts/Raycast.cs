@@ -71,7 +71,7 @@ public class Raycast : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity);
 
-        if (hit.collider != null && hit.collider.gameObject.GetComponentInChildren<Movement>() && hit.collider.gameObject.GetComponent<FideleManager>().currentCamp == 0)
+        if (hit.collider != null && hit.collider.gameObject.GetComponentInChildren<Movement>() && hit.collider.gameObject.GetComponentInChildren<Movement>().isMoving == false && hit.collider.gameObject.GetComponent<FideleManager>().currentCamp == 0)
         {
             //Debug.Log("Touch");
             myCurrentMovement = hit.collider.gameObject.GetComponentInChildren<Movement>();
@@ -117,7 +117,7 @@ public class Raycast : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity);
 
-        if (hit.collider != null && hit.collider.gameObject.GetComponent<FideleManager>().isSelectable && isLookingForInteraction == false) //Si le raycast touche un fidèle qui est selectionnable...
+        if (hit.collider != null && hit.collider.gameObject.GetComponent<FideleManager>() && hit.collider.gameObject.GetComponent<FideleManager>().isSelectable && isLookingForInteraction == false) //Si le raycast touche un fidèle qui est selectionnable...
         {
             interactionLauncher = hit.collider.gameObject.GetComponent<FideleManager>(); //Ce fidèle devient l'interactionLauncher
 
@@ -130,10 +130,6 @@ public class Raycast : MonoBehaviour
             }
 
             isLookingForInteraction = true; //L'interactionLauncher cherche une interaction
-        }
-        else
-        {
-            return;
         }
     }
 
