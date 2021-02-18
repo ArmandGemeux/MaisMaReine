@@ -43,10 +43,12 @@ public class FideleManager : MonoBehaviour
     public SpriteRenderer myInteractionZoneSprite;
     public SpriteRenderer myMovementZoneSprite;
 
+    private Animator myAnim;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        myAnim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -54,11 +56,7 @@ public class FideleManager : MonoBehaviour
     {
         if (isSelectable)
         {
-            myInteractionZoneSprite.enabled = true;
-        }
-        else
-        {
-            myInteractionZoneSprite.enabled = false;
+            DisplayInteraction();
         }
     }
 
@@ -68,7 +66,7 @@ public class FideleManager : MonoBehaviour
 
         myStatisticsCanvas.enabled = true;
         myInteractionZoneSprite.enabled = true;
-        myMovementZoneSprite.enabled = true;
+        DisplayMovement();
     }
 
     public void HideInformations()
@@ -77,19 +75,21 @@ public class FideleManager : MonoBehaviour
 
         myStatisticsCanvas.enabled = false;
         myInteractionZoneSprite.enabled = false;
-        myMovementZoneSprite.enabled = false;
+        //HideMovement();
     }
 
     public void DisplayMovement()
     {
-        myMovementZoneSprite.enabled = true;
+        //myMovementZoneSprite.enabled = true;
+        myAnim.SetTrigger("Activate");
         myStatisticsCanvas.enabled = false;
         isMoving = true;
     }
 
     public void HideMovement()
     {
-        myMovementZoneSprite.enabled = false;
+        //myMovementZoneSprite.enabled = false;
+        myAnim.SetTrigger("Activate");
         myInteractionZoneSprite.enabled = false;
         isMoving = false;
     }
@@ -106,7 +106,7 @@ public class FideleManager : MonoBehaviour
 
     public void OnMouseOver()
     {
-        Debug.Log("Survol");
+        //Debug.Log("Survol");
 
         myInteractionZoneSprite.enabled = true;
 
@@ -123,10 +123,11 @@ public class FideleManager : MonoBehaviour
             myInteractionZoneSprite.enabled = false;
         }
 
-        Debug.Log("Pas survol");
+        //Debug.Log("Pas survol");
         if (isDisplayed && isMoving == false)
         {
             HideInformations();
+            HideMovement();
         }
     }
 }

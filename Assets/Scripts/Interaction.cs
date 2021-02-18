@@ -14,14 +14,14 @@ public class Interaction : MonoBehaviour
     public bool hasInteract = false;
     
 
-    public List <Interaction> myCollideInteractionList;
-    public List<FideleManager> myCollideCharacterList;
+    public List <Interaction> myCollideInteractionList = new List<Interaction>();
+    public List <FideleManager> myCollideFideleManagerList = new List<FideleManager>();
 
-    public List<Interaction> alreadyInteractedList;
+    public List<Interaction> alreadyInteractedList = new List<Interaction>();
 
 
-    public Interaction myCollideInteraction;
-    private FideleManager myCollideCharacter;
+    //public Interaction myCollideInteraction;
+    //private FideleManager myCollideFideleManager;
 
     public GameManager myGM;
     public Raycast myRC;
@@ -43,69 +43,103 @@ public class Interaction : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        myCollideInteractionList = new List<Interaction>();
-        myCollideCharacterList = new List<FideleManager>();
 
-        alreadyInteractedList = new List<Interaction>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (isColliding)
+        if (myCollideFideleManagerList.Count >= 1)
         {
-            fideleManager.isSelectable = true; //cet objet devient sélectionnable
-        }
-
-        if (myCollideCharacterList.Contains(myCollideCharacter))
-        {
-            foreach (FideleManager myCollideCharacter in myCollideCharacterList)
+            foreach (FideleManager myCollideCharacter in myCollideFideleManagerList)
             {
-                myCollideCharacter.DisplayInteraction();
+                if (myCollideCharacter.currentCamp.ToString() != fideleManager.currentCamp.ToString())
+                {
+                    myCollideCharacter.DisplayInteraction();
+                }
+            }
+
+            foreach (FideleManager myCollideFideleManager in myCollideFideleManagerList)
+            {
+                if (myCollideFideleManager != fideleManager && myCollideFideleManager.currentCamp.ToString() != fideleManager.currentCamp.ToString() && fideleManager.currentCamp.ToString() == myGM.currentCampTurn.ToString())
+                {
+                    fideleManager.isSelectable = true;
+                    Debug.Log("Coucou");
+                }
             }
         }
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        myCollideInteraction = collision.GetComponent<Interaction>();
-        myCollideCharacter = collision.GetComponentInParent<FideleManager>();
-
-        if (myCollideInteraction)//Si cet objet rencontre un objet avec un élément interactif...
+        if (collision.GetComponent<Interaction>() != null)
         {
             myCollideInteractionList.Add(collision.GetComponent<Interaction>());
-            myCollideCharacterList.Add(collision.GetComponentInParent<FideleManager>());
+            myCollideFideleManagerList.Add(collision.GetComponentInParent<FideleManager>());
 
-            if (!alreadyInteractedList.Contains(myCollideInteraction))
+            if (myCollideInteractionList.Count >= 1)//Si cet objet rencontre un objet avec un élément interactif...
             {
-                if (myCollideCharacter.currentCamp.ToString() != fideleManager.currentCamp.ToString())
+                Debug.Log("Nouvelle interaction ajoutée");
+
+                foreach (FideleManager myCollideFideleManager in myCollideFideleManagerList)
                 {
-                    if (fideleManager.currentCamp.ToString() == myGM.currentCampTurn.ToString())
+                    Debug.Log("Blou");
+                    if (myCollideFideleManager != fideleManager && myCollideFideleManager.currentCamp.ToString() != fideleManager.currentCamp.ToString() && fideleManager.currentCamp.ToString() == myGM.currentCampTurn.ToString())
                     {
-                        Debug.Log("Encore !");
-                        isColliding = true;
+                        //Debug.Log("GOOOOOD !!");
+                        //fideleManager.isSelectable = true;
+                        //isColliding = true;
+
+                        //Ici : Feedback d'interaction disponible
                     }
                 }
             }
         }
     }
 
-    public void OnTriggerExit2D(Collider2D collision)
+    /*public void OnTriggerStay2D(Collider2D collision)
     {
-        //myCollideInteraction = collision.GetComponent<Interaction>();
-        if (myCollideInteraction)
+        if (collision.GetComponent<Interaction>() != null && myCollideInteractionList.Count >= 1)
         {
-            foreach (Interaction myCollideInteraction in myCollideInteractionList)
+            foreach (FideleManager myCollideFideleManager in myCollideFideleManagerList)
             {
-                mySpriteSlot.sprite = null;
-                myCollideInteraction.mySpriteSlot.sprite = null;
-
-                fideleManager.isSelectable = false;
-                myCollideInteraction.canInteract = false;
+                if (myCollideFideleManager != fideleManager && myCollideFideleManager.currentCamp.ToString() != fideleManager.currentCamp.ToString() && fideleManager.currentCamp.ToString() == myGM.currentCampTurn.ToString())
+                {
+                    fideleManager.isSelectable = true;
+                    Debug.Log("Coucou");
+                }
             }
         }
-        isColliding = false;
-        myCollideInteractionList.Remove(collision.GetComponent<Interaction>());
-        myCollideCharacterList.Remove(collision.GetComponentInParent<FideleManager>());
+    }*/
+
+    public void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.GetComponent<Interaction>() != null)
+        {
+            //myCollideInteraction = collision.GetComponent<Interaction>();
+            if (myCollideInteractionList.Count >= 1)
+            {
+                foreach (Interaction myCollideInteraction in myCollideInteractionList)
+                {
+                    mySpriteSlot.sprite = null;
+                    myCollideInteraction.mySpriteSlot.sprite = null;
+
+                    fideleManager.isSelectable = false;
+                    myCollideInteraction.canInteract = false;
+                }
+            }
+
+            if (myCollideFideleManagerList.Count >= 1)
+            {
+                foreach (FideleManager myCollideFideleManager in myCollideFideleManagerList)
+                {
+                    myCollideFideleManager.HideInteraction();
+                }
+            }
+
+            //isColliding = false;
+            myCollideFideleManagerList.Remove(collision.GetComponentInParent<FideleManager>());
+            myCollideInteractionList.Remove(collision.GetComponent<Interaction>());
+        }
     }
 }

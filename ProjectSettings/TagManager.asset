@@ -9,6 +9,7 @@ TagManager:
   - Bandit
   - Calamite
   - Obstacle
+  - Interaction
   layers:
   - Default
   - TransparentFX

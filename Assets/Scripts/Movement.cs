@@ -9,14 +9,15 @@ public class Movement : MonoBehaviour
 
     private Vector2 startPosition;
 
-    private bool isMoving = false;
+    [SerializeField]
+    public bool isMoving = false;
     private bool hasMoved = false;
 
     private bool isLanbable;
 
     //public GameObject myCollideZone;
     public GameObject myMoveZone;
-    public Collider2D myInteractionZone;
+    public Collider2D myInteractionZoneCollider;
 
     // Start is called before the first frame update
     void Start()
@@ -30,7 +31,7 @@ public class Movement : MonoBehaviour
         if (isMoving && Input.GetMouseButton(0))
         {
             Debug.Log("IsLandable : " + isLanbable);
-            myInteractionZone.enabled = false;
+            //myInteractionZoneCollider.enabled = false;
 
             mousePosition = Input.mousePosition;
             mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
@@ -47,13 +48,13 @@ public class Movement : MonoBehaviour
             {
                 transform.localPosition = Vector3.zero;
             }
+
             GetComponentInParent<FideleManager>().HideMovement();
 
-            isMoving = false;
             hasMoved = true;
+            isMoving = false;
 
-            myInteractionZone.enabled = true;
-
+            //myInteractionZoneCollider.enabled = true;
         }
     }
 
@@ -74,6 +75,8 @@ public class Movement : MonoBehaviour
         {
             isLanbable = true;
         }
+
+        
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -86,6 +89,6 @@ public class Movement : MonoBehaviour
         if (collision.tag == ("Obstacle"))
         {
             isLanbable = true;
-        }
+        }       
     }
 }
