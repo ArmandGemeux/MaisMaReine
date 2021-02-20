@@ -88,6 +88,7 @@ public class Raycast : MonoBehaviour
             if (currentMovementClickingTime <= 0)
             {
                 hit.collider.gameObject.GetComponent<FideleManager>().isSelectable = false;
+
                 myCurrentMovement.MovingCharacter();
                 if (myCurrentInteraction)
                 {
@@ -119,7 +120,7 @@ public class Raycast : MonoBehaviour
             {
                 myCollideInteraction.canInteract = true;
 
-                if (!interactionLauncher.GetComponentInChildren<Interaction>().alreadyInteractedList.Contains(myCollideInteraction))
+                if (!interactionLauncher.GetComponentInChildren<Interaction>().alreadyInteractedList.Contains(myCollideInteraction) && interactionLauncher.currentCamp.ToString() != myCollideInteraction.GetComponentInParent<FideleManager>().currentCamp.ToString())
                 {
                     myCollideInteraction.GetComponentInParent<FideleManager>().ActivateReceiverSelection();
                 }
@@ -207,13 +208,27 @@ public class Raycast : MonoBehaviour
             foreach (Interaction myCollideInteraction in interactionLauncher.GetComponentInChildren<Interaction>().myCollideInteractionList)
             {
                 myCollideInteraction.canInteract = true;
-                if (!interactionLauncher.GetComponentInChildren<Interaction>().alreadyInteractedList.Contains(myCollideInteraction))
+
+                if (!interactionLauncher.GetComponentInChildren<Interaction>().alreadyInteractedList.Contains(myCollideInteraction) && interactionLauncher.currentCamp.ToString() != myCollideInteraction.GetComponentInParent<FideleManager>().currentCamp.ToString())
                 {
                     myCollideInteraction.GetComponentInParent<FideleManager>().ActivateReceiverSelection();
                 }
             }
 
             isLookingForInteraction = true; //L'interactionLauncher cherche une interaction
+        }
+        else if (hit.collider != null && interactionLauncher != null && hit.collider.gameObject.GetComponent<FideleManager>())
+        {
+            interactionLauncher.DesactivateLauncherSelection();
+            foreach (Interaction myCollideInteraction in interactionLauncher.GetComponentInChildren<Interaction>().myCollideInteractionList)
+            {
+                myCollideInteraction.canInteract = false;
+                myCollideInteraction.GetComponentInParent<FideleManager>().DesactivateReceiverSelection();
+            }
+
+            isLookingForInteraction = false;
+            interactionLauncher = null;
+
         }
     } 
     

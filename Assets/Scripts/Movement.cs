@@ -19,10 +19,13 @@ public class Movement : MonoBehaviour
     public GameObject myMoveZone;
     public Collider2D myInteractionZoneCollider;
 
+    private DragCamera2D myCam;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        myCam = GameObject.Find("MovingCamera_CM").GetComponent<DragCamera2D>();
+        myCam.followTarget = null;
     }
 
     // Update is called once per frame
@@ -35,6 +38,10 @@ public class Movement : MonoBehaviour
             mousePosition = Input.mousePosition;
             mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
             transform.position = Vector2.Lerp(transform.position, mousePosition, moveSpeed);
+
+            myCam.followTarget = transform.parent.gameObject;
+
+            //Cinemachine doit bouger la CAM pour que le fidèle ne soit jamais dans une bordure ICI
         }
         else if (isMoving && Input.GetMouseButtonUp(0))
         {
@@ -49,7 +56,9 @@ public class Movement : MonoBehaviour
             }
 
             GetComponentInParent<FideleManager>().HideMovement();
-            
+
+            myCam.followTarget = null;
+
             hasMoved = true;
             isMoving = false;
         }

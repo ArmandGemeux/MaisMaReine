@@ -558,7 +558,7 @@ MonoBehaviour:
   m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 15
+    OrthographicSize: 14
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -601,7 +601,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70c3989406c198b4087c0e47eb93dd41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 0}
+  cam: {fileID: 626866962}
   dragEnabled: 1
   dragSpeed: -0.06
   edgeBoundary: 20
@@ -617,7 +617,7 @@ MonoBehaviour:
   zoomStepSize: 5.69
   zoomToMouse: 0
   followTarget: {fileID: 0}
-  lerpSpeed: 0.135
+  lerpSpeed: 0.105
   offset: {x: 0, y: 0, z: -10}
   clampCamera: 1
   bounds: {fileID: 1597419777}
@@ -2875,7 +2875,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 15
+  orthographic size: 14
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
