@@ -31,7 +31,6 @@ public class Movement : MonoBehaviour
         if (isMoving && Input.GetMouseButton(0))
         {
             Debug.Log("IsLandable : " + isLanbable);
-            //myInteractionZoneCollider.enabled = false;
 
             mousePosition = Input.mousePosition;
             mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
@@ -50,11 +49,9 @@ public class Movement : MonoBehaviour
             }
 
             GetComponentInParent<FideleManager>().HideMovement();
-
+            
             hasMoved = true;
             isMoving = false;
-
-            //myInteractionZoneCollider.enabled = true;
         }
     }
 

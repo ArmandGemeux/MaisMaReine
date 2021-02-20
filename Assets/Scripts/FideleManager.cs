@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering.Universal;
+using UnityEngine.UI;
 
 public class FideleManager : MonoBehaviour
 {
@@ -34,23 +35,30 @@ public class FideleManager : MonoBehaviour
     public Camp currentCamp;
     
     public bool isSelectable = false;
-    public bool isInformationsDisplayed = false;
+    public bool isStatsDisplayed = false;
     public bool isInteractionDisplayed = false;
     public bool isMovementDisplayed = false;
 
+    private bool isInfoDisplayed = false;
+    private bool isLightOn = false;
+    private bool isLightColorSwitched = false;
 
-    public Canvas myStatisticsCanvas;
-    public SpriteRenderer myInteractionZoneSprite;
-    public SpriteRenderer myMovementZoneSprite;
-
-    private bool canDisplayInteraction = false;
+    public bool haveAnInteraction = false;
+    public bool movementZoneIsTouchingInteraction = false;
 
     private Animator myAnim;
+    private Movement myMovement;
+    private Light2D myLight;
+    public Image myStatisticsImage;
+    public Image interactionClickFeedback;
+    public Image movementClickFeedback;
 
     // Start is called before the first frame update
     void Start()
     {
         myAnim = GetComponent<Animator>();
+        myMovement = GetComponentInChildren<Movement>();
+        myLight = GetComponentInChildren<Light2D>();
     }
 
     // Update is called once per frame
@@ -62,29 +70,98 @@ public class FideleManager : MonoBehaviour
         }
     }
 
-    public void DisplayInformations()
+    public void ActivateLauncherSelection()
     {
-        myStatisticsCanvas.enabled = true;
-        DisplayInteraction();
-        DisplayMovement();
-
-        isInformationsDisplayed = true;
+        myAnim.SetBool("isInteractionLauncherSelected", true);
     }
 
-    public void HideInformations()
+    public void DesactivateLauncherSelection()
     {
-        myStatisticsCanvas.enabled = false;
-        HideInteraction();
-        HideMovement();
-
-        isInformationsDisplayed = false;
+        myAnim.SetBool("isInteractionLauncherSelected", false);
     }
+
+    public void ActivateReceiverSelection()
+    {
+        myAnim.SetBool("isInteractionReceiverCanInteract", true);
+    }
+
+    public void DesactivateReceiverSelection()
+    {
+        myAnim.SetBool("isInteractionReceiverCanInteract", false);
+    }
+
+    public void DisplayStats()
+    {
+        if (isStatsDisplayed == false)
+        {
+            myStatisticsImage.enabled = true;
+            isStatsDisplayed = true;
+        }
+    }
+
+    public void HideStats()
+    {
+        if (isStatsDisplayed)
+        {
+            myStatisticsImage.enabled = false;
+            isStatsDisplayed = false;
+        }
+    }
+
+    /*public void DislayInteractionLight()
+    {
+        if (myLight != null)
+        {
+            if (isLightOn == false)
+            {
+                myLight.enabled = true;
+                isLightOn = true;
+            }
+        }
+    }*/
+
+    /*public void HideInteractionLight()
+    {
+        if (myLight != null)
+        {
+            if (isLightOn == true)
+            {
+                myLight.enabled = false;
+                isLightOn = false;
+            }
+        }
+    }*/
+
+    /*public void SwitchInteractionLightColor()
+    {
+        if (myLight != null)
+        {
+            if (isLightOn == true && isLightColorSwitched == false)
+            {
+                Debug.Log("Switch");
+                myAnim.SetTrigger("ActivateLight");
+                isLightColorSwitched = true;
+            }
+        }
+    }*/
+
+    /*public void SwitchBackInteractionLightColor()
+    {
+        if (myLight != null)
+        {
+            if (isLightOn == true && isLightColorSwitched == true)
+            {
+                myAnim.SetTrigger("ActivateLight");
+                isLightColorSwitched = false;
+            }
+        }
+    }*/
 
     public void DisplayMovement()
     {
         if (isMovementDisplayed == false)
         {
-            myAnim.SetTrigger("ActivateMovement");
+            myAnim.SetBool("ActivateMovementBool", true);
             isMovementDisplayed = true;
         }
     }
@@ -93,7 +170,7 @@ public class FideleManager : MonoBehaviour
     {
         if (isMovementDisplayed)
         {
-            myAnim.SetTrigger("ActivateMovement");
+            myAnim.SetBool("ActivateMovementBool", false);
             isMovementDisplayed = false;
         }
     }
@@ -102,48 +179,54 @@ public class FideleManager : MonoBehaviour
     {
         if (isInteractionDisplayed == false)
         {
-            myAnim.SetTrigger("ActivateInteraction");
+            myAnim.SetBool("ActivateInteractionBool", true);
             isInteractionDisplayed = true;
         }
     }
 
     public void HideInteraction()
     {
-        if (isInteractionDisplayed)
+        if (isInteractionDisplayed && haveAnInteraction == false)
         {
-            myAnim.SetTrigger("ActivateInteraction");
+            myAnim.SetBool("ActivateInteractionBool", false);
             isInteractionDisplayed = false;
         }
     }
 
-    public void OnMouseOver()
+    public void OnMouseEnter()
     {
         DisplayInteraction();
+    }
 
-        if (Input.GetMouseButtonDown(1) && isInformationsDisplayed == false)
-        {
-            DisplayInformations();
+    public void OnMouseOver()
+    {
+        if (Input.GetMouseButtonDown(1) && isInfoDisplayed == false)
+        {           
+            DisplayMovement();
+            DisplayStats();
+            isInfoDisplayed = true;
         }
-        else if (Input.GetMouseButtonDown(1) && isInformationsDisplayed)
+        else if (Input.GetMouseButtonDown(1) && isInfoDisplayed)
         {
-            HideInformations();
+            HideMovement();
+            HideStats();
+            isInfoDisplayed = false;
         }
     }
 
     public void OnMouseExit()
     {
-        HideInteraction();
+        if (isInfoDisplayed && myMovement.isMoving == false)
+        {
+            HideMovement();
+            HideStats();
+            isInfoDisplayed = false;
+        }
 
-        /*if (isMoving == false && isInteractionDisplayed == false)
+        if (myMovement.isMoving == false)
         {
             HideInteraction();
-        }*/
-
-        //Debug.Log("Pas survol");
-        /*if (isInformationsDisplayed && isMoving == false)
-        {
-            HideInformations();
-            HideMovement();
-        }*/
+            HideStats();
+        }
     }
 }
