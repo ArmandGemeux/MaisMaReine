@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4063212653753889738}
   - component: {fileID: 2594249780722542007}
   - component: {fileID: 2101303485858981167}
+  - component: {fileID: 8645030786061560893}
   m_Layer: 0
   m_Name: Decors_Roche_Crystal_01
   m_TagString: Obstacle
@@ -113,3 +114,22 @@ PolygonCollider2D:
       - {x: -0.6682701, y: -0.9904537}
       - {x: -0.7787628, y: -0.5093651}
       - {x: 0.8196821, y: -0.4991207}
+--- !u!114 &8645030786061560893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6607016231982518728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 646d68c34334abe44bb05cf2f10a53a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isMovable: 0
+  renderBelowAll: 0
+  movingDependencies: []
+  sortType: 1
+  SorterPositionOffset: {x: -0.67817307, y: -0.678175, z: 0}
+  SorterPositionOffset2: {x: 0.71828556, y: -0.64645576, z: 0}
+  renderersToSort: []

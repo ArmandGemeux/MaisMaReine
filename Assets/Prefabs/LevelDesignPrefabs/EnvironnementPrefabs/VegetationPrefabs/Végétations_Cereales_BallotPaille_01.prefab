@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6123763814373449691}
   - component: {fileID: 6123763814373449688}
   - component: {fileID: 6123763814373449689}
+  - component: {fileID: 31196357389760021}
   m_Layer: 0
   m_Name: "V\xE9g\xE9tations_Cereales_BallotPaille_01"
   m_TagString: Obstacle
@@ -111,3 +112,22 @@ PolygonCollider2D:
       - {x: -2.154848, y: -0.060396194}
       - {x: 0.67420864, y: -1.1462193}
       - {x: 1.9963211, y: -0.42193985}
+--- !u!114 &31196357389760021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6123763814373449694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 646d68c34334abe44bb05cf2f10a53a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isMovable: 0
+  renderBelowAll: 0
+  movingDependencies: []
+  sortType: 1
+  SorterPositionOffset: {x: 1.9530582, y: -0.46703482, z: 0}
+  SorterPositionOffset2: {x: -2.0379715, y: 0, z: 0}
+  renderersToSort: []

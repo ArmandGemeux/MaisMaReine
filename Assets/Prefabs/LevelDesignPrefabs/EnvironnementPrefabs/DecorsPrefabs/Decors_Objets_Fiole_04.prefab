@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4339939639836799073}
   - component: {fileID: 5873627119966240245}
   - component: {fileID: 316046030034870821}
+  - component: {fileID: 7903879085966022954}
   m_Layer: 0
   m_Name: Decors_Objets_Fiole_04
   m_TagString: Untagged
@@ -126,3 +127,22 @@ PolygonCollider2D:
       - {x: 0.08, y: -0.55}
       - {x: 0.35, y: -0.35}
       - {x: 0.47, y: -0.17999999}
+--- !u!114 &7903879085966022954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4907448112282499474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 646d68c34334abe44bb05cf2f10a53a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isMovable: 0
+  renderBelowAll: 0
+  movingDependencies: []
+  sortType: 0
+  SorterPositionOffset: {x: -0.01826477, y: -0.4931364, z: 0}
+  SorterPositionOffset2: {x: 0, y: 0, z: 0}
+  renderersToSort: []

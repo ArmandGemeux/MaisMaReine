@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4799385251287607560}
   - component: {fileID: 3545794138745335524}
   - component: {fileID: 191018414001335305}
+  - component: {fileID: 8197108193423337802}
   m_Layer: 0
   m_Name: Decors_Roche_Pierre_01
   m_TagString: Obstacle
@@ -27,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 2482626353423112672}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -115,3 +116,22 @@ PolygonCollider2D:
       - {x: -0.8237324, y: -0.21179008}
       - {x: -0.40044785, y: -0.63895035}
       - {x: 0.21728516, y: -0.79192924}
+--- !u!114 &8197108193423337802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2482626353423112672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 646d68c34334abe44bb05cf2f10a53a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isMovable: 0
+  renderBelowAll: 0
+  movingDependencies: []
+  sortType: 1
+  SorterPositionOffset: {x: -0.6462364, y: -0.25849533, z: 0}
+  SorterPositionOffset2: {x: 0.8077965, y: -0.29080677, z: 0}
+  renderersToSort: []
