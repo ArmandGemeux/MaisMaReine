@@ -4,23 +4,28 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public enum CampTurn { Fidele, Roi, Bandit, Calamite}
+    public enum CampTurn { Fidele, Roi, /*Bandit, Calamite,*/ noMoreCamp}
     public CampTurn currentCampTurn;
 
     public bool switchingTurn = false;
 
+    public List<FideleManager> myFideleList = new List<FideleManager>();
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        myFideleList.AddRange(FindObjectsOfType<FideleManager>());        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("space"))
+        foreach (FideleManager myFidele in myFideleList)
         {
-            SwitchTurn();
+            if (myFidele.currentCamp.ToString() != CampTurn.Fidele.ToString())
+            {
+                myFideleList.Remove(myFidele);
+            }
         }
     }
 
@@ -29,5 +34,21 @@ public class GameManager : MonoBehaviour
         switchingTurn = true;
         currentCampTurn += 1;
         switchingTurn = false;
+
+        if (currentCampTurn == CampTurn.noMoreCamp)
+        {
+            currentCampTurn = CampTurn.Fidele;
+        }
+
+        ResetTurn();
+    }
+
+    public void ResetTurn()
+    {
+        foreach (FideleManager myFidele in myFideleList)
+        {
+            myFidele.GetComponentInChildren<Interaction>().alreadyInteractedList.Clear();
+            Debug.Log("Clear");
+        }
     }
 }

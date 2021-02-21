@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+﻿/*using UnityEngine;
 
 public class Player : MonoBehaviour
 {
@@ -30,4 +30,4 @@ public class Player : MonoBehaviour
         rgd.angularVelocity = 0;
         rgd.rotation = 0;
     }
-}
+}*/

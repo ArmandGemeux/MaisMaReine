@@ -55,6 +55,8 @@ public class Interaction : MonoBehaviour
                     if (myCollideFideleManager != fideleManager && !alreadyInteractedList.Contains(myCollideFideleManager.GetComponentInChildren<Interaction>()))
                     {
                         fideleManager.isSelectable = true;
+                        fideleManager.ActivateLauncherSelection();
+                        myCollideFideleManager.ActivateReceiverSelection();
                         Debug.Log("Coucou");
                     }
                 }               
@@ -97,6 +99,8 @@ public class Interaction : MonoBehaviour
                     if (myCollideFideleManager != fideleManager && myCollideFideleManager.currentCamp.ToString() != fideleManager.currentCamp.ToString() && fideleManager.currentCamp.ToString() == myGM.currentCampTurn.ToString())
                     {
                         myCollideFideleManager.HideInteraction();
+                        fideleManager.DesactivateLauncherSelection();
+                        myCollideFideleManager.DesactivateReceiverSelection();
                     }
                 }
             }

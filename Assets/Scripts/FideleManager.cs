@@ -53,6 +53,8 @@ public class FideleManager : MonoBehaviour
     public Image interactionClickFeedback;
     public Image movementClickFeedback;
 
+    public SpriteRenderer myOutline;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -78,6 +80,11 @@ public class FideleManager : MonoBehaviour
     public void DesactivateLauncherSelection()
     {
         myAnim.SetBool("isInteractionLauncherSelected", false);
+    }
+
+    public void ToggleLauncherOutline()
+    {
+        myOutline.enabled = !myOutline.enabled;
     }
 
     public void ActivateReceiverSelection()

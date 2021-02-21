@@ -26,9 +26,12 @@ public class Raycast : MonoBehaviour
     private Image myMovementClickFeedback;
     private Image myInteractionClickFeedback;
 
+    private GameManager myGM;
+
     // Start is called before the first frame update
     void Start()
     {
+        myGM = GetComponent<GameManager>();
         currentInteractionClickingTime = interactionClickingTime;
         currentMovementClickingTime = movemementClickingTime;
     }
@@ -77,7 +80,7 @@ public class Raycast : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity);
 
-        if (hit.collider != null && hit.collider.gameObject.GetComponentInChildren<Movement>() && hit.collider.gameObject.GetComponentInChildren<Movement>().isMoving == false && hit.collider.gameObject.GetComponent<FideleManager>().currentCamp == 0)
+        if (hit.collider != null && hit.collider.gameObject.GetComponentInChildren<Movement>() && hit.collider.gameObject.GetComponentInChildren<Movement>().isMoving == false && hit.collider.gameObject.GetComponent<FideleManager>().currentCamp.ToString() == myGM.currentCampTurn.ToString())
         {
             myCurrentMovement = hit.collider.gameObject.GetComponentInChildren<Movement>();
             currentMovementClickingTime -= Time.deltaTime;
@@ -94,6 +97,7 @@ public class Raycast : MonoBehaviour
                 {
                     myCurrentInteraction = null;
                 }
+
                 myCurrentMovement = null;
             }
         }
@@ -110,20 +114,19 @@ public class Raycast : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity);
 
-        if (hit.collider != null && hit.collider.gameObject.GetComponent<FideleManager>() && hit.collider.gameObject.GetComponent<FideleManager>().isSelectable) //Si le raycast touche un fidèle qui est selectionnable...
+        if (hit.collider != null && hit.collider.gameObject.GetComponent<FideleManager>() && hit.collider.gameObject.GetComponent<FideleManager>().isSelectable && hit.collider.gameObject.GetComponent<FideleManager>().currentCamp.ToString() == myGM.currentCampTurn.ToString()) //Si le raycast touche un fidèle qui est selectionnable...
         {
             interactionLauncher = hit.collider.gameObject.GetComponent<FideleManager>(); //Ce fidèle devient l'interactionLauncher
-            interactionLauncher.ActivateLauncherSelection();
-            //interactionLauncher.SwitchInteractionLightColor();
+            interactionLauncher.ToggleLauncherOutline();
 
             foreach (Interaction myCollideInteraction in interactionLauncher.GetComponentInChildren<Interaction>().myCollideInteractionList)
             {
                 myCollideInteraction.canInteract = true;
 
-                if (!interactionLauncher.GetComponentInChildren<Interaction>().alreadyInteractedList.Contains(myCollideInteraction) && interactionLauncher.currentCamp.ToString() != myCollideInteraction.GetComponentInParent<FideleManager>().currentCamp.ToString())
+                /*if (!interactionLauncher.GetComponentInChildren<Interaction>().alreadyInteractedList.Contains(myCollideInteraction) && interactionLauncher.currentCamp.ToString() != myCollideInteraction.GetComponentInParent<FideleManager>().currentCamp.ToString())
                 {
                     myCollideInteraction.GetComponentInParent<FideleManager>().ActivateReceiverSelection();
-                }
+                }*/
             }
             isLookingForInteraction = true; //L'interactionLauncher cherche une interaction
         }
@@ -186,6 +189,7 @@ public class Raycast : MonoBehaviour
                 Debug.Log("On est là");
                 isLookingForInteraction = false; //L'interactionLauncher ne cherche plus d'interaction
 
+                interactionLauncher.ToggleLauncherOutline();
                 interactionLauncher.DesactivateLauncherSelection();
                 interactionLauncher = null;
             }
@@ -220,6 +224,7 @@ public class Raycast : MonoBehaviour
         else if (hit.collider != null && interactionLauncher != null && hit.collider.gameObject.GetComponent<FideleManager>())
         {
             interactionLauncher.DesactivateLauncherSelection();
+            interactionLauncher.ToggleLauncherOutline();
             foreach (Interaction myCollideInteraction in interactionLauncher.GetComponentInChildren<Interaction>().myCollideInteractionList)
             {
                 myCollideInteraction.canInteract = false;
@@ -228,7 +233,6 @@ public class Raycast : MonoBehaviour
 
             isLookingForInteraction = false;
             interactionLauncher = null;
-
         }
     } 
     
@@ -315,6 +319,7 @@ public class Raycast : MonoBehaviour
             currentInteractionClickingTime = interactionClickingTime;
             isLookingForInteraction = false;
 
+            interactionLauncher.ToggleLauncherOutline();
             interactionLauncher.DesactivateLauncherSelection();
             interactionLauncher = null;
         }

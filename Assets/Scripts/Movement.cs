@@ -40,8 +40,6 @@ public class Movement : MonoBehaviour
             transform.position = Vector2.Lerp(transform.position, mousePosition, moveSpeed);
 
             myCam.followTarget = transform.parent.gameObject;
-
-            //Cinemachine doit bouger la CAM pour que le fidèle ne soit jamais dans une bordure ICI
         }
         else if (isMoving && Input.GetMouseButtonUp(0))
         {
