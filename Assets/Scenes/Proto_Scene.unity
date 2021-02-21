@@ -645,7 +645,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7776026, y: 1}
+    m_SensorSize: {x: 1.3333334, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -1032,7 +1032,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 14
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 6de31038f065d164aa1c92c6a5b5c2c0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -7755,8 +7755,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isMovable: 1
   renderBelowAll: 0
-  movingDependencies:
-  - {fileID: 531503044}
+  movingDependencies: []
   sortType: 0
   SorterPositionOffset: {x: 0, y: -1.4000003, z: 0}
   SorterPositionOffset2: {x: 0, y: 0, z: 0}
@@ -7800,7 +7799,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 15
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 6de31038f065d164aa1c92c6a5b5c2c0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -8942,7 +8941,7 @@ MonoBehaviour:
     spaceCount: 0
     wordCount: 1
     linkCount: 0
-    lineCount: 1
+    lineCount: 2
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
@@ -11359,7 +11358,7 @@ PrefabInstance:
     - target: {fileID: 3545794138745335524, guid: ec14616b1193cac46b962b156fe1e964,
         type: 3}
       propertyPath: m_SortingOrder
-      value: 13
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4799385251287607560, guid: ec14616b1193cac46b962b156fe1e964,
         type: 3}
