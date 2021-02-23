@@ -37,7 +37,22 @@ public class Interaction : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        switch (interactionType)
+        {
+            case InteractionType.Dialogue:
+                gameObject.AddComponent<Dialogue>();
+                break;
+            case InteractionType.Recrutement:
+                gameObject.AddComponent<Recrutement>();
+                break;
+            case InteractionType.Combat:
+                gameObject.AddComponent<Combat>();
+                break;
+            case InteractionType.Event:
+                break;
+            default:
+                break;
+        }
     }
 
     // Update is called once per frame

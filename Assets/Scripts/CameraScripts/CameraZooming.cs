@@ -7,6 +7,7 @@ public class CameraZooming : MonoBehaviour
 {
     private CinemachineVirtualCamera myCamera;
     public GameObject mapScreen;
+    private bool mapScreenPause;
 
     public int maxZoomInValue;
     public int maxZoomOutValue;
@@ -55,9 +56,15 @@ public class CameraZooming : MonoBehaviour
             mapScreen.SetActive(true);
             //Afficher écran de MiniMap
         }
-        else
+        else if (myCamera.m_Lens.OrthographicSize <= maxZoomOutValue && mapScreenPause == false)
         {
             mapScreen.SetActive(false);
         }
+    }
+
+    public void PauseForMapScreen()
+    {
+        mapScreen.SetActive(!mapScreen.activeSelf);
+        mapScreenPause = !mapScreenPause;
     }
 }

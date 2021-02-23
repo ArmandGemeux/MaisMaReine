@@ -9,7 +9,6 @@ public class Movement : MonoBehaviour
 
     private Vector2 startPosition;
 
-    [SerializeField]
     public bool isMoving = false;
     private bool hasMoved = false;
 
@@ -18,6 +17,7 @@ public class Movement : MonoBehaviour
     //public GameObject myCollideZone;
     public GameObject myMoveZone;
     public Collider2D myInteractionZoneCollider;
+    private FideleManager myFideleManager;
 
     private DragCamera2D myCam;
 
@@ -26,14 +26,18 @@ public class Movement : MonoBehaviour
     {
         myCam = GameObject.Find("MovingCamera_CM").GetComponent<DragCamera2D>();
         myCam.followTarget = null;
+
+        myFideleManager = GetComponentInParent<FideleManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        Physics2D.IgnoreCollision(gameObject.GetComponent<Collider2D>(), myFideleManager.GetComponent<Collider2D>());
+
         if (isMoving && Input.GetMouseButton(0))
         {
-            Debug.Log("IsLandable : " + isLanbable);
+            //Debug.Log("IsLandable : " + isLanbable);
 
             mousePosition = Input.mousePosition;
             mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
@@ -53,7 +57,7 @@ public class Movement : MonoBehaviour
                 transform.localPosition = Vector3.zero;
             }
 
-            GetComponentInParent<FideleManager>().HideMovement();
+            myFideleManager.HideMovement();
 
             myCam.followTarget = null;
 
@@ -65,22 +69,25 @@ public class Movement : MonoBehaviour
     public void MovingCharacter()
     {
         isMoving = true;
-        GetComponentInParent<FideleManager>().DisplayMovement();
+        myFideleManager.DisplayMovement();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == ("Obstacle"))
+        if (collision.tag == ("Obstacle") && collision != myFideleManager)
         {
             isLanbable = false;
+            //Debug.Log(collision.name);
+            myFideleManager.UnableToLand();
         }
 
         if (collision.gameObject == myMoveZone)
         {
             isLanbable = true;
+            myFideleManager.AbleToLand();
         }
 
-        
+
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -88,11 +95,14 @@ public class Movement : MonoBehaviour
         if (collision.gameObject == myMoveZone)
         {
             isLanbable = false;
+            //Debug.Log(collision.name);
+            myFideleManager.UnableToLand();
         }
 
-        if (collision.tag == ("Obstacle"))
+        if (collision.tag == ("Obstacle") && collision != myFideleManager)
         {
             isLanbable = true;
+            myFideleManager.AbleToLand();
         }       
     }
 }

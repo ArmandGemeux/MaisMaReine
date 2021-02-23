@@ -11,10 +11,26 @@ public class GameManager : MonoBehaviour
 
     public List<FideleManager> myFideleList = new List<FideleManager>();
 
+    #region Singleton
+    public static GameManager GM;
+
+    private void Awake()
+    {
+        if (GM != null)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            GM = this;
+        }
+    }
+    #endregion
+
     // Start is called before the first frame update
     void Start()
     {
-        myFideleList.AddRange(FindObjectsOfType<FideleManager>());        
+        myFideleList.AddRange(FindObjectsOfType<FideleManager>());
     }
 
     // Update is called once per frame
