@@ -17,7 +17,7 @@ public class Movement : MonoBehaviour
     //public GameObject myCollideZone;
     public GameObject myMoveZone;
     public Collider2D myInteractionZoneCollider;
-    private FideleManager myFideleManager;
+    private AnimationManager myAnimationManager;
 
     private DragCamera2D myCam;
 
@@ -27,13 +27,13 @@ public class Movement : MonoBehaviour
         myCam = GameObject.Find("MovingCamera_CM").GetComponent<DragCamera2D>();
         myCam.followTarget = null;
 
-        myFideleManager = GetComponentInParent<FideleManager>();
+        myAnimationManager = GetComponentInParent<AnimationManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Physics2D.IgnoreCollision(gameObject.GetComponent<Collider2D>(), myFideleManager.GetComponent<Collider2D>());
+        Physics2D.IgnoreCollision(gameObject.GetComponent<Collider2D>(), myAnimationManager.GetComponent<Collider2D>());
 
         if (isMoving && Input.GetMouseButton(0))
         {
@@ -57,7 +57,7 @@ public class Movement : MonoBehaviour
                 transform.localPosition = Vector3.zero;
             }
 
-            myFideleManager.HideMovement();
+            myAnimationManager.HideMovement();
 
             myCam.followTarget = null;
 
@@ -69,22 +69,22 @@ public class Movement : MonoBehaviour
     public void MovingCharacter()
     {
         isMoving = true;
-        myFideleManager.DisplayMovement();
+        myAnimationManager.DisplayMovement();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == ("Obstacle") && collision != myFideleManager)
+        if (collision.tag == ("Obstacle") && collision != myAnimationManager)
         {
             isLanbable = false;
             //Debug.Log(collision.name);
-            myFideleManager.UnableToLand();
+            myAnimationManager.UnableToLand();
         }
 
         if (collision.gameObject == myMoveZone)
         {
             isLanbable = true;
-            myFideleManager.AbleToLand();
+            myAnimationManager.AbleToLand();
         }
 
 
@@ -96,13 +96,13 @@ public class Movement : MonoBehaviour
         {
             isLanbable = false;
             //Debug.Log(collision.name);
-            myFideleManager.UnableToLand();
+            myAnimationManager.UnableToLand();
         }
 
-        if (collision.tag == ("Obstacle") && collision != myFideleManager)
+        if (collision.tag == ("Obstacle") && collision != myAnimationManager)
         {
             isLanbable = true;
-            myFideleManager.AbleToLand();
+            myAnimationManager.AbleToLand();
         }       
     }
 }

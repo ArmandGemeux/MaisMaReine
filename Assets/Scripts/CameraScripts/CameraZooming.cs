@@ -31,7 +31,7 @@ public class CameraZooming : MonoBehaviour
             if (Input.GetAxis("Mouse ScrollWheel") > 0)
             {
                 myCamera.m_Lens.OrthographicSize = Mathf.Max(myCamera.m_Lens.OrthographicSize - 1, 1);
-                Debug.Log("Zooooooom");
+                //Debug.Log("Zooooooom");
             }
         }
 
@@ -41,18 +41,18 @@ public class CameraZooming : MonoBehaviour
             if (Input.GetAxis("Mouse ScrollWheel") < 0)
             {
                 myCamera.m_Lens.OrthographicSize = Mathf.Max(myCamera.m_Lens.OrthographicSize + 1, 1);
-                Debug.Log("Dézooooooom");
+                //Debug.Log("Dézooooooom");
             }
         }
 
         if (myCamera.m_Lens.OrthographicSize == maxZoomOutValue)
         {
-            Debug.Log("Dezoom Max Atteint");
+            //Debug.Log("Dezoom Max Atteint");
         }
 
         if (myCamera.m_Lens.OrthographicSize == maxZoomOutValue)
         {
-            Debug.Log("Zoom Max Atteint");
+            //Debug.Log("Zoom Max Atteint");
             mapScreen.SetActive(true);
             //Afficher écran de MiniMap
         }

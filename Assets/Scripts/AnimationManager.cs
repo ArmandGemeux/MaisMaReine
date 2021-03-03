@@ -11,7 +11,7 @@ public class AnimationManager : MonoBehaviour
     public bool isInteractionDisplayed = false;
     public bool isMovementDisplayed = false;
 
-    private bool isInfoDisplayed = false;
+    public bool isInfoDisplayed = false;
     private bool isLightOn = false;
     private bool isLightColorSwitched = false;
 
@@ -135,43 +135,6 @@ public class AnimationManager : MonoBehaviour
         {
             myAnim.SetBool("ActivateInteractionBool", false);
             isInteractionDisplayed = false;
-        }
-    }
-
-    public void OnMouseEnter()
-    {
-        DisplayInteraction();
-    }
-
-    public void OnMouseOver()
-    {
-        if (Input.GetMouseButtonDown(1) && isInfoDisplayed == false)
-        {
-            DisplayMovement();
-            DisplayStats();
-            isInfoDisplayed = true;
-        }
-        else if (Input.GetMouseButtonDown(1) && isInfoDisplayed)
-        {
-            HideMovement();
-            HideStats();
-            isInfoDisplayed = false;
-        }
-    }
-
-    public void OnMouseExit()
-    {
-        if (isInfoDisplayed && myMovement.isMoving == false)
-        {
-            HideMovement();
-            HideStats();
-            isInfoDisplayed = false;
-        }
-
-        if (myMovement.isMoving == false && myInteraction.myCollideInteractionList.Count == 0)
-        {
-            HideInteraction();
-            HideStats();
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿/*using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -122,11 +122,6 @@ public class Raycast : MonoBehaviour
             foreach (Interaction myCollideInteraction in interactionLauncher.GetComponentInChildren<Interaction>().myCollideInteractionList)
             {
                 myCollideInteraction.canInteract = true;
-
-                /*if (!interactionLauncher.GetComponentInChildren<Interaction>().alreadyInteractedList.Contains(myCollideInteraction) && interactionLauncher.currentCamp.ToString() != myCollideInteraction.GetComponentInParent<FideleManager>().currentCamp.ToString())
-                {
-                    myCollideInteraction.GetComponentInParent<FideleManager>().ActivateReceiverSelection();
-                }*/
             }
             isLookingForInteraction = true; //L'interactionLauncher cherche une interaction
         }
@@ -188,7 +183,7 @@ public class Raycast : MonoBehaviour
                 //interactionLauncher.SwitchBackInteractionLightColor();
                 interactionReceiver.GetComponentInParent<FideleManager>().DesactivateReceiverSelection();
                 interactionLauncher.GetComponentInChildren<Interaction>().alreadyInteractedList.Add(interactionReceiver);
-                Debug.Log("On est là");
+                //Debug.Log("On est là");
                 isLookingForInteraction = false; //L'interactionLauncher ne cherche plus d'interaction
 
                 interactionLauncher.ToggleLauncherOutline();
@@ -326,4 +321,4 @@ public class Raycast : MonoBehaviour
             interactionLauncher = null;
         }
     }
-}
+}*/

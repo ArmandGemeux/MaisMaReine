@@ -111,7 +111,7 @@ public class DragCamera2D : MonoBehaviour
         }
 
         if (followTarget != null) {
-            transform.position = Vector3.Lerp(transform.position + offset, followTarget.transform.position + offset, lerpSpeed);
+            //transform.position = Vector3.Lerp(transform.position + offset, followTarget.transform.position + offset, lerpSpeed);
         }
 
 

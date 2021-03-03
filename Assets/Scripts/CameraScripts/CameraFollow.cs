@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
 
-public class CameraFollow : MonoBehaviour
+/*public class CameraFollow : MonoBehaviour
 {
     public Raycast myRaycast;
 
@@ -29,4 +29,4 @@ public class CameraFollow : MonoBehaviour
             //myCM.Priority = 10;
         }
     }
-}
+}*/

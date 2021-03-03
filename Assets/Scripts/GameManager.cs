@@ -12,17 +12,17 @@ public class GameManager : MonoBehaviour
     public List<FideleManager> myFideleList = new List<FideleManager>();
 
     #region Singleton
-    public static GameManager GM;
+    public static GameManager Instance;
 
     private void Awake()
     {
-        if (GM != null)
+        if (Instance != null)
         {
             Destroy(this);
         }
         else
         {
-            GM = this;
+            Instance = this;
         }
     }
     #endregion
@@ -64,7 +64,7 @@ public class GameManager : MonoBehaviour
         foreach (FideleManager myFidele in myFideleList)
         {
             myFidele.GetComponentInChildren<Interaction>().alreadyInteractedList.Clear();
-            Debug.Log("Clear");
+            //Debug.Log("Clear");
         }
     }
 }

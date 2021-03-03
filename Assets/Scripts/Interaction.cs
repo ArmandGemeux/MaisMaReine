@@ -15,13 +15,12 @@ public class Interaction : MonoBehaviour
     
 
     public List <Interaction> myCollideInteractionList = new List<Interaction>();
-    public List <FideleManager> myCollideFideleManagerList = new List<FideleManager>();
+    public List <AnimationManager> myCollideAnimationManagerList = new List<AnimationManager>();
 
     public List<Interaction> alreadyInteractedList = new List<Interaction>();
-    
-    public GameManager myGM;
-    public Raycast myRC;
-    private FideleManager fideleManager;
+
+    private AnimationManager myAnimationManager;
+    private FideleManager myFideleManager;
 
     public Sprite combatIcon;
     public Sprite dialogueIcon;
@@ -31,7 +30,8 @@ public class Interaction : MonoBehaviour
 
     private void Awake()
     {
-        fideleManager = GetComponentInParent<FideleManager>();
+        myAnimationManager = GetComponentInParent<AnimationManager>();
+        myFideleManager = GetComponentInParent<FideleManager>();
     }
 
     // Start is called before the first frame update
@@ -58,21 +58,20 @@ public class Interaction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (myCollideFideleManagerList.Count >= 1)
+        if (myCollideAnimationManagerList.Count >= 1)
         {
-            foreach (FideleManager myCollideFideleManager in myCollideFideleManagerList)
+            foreach (AnimationManager myCollideAnimationManager in myCollideAnimationManagerList)
             {
-                if (myCollideFideleManager.currentCamp.ToString() != fideleManager.currentCamp.ToString() && fideleManager.currentCamp.ToString() == myGM.currentCampTurn.ToString())
+                if (myCollideAnimationManager.GetComponent<FideleManager>().currentCamp != Camp.Fidele && myFideleManager.currentCamp == Camp.Fidele)
                 {
-                    myCollideFideleManager.haveAnInteraction = true;
-                    myCollideFideleManager.DisplayInteraction();
+                    myCollideAnimationManager.haveAnInteraction = true;
+                    myCollideAnimationManager.DisplayInteraction();
 
-                    if (myCollideFideleManager != fideleManager && !alreadyInteractedList.Contains(myCollideFideleManager.GetComponentInChildren<Interaction>()))
+                    if (myCollideAnimationManager != myAnimationManager && !alreadyInteractedList.Contains(myCollideAnimationManager.GetComponentInChildren<Interaction>()))
                     {
-                        fideleManager.isSelectable = true;
-                        fideleManager.ActivateLauncherSelection();
-                        myCollideFideleManager.ActivateReceiverSelection();
-                        Debug.Log("Coucou");
+                        myAnimationManager.isSelectable = true;
+                        myAnimationManager.ActivateLauncherSelection();
+                        myCollideAnimationManager.ActivateReceiverSelection();
                     }
                 }               
             }
@@ -84,7 +83,7 @@ public class Interaction : MonoBehaviour
         if (collision.GetComponent<Interaction>() != null)
         {
             myCollideInteractionList.Add(collision.GetComponent<Interaction>());
-            myCollideFideleManagerList.Add(collision.GetComponentInParent<FideleManager>());
+            myCollideAnimationManagerList.Add(collision.GetComponentInParent<AnimationManager>());
         }
     }
 
@@ -99,28 +98,28 @@ public class Interaction : MonoBehaviour
                     myInteractionIcon.sprite = null;
                     myCollideInteraction.myInteractionIcon.sprite = null;
 
-                    fideleManager.isSelectable = false;
+                    myAnimationManager.isSelectable = false;
                     myCollideInteraction.canInteract = false;
                 }
             }
 
 
-            if (myCollideFideleManagerList.Count >= 1)
+            if (myCollideAnimationManagerList.Count >= 1)
             {
-                foreach (FideleManager myCollideFideleManager in myCollideFideleManagerList)
+                foreach (AnimationManager myCollideAnimationManager in myCollideAnimationManagerList)
                 {
-                    myCollideFideleManager.haveAnInteraction = false;
+                    myCollideAnimationManager.haveAnInteraction = false;
 
-                    if (myCollideFideleManager != fideleManager && myCollideFideleManager.currentCamp.ToString() != fideleManager.currentCamp.ToString() && fideleManager.currentCamp.ToString() == myGM.currentCampTurn.ToString())
+                    if (myCollideAnimationManager != myAnimationManager && myCollideAnimationManager.GetComponent<FideleManager>().currentCamp.ToString() != myFideleManager.currentCamp.ToString() && myFideleManager.currentCamp.ToString() == GameManager.Instance.currentCampTurn.ToString())
                     {
-                        myCollideFideleManager.HideInteraction();
-                        fideleManager.DesactivateLauncherSelection();
-                        myCollideFideleManager.DesactivateReceiverSelection();
+                        myCollideAnimationManager.HideInteraction();
+                        myAnimationManager.DesactivateLauncherSelection();
+                        myCollideAnimationManager.DesactivateReceiverSelection();
                     }
                 }
             }
 
-            myCollideFideleManagerList.Remove(collision.GetComponentInParent<FideleManager>());
+            myCollideAnimationManagerList.Remove(collision.GetComponentInParent<AnimationManager>());
             myCollideInteractionList.Remove(collision.GetComponent<Interaction>());
         }
     }
