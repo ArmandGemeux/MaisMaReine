@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 9023320719234040176}
   - component: {fileID: 7495386533700057435}
   - component: {fileID: 2651889012278339433}
-  - component: {fileID: 3420618140987820472}
   m_Layer: 0
   m_Name: Decors_Objets_Brouette_01
   m_TagString: Obstacle
@@ -71,7 +70,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 38
   m_Sprite: {fileID: 21300000, guid: 2864951c9d83fae4c8fb122247ccc0f6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -113,22 +112,3 @@ PolygonCollider2D:
       - {x: -0.9474349, y: -1.2993412}
       - {x: 1.3444562, y: -0.4601822}
       - {x: 1.2452006, y: 0.31581116}
---- !u!114 &3420618140987820472
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7637743245155751249}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 646d68c34334abe44bb05cf2f10a53a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isMovable: 0
-  renderBelowAll: 0
-  movingDependencies: []
-  sortType: 0
-  SorterPositionOffset: {x: 0.1656332, y: -0.8612919, z: 0}
-  SorterPositionOffset2: {x: 0, y: 0, z: 0}
-  renderersToSort: []

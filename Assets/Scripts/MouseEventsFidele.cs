@@ -78,7 +78,7 @@ public class MouseEventsFidele : MonoBehaviour
 
     public void OnMouseOver()
     {
-        #region Interaction
+        /*#region Interaction
 
         #region ReceiveInteraction
 
@@ -94,7 +94,7 @@ public class MouseEventsFidele : MonoBehaviour
 
         #endregion
 
-        #endregion
+        #endregion*/
 
         #region InformationDisplaying
 

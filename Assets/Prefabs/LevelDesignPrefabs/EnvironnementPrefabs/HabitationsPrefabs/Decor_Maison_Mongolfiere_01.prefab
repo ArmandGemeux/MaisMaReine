@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 692255584608316521}
   - component: {fileID: 699228412170996486}
-  - component: {fileID: 1625698789824019059}
   m_Layer: 0
   m_Name: Decor_Maison_Mongolfiere_01
   m_TagString: Untagged
@@ -70,7 +69,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 4
+  m_SortingOrder: 70
   m_Sprite: {fileID: 21300000, guid: e316e5806cdc89d4b95f869088ed183e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -80,25 +79,5 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 2
   m_SpriteSortPoint: 0
---- !u!114 &1625698789824019059
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7892090871677717410}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 646d68c34334abe44bb05cf2f10a53a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isMovable: 0
-  renderBelowAll: 0
-  movingDependencies: []
-  sortType: 0
-  SorterPositionOffset: {x: -0.095588684, y: -7.678278, z: 0}
-  SorterPositionOffset2: {x: 0, y: 0, z: 0}
-  renderersToSort:
-  - {fileID: 699228412170996486}

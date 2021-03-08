@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5148479637711666153}
   - component: {fileID: 8363899278686558394}
-  - component: {fileID: 6699498806036296494}
   - component: {fileID: 5354813278797449334}
+  - component: {fileID: 3874248387578043582}
   m_Layer: 0
   m_Name: Decor_Maison_Paysan_02
   m_TagString: Obstacle
@@ -71,7 +71,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 7
   m_Sprite: {fileID: 21300000, guid: 37d49fc4a5ba1bd4f84a17f4115ed1f4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -81,27 +81,8 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 2
   m_SpriteSortPoint: 0
---- !u!114 &6699498806036296494
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3402207916512477975}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 646d68c34334abe44bb05cf2f10a53a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isMovable: 0
-  renderBelowAll: 0
-  movingDependencies: []
-  sortType: 1
-  SorterPositionOffset: {x: -3.2088175, y: -3.6433446, z: 0}
-  SorterPositionOffset2: {x: 3.2088194, y: -3.2088175, z: 0}
-  renderersToSort: []
 --- !u!60 &5354813278797449334
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -131,3 +112,22 @@ PolygonCollider2D:
       - {x: -0.5346575, y: -4.687802}
       - {x: 3.2570086, y: -3.2703514}
       - {x: -0.30060387, y: -2.7352824}
+--- !u!114 &3874248387578043582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3402207916512477975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 646d68c34334abe44bb05cf2f10a53a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isMovable: 0
+  renderBelowAll: 0
+  movingDependencies: []
+  sortType: 1
+  SorterPositionOffset: {x: -3.127264, y: -3.6010928, z: 0}
+  SorterPositionOffset2: {x: 3.0798836, y: -3.3167965, z: 0}
+  renderersToSort: []

@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7556182783430762792}
   - component: {fileID: 6571515541455530342}
-  - component: {fileID: 4834686229985915304}
   - component: {fileID: 288459480901794017}
   m_Layer: 0
   m_Name: Decor_Maison_Grange_01
@@ -71,7 +70,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 36
   m_Sprite: {fileID: 21300000, guid: f1baf26e15a3a3047925b7a5210094ae, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -81,29 +80,8 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 2
   m_SpriteSortPoint: 0
---- !u!114 &4834686229985915304
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4579465465982868378}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 646d68c34334abe44bb05cf2f10a53a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isMovable: 0
-  renderBelowAll: 0
-  movingDependencies:
-  - {fileID: 0}
-  sortType: 1
-  SorterPositionOffset: {x: 7.2877693, y: -2.1767483, z: 0}
-  SorterPositionOffset2: {x: -7.0584655, y: -4.64373, z: 0}
-  renderersToSort:
-  - {fileID: 6571515541455530342}
 --- !u!60 &288459480901794017
 PolygonCollider2D:
   m_ObjectHideFlags: 0

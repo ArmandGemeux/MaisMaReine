@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 2227121438999362129}
   - component: {fileID: 7399071328055243481}
   - component: {fileID: 2031044870723693930}
-  - component: {fileID: 2311419412121319871}
   m_Layer: 0
   m_Name: Decors_Objets_Case_01
   m_TagString: Obstacle
@@ -71,7 +70,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 69
   m_Sprite: {fileID: 21300000, guid: 2ca454ff09f897f49a71e48636d5e217, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -141,22 +140,3 @@ PolygonCollider2D:
       - {x: 0.17999999, y: -0.84999996}
       - {x: 0.35, y: -0.78}
       - {x: 0.51, y: -0.71}
---- !u!114 &2311419412121319871
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7044917583285859403}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 646d68c34334abe44bb05cf2f10a53a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isMovable: 0
-  renderBelowAll: 0
-  movingDependencies: []
-  sortType: 1
-  SorterPositionOffset: {x: 1.040802, y: -0.38162756, z: 0}
-  SorterPositionOffset2: {x: -1.0754967, y: -0.4336686, z: 0}
-  renderersToSort: []

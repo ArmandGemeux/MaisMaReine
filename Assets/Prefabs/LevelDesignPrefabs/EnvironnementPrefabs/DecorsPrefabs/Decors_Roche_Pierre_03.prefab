@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6804879332865482768}
   - component: {fileID: 5199957143185830499}
-  - component: {fileID: 4493134866292780321}
   - component: {fileID: 8559095789133560661}
   m_Layer: 0
   m_Name: Decors_Roche_Pierre_03
@@ -71,7 +70,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 67
   m_Sprite: {fileID: 21300000, guid: e6a9fdfe01cd3fa48ab59c70611aeb03, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -81,28 +80,8 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 2
   m_SpriteSortPoint: 0
---- !u!114 &4493134866292780321
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 696338102862270839}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 646d68c34334abe44bb05cf2f10a53a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isMovable: 0
-  renderBelowAll: 0
-  movingDependencies: []
-  sortType: 0
-  SorterPositionOffset: {x: 0.07947898, y: -0.99348545, z: 0}
-  SorterPositionOffset2: {x: 0, y: 0, z: 0}
-  renderersToSort:
-  - {fileID: 5199957143185830499}
 --- !u!60 &8559095789133560661
 PolygonCollider2D:
   m_ObjectHideFlags: 0

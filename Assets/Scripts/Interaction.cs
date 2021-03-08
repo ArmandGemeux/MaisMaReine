@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum InteractionType { Dialogue, Recrutement, Combat, Event }
+
 public class Interaction : MonoBehaviour
 {
-    public enum InteractionType { Dialogue, Recrutement, Combat, Event }
     public InteractionType interactionType;
 
     [Space]

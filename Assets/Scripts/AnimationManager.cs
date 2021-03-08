@@ -7,6 +7,9 @@ using UnityEngine.UI;
 public class AnimationManager : MonoBehaviour
 {
     public bool isSelectable = false;
+    public bool isSelected = false;
+
+
     public bool isStatsDisplayed = false;
     public bool isInteractionDisplayed = false;
     public bool isMovementDisplayed = false;
