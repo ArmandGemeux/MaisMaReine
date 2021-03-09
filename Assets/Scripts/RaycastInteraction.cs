@@ -57,10 +57,9 @@ public class RaycastInteraction : MonoBehaviour
                 interactionLauncherInteraction = hit.collider.GetComponentInChildren<Interaction>();
 
                 interactionLauncherAnim.ToggleLauncherOutline();
-                interactionLauncherAnim.ActivateLauncherSelection();
 
                 interactionLauncherAnim.isSelected = true;
-
+                
                 foreach (Interaction myCollideInteraction in interactionLauncherInteraction.myCollideInteractionList)
                 {
                     if (!interactionLauncherInteraction.alreadyInteractedList.Contains(myCollideInteraction))
@@ -76,16 +75,14 @@ public class RaycastInteraction : MonoBehaviour
             if (hit.collider != null && hit.collider.gameObject.GetComponent<AnimationManager>() && hit.collider.gameObject.GetComponent<AnimationManager>().isSelectable && hit.collider.gameObject.GetComponent<FideleManager>().currentCamp == Camp.Fidele)
             {
                 Debug.Log("On change de selectionneur");
-                interactionLauncherAnim.ToggleLauncherOutline();
-                interactionLauncherAnim.DesactivateLauncherSelection();
 
-                interactionLauncherAnim.isSelected = false;
+                ResetReceiverInteraction();
+                ResetLauncherInteraction();
 
                 interactionLauncherAnim = hit.collider.GetComponent<AnimationManager>();
                 interactionLauncherInteraction = hit.collider.GetComponentInChildren<Interaction>();
 
                 interactionLauncherAnim.ToggleLauncherOutline();
-                interactionLauncherAnim.ActivateLauncherSelection();
 
                 interactionLauncherAnim.isSelected = true;
 
@@ -103,7 +100,9 @@ public class RaycastInteraction : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity);
 
-        if (hit.collider != null && hit.collider.gameObject.GetComponentInChildren<Interaction>() && hit.collider.gameObject.GetComponentInChildren<Interaction>().canInteract && hit.collider.gameObject.GetComponent<FideleManager>().currentCamp != Camp.Fidele)
+        if (hit.collider != null && hit.collider.gameObject.GetComponentInChildren<Interaction>() && hit.collider.gameObject.GetComponentInChildren<Interaction>().canInteract 
+            && hit.collider.gameObject.GetComponent<FideleManager>().currentCamp != Camp.Fidele && interactionLauncherInteraction.myCollideInteractionList.Contains(hit.collider.gameObject.GetComponentInChildren<Interaction>()) 
+            && !interactionLauncherInteraction.alreadyInteractedList.Contains(hit.collider.gameObject.GetComponentInChildren<Interaction>()))
         {
             interactionReceiverAnim = hit.collider.GetComponent<AnimationManager>();
             interactionReceiverInteraction = hit.collider.GetComponentInChildren<Interaction>();
@@ -111,14 +110,14 @@ public class RaycastInteraction : MonoBehaviour
             switch (interactionReceiverInteraction.interactionType) //Quel type d'interaction porte l'interactionReceiver ?
             {
                 case InteractionType.Dialogue:
-                    //interactionReceiverInteraction.GetComponent<Dialogue>().DisplayDialogueFeedback();
+                    interactionReceiverInteraction.GetComponent<Dialogue>().DisplayDialogueFeedback();
                     Debug.Log("Dialogue");
                     break;
                 case InteractionType.Recrutement:
                     Debug.Log("Recrutement");
                     break;
                 case InteractionType.Combat:
-                    //interactionReceiverInteraction.GetComponent<Combat>().DisplayCombatFeedback();
+                    interactionReceiverInteraction.GetComponent<Combat>().StartFight();
                     Debug.Log("Combat");
                     break;
                 case InteractionType.Event:
@@ -128,14 +127,34 @@ public class RaycastInteraction : MonoBehaviour
                     break;
             }
 
+            interactionLauncherInteraction.alreadyInteractedList.Add(interactionReceiverInteraction);
+
             Debug.Log("Interaction");
+            ResetReceiverInteraction();
+            ResetLauncherInteraction();
+        }
+    }
+
+    public void ResetLauncherInteraction()
+    {
+        if (interactionLauncherAnim != null)
+        {
             interactionLauncherAnim.ToggleLauncherOutline();
-            interactionLauncherAnim.DesactivateLauncherSelection();
 
             interactionLauncherAnim.isSelected = false;
 
             interactionLauncherAnim = null;
             interactionLauncherInteraction = null;
+
+        }
+    }
+
+    public void ResetReceiverInteraction()
+    {
+        if (interactionReceiverAnim != null)
+        {
+            interactionReceiverInteraction = null;
+            interactionReceiverAnim = null;
         }
     }
 }

@@ -81,7 +81,7 @@ public class Interaction : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.GetComponent<Interaction>() != null)
+        if (collision.GetComponent<Interaction>() != null && collision.GetComponentInParent<FideleManager>().currentCamp != myFideleManager.currentCamp)
         {
             myCollideInteractionList.Add(collision.GetComponent<Interaction>());
             myCollideAnimationManagerList.Add(collision.GetComponentInParent<AnimationManager>());
@@ -119,7 +119,6 @@ public class Interaction : MonoBehaviour
                     }
                 }
             }
-
             myCollideAnimationManagerList.Remove(collision.GetComponentInParent<AnimationManager>());
             myCollideInteractionList.Remove(collision.GetComponent<Interaction>());
         }

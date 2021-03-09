@@ -54,7 +54,7 @@ public class MouseEventsFidele : MonoBehaviour
 
     public void OnMouseDown()
     {
-       
+        RaycastInteraction.Instance.ResetLauncherInteraction();
     }
 
     public void OnMouseDrag()
@@ -64,6 +64,8 @@ public class MouseEventsFidele : MonoBehaviour
         if (myFideleManager.currentCamp == Camp.Fidele)
         {
             myAnimManager.isSelectable = false;
+            RaycastInteraction.Instance.ResetLauncherInteraction();
+            RaycastInteraction.Instance.ResetReceiverInteraction();
 
             myMovement.MovingCharacter();
         }
@@ -112,6 +114,7 @@ public class MouseEventsFidele : MonoBehaviour
         }
 
         #endregion
+
     }
 
     public void OnMouseExit()

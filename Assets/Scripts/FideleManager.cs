@@ -13,12 +13,12 @@ public class FideleManager : MonoBehaviour
     public string fidelePrenom;
 
     public int maxHp;
-    private int currentHP;
+    public int currentHP;
 
     [Range(4, 10)]
     public int attackRange;
     [Range(1, 3)]
-    public int counteAttackRange;
+    public int counterAttackRange;
 
     [Range(0, 100)]
     public int criticChances;
@@ -32,4 +32,9 @@ public class FideleManager : MonoBehaviour
     public FidelePeuple fidelePeuple;
     
     public Camp currentCamp;
+
+    void Start()
+    {
+        currentHP = maxHp;
+    }
 }
