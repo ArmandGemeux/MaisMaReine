@@ -74,7 +74,7 @@ public class RaycastInteraction : MonoBehaviour
         {
             if (hit.collider != null && hit.collider.gameObject.GetComponent<AnimationManager>() && hit.collider.gameObject.GetComponent<AnimationManager>().isSelectable && hit.collider.gameObject.GetComponent<FideleManager>().currentCamp == Camp.Fidele)
             {
-                Debug.Log("On change de selectionneur");
+                //Debug.Log("On change de selectionneur");
 
                 ResetReceiverInteraction();
                 ResetLauncherInteraction();
@@ -111,17 +111,17 @@ public class RaycastInteraction : MonoBehaviour
             {
                 case InteractionType.Dialogue:
                     interactionReceiverInteraction.GetComponent<Dialogue>().DisplayDialogueFeedback();
-                    Debug.Log("Dialogue");
+                    //Debug.Log("Dialogue");
                     break;
                 case InteractionType.Recrutement:
-                    Debug.Log("Recrutement");
+                    //Debug.Log("Recrutement");
                     break;
                 case InteractionType.Combat:
                     interactionReceiverInteraction.GetComponent<Combat>().StartFight();
-                    Debug.Log("Combat");
+                    //Debug.Log("Combat");
                     break;
                 case InteractionType.Event:
-                    Debug.Log("Event");
+                    //Debug.Log("Event");
                     break;
                 default:
                     break;
@@ -129,7 +129,7 @@ public class RaycastInteraction : MonoBehaviour
 
             interactionLauncherInteraction.alreadyInteractedList.Add(interactionReceiverInteraction);
 
-            Debug.Log("Interaction");
+            //Debug.Log("Interaction");
             ResetReceiverInteraction();
             ResetLauncherInteraction();
         }

@@ -14,6 +14,7 @@ public class FideleManager : MonoBehaviour
 
     public int maxHp;
     public int currentHP;
+    public bool isAlive;
 
     [Range(4, 10)]
     public int attackRange;
@@ -36,5 +37,6 @@ public class FideleManager : MonoBehaviour
     void Start()
     {
         currentHP = maxHp;
+        isAlive = true;
     }
 }

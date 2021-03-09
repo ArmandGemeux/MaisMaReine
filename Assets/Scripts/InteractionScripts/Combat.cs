@@ -9,12 +9,16 @@ public class Combat : MonoBehaviour
     private FideleManager defenseurFideleManager;
     private FideleManager attaquantFideleManager;
 
+    private ParticleSystem dealingDamage;
+    private ParticleSystem receiveDamage;
+
+    private int isCritical;
+    private int isMissed;
+
     // Start is called before the first frame update
     void Start()
     {
         #region Preprod
-        //myCombatEffect = GetComponentInChildren<ParticleSystem>();
-
         //Déterminer l'attaquant
         //Tester l'état du combat (Spécial ? Normal ?)
 
@@ -63,38 +67,102 @@ public class Combat : MonoBehaviour
         Debug.Log("Combat en cours");
         attaquantFideleManager = RaycastInteraction.Instance.interactionLauncherAnim.GetComponent<FideleManager>();
         defenseurFideleManager = GetComponentInParent<FideleManager>();
+        dealingDamage = defenseurFideleManager.GetComponentInChildren<ParticleSystem>();
+        receiveDamage = GetComponentInChildren<ParticleSystem>();
 
-        defenseurFideleManager.currentHP -= attaquantFideleManager.attackRange;
-        Debug.Log("L'attaquant inflige" + attaquantFideleManager.attackRange + "points de dégâts, laissant son adversaire à " + defenseurFideleManager.currentHP);
-
-        attaquantFideleManager.currentHP -= defenseurFideleManager.counterAttackRange;
-        Debug.Log("Le défenseur contre-attaque et inflige" + defenseurFideleManager.counterAttackRange + "points de dégâts, laissant son adversaire à " + attaquantFideleManager.currentHP);
-
+        isCritical = Random.Range(0, 100);
+        if (isCritical <= attaquantFideleManager.criticChances)
+        {
+            CriticalHit();
+        }
+        else
+        {
+            isMissed = Random.Range(0, 100);
+            if (isMissed <= attaquantFideleManager.failChances)
+            {
+                Missed();
+            }
+            else
+            {
+                Attack();
+            }
+        }
         //Determiner les opposants et le type de combat
     }
 
     public void Attack()
     {
-        //Ici, soustraire la valeur d'attaque de l'attaquant au défenseur
+        if (attaquantFideleManager.isAlive && defenseurFideleManager.isAlive)
+        {
+            //Ici, soustraire la valeur d'attaque de l'attaquant au défenseur
+            defenseurFideleManager.currentHP -= attaquantFideleManager.attackRange;
+            Debug.Log("L'attaquant inflige" + attaquantFideleManager.attackRange + "points de dégâts, laissant son adversaire à " + defenseurFideleManager.currentHP);
+            receiveDamage.Play();
+            CheckHP();
+            CounterAttack();
+        }
     }
 
     public void CounterAttack()
     {
-        //Ici, soustraire la valeur de contre-attaque du défenseur à l'attaquant
+        if (attaquantFideleManager.isAlive && defenseurFideleManager.isAlive)
+        {
+            //Ici, soustraire la valeur de contre-attaque du défenseur à l'attaquant
+            attaquantFideleManager.currentHP -= defenseurFideleManager.counterAttackRange;
+            Debug.Log("Le défenseur contre-attaque et inflige" + defenseurFideleManager.counterAttackRange + "points de dégâts, laissant son adversaire à " + attaquantFideleManager.currentHP);
+            dealingDamage.Play();
+            CheckHP();
+        }
     }
 
     public void CheckHP()
     {
         //Ici, on teste les points de vie des personnages en combat
+        if (attaquantFideleManager.currentHP <= 0)
+        {
+            attaquantFideleManager.isAlive = false;
+            Debug.Log("L'attaquant est vaincu !");
+        }
+        else
+        {
+            EndFight();
+        }
+
+
+        if (defenseurFideleManager.currentHP <= 0)
+        {
+            defenseurFideleManager.isAlive = false;
+            Debug.Log("Le défenseur est vaincu !");
+        }
+        else
+        {
+            EndFight();
+        }
     }    
 
     public void CriticalHit()
     {
         //Ici, Attack() et CounterAttack() mais en prenant les effets d'un coup critique en compte
+        receiveDamage.Play();
+        defenseurFideleManager.currentHP -= attaquantFideleManager.attackRange*2;
+        Debug.Log("OUH ! CRITIQUE !!");
+        Debug.Log("Avec un coup critique, l'attaquant inflige" + attaquantFideleManager.attackRange + "points de dégâts, laissant son adversaire à " + defenseurFideleManager.currentHP);
+        CheckHP();
     }
 
     public void Missed()
     {
         //Ici, Attack() et CounterAttack() mais en prenant les effets d'un echec critique en compte
+        dealingDamage.Play();
+        defenseurFideleManager.currentHP -= attaquantFideleManager.attackRange * 2;
+        Debug.Log("Loupé !! Aie aie aie !!");
+        Debug.Log("Avec un coup critique, l'attaquant inflige" + attaquantFideleManager.attackRange + "points de dégâts, laissant son adversaire à " + defenseurFideleManager.currentHP);
+        CheckHP();
+    }
+
+    public void EndFight()
+    {
+        //Ici, appliquez les éléments à prendre en compte lorsqu'un combat est fini
+        //Debug.Log("Combat terminé");
     }
 }
