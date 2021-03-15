@@ -24,13 +24,15 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
         }
+
+        myFideleList.AddRange(FindObjectsOfType<FideleManager>());
     }
     #endregion
 
     // Start is called before the first frame update
     void Start()
     {
-        myFideleList.AddRange(FindObjectsOfType<FideleManager>());
+
     }
 
     // Update is called once per frame
