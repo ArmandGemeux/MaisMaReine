@@ -610,7 +610,7 @@ GameObject:
   - component: {fileID: 3329264679567080905}
   m_Layer: 0
   m_Name: Fidele_Druide
-  m_TagString: Obstacle
+  m_TagString: Fidele
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -622,7 +622,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3329264679567080911}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.83, y: -15.95, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -648,9 +648,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ccc71daf61d7944bb4ced1a40b95519, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myCamp: 0
   fideleNom: 
   fidelePrenom: 
-  maxHp: 15
+  maxHp: 12
   currentHP: 0
   isAlive: 0
   attackRange: 6
@@ -659,7 +660,7 @@ MonoBehaviour:
   failChances: 15
   charismaCost: 20
   fidelePeuple: 0
-  currentCamp: 0
+  myTarget: {fileID: 0}
 --- !u!114 &3329264679567080917
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -697,8 +698,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69f2d4c31db438849a635ece9c8620df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactionClickingTime: 1
-  movementClickingTime: 1
 --- !u!70 &3329264679567080906
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -709,7 +708,7 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.4}
@@ -922,13 +921,11 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3329264680014157517}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b0bea56598277904b88ae3c1e3750353, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myMovement: {fileID: 3329264679002931792}
-  myCollidingFideleManager: []
 --- !u!1 &3329264680435413818
 GameObject:
   m_ObjectHideFlags: 0

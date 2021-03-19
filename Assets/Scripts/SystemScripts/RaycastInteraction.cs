@@ -37,10 +37,10 @@ public class RaycastInteraction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.Instance.currentCampTurn.ToString() == Camp.Fidele.ToString() && Input.GetMouseButtonDown(1))
+        if (GameManager.Instance.currentCampTurn == GameCamps.Fidele && Input.GetMouseButtonDown(1))
             LookForInteractionLauncher();
 
-        if (GameManager.Instance.currentCampTurn.ToString() == Camp.Fidele.ToString() && Input.GetMouseButtonDown(1) && interactionLauncherAnim != null)
+        if (GameManager.Instance.currentCampTurn == GameCamps.Fidele && Input.GetMouseButtonDown(1) && interactionLauncherAnim != null)
             LookForInteractionReceiver();
     }
 
@@ -51,7 +51,7 @@ public class RaycastInteraction : MonoBehaviour
 
         if (interactionLauncherAnim == null && interactionLauncherInteraction == null)
         {
-            if (hit.collider != null && hit.collider.gameObject.GetComponent<AnimationManager>() && hit.collider.gameObject.GetComponent<AnimationManager>().isSelectable && hit.collider.gameObject.GetComponent<FideleManager>().currentCamp == Camp.Fidele)
+            if (hit.collider != null && hit.collider.gameObject.GetComponent<AnimationManager>() && hit.collider.gameObject.GetComponent<AnimationManager>().isSelectable && hit.collider.gameObject.GetComponent<FideleManager>().myCamp == GameCamps.Fidele)
             {
                 interactionLauncherAnim = hit.collider.GetComponent<AnimationManager>();
                 interactionLauncherInteraction = hit.collider.GetComponentInChildren<Interaction>();
@@ -72,7 +72,7 @@ public class RaycastInteraction : MonoBehaviour
         }
         else
         {
-            if (hit.collider != null && hit.collider.gameObject.GetComponent<AnimationManager>() && hit.collider.gameObject.GetComponent<AnimationManager>().isSelectable && hit.collider.gameObject.GetComponent<FideleManager>().currentCamp == Camp.Fidele)
+            if (hit.collider != null && hit.collider.gameObject.GetComponent<AnimationManager>() && hit.collider.gameObject.GetComponent<AnimationManager>().isSelectable && hit.collider.gameObject.GetComponent<FideleManager>().myCamp == GameCamps.Fidele)
             {
                 //Debug.Log("On change de selectionneur");
 
@@ -101,7 +101,7 @@ public class RaycastInteraction : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity);
 
         if (hit.collider != null && hit.collider.gameObject.GetComponentInChildren<Interaction>() && hit.collider.gameObject.GetComponentInChildren<Interaction>().canInteract 
-            && hit.collider.gameObject.GetComponent<FideleManager>().currentCamp != Camp.Fidele && interactionLauncherInteraction.myCollideInteractionList.Contains(hit.collider.gameObject.GetComponentInChildren<Interaction>()) 
+            && hit.collider.gameObject.GetComponent<FideleManager>().myCamp != GameCamps.Fidele && interactionLauncherInteraction.myCollideInteractionList.Contains(hit.collider.gameObject.GetComponentInChildren<Interaction>()) 
             && !interactionLauncherInteraction.alreadyInteractedList.Contains(hit.collider.gameObject.GetComponentInChildren<Interaction>()))
         {
             interactionReceiverAnim = hit.collider.GetComponent<AnimationManager>();

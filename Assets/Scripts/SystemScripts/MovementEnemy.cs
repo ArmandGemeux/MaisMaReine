@@ -10,7 +10,7 @@ public class MovementEnemy : MonoBehaviour
     public Collider2D myMoveZoneCollider;
 
     [SerializeField]
-    private Transform currentPriority;
+    private Transform myTarget;
 
     private NavMeshAgent agent;
 
@@ -18,6 +18,8 @@ public class MovementEnemy : MonoBehaviour
     private Collider2D targetInteractionZone;
 
     public bool hasMoved = false;
+    public bool isMoving = false;
+    public bool targetLanded = false;
 
     // Start is called before the first frame update
     void Start()
@@ -35,8 +37,6 @@ public class MovementEnemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(agent.isStopped);
-
         /*if (myFideleManager.currentCamp.ToString() == GameManager.Instance.currentCampTurn.ToString())
         {
             FindTarget();
@@ -47,28 +47,37 @@ public class MovementEnemy : MonoBehaviour
         }*/
 
 
-        //Liste qui défile un par un pour les déplacements
-        //Quand c'est le tour de ce personnage :
-        //Detecter la priorité principale
-        //Faire le chemin pour l'atteindre
+        //Liste qui défile un par un pour les déplacements FAIT
+        //Quand c'est le tour de ce personnage : FAIT
+        //Detecter la priorité principale A FAIRE
+        //Faire le chemin pour l'atteindre FAIT (obstacles à ajouter)
 
         //Si le personnage :
         //Quitte sa zone de déplacemenet OU Quitte la MAP OU Atteint sa destination
+        //L'arrêter FAIT
     }
 
     public void FindTarget()
     {
-        if (hasMoved == false)
+        myFideleManager.DetermineMyTarget();
+        myTarget = myFideleManager.myTarget.transform;
+        if (hasMoved == false && targetLanded == false)
         {
+            isMoving = true;
             agent.isStopped = false;
-            targetInteraction = currentPriority.GetComponentInChildren<Interaction>();
+            targetInteraction = myTarget.GetComponentInChildren<Interaction>();
             targetInteractionZone = targetInteraction.GetComponent<PolygonCollider2D>();
 
-            agent.SetDestination(currentPriority.position);
+            agent.SetDestination(myTarget.position);
         }
         else
         {
+            myTarget = null;
+            myFideleManager.myTarget = null;
+            isMoving = false;
             agent.isStopped = true;
+            transform.parent.position = transform.position;
+            transform.localPosition = Vector3.zero;
         }
     }
 
@@ -76,10 +85,14 @@ public class MovementEnemy : MonoBehaviour
     {
         if (collision == targetInteractionZone)
         {
+            myTarget = null;
+            myFideleManager.myTarget = null;
+            isMoving = false;
             agent.isStopped = true;
             transform.parent.position = transform.position;
             transform.localPosition = Vector3.zero;
             hasMoved = true;
+            targetLanded = true;
             Debug.Log("Je suis arrivé");
         }
     }
@@ -88,12 +101,19 @@ public class MovementEnemy : MonoBehaviour
     {
         if (collision == myMoveZoneCollider)
         {
+            myTarget = null;
+            myFideleManager.myTarget = null;
+            isMoving = false;
             agent.isStopped = true;
             transform.parent.position = transform.position;
             transform.localPosition = Vector3.zero;
             hasMoved = true;
             agent.SetDestination(gameObject.transform.position);
             Debug.Log("Je suis sorti de ma zone");
+        }
+        if (collision == targetInteractionZone)
+        {
+            targetLanded = false;
         }
     }
 }

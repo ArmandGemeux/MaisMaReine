@@ -2,23 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+public enum GameCamps { Fidele, Roi, Bandit, Calamite, Converti}
+
 public class GameManager : MonoBehaviour
 {
-    public enum CampTurn { Fidele, Roi/*, Bandit, Calamite*/, noMoreCamp}
-    public CampTurn currentCampTurn;
+    public GameCamps currentCampTurn;
+
+    public List<GameCamps> campsInTerritoire;
 
     public float timeValue;
     public bool canMoveEnemy = true; //Public pour playtest
 
     public bool switchingTurn = false;
 
-    public List<FideleManager> myFideleList = new List<FideleManager>();
-
-    public List<FideleManager> myRoiList = new List<FideleManager>();
-
-    public List<FideleManager> myBanditList = new List<FideleManager>();
-
-    public List<FideleManager> myCalamiteList = new List<FideleManager>();
+    public List<FideleManager> myFideleList;
 
     #region Singleton
     public static GameManager Instance;
@@ -37,9 +35,6 @@ public class GameManager : MonoBehaviour
         #endregion
 
         myFideleList.AddRange(FindObjectsOfType<FideleManager>());
-        myRoiList.AddRange(FindObjectsOfType<FideleManager>());
-        myBanditList.AddRange(FindObjectsOfType<FideleManager>());
-        myCalamiteList.AddRange(FindObjectsOfType<FideleManager>());
     }
 
     // Start is called before the first frame update
@@ -52,37 +47,6 @@ public class GameManager : MonoBehaviour
     void Update()
     {
 
-        foreach (FideleManager myFidele in myFideleList)
-        {
-            if (myFidele.currentCamp.ToString() != CampTurn.Fidele.ToString())
-            {
-                myFideleList.Remove(myFidele);
-            }
-        }
-
-        foreach (FideleManager myRoi in myRoiList)
-        {
-            if (myRoi.currentCamp.ToString() != CampTurn.Roi.ToString())
-            {
-                myRoiList.Remove(myRoi);
-            }
-        }
-
-        /*foreach (FideleManager myBandit in myBanditList)
-        {
-            if (myBandit.currentCamp.ToString() != CampTurn.Bandit.ToString())
-            {
-                myBanditList.Remove(myBandit);
-            }
-        }
-
-        foreach (FideleManager myCalamite in myCalamiteList)
-        {
-            if (myCalamite.currentCamp.ToString() != CampTurn.Calamite.ToString())
-            {
-                myCalamiteList.Remove(myCalamite);
-            }
-        }*/
     }
 
     public void SwitchTurn()
@@ -91,15 +55,21 @@ public class GameManager : MonoBehaviour
         currentCampTurn += 1;
         switchingTurn = false;
 
-        if (currentCampTurn == CampTurn.Roi)
+        if (currentCampTurn == GameCamps.Roi)
         {
-            //MoveEnemy();
-            StartCoroutine(MoveEnemies());
+            foreach (FideleManager fm in myFideleList)
+            {
+                if (fm.myCamp == GameCamps.Roi)
+                {
+                    StartCoroutine(MoveEnemies());
+                    fm.GetComponentInChildren<MovementEnemy>().hasMoved = false;
+                }
+            }
         }
 
-        if (currentCampTurn == CampTurn.noMoreCamp)
+        if (currentCampTurn == GameCamps.Converti)
         {
-            currentCampTurn = CampTurn.Fidele;
+            currentCampTurn = GameCamps.Fidele;
         }
 
         ResetTurn();
@@ -112,48 +82,24 @@ public class GameManager : MonoBehaviour
             myFidele.GetComponentInChildren<Interaction>().alreadyInteractedList.Clear();
             //Debug.Log("Clear");
         }
-        foreach (FideleManager myRoi in myRoiList)
-        {
-            myRoi.GetComponentInChildren<MovementEnemy>().hasMoved = false;
-        }
-    }
-
-    public void MoveEnemy()
-    {
-        if (canMoveEnemy)
-        {
-            for (int i = 0; i < myRoiList.Count; i++)
-            {
-                if (myRoiList[i].GetComponentInChildren<MovementEnemy>().hasMoved == false)
-                {
-                    myRoiList[i].GetComponentInChildren<MovementEnemy>().FindTarget();
-                    Debug.Log(myRoiList[i].name);
-                    StartCoroutine(Delay(timeValue));
-                }
-
-                /*if (canMoveEnemy)
-                {
-                    myRoiList[i].GetComponentInChildren<MovementEnemy>().FindTarget();
-                    Debug.Log(myRoiList[i].name);
-                    StartCoroutine(Delay(timeValue));
-                }*/
-
-            }
-        }
     }
 
     public IEnumerator MoveEnemies()
     {
-        for (int i = 0; i < myRoiList.Count; i++)
+        for (int i = 0; i < myFideleList.Count; i++)
         {
-            myRoiList[i].GetComponentInChildren<MovementEnemy>().FindTarget();
-            Debug.Log(myRoiList[i].name);
-            yield return new WaitForSeconds(timeValue);
+            if (myFideleList[i].myCamp == GameCamps.Roi)
+            {
+                if (myFideleList[i].GetComponentInChildren<MovementEnemy>().targetLanded == false)
+                {
+                    myFideleList[i].GetComponentInChildren<MovementEnemy>().FindTarget();
+                    yield return new WaitForSeconds(timeValue);
+                }
+            }
+            else
+            {
+                i++;
+            }
         }
-    }
-
-    private IEnumerator Delay(float delayTime)
-    {
-        yield return new WaitForSeconds(delayTime);
     }
 }

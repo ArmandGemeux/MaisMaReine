@@ -63,7 +63,7 @@ public class Interaction : MonoBehaviour
         {
             foreach (AnimationManager myCollideAnimationManager in myCollideAnimationManagerList)
             {
-                if (myCollideAnimationManager.GetComponent<FideleManager>().currentCamp != Camp.Fidele && myFideleManager.currentCamp == Camp.Fidele)
+                if (myCollideAnimationManager.GetComponent<FideleManager>().myCamp == GameCamps.Fidele && myFideleManager.myCamp == GameCamps.Fidele)
                 {
                     myCollideAnimationManager.haveAnInteraction = true;
                     myCollideAnimationManager.DisplayInteraction();
@@ -81,7 +81,7 @@ public class Interaction : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.GetComponent<Interaction>() != null && collision.GetComponentInParent<FideleManager>().currentCamp != myFideleManager.currentCamp)
+        if (collision.GetComponent<Interaction>() != null && collision.GetComponentInParent<FideleManager>().myCamp != myFideleManager.myCamp)
         {
             myCollideInteractionList.Add(collision.GetComponent<Interaction>());
             myCollideAnimationManagerList.Add(collision.GetComponentInParent<AnimationManager>());
@@ -111,7 +111,7 @@ public class Interaction : MonoBehaviour
                 {
                     myCollideAnimationManager.haveAnInteraction = false;
 
-                    if (myCollideAnimationManager != myAnimationManager && myCollideAnimationManager.GetComponent<FideleManager>().currentCamp.ToString() != myFideleManager.currentCamp.ToString() && myFideleManager.currentCamp.ToString() == GameManager.Instance.currentCampTurn.ToString())
+                    if (myCollideAnimationManager != myAnimationManager && myCollideAnimationManager.GetComponent<FideleManager>().myCamp != myFideleManager.myCamp && myFideleManager.myCamp == GameManager.Instance.currentCampTurn)
                     {
                         myCollideAnimationManager.HideInteraction();
                         myAnimationManager.DesactivateLauncherSelection();

@@ -10,18 +10,9 @@ public class MouseEventsFidele : MonoBehaviour
 
     private Interaction myInteraction;
 
-    public float interactionClickingTime;
-    private float currentInteractionClickingTime;
-
-    /*private GameManager myGM;
-    private RaycastInteraction myRC;*/
-
     #region Movement
 
     private Movement myMovement;
-
-    public float movementClickingTime;
-    private float currentMovementClickingTime;
 
     #endregion
 
@@ -34,10 +25,6 @@ public class MouseEventsFidele : MonoBehaviour
         myInteraction = GetComponentInChildren<Interaction>();
 
         myMovement = GetComponentInChildren<Movement>();
-
-        currentMovementClickingTime = movementClickingTime;
-
-        currentInteractionClickingTime = interactionClickingTime;
     }
 
     // Update is called once per frame
@@ -61,7 +48,7 @@ public class MouseEventsFidele : MonoBehaviour
     {
         #region Movement
 
-        if (myFideleManager.currentCamp == Camp.Fidele)
+        if (myFideleManager.myCamp == GameCamps.Fidele)
         {
             myAnimManager.isSelectable = false;
             RaycastInteraction.Instance.ResetLauncherInteraction();
@@ -80,23 +67,6 @@ public class MouseEventsFidele : MonoBehaviour
 
     public void OnMouseOver()
     {
-        /*#region Interaction
-
-        #region ReceiveInteraction
-
-        if (myInteraction.canInteract && !RaycastInteraction.Instance.interactionLauncherInteraction.alreadyInteractedList.Contains(myInteraction))
-            if (Input.GetMouseButtonDown(1))
-            {
-
-                //RaycastInteraction.Instance.interactionLauncherInteraction != null
-                Debug.Log("Interaction");
-                RaycastInteraction.Instance.interactionLauncherInteraction.alreadyInteractedList.Add(myInteraction);
-                myAnimManager.DesactivateReceiverSelection();
-            }
-
-        #endregion
-
-        #endregion*/
 
         #region InformationDisplaying
 
