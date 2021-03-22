@@ -6,6 +6,7 @@ public class RaycastInteraction : MonoBehaviour
 {
     public Interaction interactionLauncherInteraction;
     public AnimationManager interactionLauncherAnim;
+    public FideleManager interactionLauncherFM;
 
     public Interaction interactionReceiverInteraction;
     public AnimationManager interactionReceiverAnim;
@@ -55,6 +56,7 @@ public class RaycastInteraction : MonoBehaviour
             {
                 interactionLauncherAnim = hit.collider.GetComponent<AnimationManager>();
                 interactionLauncherInteraction = hit.collider.GetComponentInChildren<Interaction>();
+                interactionLauncherFM = hit.collider.GetComponent<FideleManager>();
 
                 interactionLauncherAnim.ToggleLauncherOutline();
 
@@ -117,7 +119,7 @@ public class RaycastInteraction : MonoBehaviour
                     //Debug.Log("Recrutement");
                     break;
                 case InteractionType.Combat:
-                    interactionReceiverInteraction.GetComponent<Combat>().StartFight();
+                    interactionReceiverInteraction.GetComponent<Combat>().StartFight(interactionLauncherFM);
                     //Debug.Log("Combat");
                     break;
                 case InteractionType.Event:

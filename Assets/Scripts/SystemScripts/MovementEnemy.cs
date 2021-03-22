@@ -57,43 +57,56 @@ public class MovementEnemy : MonoBehaviour
         //L'arrêter FAIT
     }
 
-    public void FindTarget()
+    public void MoveToTarget()
     {
         myFideleManager.DetermineMyTarget();
         myTarget = myFideleManager.myTarget.transform;
+
+        targetInteraction = myTarget.GetComponentInChildren<Interaction>();
+        targetInteractionZone = targetInteraction.GetComponent<PolygonCollider2D>();
+
         if (hasMoved == false && targetLanded == false)
         {
             isMoving = true;
             agent.isStopped = false;
-            targetInteraction = myTarget.GetComponentInChildren<Interaction>();
-            targetInteractionZone = targetInteraction.GetComponent<PolygonCollider2D>();
 
             agent.SetDestination(myTarget.position);
         }
-        else
+        else if (hasMoved == false && targetLanded == true)
+        {
+            targetInteraction.GetComponent<Combat>().StartFight(myFideleManager);
+            myTarget = null;
+            myFideleManager.myTarget = null;
+        }
+        else if (hasMoved == true && targetLanded == true)
         {
             myTarget = null;
             myFideleManager.myTarget = null;
-            isMoving = false;
-            agent.isStopped = true;
-            transform.parent.position = transform.position;
-            transform.localPosition = Vector3.zero;
+            return;
         }
+    }
+
+    public void StopMoving()
+    {
+        myTarget = null;
+        myFideleManager.myTarget = null;
+
+        agent.isStopped = true;
+        transform.parent.position = transform.position;
+        transform.localPosition = Vector3.zero;
+
+        isMoving = false;
+        hasMoved = true;
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision == targetInteractionZone)
         {
-            myTarget = null;
-            myFideleManager.myTarget = null;
-            isMoving = false;
-            agent.isStopped = true;
-            transform.parent.position = transform.position;
-            transform.localPosition = Vector3.zero;
-            hasMoved = true;
+            StopMoving();
+            targetInteraction.GetComponent<Combat>().StartFight(myFideleManager);
             targetLanded = true;
-            Debug.Log("Je suis arrivé");
+            //Debug.Log("Je suis arrivé");
         }
     }
 
@@ -101,15 +114,9 @@ public class MovementEnemy : MonoBehaviour
     {
         if (collision == myMoveZoneCollider)
         {
-            myTarget = null;
-            myFideleManager.myTarget = null;
-            isMoving = false;
-            agent.isStopped = true;
-            transform.parent.position = transform.position;
-            transform.localPosition = Vector3.zero;
-            hasMoved = true;
-            agent.SetDestination(gameObject.transform.position);
-            Debug.Log("Je suis sorti de ma zone");
+            StopMoving();
+            //agent.SetDestination(gameObject.transform.position);
+            //Debug.Log("Je suis sorti de ma zone");
         }
         if (collision == targetInteractionZone)
         {

@@ -87,7 +87,7 @@ public class FideleManager : MonoBehaviour
             if (attackableUnitsInRange.Count == 1)
             {
                 myTarget = attackableUnitsInRange[0];
-                Debug.Log(myTarget.name + " ciblée !");
+                //Debug.Log(myTarget.name + " ciblée !");
                 return;
             }
             else if (attackableUnitsInRange.Count == 0)

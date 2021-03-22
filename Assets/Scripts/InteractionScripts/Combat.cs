@@ -62,13 +62,15 @@ public class Combat : MonoBehaviour
 
     }
 
-    public void StartFight()
+    public void StartFight(FideleManager atkFM)
     {
-        Debug.Log("Combat en cours");
-        attaquantFideleManager = RaycastInteraction.Instance.interactionLauncherAnim.GetComponent<FideleManager>();
+        //Debug.Log("Combat en cours");
         defenseurFideleManager = GetComponentInParent<FideleManager>();
+        attaquantFideleManager = atkFM;
         dealingDamage = defenseurFideleManager.GetComponentInChildren<ParticleSystem>();
         receiveDamage = GetComponentInChildren<ParticleSystem>();
+
+        //Debug.Log(attaquantFideleManager, defenseurFideleManager);
 
         isCritical = Random.Range(0, 100);
         if (isCritical <= attaquantFideleManager.criticChances)

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 
 public enum GameCamps { Fidele, Roi, Bandit, Calamite, Converti}
@@ -61,13 +62,15 @@ public class GameManager : MonoBehaviour
             {
                 if (fm.myCamp == GameCamps.Roi)
                 {
-                    StartCoroutine(MoveEnemies());
                     fm.GetComponentInChildren<MovementEnemy>().hasMoved = false;
+                    StartCoroutine(MoveEnemies());
                 }
             }
         }
 
-        if (currentCampTurn == GameCamps.Converti)
+        var lastTurn = campsInTerritoire.Last();
+
+        if (currentCampTurn == lastTurn+1)
         {
             currentCampTurn = GameCamps.Fidele;
         }
@@ -90,15 +93,8 @@ public class GameManager : MonoBehaviour
         {
             if (myFideleList[i].myCamp == GameCamps.Roi)
             {
-                if (myFideleList[i].GetComponentInChildren<MovementEnemy>().targetLanded == false)
-                {
-                    myFideleList[i].GetComponentInChildren<MovementEnemy>().FindTarget();
-                    yield return new WaitForSeconds(timeValue);
-                }
-            }
-            else
-            {
-                i++;
+                myFideleList[i].GetComponentInChildren<MovementEnemy>().MoveToTarget();
+                yield return new WaitForSeconds(timeValue);
             }
         }
     }
