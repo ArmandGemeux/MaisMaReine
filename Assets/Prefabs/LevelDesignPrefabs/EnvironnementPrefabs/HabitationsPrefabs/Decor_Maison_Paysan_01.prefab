@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2019355038405234050}
   - component: {fileID: 5837552161491700702}
   - component: {fileID: 8194337027136278478}
+  - component: {fileID: 3557204731918028166}
   m_Layer: 0
   m_Name: Decor_Maison_Paysan_01
   m_TagString: Obstacle
@@ -111,3 +112,19 @@ PolygonCollider2D:
       - {x: -0.636631, y: -4.7379947}
       - {x: 3.3908062, y: -3.143639}
       - {x: 0.4997387, y: -2.4009998}
+--- !u!114 &3557204731918028166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8313428940029666321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff

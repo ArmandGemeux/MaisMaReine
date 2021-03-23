@@ -33,15 +33,16 @@ public class FideleManager : MonoBehaviour
     public FidelePeuple fidelePeuple;
 
     public FideleManager myTarget;
-    private float myTargetScore;
 
     private List<GameCamps> attackableUnits = new List<GameCamps>();
 
     private List<FideleManager> unitsInRange = new List<FideleManager>();
     private List<FideleManager> attackableUnitsInRange = new List<FideleManager>();
+    private List<FideleManager> attackableUnitsNotInRange = new List<FideleManager>();
 
     void Start()
     {
+        GameManager.Instance.AddAMapUnit(this);
         SetAttackableUnits();
         currentHP = maxHp;
         isAlive = true;
@@ -90,11 +91,6 @@ public class FideleManager : MonoBehaviour
                 //Debug.Log(myTarget.name + " ciblée !");
                 return;
             }
-            else if (attackableUnitsInRange.Count == 0)
-            {
-                Debug.Log("Personne dans ma zone de mouvement");
-                return;
-            }
             else if (attackableUnitsInRange.Count > 1)
             {
                 myTarget = GetInRangeUnitWithSmallestHp();
@@ -102,7 +98,10 @@ public class FideleManager : MonoBehaviour
         }
         else if (unitsInRange.Count == 0)
         {
-            Debug.Log("Personne aux alentours");
+            attackableUnitsNotInRange = AttackableUnitsNotInRangeAmount();
+            myTarget = GetClosestUnitNotInRange();
+            Debug.Log("J'ai trouvé quelqu'un en dehors de la range ! Chutrofor !");
+            return;
         }
 
         /*switch (myCamp)
@@ -141,11 +140,6 @@ public class FideleManager : MonoBehaviour
         }
     }
 
-    public float GetTargetScore()
-    {
-        return myTargetScore;
-    }
-
     private List<FideleManager> AttackableUnitsInRangeAmount()
     {
         List<FideleManager> tmpauir = new List<FideleManager>();
@@ -159,6 +153,23 @@ public class FideleManager : MonoBehaviour
         return tmpauir;
     }
 
+    private List<FideleManager> AttackableUnitsNotInRangeAmount()
+    {
+        List<FideleManager> tmpaunir = new List<FideleManager>();
+        foreach (FideleManager fm in GameManager.Instance.GetAllMapUnits())
+        {
+            if (fm == this)
+            {
+                continue;
+            }
+            if (attackableUnits.Contains(fm.myCamp))
+            {
+                tmpaunir.Add(fm);
+            }
+        }
+        return tmpaunir;
+    }
+
     private FideleManager GetInRangeUnitWithSmallestHp()
     {
         float tmpSmallHp = 9999f;
@@ -169,6 +180,23 @@ public class FideleManager : MonoBehaviour
             if (fm.currentHP < tmpSmallHp)
             {
                 tmpSmallHp = fm.currentHP;
+                tmpFm = fm;
+            }
+        }
+        return tmpFm;
+    }
+
+    private FideleManager GetClosestUnitNotInRange()
+    {
+        float tmpDist = 9999f;
+        FideleManager tmpFm = new FideleManager();
+
+        foreach (FideleManager fm in attackableUnitsNotInRange)
+        {
+            float cDist = Vector2.Distance(transform.position, fm.transform.position);
+            if (cDist < tmpDist)
+            {
+                tmpDist = cDist;
                 tmpFm = fm;
             }
         }

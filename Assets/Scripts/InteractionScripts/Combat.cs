@@ -7,7 +7,12 @@ public class Combat : MonoBehaviour
     private ParticleSystem myCombatEffect;
 
     private FideleManager defenseurFideleManager;
+    private Interaction defenseurInteraction;
+    private AnimationManager defenseurAM;
+
     private FideleManager attaquantFideleManager;
+    private Interaction attaquantInteraction;
+    private AnimationManager attaquantAM;
 
     private ParticleSystem dealingDamage;
     private ParticleSystem receiveDamage;
@@ -65,6 +70,9 @@ public class Combat : MonoBehaviour
     public void StartFight(FideleManager atkFM)
     {
         //Debug.Log("Combat en cours");
+
+
+
         defenseurFideleManager = GetComponentInParent<FideleManager>();
         attaquantFideleManager = atkFM;
         dealingDamage = defenseurFideleManager.GetComponentInChildren<ParticleSystem>();
@@ -114,6 +122,7 @@ public class Combat : MonoBehaviour
             Debug.Log("Le défenseur contre-attaque et inflige" + defenseurFideleManager.counterAttackRange + "points de dégâts, laissant son adversaire à " + attaquantFideleManager.currentHP);
             dealingDamage.Play();
             CheckHP();
+            EndFightNoDead();
         }
     }
 
@@ -124,21 +133,19 @@ public class Combat : MonoBehaviour
         {
             attaquantFideleManager.isAlive = false;
             Debug.Log("L'attaquant est vaincu !");
-        }
-        else
-        {
-            EndFight();
-        }
 
-
-        if (defenseurFideleManager.currentHP <= 0)
+            Die(attaquantFideleManager, defenseurFideleManager);
+        }
+        else if (defenseurFideleManager.currentHP <= 0)
         {
             defenseurFideleManager.isAlive = false;
             Debug.Log("Le défenseur est vaincu !");
+
+            Die(defenseurFideleManager, attaquantFideleManager);
         }
         else
         {
-            EndFight();
+            return;
         }
     }    
 
@@ -162,9 +169,24 @@ public class Combat : MonoBehaviour
         CheckHP();
     }
 
-    public void EndFight()
+    public void Die(FideleManager deadFM, FideleManager winFM)
     {
+        winFM.GetComponentInChildren<Interaction>().myCollideAnimationManagerList.Remove(deadFM.GetComponent<AnimationManager>());
+        winFM.GetComponentInChildren<Interaction>().myCollideInteractionList.Remove(deadFM.GetComponentInChildren<Interaction>());
+        GameManager.Instance.RemoveAMapUnit(deadFM);
+        Destroy(deadFM.gameObject);
+        EndFightDead();
         //Ici, appliquez les éléments à prendre en compte lorsqu'un combat est fini
         //Debug.Log("Combat terminé");
+    }
+
+    public void EndFightNoDead()
+    {
+        Debug.Log("Combat terminé");
+    }
+
+    public void EndFightDead()
+    {
+        Debug.Log("Combat terminé avec un mort !");
     }
 }

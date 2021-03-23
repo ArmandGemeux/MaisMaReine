@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
 
     public bool switchingTurn = false;
 
-    public List<FideleManager> myFideleList;
+    private List<FideleManager> allMapUnits = new List<FideleManager>();
 
     #region Singleton
     public static GameManager Instance;
@@ -34,8 +34,6 @@ public class GameManager : MonoBehaviour
         }
 
         #endregion
-
-        myFideleList.AddRange(FindObjectsOfType<FideleManager>());
     }
 
     // Start is called before the first frame update
@@ -58,12 +56,36 @@ public class GameManager : MonoBehaviour
 
         if (currentCampTurn == GameCamps.Roi)
         {
-            foreach (FideleManager fm in myFideleList)
+            foreach (FideleManager fm in allMapUnits)
             {
                 if (fm.myCamp == GameCamps.Roi)
                 {
                     fm.GetComponentInChildren<MovementEnemy>().hasMoved = false;
-                    StartCoroutine(MoveEnemies());
+                    StartCoroutine(MoveRoi());
+                }
+            }
+        }
+
+        if (currentCampTurn == GameCamps.Bandit)
+        {
+            foreach (FideleManager fm in allMapUnits)
+            {
+                if (fm.myCamp == GameCamps.Bandit)
+                {
+                    fm.GetComponentInChildren<MovementEnemy>().hasMoved = false;
+                    StartCoroutine(MoveBandit());
+                }
+            }
+        }
+
+        if (currentCampTurn == GameCamps.Calamite)
+        {
+            foreach (FideleManager fm in allMapUnits)
+            {
+                if (fm.myCamp == GameCamps.Calamite)
+                {
+                    fm.GetComponentInChildren<MovementEnemy>().hasMoved = false;
+                    StartCoroutine(MoveCalamite());
                 }
             }
         }
@@ -78,22 +100,67 @@ public class GameManager : MonoBehaviour
         ResetTurn();
     }
 
+    public void AddAMapUnit(FideleManager newUnit)
+    {
+        if (!allMapUnits.Contains(newUnit))
+        {
+            allMapUnits.Add(newUnit);
+        }
+    }
+
+    public void RemoveAMapUnit(FideleManager removeUnit)
+    {
+        if (allMapUnits.Contains(removeUnit))
+        {
+            allMapUnits.Remove(removeUnit);
+        }
+    }
+
+    public List<FideleManager> GetAllMapUnits()
+    {
+        return allMapUnits;
+    }
+
     public void ResetTurn()
     {
-        foreach (FideleManager myFidele in myFideleList)
+        foreach (FideleManager fm in allMapUnits)
         {
-            myFidele.GetComponentInChildren<Interaction>().alreadyInteractedList.Clear();
+            fm.GetComponentInChildren<Interaction>().alreadyInteractedList.Clear();
             //Debug.Log("Clear");
         }
     }
 
-    public IEnumerator MoveEnemies()
+    public IEnumerator MoveRoi()
     {
-        for (int i = 0; i < myFideleList.Count; i++)
+        for (int i = 0; i < allMapUnits.Count; i++)
         {
-            if (myFideleList[i].myCamp == GameCamps.Roi)
+            if (allMapUnits[i].myCamp == GameCamps.Roi)
             {
-                myFideleList[i].GetComponentInChildren<MovementEnemy>().MoveToTarget();
+                allMapUnits[i].GetComponentInChildren<MovementEnemy>().MoveToTarget();
+                yield return new WaitForSeconds(timeValue);
+            }
+        }
+    }
+
+    public IEnumerator MoveBandit()
+    {
+        for (int i = 0; i < allMapUnits.Count; i++)
+        {
+            if (allMapUnits[i].myCamp == GameCamps.Bandit)
+            {
+                allMapUnits[i].GetComponentInChildren<MovementEnemy>().MoveToTarget();
+                yield return new WaitForSeconds(timeValue);
+            }
+        }
+    }
+
+    public IEnumerator MoveCalamite()
+    {
+        for (int i = 0; i < allMapUnits.Count; i++)
+        {
+            if (allMapUnits[i].myCamp == GameCamps.Calamite)
+            {
+                allMapUnits[i].GetComponentInChildren<MovementEnemy>().MoveToTarget();
                 yield return new WaitForSeconds(timeValue);
             }
         }

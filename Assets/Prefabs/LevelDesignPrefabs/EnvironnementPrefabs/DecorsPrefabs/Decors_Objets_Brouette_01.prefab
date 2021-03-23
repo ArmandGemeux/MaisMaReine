@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 9023320719234040176}
   - component: {fileID: 7495386533700057435}
   - component: {fileID: 2651889012278339433}
+  - component: {fileID: 775774683373802269}
   m_Layer: 0
   m_Name: Decors_Objets_Brouette_01
   m_TagString: Obstacle
@@ -112,3 +113,19 @@ PolygonCollider2D:
       - {x: -0.9474349, y: -1.2993412}
       - {x: 1.3444562, y: -0.4601822}
       - {x: 1.2452006, y: 0.31581116}
+--- !u!114 &775774683373802269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7637743245155751249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff

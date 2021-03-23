@@ -24,7 +24,7 @@ public class MovementZoneDetection : MonoBehaviour
         if (tmpIa)
         {
             FideleManager tmpFM = collision.GetComponentInParent<FideleManager>();
-            if (tmpFM == myFideleManager)
+            if (tmpFM == myFideleManager || tmpFM.myCamp == myFideleManager.myCamp)
             {
                 return;
             }

@@ -8,7 +8,7 @@ public class AnimationManager : MonoBehaviour
 {
     public bool isSelectable = false;
     public bool isSelected = false;
-
+    private FideleManager myFM;
 
     public bool isStatsDisplayed = false;
     public bool isInteractionDisplayed = false;
@@ -39,6 +39,7 @@ public class AnimationManager : MonoBehaviour
     {
         myAnim = GetComponent<Animator>();
         myMovement = GetComponentInChildren<Movement>();
+        myFM = GetComponent<FideleManager>();
         myLight = GetComponentInChildren<Light2D>();
         myInteraction = GetComponentInChildren<Interaction>();
     }
@@ -46,7 +47,7 @@ public class AnimationManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isSelectable && isInteractionDisplayed == false)
+        if (isSelectable && isInteractionDisplayed == false && myFM.isAlive)
         {
             DisplayInteraction();
         }

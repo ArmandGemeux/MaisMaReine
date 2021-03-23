@@ -65,24 +65,27 @@ public class MovementEnemy : MonoBehaviour
         targetInteraction = myTarget.GetComponentInChildren<Interaction>();
         targetInteractionZone = targetInteraction.GetComponent<PolygonCollider2D>();
 
-        if (hasMoved == false && targetLanded == false)
+        if (myFideleManager.myCamp == GameManager.Instance.currentCampTurn)
         {
-            isMoving = true;
-            agent.isStopped = false;
+            if (hasMoved == false && targetLanded == false)
+            {
+                isMoving = true;
+                agent.isStopped = false;
 
-            agent.SetDestination(myTarget.position);
-        }
-        else if (hasMoved == false && targetLanded == true)
-        {
-            targetInteraction.GetComponent<Combat>().StartFight(myFideleManager);
-            myTarget = null;
-            myFideleManager.myTarget = null;
-        }
-        else if (hasMoved == true && targetLanded == true)
-        {
-            myTarget = null;
-            myFideleManager.myTarget = null;
-            return;
+                agent.SetDestination(myTarget.position);
+            }
+            else if (hasMoved == false && targetLanded == true)
+            {
+                targetInteraction.GetComponent<Combat>().StartFight(myFideleManager);
+                myTarget = null;
+                myFideleManager.myTarget = null;
+            }
+            else if (hasMoved == true && targetLanded == true)
+            {
+                myTarget = null;
+                myFideleManager.myTarget = null;
+                return;
+            }
         }
     }
 
@@ -101,7 +104,7 @@ public class MovementEnemy : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision == targetInteractionZone)
+        if (collision == targetInteractionZone && myFideleManager.myCamp == GameManager.Instance.currentCampTurn)
         {
             StopMoving();
             targetInteraction.GetComponent<Combat>().StartFight(myFideleManager);

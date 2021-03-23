@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7531728250228088419}
   - component: {fileID: 7531728250228088418}
   - component: {fileID: 7531728250228088445}
+  - component: {fileID: 5274743768329549053}
   m_Layer: 0
   m_Name: Decor_Maison_CampBandit_01
   m_TagString: Untagged
@@ -124,3 +125,19 @@ PolygonCollider2D:
       - {x: -0.43498212, y: -4.0489006}
       - {x: 0.17065778, y: -4.312601}
       - {x: 0.5619646, y: -4.267227}
+--- !u!114 &5274743768329549053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7531728250228088444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff

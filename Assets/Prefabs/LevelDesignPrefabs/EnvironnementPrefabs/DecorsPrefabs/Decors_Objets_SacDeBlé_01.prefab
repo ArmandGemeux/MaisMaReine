@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7641765939068919945}
   - component: {fileID: 5370220736187452943}
   - component: {fileID: 1432652108841456349}
+  - component: {fileID: 8786110325130418467}
   m_Layer: 0
   m_Name: "Decors_Objets_SacDeBl\xE9_01"
   m_TagString: Obstacle
@@ -115,3 +116,19 @@ PolygonCollider2D:
       - {x: 0.5141878, y: -0.997385}
       - {x: -0.28866768, y: -1.2138233}
       - {x: -1.4302111, y: -0.79717445}
+--- !u!114 &8786110325130418467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2335836812434160307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff

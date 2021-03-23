@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6804879332865482768}
   - component: {fileID: 5199957143185830499}
   - component: {fileID: 8559095789133560661}
+  - component: {fileID: 463089126240996188}
   m_Layer: 0
   m_Name: Decors_Roche_Pierre_03
   m_TagString: Obstacle
@@ -115,3 +116,19 @@ PolygonCollider2D:
       - {x: 1.616781, y: -1.1028118}
       - {x: 1.5760274, y: -0.8536558}
       - {x: -0.74287677, y: -0.8875265}
+--- !u!114 &463089126240996188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 696338102862270839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff

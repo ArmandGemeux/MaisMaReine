@@ -67,14 +67,14 @@ public class Interaction : MonoBehaviour
                 {
                     myCollideAnimationManager.haveAnInteraction = true;
                     myCollideAnimationManager.DisplayInteraction();
+                }
 
-                    if (myCollideAnimationManager != myAnimationManager && !alreadyInteractedList.Contains(myCollideAnimationManager.GetComponentInChildren<Interaction>()))
-                    {
-                        myAnimationManager.isSelectable = true;
-                        myAnimationManager.ActivateLauncherSelection();
-                        myCollideAnimationManager.ActivateReceiverSelection();
-                    }
-                }               
+                if (myCollideAnimationManager != myAnimationManager && !alreadyInteractedList.Contains(myCollideAnimationManager.GetComponentInChildren<Interaction>()))
+                {
+                    myAnimationManager.isSelectable = true;
+                    myAnimationManager.ActivateLauncherSelection();
+                    myCollideAnimationManager.ActivateReceiverSelection();
+                }
             }
         }
     }

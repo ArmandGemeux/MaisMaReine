@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7738570218181821068}
   - component: {fileID: 260920871238480592}
   - component: {fileID: 2912618209182938167}
+  - component: {fileID: 8701617391497321694}
   m_Layer: 0
   m_Name: Decors_Objets_Epouvantail
   m_TagString: Obstacle
@@ -111,3 +112,19 @@ PolygonCollider2D:
       - {x: -0.9944172, y: -2.7807941}
       - {x: 0.07695961, y: -3.2887993}
       - {x: 1.04562, y: -2.7695923}
+--- !u!114 &8701617391497321694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1232244298677390995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff

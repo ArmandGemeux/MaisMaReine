@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5594361711575805481}
   - component: {fileID: 7334141400348397295}
   - component: {fileID: 3523496799511772536}
+  - component: {fileID: 4512379298750944293}
   m_Layer: 0
   m_Name: "Decors_Objets_SacDeBl\xE9_02"
   m_TagString: Obstacle
@@ -70,7 +71,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 18
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: bea790c5c67d8b74c88dce38bd709483, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -115,3 +116,19 @@ PolygonCollider2D:
       - {x: 0.5141878, y: -0.997385}
       - {x: -0.28866768, y: -1.2138233}
       - {x: -1.4302111, y: -0.79717445}
+--- !u!114 &4512379298750944293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5535305870189156729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
