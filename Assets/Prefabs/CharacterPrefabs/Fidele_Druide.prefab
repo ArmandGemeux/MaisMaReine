@@ -604,8 +604,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3329264679567080904}
   - component: {fileID: 3329264679567080907}
-  - component: {fileID: 3329264679567080917}
   - component: {fileID: 3329264679567080916}
+  - component: {fileID: 3329264679567080917}
   - component: {fileID: 3329264679567080906}
   - component: {fileID: 3329264679567080905}
   m_Layer: 0
@@ -661,6 +661,18 @@ MonoBehaviour:
   charismaCost: 20
   fidelePeuple: 0
   myTarget: {fileID: 0}
+--- !u!114 &3329264679567080916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3329264679567080911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69f2d4c31db438849a635ece9c8620df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &3329264679567080917
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -686,18 +698,6 @@ MonoBehaviour:
   movementClickFeedback: {fileID: 3329264680435413764}
   myMovementZone: {fileID: 3329264678559127760}
   myOutline: {fileID: 3329264679020709817}
---- !u!114 &3329264679567080916
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3329264679567080911}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69f2d4c31db438849a635ece9c8620df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!70 &3329264679567080906
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

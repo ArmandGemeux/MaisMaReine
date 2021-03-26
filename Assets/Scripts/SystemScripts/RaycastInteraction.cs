@@ -108,6 +108,7 @@ public class RaycastInteraction : MonoBehaviour
         {
             interactionReceiverAnim = hit.collider.GetComponent<AnimationManager>();
             interactionReceiverInteraction = hit.collider.GetComponentInChildren<Interaction>();
+            FideleManager interactionReceiverFM = hit.collider.GetComponentInParent<FideleManager>();
 
             switch (interactionReceiverInteraction.interactionType) //Quel type d'interaction porte l'interactionReceiver ?
             {
@@ -116,6 +117,7 @@ public class RaycastInteraction : MonoBehaviour
                     //Debug.Log("Dialogue");
                     break;
                 case InteractionType.Recrutement:
+                    interactionReceiverInteraction.GetComponent<Recrutement>().OpenRecruitementWindow(interactionReceiverFM);
                     //Debug.Log("Recrutement");
                     break;
                 case InteractionType.Combat:

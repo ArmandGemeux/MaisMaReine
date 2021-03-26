@@ -48,6 +48,18 @@ public class FideleManager : MonoBehaviour
         isAlive = true;
     }
 
+    private void Update()
+    {
+        if (GameManager.Instance.currentCampTurn == GameCamps.Fidele)
+        {
+            foreach (FideleManager uir in unitsInRange)
+            {
+                AnimationManager uirAM = GetComponent<AnimationManager>();
+                uirAM.DisplayInteraction();
+            }
+        }
+    }
+
     private void SetAttackableUnits()
     {
         switch (myCamp)
@@ -132,6 +144,7 @@ public class FideleManager : MonoBehaviour
             if (unitsInRange.Contains(tmpFM))
             {
                 unitsInRange.Remove(tmpFM);
+                tmpFM.GetComponent<AnimationManager>().HideInteraction();
                 if (tmpFM == myTarget)
                 {
                     myTarget = null;

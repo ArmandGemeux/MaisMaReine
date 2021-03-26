@@ -1,10 +1,9 @@
 fileFormatVersion: 2
-guid: 98a1a896f713e5d488e258acdab7f38a
+guid: 6a8414a62fd48b54fa14ed0800526b95
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences:
-  - myFideleToInstantiate: {instanceID: 0}
+  defaultReferences: []
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

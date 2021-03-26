@@ -5,7 +5,7 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     private Vector3 mousePosition;
-    public float moveSpeed;
+    private float moveSpeed = 2;
 
     private Vector2 startPosition;
 
@@ -15,8 +15,8 @@ public class Movement : MonoBehaviour
     private bool isLanbable;
 
     //public GameObject myCollideZone;
-    public GameObject myMoveZone;
-    public Collider2D myInteractionZoneCollider;
+    private GameObject myMoveZone;
+    private Collider2D myInteractionZoneCollider;
     private AnimationManager myAnimationManager;
 
     private DragCamera2D myCam;
@@ -28,6 +28,9 @@ public class Movement : MonoBehaviour
         myCam.followTarget = null;
 
         myAnimationManager = GetComponentInParent<AnimationManager>();
+
+        myMoveZone = myAnimationManager.GetComponentInChildren<MovementZoneDetection>().gameObject;
+        myInteractionZoneCollider = myAnimationManager.GetComponentInChildren<MovementZoneDetection>().GetComponent<PolygonCollider2D>();
     }
 
     // Update is called once per frame

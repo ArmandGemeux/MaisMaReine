@@ -175,9 +175,9 @@ public class Combat : MonoBehaviour
         winFM.GetComponentInChildren<Interaction>().myCollideInteractionList.Remove(deadFM.GetComponentInChildren<Interaction>());
         GameManager.Instance.RemoveAMapUnit(deadFM);
         Destroy(deadFM.gameObject);
-        EndFightDead();
+        EndFightDead(deadFM);
         //Ici, appliquez les éléments à prendre en compte lorsqu'un combat est fini
-        //Debug.Log("Combat terminé");
+        Debug.Log(deadFM.fidelePrenom + " " + deadFM.fideleNom + " a été vaincu...");
     }
 
     public void EndFightNoDead()
@@ -185,8 +185,10 @@ public class Combat : MonoBehaviour
         Debug.Log("Combat terminé");
     }
 
-    public void EndFightDead()
+    public void EndFightDead(FideleManager deadFM)
     {
-        Debug.Log("Combat terminé avec un mort !");
+        //Debug.Log("Combat terminé avec un mort !");
+        QuestEvents.Instance.EntityKilled();
+        QuestEvents.Instance.ThisEntityKilled(deadFM);
     }
 }
