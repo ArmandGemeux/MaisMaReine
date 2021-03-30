@@ -113,7 +113,7 @@ public class RaycastInteraction : MonoBehaviour
             switch (interactionReceiverInteraction.interactionType) //Quel type d'interaction porte l'interactionReceiver ?
             {
                 case InteractionType.Dialogue:
-                    interactionReceiverInteraction.GetComponent<Dialogue>().DisplayDialogueFeedback();
+                    interactionReceiverInteraction.GetComponent<Dialogue>().OpenDialogueWindow(interactionReceiverFM);
                     //Debug.Log("Dialogue");
                     break;
                 case InteractionType.Recrutement:
@@ -123,9 +123,6 @@ public class RaycastInteraction : MonoBehaviour
                 case InteractionType.Combat:
                     interactionReceiverInteraction.GetComponent<Combat>().StartFight(interactionLauncherFM);
                     //Debug.Log("Combat");
-                    break;
-                case InteractionType.Event:
-                    //Debug.Log("Event");
                     break;
                 default:
                     break;
@@ -137,6 +134,16 @@ public class RaycastInteraction : MonoBehaviour
             ResetReceiverInteraction();
             ResetLauncherInteraction();
         }
+        else if (hit.collider == null || !hit.collider.GetComponentInChildren<Interaction>())
+        {
+            foreach (Interaction myCollideInteraction in interactionLauncherInteraction.myCollideInteractionList)
+            {
+                myCollideInteraction.canInteract = false;
+                myCollideInteraction.GetComponentInParent<AnimationManager>().DesactivateReceiverSelection();
+            }
+
+            ResetLauncherInteraction();
+        }
     }
 
     public void ResetLauncherInteraction()
@@ -144,6 +151,7 @@ public class RaycastInteraction : MonoBehaviour
         if (interactionLauncherAnim != null)
         {
             interactionLauncherAnim.ToggleLauncherOutline();
+            interactionLauncherAnim.DesactivateLauncherSelection();
 
             interactionLauncherAnim.isSelected = false;
 
@@ -157,6 +165,8 @@ public class RaycastInteraction : MonoBehaviour
     {
         if (interactionReceiverAnim != null)
         {
+            interactionReceiverAnim.HideInteractionIcon();
+            interactionReceiverInteraction.canInteract = false;
             interactionReceiverInteraction = null;
             interactionReceiverAnim = null;
         }

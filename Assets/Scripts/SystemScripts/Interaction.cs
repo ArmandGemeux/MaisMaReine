@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum InteractionType { Dialogue, Recrutement, Combat, Event }
+public enum InteractionType { Dialogue, Recrutement, Combat}
 
 public class Interaction : MonoBehaviour
 {
@@ -49,8 +49,6 @@ public class Interaction : MonoBehaviour
             case InteractionType.Combat:
                 gameObject.AddComponent<Combat>();
                 break;
-            case InteractionType.Event:
-                break;
             default:
                 break;
         }
@@ -69,10 +67,13 @@ public class Interaction : MonoBehaviour
                     myCollideAnimationManager.DisplayInteraction();
                 }
 
-                if (myCollideAnimationManager != myAnimationManager && !alreadyInteractedList.Contains(myCollideAnimationManager.GetComponentInChildren<Interaction>()))
+                if (!alreadyInteractedList.Contains(myCollideAnimationManager.GetComponentInChildren<Interaction>()) && myFideleManager.myCamp == GameCamps.Fidele)
                 {
                     myAnimationManager.isSelectable = true;
                     myAnimationManager.ActivateLauncherSelection();
+                }
+                else if (!alreadyInteractedList.Contains(myCollideAnimationManager.GetComponentInChildren<Interaction>()) && myCollideAnimationManager.GetComponent<FideleManager>().myCamp != GameCamps.Fidele)
+                {
                     myCollideAnimationManager.ActivateReceiverSelection();
                 }
             }
@@ -92,35 +93,34 @@ public class Interaction : MonoBehaviour
     {
         if (collision.GetComponent<Interaction>() != null)
         {
+            Interaction myExitingCollision = collision.GetComponent<Interaction>();
+
             if (myCollideInteractionList.Count >= 1)
             {
-                foreach (Interaction myCollideInteraction in myCollideInteractionList)
-                {
-                    myInteractionIcon.sprite = null;
-                    myCollideInteraction.myInteractionIcon.sprite = null;
+                myExitingCollision.canInteract = false;
+                myExitingCollision.myInteractionIcon.sprite = null;
 
-                    myAnimationManager.isSelectable = false;
-                    myCollideInteraction.canInteract = false;
-                }
+                myAnimationManager.isSelectable = false;
+                myInteractionIcon.sprite = null;
             }
 
+            AnimationManager myExitingAM = collision.GetComponentInParent<AnimationManager>();
 
             if (myCollideAnimationManagerList.Count >= 1)
             {
-                foreach (AnimationManager myCollideAnimationManager in myCollideAnimationManagerList)
-                {
-                    myCollideAnimationManager.haveAnInteraction = false;
+                myExitingAM.haveAnInteraction = false;
 
-                    if (myCollideAnimationManager != myAnimationManager && myCollideAnimationManager.GetComponent<FideleManager>().myCamp != myFideleManager.myCamp && myFideleManager.myCamp == GameManager.Instance.currentCampTurn)
-                    {
-                        myCollideAnimationManager.HideInteraction();
-                        myAnimationManager.DesactivateLauncherSelection();
-                        myCollideAnimationManager.DesactivateReceiverSelection();
-                    }
+                if (myExitingAM != myAnimationManager && myExitingAM.GetComponent<FideleManager>().myCamp != myFideleManager.myCamp && myFideleManager.myCamp == GameManager.Instance.currentCampTurn)
+                {
+                    myExitingAM.HideInteraction();
+                    myExitingAM.DesactivateReceiverSelection();
+
+                    myAnimationManager.DesactivateLauncherSelection();
                 }
             }
-            myCollideAnimationManagerList.Remove(collision.GetComponentInParent<AnimationManager>());
-            myCollideInteractionList.Remove(collision.GetComponent<Interaction>());
+
+            myCollideAnimationManagerList.Remove(myExitingAM);
+            myCollideInteractionList.Remove(myExitingCollision);
         }
     }
 }

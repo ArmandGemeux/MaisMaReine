@@ -45,7 +45,6 @@ public class MouseEventsEnnemi : MonoBehaviour
 
     public void OnMouseOver()
     {
-
         #region InformationDisplaying
 
         if (Input.GetMouseButtonDown(2) && myAnimManager.isInfoDisplayed == false)
@@ -62,7 +61,10 @@ public class MouseEventsEnnemi : MonoBehaviour
         }
 
         #endregion
-
+        if (myInteraction.canInteract == true)
+        {
+            myAnimManager.DisplayInteractionIcon();
+        }
     }
 
     public void OnMouseExit()
@@ -81,7 +83,10 @@ public class MouseEventsEnnemi : MonoBehaviour
             myAnimManager.HideInteraction();
             myAnimManager.HideStats();
         }
-
         #endregion
+        if (myInteraction.canInteract == true)
+        {
+            myAnimManager.HideInteractionIcon();
+        }
     }
 }

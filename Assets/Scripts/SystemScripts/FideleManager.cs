@@ -55,7 +55,7 @@ public class FideleManager : MonoBehaviour
             foreach (FideleManager uir in unitsInRange)
             {
                 AnimationManager uirAM = GetComponent<AnimationManager>();
-                uirAM.DisplayInteraction();
+                //uirAM.DisplayInteraction();
             }
         }
     }

@@ -29,11 +29,34 @@ public class Objectif : MonoBehaviour
         
     }
 
-    private void OnEntityRecruited()
+    private void OnEntityRecruited(FideleManager thisFM)
     {
-        if (objectifInteractionType == InteractionType.Recrutement)
+        if (objectifInteractionType == InteractionType.Recrutement && interactionTarget.Count >= 1)
         {
-            //Debug.Log("Une entité vient d'être recrutée ! Saporisti !");
+            if (interactionTarget != null && interactionTarget.Contains(thisFM))
+            {
+                //Debug.Log("Cet ennemi est mort : " + thisFM.fidelePrenom);
+                interactionTarget.Remove(thisFM);
+                if (interactionTarget.Count == 0)
+                {
+                    objectifComplete = true;
+                    TestIfObjectivesAreCompleted();
+                    Debug.Log("Objectif de recrutement précis atteint");
+                }
+            }
+        }
+        else if (objectifInteractionType == InteractionType.Recrutement && interactionAmountToDo >= 1)
+        {
+            if (thisFM.myCamp == targetCamp)
+            {
+                currentInteractionAmountToDo++;
+                if (currentInteractionAmountToDo == interactionAmountToDo)
+                {
+                    objectifComplete = true;
+                    TestIfObjectivesAreCompleted();
+                    Debug.Log("Objectif de nombre de recrutement atteint");
+                }
+            }
         }
     }
 

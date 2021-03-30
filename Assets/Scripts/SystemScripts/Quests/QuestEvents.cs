@@ -38,10 +38,18 @@ public class QuestEvents : MonoBehaviour
 
     //Evenements liés au RECRUTEMENT :
 
-    public event Action onEntityRecruited;
-    public void EntityRecruited()
+    public event Action<FideleManager> onEntityRecruited;
+    public void EntityRecruited(FideleManager thisFM)
     {
-        onEntityRecruited?.Invoke();
+        onEntityRecruited?.Invoke(thisFM);
+    }
+
+    //Evenements liés au DIALOGUE :
+
+    public event Action<FideleManager> onThisEntityTalked;
+    public void EntityTalked(FideleManager thisFM)
+    {
+        onThisEntityTalked?.Invoke(thisFM);
     }
 
 }

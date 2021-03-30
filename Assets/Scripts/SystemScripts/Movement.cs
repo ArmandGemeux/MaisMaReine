@@ -10,7 +10,7 @@ public class Movement : MonoBehaviour
     private Vector2 startPosition;
 
     public bool isMoving = false;
-    private bool hasMoved = false;
+    public bool hasMoved = false;
 
     private bool isLanbable;
 
@@ -40,6 +40,7 @@ public class Movement : MonoBehaviour
 
         if (isMoving && Input.GetMouseButton(0))
         {
+            Cursor.visible = false;
             //Debug.Log("IsLandable : " + isLanbable);
 
             mousePosition = Input.mousePosition;
@@ -50,6 +51,7 @@ public class Movement : MonoBehaviour
         }
         else if (isMoving && Input.GetMouseButtonUp(0))
         {
+            Cursor.visible = true;
             if (isLanbable)
             {
                 transform.parent.position = transform.position;
@@ -77,20 +79,18 @@ public class Movement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == ("Obstacle") && collision != myAnimationManager)
+        if (collision.tag == ("Obstacle"))
         {
             isLanbable = false;
             //Debug.Log(collision.name);
             myAnimationManager.UnableToLand();
         }
 
-        if (collision.gameObject == myMoveZone)
+        /*if (collision.gameObject == myMoveZone)
         {
             isLanbable = true;
             myAnimationManager.AbleToLand();
-        }
-
-
+        }*/
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -101,11 +101,19 @@ public class Movement : MonoBehaviour
             //Debug.Log(collision.name);
             myAnimationManager.UnableToLand();
         }
+    }
 
-        if (collision.tag == ("Obstacle") && collision != myAnimationManager)
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject == myMoveZone)
         {
             isLanbable = true;
             myAnimationManager.AbleToLand();
-        }       
+        }
+        else if (collision.tag == ("Obstacle"))
+        {
+            isLanbable = false;
+            myAnimationManager.UnableToLand();
+        }
     }
 }

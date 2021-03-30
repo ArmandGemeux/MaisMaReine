@@ -23,6 +23,7 @@ public class AnimationManager : MonoBehaviour
 
     private Animator myAnim;
     private Movement myMovement;
+    private MovementEnemy myMovementEnemy;
     private Light2D myLight;
     private Interaction myInteraction;
 
@@ -38,20 +39,51 @@ public class AnimationManager : MonoBehaviour
     void Start()
     {
         myAnim = GetComponent<Animator>();
-        myMovement = GetComponentInChildren<Movement>();
         myFM = GetComponent<FideleManager>();
         myLight = GetComponentInChildren<Light2D>();
         myInteraction = GetComponentInChildren<Interaction>();
+
+        if (GetComponentInChildren<Movement>() != null)
+        {
+            myMovement = GetComponentInChildren<Movement>();
+        }
+        else if (GetComponentInChildren<MovementEnemy>() != null)
+        {
+            myMovementEnemy = GetComponentInChildren<MovementEnemy>();
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (isSelectable && isInteractionDisplayed == false && myFM.isAlive)
+        /*if (myMovement != null && myMovement.hasMoved == false)
         {
-            DisplayInteraction();
+            AbleToPlay();
         }
+        else if (myMovement != null && myMovement.hasMoved)
+        {
+            UnableToPlay();
+        }
+
+        if (myMovementEnemy != null && myMovementEnemy.hasMoved == false)
+        {
+            AbleToPlay();
+        }
+        else if (myMovementEnemy != null && myMovementEnemy.hasMoved)
+        {
+            UnableToPlay();
+        }*/
     }
+
+    /*public void AbleToPlay()
+    {
+        myAnim.SetBool("isCharacterAblePlay", true);
+    }
+
+    public void UnableToPlay()
+    {
+        myAnim.SetBool("isCharacterAblePlay", false);
+    }*/
 
     public void ActivateLauncherSelection()
     {
@@ -140,5 +172,32 @@ public class AnimationManager : MonoBehaviour
             myAnim.SetBool("ActivateInteractionBool", false);
             isInteractionDisplayed = false;
         }
+    }
+
+    public void DisplayInteractionIcon()
+    {
+        myInteraction.myInteractionIcon.enabled = true;
+
+        switch (myInteraction.interactionType)
+        {
+            case InteractionType.Dialogue:
+                myInteraction.myInteractionIcon.sprite = myInteraction.dialogueIcon;
+                break;
+            case InteractionType.Recrutement:
+                myInteraction.myInteractionIcon.sprite = myInteraction.recrutementIcon;
+                break;
+            case InteractionType.Combat:
+                myInteraction.myInteractionIcon.sprite = myInteraction.combatIcon;
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void HideInteractionIcon()
+    {
+        myInteraction.myInteractionIcon.enabled = false;
+
+        myInteraction.myInteractionIcon.sprite = null;
     }
 }

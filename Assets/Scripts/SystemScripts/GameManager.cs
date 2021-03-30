@@ -54,6 +54,17 @@ public class GameManager : MonoBehaviour
         currentCampTurn += 1;
         switchingTurn = false;
 
+        if (currentCampTurn == GameCamps.Fidele)
+        {
+            foreach (FideleManager fm in allMapUnits)
+            {
+                if (fm.myCamp == GameCamps.Fidele)
+                {
+                    fm.GetComponentInChildren<MovementEnemy>().hasMoved = false;
+                }
+            }
+        }
+
         if (currentCampTurn == GameCamps.Roi)
         {
             foreach (FideleManager fm in allMapUnits)

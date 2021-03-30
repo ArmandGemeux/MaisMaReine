@@ -41,8 +41,10 @@ public class Recrutement : MonoBehaviour
         Destroy(myMovementEnemy.GetComponent<NavMeshAgent>());
 
         myFM.myCamp = GameCamps.Fidele;
+        myFM.gameObject.tag = ("Fidele");
+        myFM.GetComponent<AnimationManager>().DesactivateReceiverSelection();
 
-        QuestEvents.Instance.EntityRecruited();
+        QuestEvents.Instance.EntityRecruited(myFM);
         return;
     }
 
@@ -57,7 +59,9 @@ public class Recrutement : MonoBehaviour
         Destroy(myMovementEnemy.GetComponent<NavMeshAgent>());
 
         myFM.myCamp = GameCamps.Fidele;
+        myFM.gameObject.tag = ("Fidele");
+        myFM.GetComponent<AnimationManager>().DesactivateReceiverSelection();
 
-        QuestEvents.Instance.EntityRecruited();
+        QuestEvents.Instance.EntityRecruited(myFM);
     }
 }
