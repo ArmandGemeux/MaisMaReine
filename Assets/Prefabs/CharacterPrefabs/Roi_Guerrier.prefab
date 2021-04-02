@@ -641,10 +641,13 @@ MonoBehaviour:
   maxHp: 9
   currentHP: 0
   isAlive: 0
-  attackRange: 5
-  counterAttackRange: 3
+  moveZoneValue: 0
+  maxAttackRange: 0
+  minAttackRange: 0
+  maxCounterAttackRange: 0
+  minCounterAttackRange: 0
   criticChances: 10
-  failChances: 15
+  missChances: 0
   charismaCost: 20
   fidelePeuple: 1
   myTarget: {fileID: 0}
@@ -1289,6 +1292,9 @@ GameObject:
   - component: {fileID: 4758114578806579398}
   - component: {fileID: 4758114578806579399}
   - component: {fileID: 4758114578806579400}
+  - component: {fileID: 5372226244709381089}
+  - component: {fileID: 3716323854289579749}
+  - component: {fileID: 4758114577752251489}
   m_Layer: 2
   m_Name: ZoneInteractionFidele
   m_TagString: Untagged
@@ -1387,7 +1393,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0b445a06ff2fb74cbc35e4f99eaaeb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactionType: 2
+  interactionType: 0
   interactionTimer: 2
   canInteract: 0
   hasInteract: 0
@@ -1398,6 +1404,50 @@ MonoBehaviour:
   dialogueIcon: {fileID: 21300000, guid: c8e927090ec80f74599f34a1441516d2, type: 3}
   recrutementIcon: {fileID: 21300000, guid: 5639e7536f629884f907d06a418a7da6, type: 3}
   myInteractionIcon: {fileID: 4758114577887886679}
+--- !u!114 &5372226244709381089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4758114578806579402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 326d83745be2dca478cca91b9432d7ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3716323854289579749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4758114578806579402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98a1a896f713e5d488e258acdab7f38a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4758114577752251489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4758114578806579402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bf121761451d7c43bde7957531da9f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myDialogue:
+    name: 
+    myDialogue:
+    - "Salut ! Je suis la premi\xE8re personne \xE0 parler dans le jeu !"
+    - "Personnellement, je trouve \xE7a incroyable ! En plus, peu de gens ont la
+      chance de me lire..."
+    - Mais comme tout, je dois retourner aux limbes... Adieu !
+  nextInteractionType: 0
 --- !u!1001 &4758114578814657105
 PrefabInstance:
   m_ObjectHideFlags: 0

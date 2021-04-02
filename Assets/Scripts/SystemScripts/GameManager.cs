@@ -4,7 +4,7 @@ using UnityEngine;
 using System.Linq;
 
 
-public enum GameCamps { Fidele, Roi, Bandit, Calamite, Converti}
+public enum GameCamps { Fidele, Roi, Bandit, BanditCalamiteux, Calamite, Villageois, Converti}
 
 public class GameManager : MonoBehaviour
 {
@@ -105,7 +105,7 @@ public class GameManager : MonoBehaviour
 
         if (currentCampTurn == lastTurn+1)
         {
-            currentCampTurn = GameCamps.Fidele;
+            currentCampTurn = campsInTerritoire[0];
         }
 
         ResetTurn();

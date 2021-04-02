@@ -20,14 +20,9 @@ public class Recrutement : MonoBehaviour
         
     }
 
-    public void OpenRecruitementWindow(FideleManager fmToRecruit)
+    public void LaunchRecruitement(FideleManager fmToRecruit)
     {
-        Debug.Log("Vous recrutez " + fmToRecruit.fideleNom + " " + fmToRecruit.fidelePrenom);
-        if (myFM.myCamp == GameCamps.Bandit)
-            SetBanditCampToFidele();
-
-        /*else if (myFM.myCamp == GameCamps.Villageois)
-            SetVillageoisCampToFidele()*/
+        RecrutementManager.Instance.OpenRecruitementWindow(fmToRecruit);
     }
 
     private void SetBanditCampToFidele()

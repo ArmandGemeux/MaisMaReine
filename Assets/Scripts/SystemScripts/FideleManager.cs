@@ -16,15 +16,18 @@ public class FideleManager : MonoBehaviour
     public int currentHP;
     public bool isAlive;
 
-    [Range(4, 10)]
-    public int attackRange;
-    [Range(1, 3)]
-    public int counterAttackRange;
+    public float moveZoneValue;
+    
+    public int maxAttackRange;
+    public int minAttackRange;
+
+    public int maxCounterAttackRange;
+    public int minCounterAttackRange;
 
     [Range(0, 100)]
     public int criticChances;
     [Range(0, 100)]
-    public int failChances;
+    public int missChances;
 
     [Range(0, 100)]
     public int charismaCost;

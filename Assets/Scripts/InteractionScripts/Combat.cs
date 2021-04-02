@@ -88,7 +88,7 @@ public class Combat : MonoBehaviour
         else
         {
             isMissed = Random.Range(0, 100);
-            if (isMissed <= attaquantFideleManager.failChances)
+            if (isMissed <= attaquantFideleManager.missChances)
             {
                 Missed();
             }
@@ -104,9 +104,10 @@ public class Combat : MonoBehaviour
     {
         if (attaquantFideleManager.isAlive && defenseurFideleManager.isAlive)
         {
+            int attackValue = Random.Range(attaquantFideleManager.minAttackRange, attaquantFideleManager.maxAttackRange);
             //Ici, soustraire la valeur d'attaque de l'attaquant au défenseur
-            defenseurFideleManager.currentHP -= attaquantFideleManager.attackRange;
-            Debug.Log("L'attaquant inflige" + attaquantFideleManager.attackRange + "points de dégâts, laissant son adversaire à " + defenseurFideleManager.currentHP);
+            defenseurFideleManager.currentHP -= attackValue;
+            Debug.Log("L'attaquant inflige" + attackValue + "points de dégâts, laissant son adversaire à " + defenseurFideleManager.currentHP);
             receiveDamage.Play();
             CheckHP();
             CounterAttack();
@@ -117,9 +118,10 @@ public class Combat : MonoBehaviour
     {
         if (attaquantFideleManager.isAlive && defenseurFideleManager.isAlive)
         {
+            int counterAttackValue = Random.Range(defenseurFideleManager.minCounterAttackRange, defenseurFideleManager.maxCounterAttackRange);
             //Ici, soustraire la valeur de contre-attaque du défenseur à l'attaquant
-            attaquantFideleManager.currentHP -= defenseurFideleManager.counterAttackRange;
-            Debug.Log("Le défenseur contre-attaque et inflige" + defenseurFideleManager.counterAttackRange + "points de dégâts, laissant son adversaire à " + attaquantFideleManager.currentHP);
+            attaquantFideleManager.currentHP -= counterAttackValue;
+            Debug.Log("Le défenseur contre-attaque et inflige" + counterAttackValue + "points de dégâts, laissant son adversaire à " + attaquantFideleManager.currentHP);
             dealingDamage.Play();
             CheckHP();
             EndFightNoDead();
@@ -153,9 +155,9 @@ public class Combat : MonoBehaviour
     {
         //Ici, Attack() et CounterAttack() mais en prenant les effets d'un coup critique en compte
         receiveDamage.Play();
-        defenseurFideleManager.currentHP -= attaquantFideleManager.attackRange*2;
+        defenseurFideleManager.currentHP -= attaquantFideleManager.maxAttackRange*2;
         Debug.Log("OUH ! CRITIQUE !!");
-        Debug.Log("Avec un coup critique, l'attaquant inflige" + attaquantFideleManager.attackRange + "points de dégâts, laissant son adversaire à " + defenseurFideleManager.currentHP);
+        Debug.Log("Avec un coup critique, l'attaquant inflige" + attaquantFideleManager.maxAttackRange*2 + "points de dégâts, laissant son adversaire à " + defenseurFideleManager.currentHP);
         CheckHP();
     }
 
@@ -163,21 +165,28 @@ public class Combat : MonoBehaviour
     {
         //Ici, Attack() et CounterAttack() mais en prenant les effets d'un echec critique en compte
         dealingDamage.Play();
-        defenseurFideleManager.currentHP -= attaquantFideleManager.attackRange * 2;
+        attaquantFideleManager.currentHP -= defenseurFideleManager.maxCounterAttackRange;
         Debug.Log("Loupé !! Aie aie aie !!");
-        Debug.Log("Avec un coup critique, l'attaquant inflige" + attaquantFideleManager.attackRange + "points de dégâts, laissant son adversaire à " + defenseurFideleManager.currentHP);
+        Debug.Log("Avec un l'échec critique de l'attaquant, le défenseur contre attaque et inflige " + defenseurFideleManager.maxCounterAttackRange + "points de dégâts, laissant son adversaire à " + attaquantFideleManager.currentHP);
         CheckHP();
     }
 
     public void Die(FideleManager deadFM, FideleManager winFM)
     {
-        winFM.GetComponentInChildren<Interaction>().myCollideAnimationManagerList.Remove(deadFM.GetComponent<AnimationManager>());
-        winFM.GetComponentInChildren<Interaction>().myCollideInteractionList.Remove(deadFM.GetComponentInChildren<Interaction>());
-        GameManager.Instance.RemoveAMapUnit(deadFM);
-        Destroy(deadFM.gameObject);
-        EndFightDead(deadFM);
-        //Ici, appliquez les éléments à prendre en compte lorsqu'un combat est fini
-        Debug.Log(deadFM.fidelePrenom + " " + deadFM.fideleNom + " a été vaincu...");
+        if (deadFM.myCamp != GameCamps.Bandit && winFM.myCamp != GameCamps.Fidele)
+        {
+            winFM.GetComponentInChildren<Interaction>().myCollideAnimationManagerList.Remove(deadFM.GetComponent<AnimationManager>());
+            winFM.GetComponentInChildren<Interaction>().myCollideInteractionList.Remove(deadFM.GetComponentInChildren<Interaction>());
+            GameManager.Instance.RemoveAMapUnit(deadFM);
+            Destroy(deadFM.gameObject);
+            EndFightDead(deadFM);
+            //Ici, appliquez les éléments à prendre en compte lorsqu'un combat est fini
+            Debug.Log(deadFM.fidelePrenom + " " + deadFM.fideleNom + " a été vaincu...");
+        }
+        else if (deadFM.myCamp == GameCamps.Bandit && winFM.myCamp == GameCamps.Fidele)
+        {
+            SwitchInteractionType();
+        }
     }
 
     public void EndFightNoDead()
@@ -190,5 +199,10 @@ public class Combat : MonoBehaviour
         //Debug.Log("Combat terminé avec un mort !");
         QuestEvents.Instance.EntityKilled();
         QuestEvents.Instance.ThisEntityKilled(deadFM);
+    }
+
+    public void SwitchInteractionType()
+    {
+        GetComponent<Interaction>().interactionType = InteractionType.Recrutement;
     }
 }

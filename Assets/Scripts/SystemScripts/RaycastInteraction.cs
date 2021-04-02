@@ -113,11 +113,11 @@ public class RaycastInteraction : MonoBehaviour
             switch (interactionReceiverInteraction.interactionType) //Quel type d'interaction porte l'interactionReceiver ?
             {
                 case InteractionType.Dialogue:
-                    interactionReceiverInteraction.GetComponent<Dialogue>().OpenDialogueWindow(interactionReceiverFM);
+                    interactionReceiverInteraction.GetComponent<DialogueInteraction>().StartDialogue(interactionReceiverFM);
                     //Debug.Log("Dialogue");
                     break;
                 case InteractionType.Recrutement:
-                    interactionReceiverInteraction.GetComponent<Recrutement>().OpenRecruitementWindow(interactionReceiverFM);
+                    interactionReceiverInteraction.GetComponent<Recrutement>().LaunchRecruitement(interactionReceiverFM);
                     //Debug.Log("Recrutement");
                     break;
                 case InteractionType.Combat:
