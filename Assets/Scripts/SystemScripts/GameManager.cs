@@ -83,8 +83,11 @@ public class GameManager : MonoBehaviour
             {
                 if (fm.myCamp == GameCamps.Bandit)
                 {
-                    fm.GetComponentInChildren<MovementEnemy>().hasMoved = false;
-                    StartCoroutine(MoveBandit());
+                    if (fm.isAlive)
+                    {
+                        fm.GetComponentInChildren<MovementEnemy>().hasMoved = false;
+                        StartCoroutine(MoveBandit());
+                    }
                 }
             }
         }
@@ -137,7 +140,6 @@ public class GameManager : MonoBehaviour
         foreach (FideleManager fm in allMapUnits)
         {
             fm.GetComponentInChildren<Interaction>().alreadyInteractedList.Clear();
-            //Debug.Log("Clear");
         }
     }
 

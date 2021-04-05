@@ -12,6 +12,8 @@ public class DialogueManager : MonoBehaviour
     private Animator myAnim;
 
     private Queue<string> lines;
+    
+    public Quest questToSetActive;
 
     #region Singleton
     public static DialogueManager Instance;
@@ -84,6 +86,11 @@ public class DialogueManager : MonoBehaviour
 
     public void EndDialogue()
     {
+        if (questToSetActive != null)
+        {
+            questToSetActive.isActive = true;
+            //QuestManager.Instance.AddNewQuestToFollow(questToSetActive);
+        }
         myAnim.SetBool("isOpen", false);
     }
 }

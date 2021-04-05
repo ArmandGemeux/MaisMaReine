@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Objectif : MonoBehaviour
 {
+    [Header ("Objectif")]
+
     public InteractionType objectifInteractionType;
 
     public List<FideleManager> interactionTarget;
@@ -16,9 +18,13 @@ public class Objectif : MonoBehaviour
 
     public bool objectifComplete = false;
 
+    private Quest myQuest;
+
     // Start is called before the first frame update
     void Start()
     {
+        myQuest = GetComponentInParent<Quest>();
+
         QuestEvents.Instance.onEntityRecruited += OnEntityRecruited;
         QuestEvents.Instance.onThisEntityKilled += OnThisEntityKilled;
     }
@@ -31,30 +37,33 @@ public class Objectif : MonoBehaviour
 
     private void OnEntityRecruited(FideleManager thisFM)
     {
-        if (objectifInteractionType == InteractionType.Recrutement && interactionTarget.Count >= 1)
+        if (myQuest.isActive)
         {
-            if (interactionTarget != null && interactionTarget.Contains(thisFM))
+            if (objectifInteractionType == InteractionType.Recrutement && interactionTarget.Count >= 1)
             {
-                //Debug.Log("Cet ennemi est mort : " + thisFM.fidelePrenom);
-                interactionTarget.Remove(thisFM);
-                if (interactionTarget.Count == 0)
+                if (interactionTarget != null && interactionTarget.Contains(thisFM))
                 {
-                    objectifComplete = true;
-                    TestIfObjectivesAreCompleted();
-                    Debug.Log("Objectif de recrutement précis atteint");
+                    //Debug.Log("Cet ennemi est mort : " + thisFM.fidelePrenom);
+                    interactionTarget.Remove(thisFM);
+                    if (interactionTarget.Count == 0)
+                    {
+                        objectifComplete = true;
+                        TestIfObjectivesAreCompleted();
+                        Debug.Log("Objectif de recrutement précis atteint");
+                    }
                 }
             }
-        }
-        else if (objectifInteractionType == InteractionType.Recrutement && interactionAmountToDo >= 1)
-        {
-            if (thisFM.myCamp == targetCamp)
+            else if (objectifInteractionType == InteractionType.Recrutement && interactionAmountToDo >= 1)
             {
-                currentInteractionAmountToDo++;
-                if (currentInteractionAmountToDo == interactionAmountToDo)
+                if (thisFM.myCamp == targetCamp)
                 {
-                    objectifComplete = true;
-                    TestIfObjectivesAreCompleted();
-                    Debug.Log("Objectif de nombre de recrutement atteint");
+                    currentInteractionAmountToDo++;
+                    if (currentInteractionAmountToDo == interactionAmountToDo)
+                    {
+                        objectifComplete = true;
+                        TestIfObjectivesAreCompleted();
+                        Debug.Log("Objectif de nombre de recrutement atteint");
+                    }
                 }
             }
         }
@@ -62,30 +71,33 @@ public class Objectif : MonoBehaviour
 
     private void OnThisEntityKilled(FideleManager thisFM)
     {
-        if (objectifInteractionType == InteractionType.Combat && interactionTarget.Count >= 1)
+        if (myQuest.isActive)
         {
-            if (interactionTarget != null && interactionTarget.Contains(thisFM))
+            if (objectifInteractionType == InteractionType.Combat && interactionTarget.Count >= 1)
             {
-                //Debug.Log("Cet ennemi est mort : " + thisFM.fidelePrenom);
-                interactionTarget.Remove(thisFM);
-                if (interactionTarget.Count == 0)
+                if (interactionTarget != null && interactionTarget.Contains(thisFM))
                 {
-                    objectifComplete = true;
-                    TestIfObjectivesAreCompleted();
-                    Debug.Log("Objectif de kill précis atteint");
+                    //Debug.Log("Cet ennemi est mort : " + thisFM.fidelePrenom);
+                    interactionTarget.Remove(thisFM);
+                    if (interactionTarget.Count == 0)
+                    {
+                        objectifComplete = true;
+                        TestIfObjectivesAreCompleted();
+                        Debug.Log("Objectif de kill précis atteint");
+                    }
                 }
             }
-        }
-        else if (objectifInteractionType == InteractionType.Combat && interactionAmountToDo >= 1)
-        {
-            if (thisFM.myCamp == targetCamp)
+            else if (objectifInteractionType == InteractionType.Combat && interactionAmountToDo >= 1)
             {
-                currentInteractionAmountToDo++;
-                if (currentInteractionAmountToDo == interactionAmountToDo)
+                if (thisFM.myCamp == targetCamp)
                 {
-                    objectifComplete = true;
-                    TestIfObjectivesAreCompleted();
-                    Debug.Log("Objectif de nombre de kill atteint");
+                    currentInteractionAmountToDo++;
+                    if (currentInteractionAmountToDo == interactionAmountToDo)
+                    {
+                        objectifComplete = true;
+                        TestIfObjectivesAreCompleted();
+                        Debug.Log("Objectif de nombre de kill atteint");
+                    }
                 }
             }
         }

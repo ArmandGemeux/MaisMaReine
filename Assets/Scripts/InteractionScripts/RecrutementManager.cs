@@ -92,6 +92,7 @@ public class RecrutementManager : MonoBehaviour
         }
 
         myAnim.SetBool("isOpen", false);
+        myFMToRecruit.isAlive = true;
         myFMToRecruit = null;
     }
 

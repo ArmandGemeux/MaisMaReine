@@ -7,6 +7,9 @@ public class DialogueInteraction : MonoBehaviour
     public Dialogue myDialogue;
 
     public InteractionType nextInteractionType;
+
+    public Quest nextQuestToSetActive;
+
     private bool hasTalked;
 
     // Start is called before the first frame update
@@ -33,6 +36,11 @@ public class DialogueInteraction : MonoBehaviour
         else
         {
             return;
+        }
+
+        if (nextQuestToSetActive != null)
+        {
+            DialogueManager.Instance.questToSetActive = nextQuestToSetActive;
         }
     }
 }

@@ -185,6 +185,10 @@ public class Combat : MonoBehaviour
         }
         else if (deadFM.myCamp == GameCamps.Bandit && winFM.myCamp == GameCamps.Fidele)
         {
+            QuestEvents.Instance.EntityKilled();
+            QuestEvents.Instance.ThisEntityKilled(deadFM);
+
+            deadFM.isAlive = false;
             SwitchInteractionType();
         }
     }

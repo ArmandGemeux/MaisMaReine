@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class Quest : MonoBehaviour
 {
+    [Header("Description Quête")]
+
+    public string questDescription;
+
+    public bool isActive;
+
     [Header("Nombre d'objectifs")]
 
     public List<Objectif> objectifAmount;
@@ -28,6 +34,7 @@ public class Quest : MonoBehaviour
         if (remainingObjectifAmount == 0)
         {
             Debug.Log("Quête terminée !!");
+            QuestManager.Instance.RemoveQuestToFollow(this);
         }
     }
 
