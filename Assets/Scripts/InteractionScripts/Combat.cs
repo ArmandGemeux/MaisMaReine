@@ -173,7 +173,7 @@ public class Combat : MonoBehaviour
 
     public void Die(FideleManager deadFM, FideleManager winFM)
     {
-        if (deadFM.myCamp != GameCamps.Bandit && winFM.myCamp != GameCamps.Fidele)
+        if (deadFM.myCamp != GameCamps.Bandit && winFM.myCamp == GameCamps.Fidele)
         {
             winFM.GetComponentInChildren<Interaction>().myCollideAnimationManagerList.Remove(deadFM.GetComponent<AnimationManager>());
             winFM.GetComponentInChildren<Interaction>().myCollideInteractionList.Remove(deadFM.GetComponentInChildren<Interaction>());
@@ -201,6 +201,7 @@ public class Combat : MonoBehaviour
     public void EndFightDead(FideleManager deadFM)
     {
         //Debug.Log("Combat terminé avec un mort !");
+        Debug.Log(deadFM);
         QuestEvents.Instance.EntityKilled();
         QuestEvents.Instance.ThisEntityKilled(deadFM);
     }

@@ -44,12 +44,12 @@ public class QuestManager : MonoBehaviour
 
     public void RemoveQuestToFollow(Quest qtr) //Quest to remove
     {
-        foreach (Quest quest in myQuestsInTerritory)
+        /*foreach (Quest quest in myQuestsInTerritory)
         {
             if (qtr == quest)
             {
                 myQuestsInTerritory.Remove(quest);
             }
-        }
+        }*/
     }
 }

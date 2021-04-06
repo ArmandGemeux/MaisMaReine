@@ -27,6 +27,7 @@ public class Objectif : MonoBehaviour
 
         QuestEvents.Instance.onEntityRecruited += OnEntityRecruited;
         QuestEvents.Instance.onThisEntityKilled += OnThisEntityKilled;
+        QuestEvents.Instance.onThisEntityTalked += OnThisEntityTalked;
     }
 
     // Update is called once per frame
@@ -43,7 +44,6 @@ public class Objectif : MonoBehaviour
             {
                 if (interactionTarget != null && interactionTarget.Contains(thisFM))
                 {
-                    //Debug.Log("Cet ennemi est mort : " + thisFM.fidelePrenom);
                     interactionTarget.Remove(thisFM);
                     if (interactionTarget.Count == 0)
                     {
@@ -77,7 +77,6 @@ public class Objectif : MonoBehaviour
             {
                 if (interactionTarget != null && interactionTarget.Contains(thisFM))
                 {
-                    //Debug.Log("Cet ennemi est mort : " + thisFM.fidelePrenom);
                     interactionTarget.Remove(thisFM);
                     if (interactionTarget.Count == 0)
                     {
@@ -97,6 +96,39 @@ public class Objectif : MonoBehaviour
                         objectifComplete = true;
                         TestIfObjectivesAreCompleted();
                         Debug.Log("Objectif de nombre de kill atteint");
+                    }
+                }
+            }
+        }
+    }
+
+    private void OnThisEntityTalked(FideleManager thisFM)
+    {
+        if (myQuest.isActive)
+        {
+            if (objectifInteractionType == InteractionType.Dialogue && interactionTarget.Count >= 1)
+            {
+                if (interactionTarget != null && interactionTarget.Contains(thisFM))
+                {
+                    interactionTarget.Remove(thisFM);
+                    if (interactionTarget.Count == 0)
+                    {
+                        objectifComplete = true;
+                        TestIfObjectivesAreCompleted();
+                        Debug.Log("Objectif de talk précis atteint");
+                    }
+                }
+            }
+            else if (objectifInteractionType == InteractionType.Dialogue && interactionAmountToDo >= 1)
+            {
+                if (thisFM.myCamp == targetCamp)
+                {
+                    currentInteractionAmountToDo++;
+                    if (currentInteractionAmountToDo == interactionAmountToDo)
+                    {
+                        objectifComplete = true;
+                        TestIfObjectivesAreCompleted();
+                        Debug.Log("Objectif de nombre de talk atteint");
                     }
                 }
             }

@@ -31,6 +31,7 @@ public class DialogueInteraction : MonoBehaviour
         if (hasTalked == false)
         {
             DialogueManager.Instance.OpenDialogueWindow(myDialogue);
+            QuestEvents.Instance.EntityTalked(thisFM);
             GetComponent<Interaction>().interactionType = nextInteractionType;
         }
         else

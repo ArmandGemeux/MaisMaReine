@@ -304,10 +304,10 @@ RectTransform:
   m_Father: {fileID: 1084345075}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 384.36328, y: -29.709742}
-  m_SizeDelta: {x: 728.72656, y: 59.419483}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 728.72656, y: 50.405193}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &44994718
 PrefabInstance:
@@ -384,6 +384,57 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 44994718}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &51207494
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 51207495}
+  - component: {fileID: 51207496}
+  m_Layer: 0
+  m_Name: Quest03
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &51207495
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 51207494}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 2062366263}
+  - {fileID: 1836957395}
+  m_Father: {fileID: 1615763375}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &51207496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 51207494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0a94a1f78f9cc24eb339d82b54c610f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questDescription: "Parler \xE0 un villageois perdu et vaincre un fidele du Roi"
+  isActive: 1
+  objectifAmount:
+  - {fileID: 2062366264}
+  - {fileID: 1836957396}
+  remainingObjectifAmount: 0
 --- !u!1001 &96898435
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -575,14 +626,14 @@ MonoBehaviour:
   m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 21
+    OrthographicSize: 24
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.0516934, y: 1}
+    m_SensorSize: {x: 1.6587538, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -1231,6 +1282,24 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 219131861}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &232806994 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4758114577949382674, guid: a036c676612233e4a9c9560cde0ccd9b,
+    type: 3}
+  m_PrefabInstance: {fileID: 576761574}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ccc71daf61d7944bb4ced1a40b95519, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &232806999 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4758114577949382679, guid: a036c676612233e4a9c9560cde0ccd9b,
+    type: 3}
+  m_PrefabInstance: {fileID: 576761574}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &249535767
 GameObject:
   m_ObjectHideFlags: 0
@@ -1297,6 +1366,57 @@ MonoBehaviour:
   m_VoxelSize: 0.16666667
   m_BuildHeightMesh: 0
   m_NavMeshData: {fileID: 23800000, guid: 5de18ce05adafa24c83340f754be3d6a, type: 2}
+--- !u!1 &271984599
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 271984600}
+  - component: {fileID: 271984601}
+  m_Layer: 0
+  m_Name: Quest02
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &271984600
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 271984599}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 2113016658}
+  - {fileID: 545847175}
+  m_Father: {fileID: 1615763375}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &271984601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 271984599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0a94a1f78f9cc24eb339d82b54c610f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questDescription: Recruter un bandit random et recruter Phillipe
+  isActive: 1
+  objectifAmount:
+  - {fileID: 2113016659}
+  - {fileID: 545847176}
+  remainingObjectifAmount: 0
 --- !u!1001 &272238662
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1608,7 +1728,7 @@ GameObject:
   - component: {fileID: 295514109}
   - component: {fileID: 295514110}
   m_Layer: 0
-  m_Name: MajorQuest
+  m_Name: Quest01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1641,8 +1761,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0a94a1f78f9cc24eb339d82b54c610f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  questDescription: "Faire des b\xEAtises"
-  isActive: 0
+  questDescription: Sauver le Vieux Fou
+  isActive: 1
   objectifAmount:
   - {fileID: 1099939435}
   remainingObjectifAmount: 0
@@ -3196,6 +3316,55 @@ MonoBehaviour:
   interactionLauncherFM: {fileID: 0}
   interactionReceiverInteraction: {fileID: 0}
   interactionReceiverAnim: {fileID: 0}
+--- !u!1 &545847174
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 545847175}
+  - component: {fileID: 545847176}
+  m_Layer: 0
+  m_Name: Objectif
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &545847175
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 545847174}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 271984600}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &545847176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 545847174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad9a0647c30f3014dbc9be776fb3b149, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectifInteractionType: 1
+  interactionTarget:
+  - {fileID: 729489455}
+  targetCamp: 2
+  interactionAmountToDo: 0
+  objectifComplete: 0
 --- !u!1001 &546550006
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3369,6 +3538,156 @@ Transform:
   m_Father: {fileID: 249535768}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &576761574
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1682409236}
+    m_Modifications:
+    - target: {fileID: 4758114577752251489, guid: a036c676612233e4a9c9560cde0ccd9b,
+        type: 3}
+      propertyPath: myDialogue.myDialogue.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4758114577752251489, guid: a036c676612233e4a9c9560cde0ccd9b,
+        type: 3}
+      propertyPath: myDialogue.name
+      value: Le Vieux Fou
+      objectReference: {fileID: 0}
+    - target: {fileID: 4758114577752251489, guid: a036c676612233e4a9c9560cde0ccd9b,
+        type: 3}
+      propertyPath: nextInteractionType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4758114577752251489, guid: a036c676612233e4a9c9560cde0ccd9b,
+        type: 3}
+      propertyPath: nextQuestToSetActive
+      value: 
+      objectReference: {fileID: 295514110}
+    - target: {fileID: 4758114577752251489, guid: a036c676612233e4a9c9560cde0ccd9b,
+        type: 3}
+      propertyPath: myDialogue.myDialogue.Array.data[0]
+      value: Salut ! Je suis le vieux fou que tu dois secourir !
+      objectReference: {fileID: 0}
+    - target: {fileID: 4758114577752251489, guid: a036c676612233e4a9c9560cde0ccd9b,
+        type: 3}
+      propertyPath: myDialogue.myDialogue.Array.data[1]
+      value: "Merci d'\xEAtre venu \xE0 ma rencontre."
+      objectReference: {fileID: 0}
+    - target: {fileID: 4758114577949382674, guid: a036c676612233e4a9c9560cde0ccd9b,
+        type: 3}
+      propertyPath: maxAttackRange
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4758114577949382674, guid: a036c676612233e4a9c9560cde0ccd9b,
+        type: 3}
+      propertyPath: minAttackRange
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4758114577949382674, guid: a036c676612233e4a9c9560cde0ccd9b,
+        type: 3}
+      propertyPath: maxCounterAttackRange
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4758114577949382674, guid: a036c676612233e4a9c9560cde0ccd9b,
+        type: 3}
+      propertyPath: minCounterAttackRange
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4758114577949382674, guid: a036c676612233e4a9c9560cde0ccd9b,
+        type: 3}
+      propertyPath: missChances
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4758114577949382674, guid: a036c676612233e4a9c9560cde0ccd9b,
+        type: 3}
+      propertyPath: criticChances
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4758114577949382674, guid: a036c676612233e4a9c9560cde0ccd9b,
+        type: 3}
+      propertyPath: myCamp
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4758114577949382674, guid: a036c676612233e4a9c9560cde0ccd9b,
+        type: 3}
+      propertyPath: fideleNom
+      value: Le Vieux
+      objectReference: {fileID: 0}
+    - target: {fileID: 4758114577949382674, guid: a036c676612233e4a9c9560cde0ccd9b,
+        type: 3}
+      propertyPath: fidelePrenom
+      value: Fou
+      objectReference: {fileID: 0}
+    - target: {fileID: 4758114577949382679, guid: a036c676612233e4a9c9560cde0ccd9b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -17.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4758114577949382679, guid: a036c676612233e4a9c9560cde0ccd9b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -20.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4758114577949382679, guid: a036c676612233e4a9c9560cde0ccd9b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4758114577949382679, guid: a036c676612233e4a9c9560cde0ccd9b,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4758114577949382679, guid: a036c676612233e4a9c9560cde0ccd9b,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4758114577949382679, guid: a036c676612233e4a9c9560cde0ccd9b,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4758114577949382679, guid: a036c676612233e4a9c9560cde0ccd9b,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4758114577949382679, guid: a036c676612233e4a9c9560cde0ccd9b,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4758114577949382679, guid: a036c676612233e4a9c9560cde0ccd9b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4758114577949382679, guid: a036c676612233e4a9c9560cde0ccd9b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4758114577949382679, guid: a036c676612233e4a9c9560cde0ccd9b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4758114577949382680, guid: a036c676612233e4a9c9560cde0ccd9b,
+        type: 3}
+      propertyPath: m_Name
+      value: LeVieuxFou
+      objectReference: {fileID: 0}
+    - target: {fileID: 4758114578680456931, guid: a036c676612233e4a9c9560cde0ccd9b,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 27791749fe7196c49a20f4f73fec9b5f,
+        type: 3}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a036c676612233e4a9c9560cde0ccd9b, type: 3}
 --- !u!1 &580394438
 GameObject:
   m_ObjectHideFlags: 0
@@ -3777,7 +4096,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 21
+  orthographic size: 24
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -4097,6 +4416,24 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 697988319}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &729489450 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4758114577949382679, guid: a036c676612233e4a9c9560cde0ccd9b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1747374480}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &729489455 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4758114577949382674, guid: a036c676612233e4a9c9560cde0ccd9b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1747374480}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ccc71daf61d7944bb4ced1a40b95519, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &754181683
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4768,10 +5105,10 @@ RectTransform:
   m_Father: {fileID: 1084345075}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 384.36328, y: -174.12923}
-  m_SizeDelta: {x: 728.72656, y: 59.419483}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 728.72656, y: 50.405193}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &839425843
 PrefabInstance:
@@ -6591,10 +6928,10 @@ RectTransform:
   m_Father: {fileID: 1084345075}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 384.36328, y: -318.5487}
-  m_SizeDelta: {x: 728.72656, y: 59.419483}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 728.72656, y: 50.405193}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &1039330540
 PrefabInstance:
@@ -6686,6 +7023,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4758114577752251489, guid: a036c676612233e4a9c9560cde0ccd9b,
+        type: 3}
+      propertyPath: myDialogue.myDialogue.Array.size
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4758114577752251489, guid: a036c676612233e4a9c9560cde0ccd9b,
         type: 3}
@@ -7090,12 +7432,12 @@ MonoBehaviour:
     m_Bottom: 50
   m_ChildAlignment: 0
   m_Spacing: 85
-  m_ChildForceExpandWidth: 1
-  m_ChildForceExpandHeight: 1
-  m_ChildControlWidth: 1
-  m_ChildControlHeight: 1
-  m_ChildScaleWidth: 1
-  m_ChildScaleHeight: 1
+  m_ChildForceExpandWidth: 0
+  m_ChildForceExpandHeight: 0
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
 --- !u!1001 &1089384297
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7369,10 +7711,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad9a0647c30f3014dbc9be776fb3b149, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectifInteractionType: 2
-  interactionTarget: []
-  targetCamp: 2
-  interactionAmountToDo: 1
+  objectifInteractionType: 0
+  interactionTarget:
+  - {fileID: 232806994}
+  targetCamp: 5
+  interactionAmountToDo: 0
   objectifComplete: 0
 --- !u!4 &1123076681 stripped
 Transform:
@@ -13018,6 +13361,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 295514109}
+  - {fileID: 271984600}
+  - {fileID: 51207495}
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -13502,6 +13847,8 @@ Transform:
   - {fileID: 1682110244}
   - {fileID: 1958741064}
   - {fileID: 1123076681}
+  - {fileID: 232806999}
+  - {fileID: 729489450}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -13757,7 +14104,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1694407297
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14026,6 +14373,166 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1714113783}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1747374480
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1682409236}
+    m_Modifications:
+    - target: {fileID: 4758114577752251489, guid: a036c676612233e4a9c9560cde0ccd9b,
+        type: 3}
+      propertyPath: myDialogue.myDialogue.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4758114577752251489, guid: a036c676612233e4a9c9560cde0ccd9b,
+        type: 3}
+      propertyPath: myDialogue.name
+      value: Le Vieux Fou
+      objectReference: {fileID: 0}
+    - target: {fileID: 4758114577752251489, guid: a036c676612233e4a9c9560cde0ccd9b,
+        type: 3}
+      propertyPath: nextInteractionType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4758114577752251489, guid: a036c676612233e4a9c9560cde0ccd9b,
+        type: 3}
+      propertyPath: nextQuestToSetActive
+      value: 
+      objectReference: {fileID: 295514110}
+    - target: {fileID: 4758114577752251489, guid: a036c676612233e4a9c9560cde0ccd9b,
+        type: 3}
+      propertyPath: myDialogue.myDialogue.Array.data[0]
+      value: Salut ! Je suis le vieux fou que tu dois secourir !
+      objectReference: {fileID: 0}
+    - target: {fileID: 4758114577752251489, guid: a036c676612233e4a9c9560cde0ccd9b,
+        type: 3}
+      propertyPath: myDialogue.myDialogue.Array.data[1]
+      value: "Merci d'\xEAtre venu \xE0 ma rencontre."
+      objectReference: {fileID: 0}
+    - target: {fileID: 4758114577949382674, guid: a036c676612233e4a9c9560cde0ccd9b,
+        type: 3}
+      propertyPath: maxAttackRange
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4758114577949382674, guid: a036c676612233e4a9c9560cde0ccd9b,
+        type: 3}
+      propertyPath: minAttackRange
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4758114577949382674, guid: a036c676612233e4a9c9560cde0ccd9b,
+        type: 3}
+      propertyPath: maxCounterAttackRange
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4758114577949382674, guid: a036c676612233e4a9c9560cde0ccd9b,
+        type: 3}
+      propertyPath: minCounterAttackRange
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4758114577949382674, guid: a036c676612233e4a9c9560cde0ccd9b,
+        type: 3}
+      propertyPath: missChances
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4758114577949382674, guid: a036c676612233e4a9c9560cde0ccd9b,
+        type: 3}
+      propertyPath: criticChances
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4758114577949382674, guid: a036c676612233e4a9c9560cde0ccd9b,
+        type: 3}
+      propertyPath: myCamp
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4758114577949382674, guid: a036c676612233e4a9c9560cde0ccd9b,
+        type: 3}
+      propertyPath: fideleNom
+      value: Phillipe
+      objectReference: {fileID: 0}
+    - target: {fileID: 4758114577949382674, guid: a036c676612233e4a9c9560cde0ccd9b,
+        type: 3}
+      propertyPath: fidelePrenom
+      value: Phil'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4758114577949382674, guid: a036c676612233e4a9c9560cde0ccd9b,
+        type: 3}
+      propertyPath: fidelePeuple
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4758114577949382679, guid: a036c676612233e4a9c9560cde0ccd9b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4758114577949382679, guid: a036c676612233e4a9c9560cde0ccd9b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -5.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4758114577949382679, guid: a036c676612233e4a9c9560cde0ccd9b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4758114577949382679, guid: a036c676612233e4a9c9560cde0ccd9b,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4758114577949382679, guid: a036c676612233e4a9c9560cde0ccd9b,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4758114577949382679, guid: a036c676612233e4a9c9560cde0ccd9b,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4758114577949382679, guid: a036c676612233e4a9c9560cde0ccd9b,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4758114577949382679, guid: a036c676612233e4a9c9560cde0ccd9b,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4758114577949382679, guid: a036c676612233e4a9c9560cde0ccd9b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4758114577949382679, guid: a036c676612233e4a9c9560cde0ccd9b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4758114577949382679, guid: a036c676612233e4a9c9560cde0ccd9b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4758114577949382680, guid: a036c676612233e4a9c9560cde0ccd9b,
+        type: 3}
+      propertyPath: m_Name
+      value: Phillipe
+      objectReference: {fileID: 0}
+    - target: {fileID: 4758114578680456931, guid: a036c676612233e4a9c9560cde0ccd9b,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 6de31038f065d164aa1c92c6a5b5c2c0,
+        type: 3}
+    - target: {fileID: 4758114578806579400, guid: a036c676612233e4a9c9560cde0ccd9b,
+        type: 3}
+      propertyPath: interactionType
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a036c676612233e4a9c9560cde0ccd9b, type: 3}
 --- !u!1001 &1757708035
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14476,6 +14983,54 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1802838931}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1836957394
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1836957395}
+  - component: {fileID: 1836957396}
+  m_Layer: 0
+  m_Name: Objectif
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1836957395
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1836957394}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 51207495}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1836957396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1836957394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad9a0647c30f3014dbc9be776fb3b149, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectifInteractionType: 2
+  interactionTarget: []
+  targetCamp: 1
+  interactionAmountToDo: 1
+  objectifComplete: 0
 --- !u!1 &1843928160
 GameObject:
   m_ObjectHideFlags: 0
@@ -15198,7 +15753,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.3372578, y: 0.77389956}
   m_AnchorMax: {x: 0.586068, y: 0.86412483}
-  m_AnchoredPosition: {x: 0.000045776367, y: 0}
+  m_AnchoredPosition: {x: 0.000061035156, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2001555233
@@ -15835,6 +16390,54 @@ MonoBehaviour:
   m_ChildControlHeight: 1
   m_ChildScaleWidth: 1
   m_ChildScaleHeight: 1
+--- !u!1 &2062366262
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2062366263}
+  - component: {fileID: 2062366264}
+  m_Layer: 0
+  m_Name: Objectif
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2062366263
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2062366262}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 51207495}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2062366264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2062366262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad9a0647c30f3014dbc9be776fb3b149, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectifInteractionType: 0
+  interactionTarget: []
+  targetCamp: 5
+  interactionAmountToDo: 1
+  objectifComplete: 0
 --- !u!1001 &2064863865
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16133,6 +16736,54 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2095493955}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2113016657
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2113016658}
+  - component: {fileID: 2113016659}
+  m_Layer: 0
+  m_Name: Objectif
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2113016658
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2113016657}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 271984600}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2113016659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2113016657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad9a0647c30f3014dbc9be776fb3b149, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectifInteractionType: 1
+  interactionTarget: []
+  targetCamp: 2
+  interactionAmountToDo: 1
+  objectifComplete: 0
 --- !u!1001 &2127307857
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16754,6 +17405,11 @@ PrefabInstance:
       propertyPath: criticChances
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 4758114577949382674, guid: a036c676612233e4a9c9560cde0ccd9b,
+        type: 3}
+      propertyPath: myCamp
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4758114577949382679, guid: a036c676612233e4a9c9560cde0ccd9b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -16812,7 +17468,12 @@ PrefabInstance:
     - target: {fileID: 4758114577949382680, guid: a036c676612233e4a9c9560cde0ccd9b,
         type: 3}
       propertyPath: m_Name
-      value: Bandit_GuerrierBas
+      value: Roi_GuerrierBas
+      objectReference: {fileID: 0}
+    - target: {fileID: 4758114578806579400, guid: a036c676612233e4a9c9560cde0ccd9b,
+        type: 3}
+      propertyPath: interactionType
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a036c676612233e4a9c9560cde0ccd9b, type: 3}
