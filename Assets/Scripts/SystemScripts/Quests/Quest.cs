@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Quest : MonoBehaviour
 {
-    [Header("Description Quête")]
+    /*[Header("Description Quête")]
 
     public string questDescription;
 
@@ -36,6 +36,6 @@ public class Quest : MonoBehaviour
             Debug.Log("Quête terminée !!");
             QuestManager.Instance.RemoveQuestToFollow(this);
         }
-    }
+    }*/
 
 }

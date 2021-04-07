@@ -61,10 +61,10 @@ public class MouseEventsEnnemi : MonoBehaviour
         }
 
         #endregion
-        if (myInteraction.canInteract == true)
+        /*if (myInteraction.canInteract == true)
         {
             myAnimManager.DisplayInteractionIcon();
-        }
+        }*/
     }
 
     public void OnMouseExit()
@@ -84,9 +84,9 @@ public class MouseEventsEnnemi : MonoBehaviour
             myAnimManager.HideStats();
         }
         #endregion
-        if (myInteraction.canInteract == true)
+        /*if (myInteraction.canInteract == true)
         {
             myAnimManager.HideInteractionIcon();
-        }
+        }*/
     }
 }

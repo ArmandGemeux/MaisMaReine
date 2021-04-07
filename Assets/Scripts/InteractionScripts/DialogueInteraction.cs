@@ -8,7 +8,10 @@ public class DialogueInteraction : MonoBehaviour
 
     public InteractionType nextInteractionType;
 
-    public Quest nextQuestToSetActive;
+    public bool isStartingAQuest;
+    public int questIndexToSetActive;
+
+    public List<FideleManager> unitsToSpawn;
 
     private bool hasTalked;
 
@@ -31,7 +34,7 @@ public class DialogueInteraction : MonoBehaviour
         if (hasTalked == false)
         {
             DialogueManager.Instance.OpenDialogueWindow(myDialogue);
-            QuestEvents.Instance.EntityTalked(thisFM);
+            QuestManager.Instance.OnTalkedUnit(thisFM);
             GetComponent<Interaction>().interactionType = nextInteractionType;
         }
         else
@@ -39,9 +42,14 @@ public class DialogueInteraction : MonoBehaviour
             return;
         }
 
-        if (nextQuestToSetActive != null)
+        if (isStartingAQuest)
         {
-            DialogueManager.Instance.questToSetActive = nextQuestToSetActive;
+            QuestManager.Instance.SetupQuest(questIndexToSetActive);
+
+            foreach (FideleManager fmToSpawn in unitsToSpawn)
+            {
+                fmToSpawn.gameObject.SetActive(true);
+            }
         }
     }
 }

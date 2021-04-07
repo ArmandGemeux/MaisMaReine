@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering.Universal;
 using UnityEngine.UI;
@@ -27,9 +28,11 @@ public class AnimationManager : MonoBehaviour
     private Light2D myLight;
     private Interaction myInteraction;
 
-    public Image myStatisticsImage;
-    public Image interactionClickFeedback;
-    public Image movementClickFeedback;
+    public Canvas myStatsCanvas;
+    public TextMeshProUGUI currentHpOnCanvas;
+    public TextMeshProUGUI currentAttackRangeOnCanvas;
+
+    public Image healthAmountImage;
 
     public SpriteRenderer myMovementZone;
 
@@ -56,23 +59,15 @@ public class AnimationManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*if (myMovement != null && myMovement.hasMoved == false)
+        currentHpOnCanvas.text = myFM.currentHP.ToString();
+        if (myFM.myCamp == GameCamps.Fidele)
         {
-            AbleToPlay();
+            currentAttackRangeOnCanvas.text = (myFM.minAttackRange.ToString() + " - " + myFM.maxAttackRange.ToString());
         }
-        else if (myMovement != null && myMovement.hasMoved)
+        else
         {
-            UnableToPlay();
+            currentAttackRangeOnCanvas.text = ("??");
         }
-
-        if (myMovementEnemy != null && myMovementEnemy.hasMoved == false)
-        {
-            AbleToPlay();
-        }
-        else if (myMovementEnemy != null && myMovementEnemy.hasMoved)
-        {
-            UnableToPlay();
-        }*/
     }
 
     /*public void AbleToPlay()
@@ -114,7 +109,7 @@ public class AnimationManager : MonoBehaviour
     {
         if (isStatsDisplayed == false)
         {
-            myStatisticsImage.enabled = true;
+            myStatsCanvas.enabled = true;
             isStatsDisplayed = true;
         }
     }
@@ -123,7 +118,7 @@ public class AnimationManager : MonoBehaviour
     {
         if (isStatsDisplayed)
         {
-            myStatisticsImage.enabled = false;
+            myStatsCanvas.enabled = false;
             isStatsDisplayed = false;
         }
     }
@@ -172,6 +167,12 @@ public class AnimationManager : MonoBehaviour
             myAnim.SetBool("ActivateInteractionBool", false);
             isInteractionDisplayed = false;
         }
+    }
+
+    public void FillAmountHealth()
+    {
+        Debug.Log("Test");
+        healthAmountImage.fillAmount = myFM.currentHP*1f / myFM.maxHp*1f;
     }
 
     public void DisplayInteractionIcon()

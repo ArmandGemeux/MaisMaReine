@@ -23,7 +23,7 @@ public class QuestEvents : MonoBehaviour
     }
 
     //Evenements liés au COMBAT :
-
+    /*
     public event Action onEntityKilled;
     public void EntityKilled()
     {
@@ -51,5 +51,5 @@ public class QuestEvents : MonoBehaviour
     {
         onThisEntityTalked?.Invoke(thisFM);
     }
-
+    */
 }

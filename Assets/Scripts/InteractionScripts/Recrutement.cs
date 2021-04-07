@@ -7,6 +7,9 @@ public class Recrutement : MonoBehaviour
 {
     private FideleManager myFM;
     private MovementEnemy myMovementEnemy;
+
+    public Sprite myRecruitedSprite;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,41 +25,6 @@ public class Recrutement : MonoBehaviour
 
     public void LaunchRecruitement(FideleManager fmToRecruit)
     {
-        RecrutementManager.Instance.OpenRecruitementWindow(fmToRecruit);
-    }
-
-    private void SetBanditCampToFidele()
-    {
-        Destroy(myFM.GetComponent<MouseEventsEnnemi>());
-        myFM.gameObject.AddComponent<MouseEventsFidele>();
-
-        myMovementEnemy.gameObject.AddComponent<Movement>();
-
-        Destroy(myMovementEnemy);
-        Destroy(myMovementEnemy.GetComponent<NavMeshAgent>());
-
-        myFM.myCamp = GameCamps.Fidele;
-        myFM.gameObject.tag = ("Fidele");
-        myFM.GetComponent<AnimationManager>().DesactivateReceiverSelection();
-
-        QuestEvents.Instance.EntityRecruited(myFM);
-        return;
-    }
-
-    private void SetVillageoisCampToFidele()
-    {
-        Destroy(myFM.GetComponent<MouseEventsEnnemi>());
-        myFM.gameObject.AddComponent<MouseEventsFidele>();
-
-        myMovementEnemy.gameObject.AddComponent<Movement>();
-
-        Destroy(myMovementEnemy);
-        Destroy(myMovementEnemy.GetComponent<NavMeshAgent>());
-
-        myFM.myCamp = GameCamps.Fidele;
-        myFM.gameObject.tag = ("Fidele");
-        myFM.GetComponent<AnimationManager>().DesactivateReceiverSelection();
-
-        QuestEvents.Instance.EntityRecruited(myFM);
+        RecrutementManager.Instance.OpenRecruitementWindow(fmToRecruit, myRecruitedSprite);
     }
 }

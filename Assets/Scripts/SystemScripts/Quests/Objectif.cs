@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Objectif : MonoBehaviour
 {
-    [Header ("Objectif")]
+    /*[Header ("Objectif")]
 
     public InteractionType objectifInteractionType;
 
@@ -138,5 +138,5 @@ public class Objectif : MonoBehaviour
     private void TestIfObjectivesAreCompleted()
     {
         GetComponentInParent<Quest>().CheckCurrentQuestState();
-    }
+    }*/
 }

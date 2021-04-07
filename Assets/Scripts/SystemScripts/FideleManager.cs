@@ -35,6 +35,8 @@ public class FideleManager : MonoBehaviour
     public enum FidelePeuple {Humain, Gnome, Golem, Elfe, Animal}
     public FidelePeuple fidelePeuple;
 
+    public SpriteRenderer fideleSprite;
+
     public FideleManager myTarget;
 
     private List<GameCamps> attackableUnits = new List<GameCamps>();

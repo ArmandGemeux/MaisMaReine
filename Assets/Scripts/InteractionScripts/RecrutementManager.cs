@@ -30,6 +30,8 @@ public class RecrutementManager : MonoBehaviour
     public TextMeshProUGUI missChancesValue;
 
     private Animator myAnim;
+
+    private Sprite recruitedSprite;
     #endregion
 
     #region Singleton
@@ -60,9 +62,10 @@ public class RecrutementManager : MonoBehaviour
         
     }
 
-    public void OpenRecruitementWindow(FideleManager fmToRecruit)
+    public void OpenRecruitementWindow(FideleManager fmToRecruit, Sprite fmToRecruitSprite)
     {
         myAnim.SetBool("isOpen", true);
+        recruitedSprite = fmToRecruitSprite;
 
         characterNom.text = fmToRecruit.fidelePrenom + " " + fmToRecruit.fideleNom;
         characterCamp.text = fmToRecruit.myCamp.ToString();
@@ -82,14 +85,7 @@ public class RecrutementManager : MonoBehaviour
 
     public void RecruitUnit()
     {
-        if (myFMToRecruit.myCamp == GameCamps.Bandit)
-        {
-            SetBanditCampToFidele();
-        }
-        else if (myFMToRecruit.myCamp == GameCamps.Villageois)
-        {
-            SetVillageoisCampToFidele();
-        }
+        SetCampToFidele();
 
         myAnim.SetBool("isOpen", false);
         myFMToRecruit.isAlive = true;
@@ -100,9 +96,10 @@ public class RecrutementManager : MonoBehaviour
     {
         myAnim.SetBool("isOpen", false);
         myFMToRecruit = null;
+        recruitedSprite = null;
     }
 
-    private void SetBanditCampToFidele()
+    private void SetCampToFidele()
     {
         MovementEnemy myMovementScript = myFMToRecruit.GetComponentInChildren<MovementEnemy>();
 
@@ -116,27 +113,11 @@ public class RecrutementManager : MonoBehaviour
 
         myFMToRecruit.myCamp = GameCamps.Fidele;
         myFMToRecruit.gameObject.tag = ("Fidele");
+        myFMToRecruit.currentHP = myFMToRecruit.maxHp;
+        myFMToRecruit.fideleSprite.sprite = recruitedSprite;
         myFMToRecruit.GetComponent<AnimationManager>().DesactivateReceiverSelection();
 
-        QuestEvents.Instance.EntityRecruited(myFMToRecruit);
-    }
-
-    private void SetVillageoisCampToFidele()
-    {
-        MovementEnemy myMovementScript = myFMToRecruit.GetComponentInChildren<MovementEnemy>();
-
-        Destroy(myFMToRecruit.GetComponent<MouseEventsEnnemi>());
-        myFMToRecruit.gameObject.AddComponent<MouseEventsFidele>();
-
-        myMovementScript.gameObject.AddComponent<Movement>();
-
-        Destroy(myMovementScript);
-        Destroy(myMovementScript.GetComponent<NavMeshAgent>());
-
-        myFMToRecruit.myCamp = GameCamps.Fidele;
-        myFMToRecruit.gameObject.tag = ("Fidele");
-        myFMToRecruit.GetComponent<AnimationManager>().DesactivateReceiverSelection();
-
-        QuestEvents.Instance.EntityRecruited(myFMToRecruit);
+        QuestManager.Instance.OnRecruitUnit(myFMToRecruit);
+        recruitedSprite = null;
     }
 }

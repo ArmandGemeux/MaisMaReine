@@ -74,7 +74,11 @@ public class Combat : MonoBehaviour
 
 
         defenseurFideleManager = GetComponentInParent<FideleManager>();
+        defenseurAM = GetComponentInParent<AnimationManager>();
+
         attaquantFideleManager = atkFM;
+        attaquantAM = attaquantFideleManager.GetComponent<AnimationManager>();
+
         dealingDamage = defenseurFideleManager.GetComponentInChildren<ParticleSystem>();
         receiveDamage = GetComponentInChildren<ParticleSystem>();
 
@@ -109,6 +113,7 @@ public class Combat : MonoBehaviour
             defenseurFideleManager.currentHP -= attackValue;
             Debug.Log("L'attaquant inflige" + attackValue + "points de dégâts, laissant son adversaire à " + defenseurFideleManager.currentHP);
             receiveDamage.Play();
+            defenseurAM.FillAmountHealth();
             CheckHP();
             CounterAttack();
         }
@@ -123,6 +128,7 @@ public class Combat : MonoBehaviour
             attaquantFideleManager.currentHP -= counterAttackValue;
             Debug.Log("Le défenseur contre-attaque et inflige" + counterAttackValue + "points de dégâts, laissant son adversaire à " + attaquantFideleManager.currentHP);
             dealingDamage.Play();
+            attaquantAM.FillAmountHealth();
             CheckHP();
             EndFightNoDead();
         }
@@ -145,10 +151,6 @@ public class Combat : MonoBehaviour
 
             Die(defenseurFideleManager, attaquantFideleManager);
         }
-        else
-        {
-            return;
-        }
     }    
 
     public void CriticalHit()
@@ -158,6 +160,7 @@ public class Combat : MonoBehaviour
         defenseurFideleManager.currentHP -= attaquantFideleManager.maxAttackRange*2;
         Debug.Log("OUH ! CRITIQUE !!");
         Debug.Log("Avec un coup critique, l'attaquant inflige" + attaquantFideleManager.maxAttackRange*2 + "points de dégâts, laissant son adversaire à " + defenseurFideleManager.currentHP);
+        defenseurAM.FillAmountHealth();
         CheckHP();
     }
 
@@ -168,26 +171,26 @@ public class Combat : MonoBehaviour
         attaquantFideleManager.currentHP -= defenseurFideleManager.maxCounterAttackRange;
         Debug.Log("Loupé !! Aie aie aie !!");
         Debug.Log("Avec un l'échec critique de l'attaquant, le défenseur contre attaque et inflige " + defenseurFideleManager.maxCounterAttackRange + "points de dégâts, laissant son adversaire à " + attaquantFideleManager.currentHP);
+        attaquantAM.FillAmountHealth();
         CheckHP();
     }
 
     public void Die(FideleManager deadFM, FideleManager winFM)
     {
-        if (deadFM.myCamp != GameCamps.Bandit && winFM.myCamp == GameCamps.Fidele)
+        Debug.Log("On Tue quelqu'un");
+        if (deadFM.myCamp != GameCamps.Bandit)
         {
             winFM.GetComponentInChildren<Interaction>().myCollideAnimationManagerList.Remove(deadFM.GetComponent<AnimationManager>());
             winFM.GetComponentInChildren<Interaction>().myCollideInteractionList.Remove(deadFM.GetComponentInChildren<Interaction>());
             GameManager.Instance.RemoveAMapUnit(deadFM);
-            Destroy(deadFM.gameObject);
             EndFightDead(deadFM);
+            Destroy(deadFM.gameObject);
             //Ici, appliquez les éléments à prendre en compte lorsqu'un combat est fini
             Debug.Log(deadFM.fidelePrenom + " " + deadFM.fideleNom + " a été vaincu...");
         }
         else if (deadFM.myCamp == GameCamps.Bandit && winFM.myCamp == GameCamps.Fidele)
         {
-            QuestEvents.Instance.EntityKilled();
-            QuestEvents.Instance.ThisEntityKilled(deadFM);
-
+            EndFightDead(deadFM);
             deadFM.isAlive = false;
             SwitchInteractionType();
         }
@@ -201,9 +204,7 @@ public class Combat : MonoBehaviour
     public void EndFightDead(FideleManager deadFM)
     {
         //Debug.Log("Combat terminé avec un mort !");
-        Debug.Log(deadFM);
-        QuestEvents.Instance.EntityKilled();
-        QuestEvents.Instance.ThisEntityKilled(deadFM);
+        QuestManager.Instance.OnKillUnit(deadFM);
     }
 
     public void SwitchInteractionType()

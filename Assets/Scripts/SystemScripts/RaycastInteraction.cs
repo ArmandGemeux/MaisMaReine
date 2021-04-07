@@ -165,7 +165,6 @@ public class RaycastInteraction : MonoBehaviour
     {
         if (interactionReceiverAnim != null)
         {
-            interactionReceiverAnim.HideInteractionIcon();
             interactionReceiverInteraction.canInteract = false;
             interactionReceiverInteraction = null;
             interactionReceiverAnim = null;

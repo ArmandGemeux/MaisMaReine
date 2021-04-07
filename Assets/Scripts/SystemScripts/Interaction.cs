@@ -59,9 +59,10 @@ public class Interaction : MonoBehaviour
                     myAnimationManager.isSelectable = true;
                     myAnimationManager.ActivateLauncherSelection();
                 }
-                else if (!alreadyInteractedList.Contains(myCollideAnimationManager.GetComponentInChildren<Interaction>()) && myCollideAnimationManager.GetComponent<FideleManager>().myCamp != GameCamps.Fidele)
+                if (!alreadyInteractedList.Contains(myCollideAnimationManager.GetComponentInChildren<Interaction>()) && myCollideAnimationManager.GetComponent<FideleManager>().myCamp != GameCamps.Fidele)
                 {
                     myCollideAnimationManager.ActivateReceiverSelection();
+                    myCollideAnimationManager.DisplayInteractionIcon();
                 }
             }
         }
@@ -96,12 +97,14 @@ public class Interaction : MonoBehaviour
             if (myCollideAnimationManagerList.Count >= 1)
             {
                 myExitingAM.haveAnInteraction = false;
+                myExitingAM.HideInteractionIcon();
 
                 if (myExitingAM != myAnimationManager && myExitingAM.GetComponent<FideleManager>().myCamp != myFideleManager.myCamp && myFideleManager.myCamp == GameManager.Instance.currentCampTurn)
                 {
                     myExitingAM.HideInteraction();
                     myExitingAM.DesactivateReceiverSelection();
 
+                    myAnimationManager.HideInteraction();
                     myAnimationManager.DesactivateLauncherSelection();
                 }
             }
