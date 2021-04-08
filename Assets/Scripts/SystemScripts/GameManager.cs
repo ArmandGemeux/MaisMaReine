@@ -54,6 +54,15 @@ public class GameManager : MonoBehaviour
         currentCampTurn += 1;
         switchingTurn = false;
 
+        var lastTurn = campsInTerritoire.Last();
+
+        if (currentCampTurn == lastTurn + 1)
+        {
+            currentCampTurn = campsInTerritoire[0];
+        }
+
+        ResetTurn();
+
         if (currentCampTurn == GameCamps.Fidele)
         {
             foreach (FideleManager fm in allMapUnits)
@@ -103,15 +112,6 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
-
-        var lastTurn = campsInTerritoire.Last();
-
-        if (currentCampTurn == lastTurn+1)
-        {
-            currentCampTurn = campsInTerritoire[0];
-        }
-
-        ResetTurn();
     }
 
     public void AddAMapUnit(FideleManager newUnit)
