@@ -85,6 +85,16 @@ public class RecrutementManager : MonoBehaviour
 
     public void RecruitUnit()
     {
+        /*if (POSSIBLE DE RECRUTER)
+        {
+
+        }
+        else
+	    {
+            ICI jouer le clignottement de l'icône de charisme
+            ICI jouer SFX d'impossibilité de recruter le personnage
+        }*/
+
         SetCampToFidele();
 
         myAnim.SetBool("isOpen", false);
@@ -114,8 +124,12 @@ public class RecrutementManager : MonoBehaviour
         myFMToRecruit.myCamp = GameCamps.Fidele;
         myFMToRecruit.gameObject.tag = ("Fidele");
         myFMToRecruit.currentHP = myFMToRecruit.maxHp;
-        myFMToRecruit.fideleSprite.sprite = recruitedSprite;
         myFMToRecruit.GetComponent<AnimationManager>().DesactivateReceiverSelection();
+
+        // ICI jouer VFX de changement d'apparence du personnage
+        // ICI jouer SFX de changement d'apparence du personnage
+        myFMToRecruit.fideleSprite.sprite = recruitedSprite;
+
 
         QuestManager.Instance.OnRecruitUnit(myFMToRecruit);
         recruitedSprite = null;

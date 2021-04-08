@@ -41,7 +41,9 @@ public class Movement : MonoBehaviour
         if (isMoving && Input.GetMouseButton(0))
         {
             Cursor.visible = false;
-            //Debug.Log("IsLandable : " + isLanbable);
+            // ICI jouer VFX de déplacement en cours
+            // ICI jouer SFX de déplacement en cours
+            // ICI jouer Anim de déplacement en cours
 
             mousePosition = Input.mousePosition;
             mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
@@ -52,6 +54,10 @@ public class Movement : MonoBehaviour
         else if (isMoving && Input.GetMouseButtonUp(0))
         {
             Cursor.visible = true;
+            // ICI jouer VFX de déplacement terminé
+            // ICI jouer SFX de déplacement terminé
+            // ICI jouer Anim de déplacement terminé
+
             if (isLanbable)
             {
                 transform.parent.position = transform.position;
@@ -73,7 +79,12 @@ public class Movement : MonoBehaviour
 
     public void MovingCharacter()
     {
+        // ICI jouer VFX de début de déplacement
+        // ICI jouer SFX de début de déplacement
+        // ICI jouer Anim de déplacement
         isMoving = true;
+
+        // ICI utiliser Coroutine pour attendre la fin des effets pour déplacer
         myAnimationManager.DisplayMovement();
     }
 

@@ -69,10 +69,6 @@ public class Combat : MonoBehaviour
 
     public void StartFight(FideleManager atkFM)
     {
-        //Debug.Log("Combat en cours");
-
-
-
         defenseurFideleManager = GetComponentInParent<FideleManager>();
         defenseurAM = GetComponentInParent<AnimationManager>();
 
@@ -81,8 +77,6 @@ public class Combat : MonoBehaviour
 
         dealingDamage = defenseurFideleManager.GetComponentInChildren<ParticleSystem>();
         receiveDamage = GetComponentInChildren<ParticleSystem>();
-
-        //Debug.Log(attaquantFideleManager, defenseurFideleManager);
 
         isCritical = Random.Range(0, 100);
         if (isCritical <= attaquantFideleManager.criticChances)
@@ -101,7 +95,6 @@ public class Combat : MonoBehaviour
                 Attack();
             }
         }
-        //Determiner les opposants et le type de combat
     }
 
     public void Attack()
@@ -109,11 +102,16 @@ public class Combat : MonoBehaviour
         if (attaquantFideleManager.isAlive && defenseurFideleManager.isAlive)
         {
             int attackValue = Random.Range(attaquantFideleManager.minAttackRange, attaquantFideleManager.maxAttackRange);
-            //Ici, soustraire la valeur d'attaque de l'attaquant au défenseur
             defenseurFideleManager.currentHP -= attackValue;
             Debug.Log("L'attaquant inflige" + attackValue + "points de dégâts, laissant son adversaire à " + defenseurFideleManager.currentHP);
+
+            // ICI jouer VFX d'attaque simple
+            // ICI jouer SFX d'attaque simple
+            // Ici jouer Anim dégâts reçus sur defenseur
             receiveDamage.Play();
             defenseurAM.FillAmountHealth();
+
+
             CheckHP();
             CounterAttack();
         }
@@ -124,11 +122,15 @@ public class Combat : MonoBehaviour
         if (attaquantFideleManager.isAlive && defenseurFideleManager.isAlive)
         {
             int counterAttackValue = Random.Range(defenseurFideleManager.minCounterAttackRange, defenseurFideleManager.maxCounterAttackRange);
-            //Ici, soustraire la valeur de contre-attaque du défenseur à l'attaquant
             attaquantFideleManager.currentHP -= counterAttackValue;
             Debug.Log("Le défenseur contre-attaque et inflige" + counterAttackValue + "points de dégâts, laissant son adversaire à " + attaquantFideleManager.currentHP);
+
+            // ICI jouer VFX de contre-attaque simple
+            // ICI jouer SFX de contre-attaque simple
+            // Ici jouer Anim dégâts reçus sur attaquant
             dealingDamage.Play();
             attaquantAM.FillAmountHealth();
+
             CheckHP();
             EndFightNoDead();
         }
@@ -136,7 +138,6 @@ public class Combat : MonoBehaviour
 
     public void CheckHP()
     {
-        //Ici, on teste les points de vie des personnages en combat
         if (attaquantFideleManager.currentHP <= 0)
         {
             attaquantFideleManager.isAlive = false;
@@ -155,22 +156,28 @@ public class Combat : MonoBehaviour
 
     public void CriticalHit()
     {
-        //Ici, Attack() et CounterAttack() mais en prenant les effets d'un coup critique en compte
-        receiveDamage.Play();
         defenseurFideleManager.currentHP -= attaquantFideleManager.maxAttackRange*2;
         Debug.Log("OUH ! CRITIQUE !!");
         Debug.Log("Avec un coup critique, l'attaquant inflige" + attaquantFideleManager.maxAttackRange*2 + "points de dégâts, laissant son adversaire à " + defenseurFideleManager.currentHP);
+
+        // ICI jouer VFX de coup critiique
+        // ICI jouer SFX de coup critique
+        // ICI jouer Anim dégâts reçus sur defenseur
+        receiveDamage.Play();
         defenseurAM.FillAmountHealth();
         CheckHP();
     }
 
     public void Missed()
     {
-        //Ici, Attack() et CounterAttack() mais en prenant les effets d'un echec critique en compte
-        dealingDamage.Play();
         attaquantFideleManager.currentHP -= defenseurFideleManager.maxCounterAttackRange;
         Debug.Log("Loupé !! Aie aie aie !!");
         Debug.Log("Avec un l'échec critique de l'attaquant, le défenseur contre attaque et inflige " + defenseurFideleManager.maxCounterAttackRange + "points de dégâts, laissant son adversaire à " + attaquantFideleManager.currentHP);
+
+        // ICI jouer VFX d'echec critiique
+        // ICI jouer SFX d'echec critique
+        // ICI jouer Anim dégâts reçus sur attaquant
+        dealingDamage.Play();
         attaquantAM.FillAmountHealth();
         CheckHP();
     }
@@ -180,19 +187,19 @@ public class Combat : MonoBehaviour
         Debug.Log("On Tue quelqu'un");
         if (deadFM.myCamp != GameCamps.Bandit)
         {
+            // ICI jouer Anim de mort
+            // ICI jouer SFX de mort
+
             winFM.GetComponentInChildren<Interaction>().myCollideAnimationManagerList.Remove(deadFM.GetComponent<AnimationManager>());
             winFM.GetComponentInChildren<Interaction>().myCollideInteractionList.Remove(deadFM.GetComponentInChildren<Interaction>());
             GameManager.Instance.RemoveAMapUnit(deadFM);
             EndFightDead(deadFM);
             Destroy(deadFM.gameObject);
-            //Ici, appliquez les éléments à prendre en compte lorsqu'un combat est fini
             Debug.Log(deadFM.fidelePrenom + " " + deadFM.fideleNom + " a été vaincu...");
         }
         else if (deadFM.myCamp == GameCamps.Bandit && winFM.myCamp == GameCamps.Fidele)
         {
-            EndFightDead(deadFM);
-            deadFM.isAlive = false;
-            SwitchInteractionType();
+            SwitchInteractionType(deadFM);
         }
     }
 
@@ -203,12 +210,17 @@ public class Combat : MonoBehaviour
 
     public void EndFightDead(FideleManager deadFM)
     {
-        //Debug.Log("Combat terminé avec un mort !");
         QuestManager.Instance.OnKillUnit(deadFM);
     }
 
-    public void SwitchInteractionType()
+    public void SwitchInteractionType(FideleManager deadFM)
     {
+        // ICI jouer SFX de mort
+        // ICI jouer anim du Bandit qui change de camp
+        // ICI changer graphisme du bandit qui change de camp
         GetComponent<Interaction>().interactionType = InteractionType.Recrutement;
+
+        EndFightDead(deadFM);
+        deadFM.isAlive = false;
     }
 }

@@ -65,6 +65,10 @@ public class DialogueManager : MonoBehaviour
             EndDialogue();
             return;
         }
+        else
+        {
+            // ICI jouer SFX de dialogue qui passe à l'étape suivante
+        }
 
         string line = lines.Dequeue();
 
@@ -89,6 +93,8 @@ public class DialogueManager : MonoBehaviour
             questToSetActive.isActive = true;
             //QuestManager.Instance.AddNewQuestToFollow(questToSetActive);
         }*/
+
+        // ICI jouer SFX de fin de dialogue
         myAnim.SetBool("isOpen", false);
     }
 }
