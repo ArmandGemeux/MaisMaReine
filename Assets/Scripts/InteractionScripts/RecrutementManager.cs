@@ -34,6 +34,8 @@ public class RecrutementManager : MonoBehaviour
     private Sprite recruitedSprite;
     #endregion
 
+    public ParticleSystem recruitEffect;
+
     #region Singleton
     public static RecrutementManager Instance;
 
@@ -95,11 +97,8 @@ public class RecrutementManager : MonoBehaviour
             ICI jouer SFX d'impossibilité de recruter le personnage
         }*/
 
-        SetCampToFidele();
-
+        StartCoroutine(SetCampToFidele());
         myAnim.SetBool("isOpen", false);
-        myFMToRecruit.isAlive = true;
-        myFMToRecruit = null;
     }
 
     public void CancelRecruitUnit()
@@ -109,7 +108,7 @@ public class RecrutementManager : MonoBehaviour
         recruitedSprite = null;
     }
 
-    private void SetCampToFidele()
+    public IEnumerator SetCampToFidele()
     {
         MovementEnemy myMovementScript = myFMToRecruit.GetComponentInChildren<MovementEnemy>();
 
@@ -127,11 +126,20 @@ public class RecrutementManager : MonoBehaviour
         myFMToRecruit.GetComponent<AnimationManager>().DesactivateReceiverSelection();
 
         // ICI jouer VFX de changement d'apparence du personnage
+        yield return new WaitForSeconds(0.1f);
+
+        recruitEffect.gameObject.transform.position = myFMToRecruit.transform.position;
+        recruitEffect.Play();
         // ICI jouer SFX de changement d'apparence du personnage
+
+        yield return new WaitForSeconds(0.2f);
         myFMToRecruit.fideleSprite.sprite = recruitedSprite;
 
 
         QuestManager.Instance.OnRecruitUnit(myFMToRecruit);
         recruitedSprite = null;
+
+        myFMToRecruit.isAlive = true;
+        myFMToRecruit = null;
     }
 }
