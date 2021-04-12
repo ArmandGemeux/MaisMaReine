@@ -59,7 +59,7 @@ public class Interaction : MonoBehaviour
                     myAnimationManager.isSelectable = true;
                     myAnimationManager.ActivateLauncherSelection();
                 }
-                if (!alreadyInteractedList.Contains(myCollideAnimationManager.GetComponentInChildren<Interaction>()) && myCollideAnimationManager.GetComponent<FideleManager>().myCamp != GameCamps.Fidele)
+                if (!alreadyInteractedList.Contains(myCollideAnimationManager.GetComponentInChildren<Interaction>()) && myCollideAnimationManager.GetComponent<FideleManager>().myCamp != GameCamps.Fidele && myFideleManager.myCamp == GameCamps.Fidele)
                 {
                     myCollideAnimationManager.ActivateReceiverSelection();
                     myCollideAnimationManager.DisplayInteractionIcon();

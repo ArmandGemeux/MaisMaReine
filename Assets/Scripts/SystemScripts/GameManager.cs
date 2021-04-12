@@ -69,7 +69,7 @@ public class GameManager : MonoBehaviour
             {
                 if (fm.myCamp == GameCamps.Fidele)
                 {
-                    fm.GetComponentInChildren<MovementEnemy>().hasMoved = false;
+                    fm.GetComponentInChildren<Movement>().hasMoved = false;
                 }
             }
         }
@@ -133,6 +133,20 @@ public class GameManager : MonoBehaviour
     public List<FideleManager> GetAllMapUnits()
     {
         return allMapUnits;
+    }
+
+    public void CheckIfTurnIsEnded()
+    {
+        /*foreach (FideleManager fmpc in allMapUnits)
+        {
+            if (fmpc.myCamp == currentCampTurn && fmpc.myCamp != GameCamps.Fidele)
+            {
+                if (fmpc.GetComponentInChildren<MovementEnemy>().hasMoved)
+                {
+
+                }
+            }
+        }*/
     }
 
     public void ResetTurn()

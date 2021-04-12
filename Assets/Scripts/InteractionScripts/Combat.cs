@@ -72,6 +72,8 @@ public class Combat : MonoBehaviour
         defenseurFideleManager = GetComponentInParent<FideleManager>();
         defenseurAM = GetComponentInParent<AnimationManager>();
 
+        DragCamera2D.Instance.FollowTargetCamera(defenseurAM.gameObject);
+
         attaquantFideleManager = atkFM;
         attaquantAM = attaquantFideleManager.GetComponent<AnimationManager>();
 
@@ -81,23 +83,23 @@ public class Combat : MonoBehaviour
         isCritical = Random.Range(0, 100);
         if (isCritical <= attaquantFideleManager.criticChances)
         {
-            CriticalHit();
+            StartCoroutine(CriticalHit());
         }
         else
         {
             isMissed = Random.Range(0, 100);
             if (isMissed <= attaquantFideleManager.missChances)
             {
-                Missed();
+                StartCoroutine(Missed());
             }
             else
             {
-                Attack();
+                StartCoroutine(Attack());
             }
         }
     }
 
-    public void Attack()
+    public IEnumerator Attack()
     {
         if (attaquantFideleManager.isAlive && defenseurFideleManager.isAlive)
         {
@@ -105,19 +107,24 @@ public class Combat : MonoBehaviour
             defenseurFideleManager.currentHP -= attackValue;
             Debug.Log("L'attaquant inflige" + attackValue + "points de dégâts, laissant son adversaire à " + defenseurFideleManager.currentHP);
 
+            yield return new WaitForSeconds(0.2f);
+
             // ICI jouer VFX d'attaque simple
             // ICI jouer SFX d'attaque simple
             // Ici jouer Anim dégâts reçus sur defenseur
+
+            DragCamera2D.Instance.UnfollowTargetCamera();
+
             receiveDamage.Play();
             defenseurAM.FillAmountHealth();
 
 
             CheckHP();
-            CounterAttack();
+            StartCoroutine(CounterAttack());
         }
     }
 
-    public void CounterAttack()
+    public IEnumerator CounterAttack()
     {
         if (attaquantFideleManager.isAlive && defenseurFideleManager.isAlive)
         {
@@ -125,9 +132,14 @@ public class Combat : MonoBehaviour
             attaquantFideleManager.currentHP -= counterAttackValue;
             Debug.Log("Le défenseur contre-attaque et inflige" + counterAttackValue + "points de dégâts, laissant son adversaire à " + attaquantFideleManager.currentHP);
 
+            yield return new WaitForSeconds(0.2f);
+
             // ICI jouer VFX de contre-attaque simple
             // ICI jouer SFX de contre-attaque simple
             // Ici jouer Anim dégâts reçus sur attaquant
+
+            DragCamera2D.Instance.UnfollowTargetCamera();
+
             dealingDamage.Play();
             attaquantAM.FillAmountHealth();
 
@@ -143,52 +155,66 @@ public class Combat : MonoBehaviour
             attaquantFideleManager.isAlive = false;
             Debug.Log("L'attaquant est vaincu !");
 
-            Die(attaquantFideleManager, defenseurFideleManager);
+            StartCoroutine(Die(attaquantFideleManager, defenseurFideleManager));
         }
         else if (defenseurFideleManager.currentHP <= 0)
         {
             defenseurFideleManager.isAlive = false;
             Debug.Log("Le défenseur est vaincu !");
 
-            Die(defenseurFideleManager, attaquantFideleManager);
+            StartCoroutine(Die(defenseurFideleManager, attaquantFideleManager));
         }
     }    
 
-    public void CriticalHit()
+    public IEnumerator CriticalHit()
     {
         defenseurFideleManager.currentHP -= attaquantFideleManager.maxAttackRange*2;
         Debug.Log("OUH ! CRITIQUE !!");
         Debug.Log("Avec un coup critique, l'attaquant inflige" + attaquantFideleManager.maxAttackRange*2 + "points de dégâts, laissant son adversaire à " + defenseurFideleManager.currentHP);
 
+        yield return new WaitForSeconds(0.2f);
+
         // ICI jouer VFX de coup critiique
         // ICI jouer SFX de coup critique
         // ICI jouer Anim dégâts reçus sur defenseur
+
+        DragCamera2D.Instance.UnfollowTargetCamera();
+
         receiveDamage.Play();
         defenseurAM.FillAmountHealth();
         CheckHP();
     }
 
-    public void Missed()
+    public IEnumerator Missed()
     {
         attaquantFideleManager.currentHP -= defenseurFideleManager.maxCounterAttackRange;
         Debug.Log("Loupé !! Aie aie aie !!");
         Debug.Log("Avec un l'échec critique de l'attaquant, le défenseur contre attaque et inflige " + defenseurFideleManager.maxCounterAttackRange + "points de dégâts, laissant son adversaire à " + attaquantFideleManager.currentHP);
 
+        yield return new WaitForSeconds(0.2f);
+
         // ICI jouer VFX d'echec critiique
         // ICI jouer SFX d'echec critique
         // ICI jouer Anim dégâts reçus sur attaquant
+
+        DragCamera2D.Instance.UnfollowTargetCamera();
+
         dealingDamage.Play();
         attaquantAM.FillAmountHealth();
         CheckHP();
     }
 
-    public void Die(FideleManager deadFM, FideleManager winFM)
+    public IEnumerator Die(FideleManager deadFM, FideleManager winFM)
     {
         Debug.Log("On Tue quelqu'un");
         if (deadFM.myCamp != GameCamps.Bandit)
         {
+            yield return new WaitForSeconds(0.2f);
+
             // ICI jouer Anim de mort
             // ICI jouer SFX de mort
+
+            DragCamera2D.Instance.UnfollowTargetCamera();
 
             winFM.GetComponentInChildren<Interaction>().myCollideAnimationManagerList.Remove(deadFM.GetComponent<AnimationManager>());
             winFM.GetComponentInChildren<Interaction>().myCollideInteractionList.Remove(deadFM.GetComponentInChildren<Interaction>());

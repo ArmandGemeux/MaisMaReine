@@ -49,7 +49,7 @@ public class Movement : MonoBehaviour
             mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
             transform.position = Vector2.Lerp(transform.position, mousePosition, moveSpeed);
 
-            myCam.followTarget = transform.parent.gameObject;
+            //myCam.followTarget = transform.parent.gameObject;
         }
         else if (isMoving && Input.GetMouseButtonUp(0))
         {
@@ -70,7 +70,7 @@ public class Movement : MonoBehaviour
 
             myAnimationManager.HideMovement();
 
-            myCam.followTarget = null;
+            //myCam.followTarget = null;
 
             hasMoved = true;
             isMoving = false;

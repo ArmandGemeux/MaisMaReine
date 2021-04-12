@@ -128,11 +128,16 @@ public class RecrutementManager : MonoBehaviour
         // ICI jouer VFX de changement d'apparence du personnage
         yield return new WaitForSeconds(0.1f);
 
+        DragCamera2D.Instance.FollowTargetCamera(myFMToRecruit.gameObject);
+
         recruitEffect.gameObject.transform.position = myFMToRecruit.transform.position;
         recruitEffect.Play();
         // ICI jouer SFX de changement d'apparence du personnage
 
         yield return new WaitForSeconds(0.2f);
+
+        DragCamera2D.Instance.UnfollowTargetCamera();
+
         myFMToRecruit.fideleSprite.sprite = recruitedSprite;
 
 

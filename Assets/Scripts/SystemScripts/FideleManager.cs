@@ -77,15 +77,27 @@ public class FideleManager : MonoBehaviour
                 attackableUnits.Add(GameCamps.Fidele);
                 attackableUnits.Add(GameCamps.Roi);
                 attackableUnits.Add(GameCamps.Converti);
+                attackableUnits.Add(GameCamps.Villageois);
+                break;
+            case GameCamps.BanditCalamiteux:
+                attackableUnits.Add(GameCamps.Fidele);
+                attackableUnits.Add(GameCamps.Roi);
+                attackableUnits.Add(GameCamps.Villageois);
+                attackableUnits.Add(GameCamps.Converti);
+                attackableUnits.Add(GameCamps.Bandit);
                 break;
             case GameCamps.Calamite:
                 attackableUnits.Add(GameCamps.Fidele);
                 attackableUnits.Add(GameCamps.Roi);
+                attackableUnits.Add(GameCamps.Villageois);
                 attackableUnits.Add(GameCamps.Converti);
                 attackableUnits.Add(GameCamps.Bandit);
                 break;
+            case GameCamps.Villageois:
+                break;
             case GameCamps.Converti:
                 attackableUnits.Add(GameCamps.Calamite);
+                attackableUnits.Add(GameCamps.BanditCalamiteux);
                 break;
             default:
                 break;
@@ -105,18 +117,28 @@ public class FideleManager : MonoBehaviour
             if (attackableUnitsInRange.Count == 1)
             {
                 myTarget = attackableUnitsInRange[0];
-                //Debug.Log(myTarget.name + " ciblée !");
+                Debug.Log(myTarget.name + " ciblée !");
                 return;
             }
             else if (attackableUnitsInRange.Count > 1)
             {
                 myTarget = GetInRangeUnitWithSmallestHp();
+                Debug.Log(myTarget.name + " ciblée le plus faible !");
+            }
+            else if (attackableUnitsInRange.Count == 0)
+            {
+                attackableUnitsNotInRange = AttackableUnitsNotInRangeAmount();
+                myTarget = GetClosestUnitNotInRange();
+                Debug.Log(myTarget.name + " ciblée hors range !");
+                Debug.Log("J'ai trouvé quelqu'un en dehors de la range ! Chutrofor !");
+                return;
             }
         }
         else if (unitsInRange.Count == 0)
         {
             attackableUnitsNotInRange = AttackableUnitsNotInRangeAmount();
             myTarget = GetClosestUnitNotInRange();
+            Debug.Log(myTarget.name + " ciblée hors range !");
             Debug.Log("J'ai trouvé quelqu'un en dehors de la range ! Chutrofor !");
             return;
         }

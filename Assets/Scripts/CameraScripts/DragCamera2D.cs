@@ -90,6 +90,22 @@ public class DragCamera2D : MonoBehaviour
     Vector3 tr;
     private Vector2 touchOrigin = -Vector2.one;
 
+    #region Singleton
+    public static DragCamera2D Instance;
+
+    private void Awake()
+    {
+        if (Instance != null)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
+    #endregion
+
     void Start() {
         if (cam == null) {
             cam = Camera.main;
@@ -111,7 +127,7 @@ public class DragCamera2D : MonoBehaviour
         }
 
         if (followTarget != null) {
-            //transform.position = Vector3.Lerp(transform.position + offset, followTarget.transform.position + offset, lerpSpeed);
+            transform.position = Vector3.Lerp(transform.position + offset, followTarget.transform.position + offset, lerpSpeed);
         }
 
 
@@ -127,6 +143,16 @@ public class DragCamera2D : MonoBehaviour
             stickToDollyRail();
         }
        
+    }
+
+    public void FollowTargetCamera(GameObject gotf)
+    {
+        followTarget = gotf;
+    }
+
+    public void UnfollowTargetCamera()
+    {
+        followTarget = null;
     }
 
     private void edgeScroll() {

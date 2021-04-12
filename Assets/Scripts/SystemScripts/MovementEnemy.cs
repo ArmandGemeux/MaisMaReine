@@ -69,6 +69,7 @@ public class MovementEnemy : MonoBehaviour
         {
             if (hasMoved == false && targetLanded == false)
             {
+                DragCamera2D.Instance.FollowTargetCamera(myFideleManager.gameObject);
                 isMoving = true;
                 agent.isStopped = false;
 
@@ -91,6 +92,7 @@ public class MovementEnemy : MonoBehaviour
 
     public void StopMoving()
     {
+        DragCamera2D.Instance.UnfollowTargetCamera();
         myTarget = null;
         myFideleManager.myTarget = null;
 
