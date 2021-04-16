@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
 
     private List<FideleManager> allMapUnits = new List<FideleManager>();
 
+    public int charismeAmount;
+
     #region Singleton
     public static GameManager Instance;
 
@@ -46,6 +48,18 @@ public class GameManager : MonoBehaviour
     void Update()
     {
 
+    }
+
+    public void UpdateCharismeValue(int addedCharismeValue)
+    {
+        charismeAmount += addedCharismeValue;
+
+        if (charismeAmount <= 0)
+        {
+            charismeAmount = 0;
+        }
+
+        StartCoroutine(RecrutementManager.Instance.UpdateCharismeAmount(addedCharismeValue));
     }
 
     public void SwitchTurn()

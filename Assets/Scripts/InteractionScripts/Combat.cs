@@ -107,16 +107,21 @@ public class Combat : MonoBehaviour
             defenseurFideleManager.currentHP -= attackValue;
             Debug.Log("L'attaquant inflige" + attackValue + "points de dégâts, laissant son adversaire à " + defenseurFideleManager.currentHP);
 
-            yield return new WaitForSeconds(0.2f);
-
             // ICI jouer VFX d'attaque simple
             // ICI jouer SFX d'attaque simple
+
+            receiveDamage.Play();
+
+            yield return new WaitForSeconds(0.2f);
+
             // Ici jouer Anim dégâts reçus sur defenseur
+            defenseurAM.ReceiveDamage();
+            defenseurAM.FillAmountHealth();
+
+            yield return new WaitForSeconds(0.5f);
 
             DragCamera2D.Instance.UnfollowTargetCamera();
 
-            receiveDamage.Play();
-            defenseurAM.FillAmountHealth();
 
 
             CheckHP();
@@ -132,16 +137,21 @@ public class Combat : MonoBehaviour
             attaquantFideleManager.currentHP -= counterAttackValue;
             Debug.Log("Le défenseur contre-attaque et inflige" + counterAttackValue + "points de dégâts, laissant son adversaire à " + attaquantFideleManager.currentHP);
 
-            yield return new WaitForSeconds(0.2f);
 
             // ICI jouer VFX de contre-attaque simple
             // ICI jouer SFX de contre-attaque simple
+            dealingDamage.Play();
+
+            yield return new WaitForSeconds(0.2f);
+
             // Ici jouer Anim dégâts reçus sur attaquant
+            attaquantAM.ReceiveDamage();
+            attaquantAM.FillAmountHealth();
+
+            yield return new WaitForSeconds(0.5f);
 
             DragCamera2D.Instance.UnfollowTargetCamera();
 
-            dealingDamage.Play();
-            attaquantAM.FillAmountHealth();
 
             CheckHP();
             EndFightNoDead();
@@ -172,16 +182,22 @@ public class Combat : MonoBehaviour
         Debug.Log("OUH ! CRITIQUE !!");
         Debug.Log("Avec un coup critique, l'attaquant inflige" + attaquantFideleManager.maxAttackRange*2 + "points de dégâts, laissant son adversaire à " + defenseurFideleManager.currentHP);
 
-        yield return new WaitForSeconds(0.2f);
 
         // ICI jouer VFX de coup critiique
         // ICI jouer SFX de coup critique
+
+        receiveDamage.Play();
+
+        yield return new WaitForSeconds(0.2f);
+
         // ICI jouer Anim dégâts reçus sur defenseur
+        defenseurAM.ReceiveDamage();
+        defenseurAM.FillAmountHealth();
+
+        yield return new WaitForSeconds(0.5f);
 
         DragCamera2D.Instance.UnfollowTargetCamera();
 
-        receiveDamage.Play();
-        defenseurAM.FillAmountHealth();
         CheckHP();
     }
 
@@ -191,16 +207,22 @@ public class Combat : MonoBehaviour
         Debug.Log("Loupé !! Aie aie aie !!");
         Debug.Log("Avec un l'échec critique de l'attaquant, le défenseur contre attaque et inflige " + defenseurFideleManager.maxCounterAttackRange + "points de dégâts, laissant son adversaire à " + attaquantFideleManager.currentHP);
 
-        yield return new WaitForSeconds(0.2f);
 
         // ICI jouer VFX d'echec critiique
         // ICI jouer SFX d'echec critique
+
+        dealingDamage.Play();
+
+        yield return new WaitForSeconds(0.2f);
+
         // ICI jouer Anim dégâts reçus sur attaquant
+        attaquantAM.ReceiveDamage();
+        attaquantAM.FillAmountHealth();
+
+        yield return new WaitForSeconds(0.5f);
 
         DragCamera2D.Instance.UnfollowTargetCamera();
 
-        dealingDamage.Play();
-        attaquantAM.FillAmountHealth();
         CheckHP();
     }
 
@@ -209,12 +231,19 @@ public class Combat : MonoBehaviour
         Debug.Log("On Tue quelqu'un");
         if (deadFM.myCamp != GameCamps.Bandit)
         {
-            yield return new WaitForSeconds(0.2f);
 
+            deadFM.GetComponent<AnimationManager>().Dying();
             // ICI jouer Anim de mort
             // ICI jouer SFX de mort
 
+            yield return new WaitForSeconds(1f);
+
             DragCamera2D.Instance.UnfollowTargetCamera();
+
+            if (deadFM.myCamp == GameCamps.Fidele)
+            {
+                GameManager.Instance.UpdateCharismeValue(-5);
+            }
 
             winFM.GetComponentInChildren<Interaction>().myCollideAnimationManagerList.Remove(deadFM.GetComponent<AnimationManager>());
             winFM.GetComponentInChildren<Interaction>().myCollideInteractionList.Remove(deadFM.GetComponentInChildren<Interaction>());

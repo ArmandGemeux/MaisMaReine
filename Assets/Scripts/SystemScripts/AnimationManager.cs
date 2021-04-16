@@ -7,19 +7,28 @@ using UnityEngine.UI;
 
 public class AnimationManager : MonoBehaviour
 {
+    [HideInInspector]
     public bool isSelectable = false;
+    [HideInInspector]
     public bool isSelected = false;
+
     private FideleManager myFM;
 
+    [HideInInspector]
     public bool isStatsDisplayed = false;
+    [HideInInspector]
     public bool isInteractionDisplayed = false;
+    [HideInInspector]
     public bool isMovementDisplayed = false;
 
+    [HideInInspector]
     public bool isInfoDisplayed = false;
     private bool isLightOn = false;
     private bool isLightColorSwitched = false;
 
+    [HideInInspector]
     public bool haveAnInteraction = false;
+    [HideInInspector]
     public bool movementZoneIsTouchingInteraction = false;
 
     private Animator myAnim;
@@ -79,6 +88,16 @@ public class AnimationManager : MonoBehaviour
     {
         myAnim.SetBool("isCharacterAblePlay", false);
     }*/
+
+    public void ReceiveDamage()
+    {
+        myAnim.SetTrigger("CharacterReceiveDamage");
+    }
+
+    public void Dying()
+    {
+        myAnim.SetBool("isCharacterDead", true);
+    }
 
     public void ActivateLauncherSelection()
     {

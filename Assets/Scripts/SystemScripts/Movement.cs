@@ -15,6 +15,7 @@ public class Movement : MonoBehaviour
     private bool isLanbable;
 
     //public GameObject myCollideZone;
+    private FideleManager myFM;
     private GameObject myMoveZone;
     private Collider2D myInteractionZoneCollider;
     private AnimationManager myAnimationManager;
@@ -24,13 +25,15 @@ public class Movement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        myFM = GetComponentInParent<FideleManager>();
+
         myCam = GameObject.Find("MovingCamera_CM").GetComponent<DragCamera2D>();
         myCam.followTarget = null;
 
         myAnimationManager = GetComponentInParent<AnimationManager>();
 
         myMoveZone = myAnimationManager.GetComponentInChildren<MovementZoneDetection>().gameObject;
-        myInteractionZoneCollider = myAnimationManager.GetComponentInChildren<MovementZoneDetection>().GetComponent<PolygonCollider2D>();
+        myInteractionZoneCollider = myMoveZone.GetComponent<PolygonCollider2D>();
     }
 
     // Update is called once per frame
@@ -48,6 +51,15 @@ public class Movement : MonoBehaviour
             mousePosition = Input.mousePosition;
             mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
             transform.position = Vector2.Lerp(transform.position, mousePosition, moveSpeed);
+
+
+            foreach (FideleManager fmir in myFM.unitsInRange)
+            {
+                if (fmir.myCamp != myFM.myCamp)
+                {
+                    fmir.GetComponent<AnimationManager>().DisplayInteraction();
+                }
+            }
 
             //myCam.followTarget = transform.parent.gameObject;
         }
@@ -69,8 +81,15 @@ public class Movement : MonoBehaviour
             }
 
             myAnimationManager.HideMovement();
+            myAnimationManager.HideInteraction();
 
-            //myCam.followTarget = null;
+            foreach (FideleManager fmir in myFM.unitsInRange)
+            {
+                if (fmir.myCamp != myFM.myCamp)
+                {
+                    fmir.GetComponent<AnimationManager>().HideInteraction();
+                }
+            }
 
             hasMoved = true;
             isMoving = false;
@@ -85,6 +104,8 @@ public class Movement : MonoBehaviour
         isMoving = true;
 
         // ICI utiliser Coroutine pour attendre la fin des effets pour déplacer
+
+        myAnimationManager.DisplayInteraction();
         myAnimationManager.DisplayMovement();
     }
 

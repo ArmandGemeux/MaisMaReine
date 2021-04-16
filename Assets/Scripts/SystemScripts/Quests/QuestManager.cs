@@ -24,6 +24,7 @@ public class QuestManager : MonoBehaviour
     public struct QuestObjective
     {
         public string objectiveDesc;
+        public int charismeQuestReward;
 
         public List<FideleManager> specificUnitsToRecruit;
         public List<UnitByAmount> unitsToRecruitByAmount;
@@ -220,8 +221,9 @@ public class QuestManager : MonoBehaviour
         {
             if (questsSetup[i].questDesc.text == mapQuests[qIdx].objectiveDesc)
             {
+                GameManager.Instance.UpdateCharismeValue(mapQuests[qIdx].charismeQuestReward);
+                //questsSetup[i].questRewardEffect.Play();
                 questsSetup[i].questDesc.text = "Quête terminée";
-                //questsSetup[i].questParent.SetActive(false);
             }
         }
     }

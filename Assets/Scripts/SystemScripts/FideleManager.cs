@@ -37,11 +37,13 @@ public class FideleManager : MonoBehaviour
 
     public SpriteRenderer fideleSprite;
 
+    [HideInInspector]
     public FideleManager myTarget;
 
     private List<GameCamps> attackableUnits = new List<GameCamps>();
 
-    private List<FideleManager> unitsInRange = new List<FideleManager>();
+    
+    public List<FideleManager> unitsInRange = new List<FideleManager>();
     private List<FideleManager> attackableUnitsInRange = new List<FideleManager>();
     private List<FideleManager> attackableUnitsNotInRange = new List<FideleManager>();
 

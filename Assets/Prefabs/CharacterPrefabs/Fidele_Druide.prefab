@@ -918,6 +918,7 @@ MonoBehaviour:
   fidelePeuple: 0
   fideleSprite: {fileID: 0}
   myTarget: {fileID: 0}
+  unitsInRange: []
 --- !u!114 &3329264679567080916
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1083,7 +1084,7 @@ GameObject:
   - component: {fileID: 3329264680014157518}
   - component: {fileID: 3329264680014157512}
   - component: {fileID: 3329264680014157519}
-  - component: {fileID: 3329264680014157513}
+  - component: {fileID: 6442926208097330905}
   m_Layer: 2
   m_Name: ZoneDeplacement
   m_TagString: Untagged
@@ -1172,7 +1173,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
---- !u!114 &3329264680014157513
+--- !u!114 &6442926208097330905
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

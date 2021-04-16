@@ -48,10 +48,14 @@ public class Interaction : MonoBehaviour
         {
             foreach (AnimationManager myCollideAnimationManager in myCollideAnimationManagerList)
             {
-                if (myCollideAnimationManager.GetComponent<FideleManager>().myCamp != GameCamps.Fidele && myFideleManager.myCamp == GameCamps.Fidele)
+                if (myCollideAnimationManager)
                 {
-                    myCollideAnimationManager.haveAnInteraction = true;
-                    myCollideAnimationManager.DisplayInteraction();
+                    if (myCollideAnimationManager.GetComponent<FideleManager>().myCamp != GameCamps.Fidele && myFideleManager.myCamp == GameCamps.Fidele)
+                    {
+                        myCollideAnimationManager.haveAnInteraction = true;
+                        myCollideAnimationManager.DisplayInteraction();
+                        myAnimationManager.DisplayInteraction();
+                    }
                 }
 
                 if (!alreadyInteractedList.Contains(myCollideAnimationManager.GetComponentInChildren<Interaction>()) && myFideleManager.myCamp == GameCamps.Fidele)

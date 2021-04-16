@@ -5,6 +5,7 @@ using UnityEngine;
 public class MovementZoneDetection : MonoBehaviour
 {
     private FideleManager myFideleManager;
+    private Movement myMovement;
 
     // Start is called before the first frame update
     void Start()

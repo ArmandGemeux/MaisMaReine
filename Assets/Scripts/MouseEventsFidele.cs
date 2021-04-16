@@ -36,7 +36,10 @@ public class MouseEventsFidele : MonoBehaviour
 
     public void OnMouseEnter()
     {
-        myAnimManager.DisplayInteraction();
+        if (myMovement.isMoving == false)
+        {
+            myAnimManager.DisplayInteraction();
+        }
     }
 
     public void OnMouseDown()

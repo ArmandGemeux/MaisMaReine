@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI.Extensions;
 
 public class RecrutementManager : MonoBehaviour
 {
@@ -29,10 +30,19 @@ public class RecrutementManager : MonoBehaviour
 
     public TextMeshProUGUI missChancesValue;
 
+    public TextMeshProUGUI charismeCostValue;
+
     private Animator myAnim;
 
     private Sprite recruitedSprite;
     #endregion
+
+    [Header("Feedbacks et Charisme")]
+
+    public TextMeshProUGUI totalCharismeAmountText;
+    public TextMeshProUGUI rewardCharismeAmountText;
+
+    public ParticleSystem gainCharismePS;
 
     public ParticleSystem recruitEffect;
 
@@ -56,12 +66,28 @@ public class RecrutementManager : MonoBehaviour
     void Start()
     {
         myAnim = GetComponent<Animator>();
+
+        StartCoroutine(UpdateCharismeAmount(GameManager.Instance.charismeAmount));
     }
 
     // Update is called once per frame
-    void Update()
+    /*void Update()
     {
-        
+
+    }*/
+
+    public IEnumerator UpdateCharismeAmount(int addedCharismeValue)
+    {
+        rewardCharismeAmountText.text = "+ " + addedCharismeValue.ToString();
+        gainCharismePS.gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(1.6f);
+
+        totalCharismeAmountText.text = GameManager.Instance.charismeAmount.ToString();
+
+        yield return new WaitForSeconds(2f);
+
+        gainCharismePS.gameObject.SetActive(false);
     }
 
     public void OpenRecruitementWindow(FideleManager fmToRecruit, Sprite fmToRecruitSprite)
@@ -81,24 +107,27 @@ public class RecrutementManager : MonoBehaviour
         counterAttackValue.text = fmToRecruit.minCounterAttackRange.ToString() + " - " + fmToRecruit.maxCounterAttackRange.ToString();
         missChancesValue.text = fmToRecruit.missChances.ToString() + "%";
 
+        charismeCostValue.text = " : " + fmToRecruit.charismaCost.ToString();
 
         myFMToRecruit = fmToRecruit;
     }
 
     public void RecruitUnit()
     {
-        /*if (POSSIBLE DE RECRUTER)
+        if (GameManager.Instance.charismeAmount >= myFMToRecruit.charismaCost)
         {
-
+            StartCoroutine(SetCampToFidele());
+            myAnim.SetBool("isOpen", false);
         }
         else
 	    {
-            ICI jouer le clignottement de l'icône de charisme
-            ICI jouer SFX d'impossibilité de recruter le personnage
-        }*/
+            myAnim.SetBool("isOpen", false);
+            myFMToRecruit = null;
+            recruitedSprite = null;
 
-        StartCoroutine(SetCampToFidele());
-        myAnim.SetBool("isOpen", false);
+            //ICI jouer le clignottement de l'icône de charisme
+            //ICI jouer SFX d'impossibilité de recruter le personnage
+        }
     }
 
     public void CancelRecruitUnit()
