@@ -76,6 +76,7 @@ public class Interaction : MonoBehaviour
     {
         if (collision.GetComponent<Interaction>() != null && collision.GetComponentInParent<FideleManager>().myCamp != myFideleManager.myCamp)
         {
+            QuestManager.Instance.OnUnitReached(collision.GetComponent<Interaction>());
             myCollideInteractionList.Add(collision.GetComponent<Interaction>());
             myCollideAnimationManagerList.Add(collision.GetComponentInParent<AnimationManager>());
         }

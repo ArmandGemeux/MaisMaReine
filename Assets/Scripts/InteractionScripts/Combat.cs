@@ -229,20 +229,20 @@ public class Combat : MonoBehaviour
     public IEnumerator Die(FideleManager deadFM, FideleManager winFM)
     {
         Debug.Log("On Tue quelqu'un");
+        DragCamera2D.Instance.UnfollowTargetCamera();
+
         if (deadFM.myCamp != GameCamps.Bandit)
         {
-
             deadFM.GetComponent<AnimationManager>().Dying();
             // ICI jouer Anim de mort
             // ICI jouer SFX de mort
 
             yield return new WaitForSeconds(1f);
 
-            DragCamera2D.Instance.UnfollowTargetCamera();
 
             if (deadFM.myCamp == GameCamps.Fidele)
             {
-                GameManager.Instance.UpdateCharismeValue(-5);
+                GameManager.Instance.AddCharismeValue(-5);
             }
 
             winFM.GetComponentInChildren<Interaction>().myCollideAnimationManagerList.Remove(deadFM.GetComponent<AnimationManager>());
@@ -250,7 +250,6 @@ public class Combat : MonoBehaviour
             GameManager.Instance.RemoveAMapUnit(deadFM);
             EndFightDead(deadFM);
             Destroy(deadFM.gameObject);
-            Debug.Log(deadFM.fidelePrenom + " " + deadFM.fideleNom + " a été vaincu...");
         }
         else if (deadFM.myCamp == GameCamps.Bandit && winFM.myCamp == GameCamps.Fidele)
         {

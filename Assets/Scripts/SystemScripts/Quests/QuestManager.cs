@@ -24,21 +24,52 @@ public class QuestManager : MonoBehaviour
     public struct QuestObjective
     {
         public string objectiveDesc;
+
+        [Space]
+
         public int charismeQuestReward;
+
+        [Space]
+        [Header("Prochaine quête")]
+
+        public bool isLauchingQuest;
+        public int questIndexToLaunch;
+
+        [Space]
+        [Header("Prochaine dialogue")]
+
+        public bool isLauchingDialogue;
+        public Dialogue dialogueToLaunch;
+
+        [Space]
+        [Header("Recrutement")]
 
         public List<FideleManager> specificUnitsToRecruit;
         public List<UnitByAmount> unitsToRecruitByAmount;
 
+        [Space]
+        [Header("Combat")]
+
         public List<FideleManager> specificUnitsToKill;
         public List<UnitByAmount> unitsToKillByAmount;
 
+        [Space]
+        [Header("Dialogue")]
+
         public List<FideleManager> specificUnitsToTalkTo;
         public List<UnitByAmount> unitsToTalkToByAmount;
+
+        [Space]
+        [Header("Zone d'Interaction")]
+
+        public List<Interaction> specificUnitToReach;
+        public List<UnitByAmount> unitsToReachByAmount;
     }
 
     [Serializable]
     public struct QuestSubObjectives
     {
+        public int specificUnitToReachLeft;
         public int specificUnitsToRecruitLeft;
         public int unitsToRecruitByAmountLeft;
         public int specificUnitsToKillLeft;
@@ -78,10 +109,7 @@ public class QuestManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("k"))
-        {
-            SetupQuest(1);
-        }
+
     }
 
     private void SetupQuestsSubObjectivesLeft()
@@ -89,6 +117,13 @@ public class QuestManager : MonoBehaviour
         foreach (QuestObjective qo in mapQuests)
         {
             QuestSubObjectives qsoTmp = new QuestSubObjectives();
+
+            qsoTmp.specificUnitToReachLeft = qo.specificUnitToReach.Count;
+            foreach (UnitByAmount uba in qo.unitsToReachByAmount)
+            {
+                qsoTmp.specificUnitToReachLeft += uba.unitAmout;
+            }
+
             qsoTmp.specificUnitsToRecruitLeft = qo.specificUnitsToRecruit.Count;
             foreach (UnitByAmount uba in qo.unitsToRecruitByAmount)
             {
@@ -120,6 +155,24 @@ public class QuestManager : MonoBehaviour
                 questsSetup[i].questParent.SetActive(true);
                 break;
             }
+        }
+    }
+
+    public void OnUnitReached(Interaction unitToReach)
+    {
+        for (int i = 0; i < mapQuests.Count; i++)
+        {
+            QuestSubObjectives qsoTmp = new QuestSubObjectives();
+            qsoTmp = questsSubObjectivesLeft[i];
+            if (mapQuests[i].specificUnitToReach.Count > 0) //modif ici
+            {
+                if (mapQuests[i].specificUnitToReach.Contains(unitToReach)) //modif ici
+                {
+                    qsoTmp.specificUnitToReachLeft--; //modif ici
+                    questsSubObjectivesLeft[i] = qsoTmp;
+                }
+            }
+            CheckQuestsTasksLeft();
         }
     }
 
@@ -221,9 +274,19 @@ public class QuestManager : MonoBehaviour
         {
             if (questsSetup[i].questDesc.text == mapQuests[qIdx].objectiveDesc)
             {
-                GameManager.Instance.UpdateCharismeValue(mapQuests[qIdx].charismeQuestReward);
-                //questsSetup[i].questRewardEffect.Play();
-                questsSetup[i].questDesc.text = "Quête terminée";
+                GameManager.Instance.AddCharismeValue(mapQuests[qIdx].charismeQuestReward);
+
+                if (mapQuests[qIdx].isLauchingQuest)
+                {
+                    SetupQuest(mapQuests[qIdx].questIndexToLaunch);
+                }
+                if (mapQuests[qIdx].isLauchingDialogue)
+                {
+                    DialogueManager.Instance.OpenDialogueWindow(mapQuests[qIdx].dialogueToLaunch);
+                }
+
+                questsSetup[i].questDesc.text = "";
+                questsSetup[i].questParent.SetActive(false);
             }
         }
     }

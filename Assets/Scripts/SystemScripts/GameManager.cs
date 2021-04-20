@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour
 
     public int charismeAmount;
 
+    static public int charismeAmountStatic;
+
     #region Singleton
     public static GameManager Instance;
 
@@ -41,16 +43,24 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        charismeAmount = charismeAmountStatic;
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        if (Input.GetKeyDown("o"))
+        {
+            charismeAmount += 10;
+        }
     }
 
-    public void UpdateCharismeValue(int addedCharismeValue)
+    public void LoadCharismeValueBetweenScenes()
+    {
+        charismeAmountStatic = charismeAmount;
+    }
+
+    public void AddCharismeValue(int addedCharismeValue)
     {
         charismeAmount += addedCharismeValue;
 
@@ -59,7 +69,19 @@ public class GameManager : MonoBehaviour
             charismeAmount = 0;
         }
 
-        StartCoroutine(RecrutementManager.Instance.UpdateCharismeAmount(addedCharismeValue));
+        StartCoroutine(RecrutementManager.Instance.AddCharismeAmount(addedCharismeValue));
+    }
+
+    public void LowerCharismeValue(int lowerCharismeValue)
+    {
+        charismeAmount -= lowerCharismeValue;
+
+        if (charismeAmount <= 0)
+        {
+            charismeAmount = 0;
+        }
+
+        StartCoroutine(RecrutementManager.Instance.LowerCharismeAmount(lowerCharismeValue));
     }
 
     public void SwitchTurn()

@@ -9,6 +9,8 @@ public class RecrutementManager : MonoBehaviour
 {
     private FideleManager myFMToRecruit;
 
+    public GameObject myFideleParent;
+
     #region Nom et Camp
     [Header("Nom et Camp")]
     public TextMeshProUGUI characterNom;
@@ -67,18 +69,26 @@ public class RecrutementManager : MonoBehaviour
     {
         myAnim = GetComponent<Animator>();
 
-        StartCoroutine(UpdateCharismeAmount(GameManager.Instance.charismeAmount));
+        StartCoroutine(AddCharismeAmount(GameManager.Instance.charismeAmount));
     }
 
-    // Update is called once per frame
-    /*void Update()
-    {
-
-    }*/
-
-    public IEnumerator UpdateCharismeAmount(int addedCharismeValue)
+    public IEnumerator AddCharismeAmount(int addedCharismeValue)
     {
         rewardCharismeAmountText.text = "+ " + addedCharismeValue.ToString();
+        gainCharismePS.gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(1.6f);
+
+        totalCharismeAmountText.text = GameManager.Instance.charismeAmount.ToString();
+
+        yield return new WaitForSeconds(2f);
+
+        gainCharismePS.gameObject.SetActive(false);
+    }
+
+    public IEnumerator LowerCharismeAmount(int lowerCharismeValue)
+    {
+        rewardCharismeAmountText.text = "- " + lowerCharismeValue.ToString();
         gainCharismePS.gameObject.SetActive(true);
 
         yield return new WaitForSeconds(1.6f);
@@ -116,6 +126,7 @@ public class RecrutementManager : MonoBehaviour
     {
         if (GameManager.Instance.charismeAmount >= myFMToRecruit.charismaCost)
         {
+            GameManager.Instance.LowerCharismeValue(myFMToRecruit.charismaCost);
             StartCoroutine(SetCampToFidele());
             myAnim.SetBool("isOpen", false);
         }
@@ -169,6 +180,7 @@ public class RecrutementManager : MonoBehaviour
 
         myFMToRecruit.fideleSprite.sprite = recruitedSprite;
 
+        myFMToRecruit.transform.SetParent(myFideleParent.transform);
 
         QuestManager.Instance.OnRecruitUnit(myFMToRecruit);
         recruitedSprite = null;
