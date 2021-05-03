@@ -36,77 +36,85 @@ public class MouseEventsFidele : MonoBehaviour
 
     public void OnMouseEnter()
     {
-        if (myMovement.isMoving == false)
+        if (GameManager.Instance.isGamePaused == false)
         {
-            myAnimManager.DisplayInteraction();
+            if (myMovement.isMoving == false)
+            {
+                myAnimManager.DisplayInteraction();
+            }
         }
     }
 
     public void OnMouseDown()
     {
-        RaycastInteraction.Instance.ResetLauncherInteraction();
+        if (GameManager.Instance.isGamePaused == false)
+        {
+            RaycastInteraction.Instance.ResetLauncherInteraction();
+        }
     }
 
     public void OnMouseDrag()
     {
-        #region Movement
-
-        if (myFideleManager.myCamp == GameCamps.Fidele)
+        if (GameManager.Instance.isGamePaused == false)
         {
-            myAnimManager.isSelectable = false;
-            RaycastInteraction.Instance.ResetLauncherInteraction();
-            RaycastInteraction.Instance.ResetReceiverInteraction();
+            #region Movement
 
-            myMovement.MovingCharacter();
+            if (myFideleManager.myCamp == GameCamps.Fidele)
+            {
+                myAnimManager.isSelectable = false;
+                RaycastInteraction.Instance.ResetLauncherInteraction();
+                RaycastInteraction.Instance.ResetReceiverInteraction();
+
+                myMovement.MovingCharacter();
+            }
+
+            #endregion
         }
-
-        #endregion
-    }
-
-    public void OnMouseUp()
-    {
-
     }
 
     public void OnMouseOver()
     {
-
-        #region InformationDisplaying
-
-        if (Input.GetMouseButtonDown(2) && myAnimManager.isInfoDisplayed == false)
+        if (GameManager.Instance.isGamePaused == false)
         {
-            myAnimManager.DisplayMovement();
-            myAnimManager.DisplayStats();
-            myAnimManager.isInfoDisplayed = true;
-        }
-        else if (Input.GetMouseButtonDown(2) && myAnimManager.isInfoDisplayed)
-        {
-            myAnimManager.HideMovement();
-            myAnimManager.HideStats();
-            myAnimManager.isInfoDisplayed = false;
-        }
+            #region InformationDisplaying
 
-        #endregion
+            if (Input.GetMouseButtonDown(2) && myAnimManager.isInfoDisplayed == false)
+            {
+                myAnimManager.DisplayMovement();
+                myAnimManager.DisplayStats();
+                myAnimManager.isInfoDisplayed = true;
+            }
+            else if (Input.GetMouseButtonDown(2) && myAnimManager.isInfoDisplayed)
+            {
+                myAnimManager.HideMovement();
+                myAnimManager.HideStats();
+                myAnimManager.isInfoDisplayed = false;
+            }
 
+            #endregion
+        }
     }
 
     public void OnMouseExit()
     {
-        #region InformationHiding
-
-        if (myAnimManager.isInfoDisplayed && myMovement.isMoving == false)
+        if (GameManager.Instance.isGamePaused == false)
         {
-            myAnimManager.HideMovement();
-            myAnimManager.HideStats();
-            myAnimManager.isInfoDisplayed = false;
-        }
+            #region InformationHiding
 
-        if (myMovement.isMoving == false && myInteraction.myCollideInteractionList.Count == 0)
-        {
-            myAnimManager.HideInteraction();
-            myAnimManager.HideStats();
-        }
+            if (myAnimManager.isInfoDisplayed && myMovement.isMoving == false)
+            {
+                myAnimManager.HideMovement();
+                myAnimManager.HideStats();
+                myAnimManager.isInfoDisplayed = false;
+            }
 
-        #endregion
+            if (myMovement.isMoving == false && myInteraction.myCollideInteractionList.Count == 0)
+            {
+                myAnimManager.HideInteraction();
+                myAnimManager.HideStats();
+            }
+
+            #endregion
+        }
     }
 }

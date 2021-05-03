@@ -8,11 +8,6 @@ public class DialogueInteraction : MonoBehaviour
 
     public InteractionType nextInteractionType;
 
-    public bool isStartingAQuest;
-    public int questIndexToSetActive;
-
-    public List<FideleManager> unitsToSpawn;
-
     private bool hasTalked;
 
     // Start is called before the first frame update
@@ -40,16 +35,6 @@ public class DialogueInteraction : MonoBehaviour
         else
         {
             return;
-        }
-
-        if (isStartingAQuest)
-        {
-            QuestManager.Instance.SetupQuest(questIndexToSetActive);
-
-            foreach (FideleManager fmToSpawn in unitsToSpawn)
-            {
-                fmToSpawn.gameObject.SetActive(true);
-            }
         }
     }
 }

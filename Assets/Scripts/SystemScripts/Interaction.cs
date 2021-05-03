@@ -18,6 +18,8 @@ public class Interaction : MonoBehaviour
     public List <Interaction> myCollideInteractionList = new List<Interaction>();
     public List <AnimationManager> myCollideAnimationManagerList = new List<AnimationManager>();
 
+    public List<Interaction> alreadyFightedList = new List<Interaction>();
+
     public List<Interaction> alreadyInteractedList = new List<Interaction>();
 
     private AnimationManager myAnimationManager;
@@ -58,12 +60,12 @@ public class Interaction : MonoBehaviour
                     }
                 }
 
-                if (!alreadyInteractedList.Contains(myCollideAnimationManager.GetComponentInChildren<Interaction>()) && myFideleManager.myCamp == GameCamps.Fidele)
+                if (!alreadyFightedList.Contains(myCollideAnimationManager.GetComponentInChildren<Interaction>()) && myFideleManager.myCamp == GameCamps.Fidele)
                 {
                     myAnimationManager.isSelectable = true;
                     myAnimationManager.ActivateLauncherSelection();
                 }
-                if (!alreadyInteractedList.Contains(myCollideAnimationManager.GetComponentInChildren<Interaction>()) && myCollideAnimationManager.GetComponent<FideleManager>().myCamp != GameCamps.Fidele && myFideleManager.myCamp == GameCamps.Fidele)
+                if (!alreadyFightedList.Contains(myCollideAnimationManager.GetComponentInChildren<Interaction>()) && myCollideAnimationManager.GetComponent<FideleManager>().myCamp != GameCamps.Fidele && myFideleManager.myCamp == GameCamps.Fidele)
                 {
                     myCollideAnimationManager.ActivateReceiverSelection();
                     myCollideAnimationManager.DisplayInteractionIcon();
@@ -88,34 +90,45 @@ public class Interaction : MonoBehaviour
         {
             Interaction myExitingCollision = collision.GetComponent<Interaction>();
 
-            if (myCollideInteractionList.Count >= 1)
-            {
-                myExitingCollision.canInteract = false;
-                myExitingCollision.myInteractionIcon.sprite = null;
-
-                myAnimationManager.isSelectable = false;
-                myInteractionIcon.sprite = null;
-            }
+            RemoveCollindingCharacterFromInteractionList(myExitingCollision);
 
             AnimationManager myExitingAM = collision.GetComponentInParent<AnimationManager>();
 
-            if (myCollideAnimationManagerList.Count >= 1)
-            {
-                myExitingAM.haveAnInteraction = false;
-                myExitingAM.HideInteractionIcon();
-
-                if (myExitingAM != myAnimationManager && myExitingAM.GetComponent<FideleManager>().myCamp != myFideleManager.myCamp && myFideleManager.myCamp == GameManager.Instance.currentCampTurn)
-                {
-                    myExitingAM.HideInteraction();
-                    myExitingAM.DesactivateReceiverSelection();
-
-                    myAnimationManager.HideInteraction();
-                    myAnimationManager.DesactivateLauncherSelection();
-                }
-            }
-
-            myCollideAnimationManagerList.Remove(myExitingAM);
-            myCollideInteractionList.Remove(myExitingCollision);
+            RemoveCollidingCharacterFromAMList(myExitingAM);
         }
+    }
+
+    public void RemoveCollidingCharacterFromAMList(AnimationManager aMToRemove)
+    {
+        if (myCollideAnimationManagerList.Count >= 1)
+        {
+            aMToRemove.haveAnInteraction = false;
+            aMToRemove.HideInteractionIcon();
+
+            if (aMToRemove != myAnimationManager && aMToRemove.GetComponent<FideleManager>().myCamp != myFideleManager.myCamp && myFideleManager.myCamp == GameManager.Instance.currentCampTurn)
+            {
+                aMToRemove.HideInteraction();
+                aMToRemove.DesactivateReceiverSelection();
+
+                myAnimationManager.HideInteraction();
+                myAnimationManager.DesactivateLauncherSelection();
+            }
+        }
+
+        myCollideAnimationManagerList.Remove(aMToRemove);
+    }
+
+    public void RemoveCollindingCharacterFromInteractionList(Interaction interactionToRemove)
+    {
+        if (myCollideInteractionList.Count >= 1)
+        {
+            interactionToRemove.canInteract = false;
+            interactionToRemove.myInteractionIcon.sprite = null;
+
+            myAnimationManager.isSelectable = false;
+            myInteractionIcon.sprite = null;
+        }
+
+        myCollideInteractionList.Remove(interactionToRemove);
     }
 }

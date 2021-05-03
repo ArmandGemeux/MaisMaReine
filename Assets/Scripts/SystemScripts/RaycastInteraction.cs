@@ -38,11 +38,14 @@ public class RaycastInteraction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.Instance.currentCampTurn == GameCamps.Fidele && Input.GetMouseButtonDown(1))
-            LookForInteractionLauncher();
+        if (GameManager.Instance.isGamePaused == false)
+        {
+            if (GameManager.Instance.currentCampTurn == GameCamps.Fidele && Input.GetMouseButtonDown(1))
+                LookForInteractionLauncher();
 
-        if (GameManager.Instance.currentCampTurn == GameCamps.Fidele && Input.GetMouseButtonDown(1) && interactionLauncherAnim != null)
-            LookForInteractionReceiver();
+            if (GameManager.Instance.currentCampTurn == GameCamps.Fidele && Input.GetMouseButtonDown(1) && interactionLauncherAnim != null)
+                LookForInteractionReceiver();
+        }
     }
 
     public void LookForInteractionLauncher()
@@ -64,7 +67,7 @@ public class RaycastInteraction : MonoBehaviour
                 
                 foreach (Interaction myCollideInteraction in interactionLauncherInteraction.myCollideInteractionList)
                 {
-                    if (!interactionLauncherInteraction.alreadyInteractedList.Contains(myCollideInteraction))
+                    if (!interactionLauncherInteraction.alreadyFightedList.Contains(myCollideInteraction))
                     {
                         myCollideInteraction.canInteract = true;
                         myCollideInteraction.GetComponentInParent<AnimationManager>().ActivateReceiverSelection();
@@ -104,7 +107,7 @@ public class RaycastInteraction : MonoBehaviour
 
         if (hit.collider != null && hit.collider.gameObject.GetComponentInChildren<Interaction>() && hit.collider.gameObject.GetComponentInChildren<Interaction>().canInteract 
             && hit.collider.gameObject.GetComponent<FideleManager>().myCamp != GameCamps.Fidele && interactionLauncherInteraction.myCollideInteractionList.Contains(hit.collider.gameObject.GetComponentInChildren<Interaction>()) 
-            && !interactionLauncherInteraction.alreadyInteractedList.Contains(hit.collider.gameObject.GetComponentInChildren<Interaction>()))
+            && !interactionLauncherInteraction.alreadyFightedList.Contains(hit.collider.gameObject.GetComponentInChildren<Interaction>()))
         {
             interactionReceiverAnim = hit.collider.GetComponent<AnimationManager>();
             interactionReceiverInteraction = hit.collider.GetComponentInChildren<Interaction>();
@@ -113,6 +116,7 @@ public class RaycastInteraction : MonoBehaviour
             switch (interactionReceiverInteraction.interactionType) //Quel type d'interaction porte l'interactionReceiver ?
             {
                 case InteractionType.Dialogue:
+                    interactionLauncherInteraction.alreadyInteractedList.Add(interactionReceiverInteraction);
                     interactionReceiverInteraction.GetComponent<DialogueInteraction>().StartDialogue(interactionReceiverFM);
                     //Debug.Log("Dialogue");
                     break;
@@ -121,6 +125,8 @@ public class RaycastInteraction : MonoBehaviour
                     //Debug.Log("Recrutement");
                     break;
                 case InteractionType.Combat:
+                    interactionLauncherInteraction.alreadyFightedList.Add(interactionReceiverInteraction);
+                    interactionLauncherInteraction.alreadyInteractedList.Add(interactionReceiverInteraction);
                     interactionReceiverInteraction.GetComponent<Combat>().StartFight(interactionLauncherFM);
                     //Debug.Log("Combat");
                     break;
@@ -128,7 +134,7 @@ public class RaycastInteraction : MonoBehaviour
                     break;
             }
 
-            interactionLauncherInteraction.alreadyInteractedList.Add(interactionReceiverInteraction);
+            interactionLauncherAnim.CheckActionsLeftAmout();
 
             //Debug.Log("Interaction");
             ResetReceiverInteraction();

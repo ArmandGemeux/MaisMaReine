@@ -36,12 +36,17 @@ public class FideleManager : MonoBehaviour
     public FidelePeuple fidelePeuple;
 
     public SpriteRenderer fideleSprite;
+    public SpriteRenderer questIcon;
 
     [HideInInspector]
     public FideleManager myTarget;
+    [HideInInspector]
+    public bool isAllActionsDone = false;
 
     private List<GameCamps> attackableUnits = new List<GameCamps>();
 
+
+    private Interaction myInteraction;
     
     public List<FideleManager> unitsInRange = new List<FideleManager>();
     private List<FideleManager> attackableUnitsInRange = new List<FideleManager>();
@@ -49,6 +54,7 @@ public class FideleManager : MonoBehaviour
 
     void Start()
     {
+        myInteraction = GetComponentInChildren<Interaction>();
         GameManager.Instance.AddAMapUnit(this);
         SetAttackableUnits();
         currentHP = maxHp;

@@ -231,6 +231,8 @@ public class Combat : MonoBehaviour
         Debug.Log("On Tue quelqu'un");
         DragCamera2D.Instance.UnfollowTargetCamera();
 
+        QuestManager.Instance.OnKillUnit(deadFM);
+
         if (deadFM.myCamp != GameCamps.Bandit)
         {
             deadFM.GetComponent<AnimationManager>().Dying();
@@ -245,11 +247,26 @@ public class Combat : MonoBehaviour
                 GameManager.Instance.AddCharismeValue(-5);
             }
 
-            winFM.GetComponentInChildren<Interaction>().myCollideAnimationManagerList.Remove(deadFM.GetComponent<AnimationManager>());
-            winFM.GetComponentInChildren<Interaction>().myCollideInteractionList.Remove(deadFM.GetComponentInChildren<Interaction>());
+            foreach (AnimationManager dfmcam in deadFM.GetComponentInChildren<Interaction>().myCollideAnimationManagerList)
+            {
+                dfmcam.GetComponentInChildren<Interaction>().RemoveCollidingCharacterFromAMList(deadFM.GetComponent<AnimationManager>());
+            }
+
+            foreach (Interaction dfmci in deadFM.GetComponentInChildren<Interaction>().myCollideInteractionList)
+            {
+                dfmci.GetComponentInChildren<Interaction>().RemoveCollindingCharacterFromInteractionList(deadFM.GetComponentInChildren<Interaction>());
+            }
+
+            foreach (FideleManager dfmcfm in deadFM.unitsInRange)
+            {
+                dfmcfm.unitsInRange.Remove(deadFM);
+            }
+
+            //winFM.GetComponentInChildren<Interaction>().myCollideAnimationManagerList.Remove(deadFM.GetComponent<AnimationManager>());
+            //winFM.GetComponentInChildren<Interaction>().myCollideInteractionList.Remove(deadFM.GetComponentInChildren<Interaction>());
+
             GameManager.Instance.RemoveAMapUnit(deadFM);
-            EndFightDead(deadFM);
-            Destroy(deadFM.gameObject);
+            deadFM.gameObject.SetActive(false);
         }
         else if (deadFM.myCamp == GameCamps.Bandit && winFM.myCamp == GameCamps.Fidele)
         {
@@ -262,19 +279,13 @@ public class Combat : MonoBehaviour
         Debug.Log("Combat terminé");
     }
 
-    public void EndFightDead(FideleManager deadFM)
-    {
-        QuestManager.Instance.OnKillUnit(deadFM);
-    }
-
     public void SwitchInteractionType(FideleManager deadFM)
     {
         // ICI jouer SFX de mort
         // ICI jouer anim du Bandit qui change de camp
         // ICI changer graphisme du bandit qui change de camp
         GetComponent<Interaction>().interactionType = InteractionType.Recrutement;
-
-        EndFightDead(deadFM);
+        
         deadFM.isAlive = false;
     }
 }

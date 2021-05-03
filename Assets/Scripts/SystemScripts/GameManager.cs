@@ -21,6 +21,10 @@ public class GameManager : MonoBehaviour
 
     public int charismeAmount;
 
+    public bool isGamePaused;
+
+    public ParticleSystem myCampTurningFeedback;
+
     static public int charismeAmountStatic;
 
     #region Singleton
@@ -43,15 +47,35 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        isGamePaused = false;
         charismeAmount = charismeAmountStatic;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("o"))
+
+    }
+
+    public void IsAllCampActionsDone()
+    {
+        for (int i = 0; i < allMapUnits.Count; i++)
         {
-            charismeAmount += 10;
+            if (allMapUnits[i].myCamp == currentCampTurn)
+            {
+                if (allMapUnits[i].isAllActionsDone == false)
+                {
+                    myCampTurningFeedback.gameObject.SetActive(false);
+                    return;
+                }                
+            }
+        }
+        myCampTurningFeedback.gameObject.SetActive(true);
+        Debug.Log("Toutes les actions ont été effectuées");
+
+        if (currentCampTurn != GameCamps.Fidele)
+        {
+            SwitchTurn();
         }
     }
 
@@ -69,7 +93,10 @@ public class GameManager : MonoBehaviour
             charismeAmount = 0;
         }
 
-        StartCoroutine(RecrutementManager.Instance.AddCharismeAmount(addedCharismeValue));
+        if (addedCharismeValue > 0)
+        {
+            StartCoroutine(RecrutementManager.Instance.AddCharismeAmount(addedCharismeValue));
+        }
     }
 
     public void LowerCharismeValue(int lowerCharismeValue)
@@ -81,11 +108,16 @@ public class GameManager : MonoBehaviour
             charismeAmount = 0;
         }
 
-        StartCoroutine(RecrutementManager.Instance.LowerCharismeAmount(lowerCharismeValue));
+        if (lowerCharismeValue > 0)
+        {
+            StartCoroutine(RecrutementManager.Instance.LowerCharismeAmount(lowerCharismeValue));
+        }
     }
 
     public void SwitchTurn()
     {
+        myCampTurningFeedback.gameObject.SetActive(false);
+
         switchingTurn = true;
         currentCampTurn += 1;
         switchingTurn = false;
@@ -189,6 +221,7 @@ public class GameManager : MonoBehaviour
     {
         foreach (FideleManager fm in allMapUnits)
         {
+            fm.GetComponentInChildren<Interaction>().alreadyFightedList.Clear();
             fm.GetComponentInChildren<Interaction>().alreadyInteractedList.Clear();
         }
     }
@@ -227,5 +260,5 @@ public class GameManager : MonoBehaviour
                 yield return new WaitForSeconds(timeValue);
             }
         }
-    }
+    }    
 }

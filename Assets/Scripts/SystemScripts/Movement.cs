@@ -41,7 +41,7 @@ public class Movement : MonoBehaviour
     {
         Physics2D.IgnoreCollision(gameObject.GetComponent<Collider2D>(), myAnimationManager.GetComponent<Collider2D>());
 
-        if (isMoving && Input.GetMouseButton(0))
+        if (isMoving && Input.GetMouseButton(0) && hasMoved == false)
         {
             Cursor.visible = false;
             // ICI jouer VFX de déplacement en cours
@@ -72,8 +72,10 @@ public class Movement : MonoBehaviour
 
             if (isLanbable)
             {
+                myAnimationManager.CheckActionsLeftAmout();
                 transform.parent.position = transform.position;
                 transform.localPosition = Vector3.zero;
+                hasMoved = true;
             }
             else
             {
@@ -91,7 +93,6 @@ public class Movement : MonoBehaviour
                 }
             }
 
-            hasMoved = true;
             isMoving = false;
         }
     }

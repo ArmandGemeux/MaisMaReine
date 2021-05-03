@@ -9,6 +9,13 @@ public class DialogueManager : MonoBehaviour
     public TextMeshProUGUI characterName;
     public TextMeshProUGUI characterLines;
 
+    [Header("Dialogue début territoire")]
+
+    public bool isStartDialogueExisting;
+    public Dialogue dialogueDebutTerritoire;
+
+    private Dialogue currentDialogue;
+
     private Animator myAnim;
 
     private Queue<string> lines;
@@ -34,6 +41,11 @@ public class DialogueManager : MonoBehaviour
     {
         lines = new Queue<string>();
         myAnim = GetComponent<Animator>();
+
+        if (isStartDialogueExisting)
+        {
+            OpenDialogueWindow(dialogueDebutTerritoire);
+        }
     }
 
     // Update is called once per frame
@@ -44,13 +56,20 @@ public class DialogueManager : MonoBehaviour
 
     public void OpenDialogueWindow(Dialogue dialogue)
     {
+        GameManager.Instance.isGamePaused = true;
         myAnim.SetBool("isOpen", true);
 
-        characterName.text = dialogue.name;
+        currentDialogue = dialogue;
+        characterName.text = currentDialogue.name;
+
+        if (currentDialogue.cameraStartPos != null)
+        {
+            DragCamera2D.Instance.FollowTargetCamera(currentDialogue.cameraStartPos);
+        }
 
         lines.Clear();
 
-        foreach (string line in dialogue.myDialogue)
+        foreach (string line in currentDialogue.myDialogue)
         {
             lines.Enqueue(line);
         }
@@ -88,13 +107,25 @@ public class DialogueManager : MonoBehaviour
 
     public void EndDialogue()
     {
-        /*if (questToSetActive != null)
-        {
-            questToSetActive.isActive = true;
-            //QuestManager.Instance.AddNewQuestToFollow(questToSetActive);
-        }*/
-
         // ICI jouer SFX de fin de dialogue
+        GameManager.Instance.isGamePaused = false;
         myAnim.SetBool("isOpen", false);
+
+        if (currentDialogue.cameraEndPos != null)
+        {
+            DragCamera2D.Instance.FollowTargetCamera(currentDialogue.cameraEndPos);
+        }
+
+        if (currentDialogue.isStartingQuest)
+        {
+            QuestManager.Instance.SetupQuest(currentDialogue.questIndexToStart);
+
+            foreach (FideleManager fmToSpawn in currentDialogue.unitsToSpawn)
+            {
+                fmToSpawn.gameObject.SetActive(true);
+            }
+        }
+
+        currentDialogue = null;
     }
 }

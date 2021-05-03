@@ -25,6 +25,8 @@ public class Recrutement : MonoBehaviour
 
     public void LaunchRecruitement(FideleManager fmToRecruit)
     {
+        GameManager.Instance.isGamePaused = true;
+
         RecrutementManager.Instance.OpenRecruitementWindow(fmToRecruit, myRecruitedSprite);
     }
 }

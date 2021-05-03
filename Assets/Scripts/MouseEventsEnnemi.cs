@@ -45,22 +45,25 @@ public class MouseEventsEnnemi : MonoBehaviour
 
     public void OnMouseOver()
     {
-        #region InformationDisplaying
-
-        if (Input.GetMouseButtonDown(2) && myAnimManager.isInfoDisplayed == false)
+        if (GameManager.Instance.isGamePaused == false)
         {
-            myAnimManager.DisplayMovement();
-            myAnimManager.DisplayStats();
-            myAnimManager.isInfoDisplayed = true;
-        }
-        else if (Input.GetMouseButtonDown(2) && myAnimManager.isInfoDisplayed)
-        {
-            myAnimManager.HideMovement();
-            myAnimManager.HideStats();
-            myAnimManager.isInfoDisplayed = false;
-        }
+            #region InformationDisplaying
 
-        #endregion
+            if (Input.GetMouseButtonDown(2) && myAnimManager.isInfoDisplayed == false)
+            {
+                myAnimManager.DisplayMovement();
+                myAnimManager.DisplayStats();
+                myAnimManager.isInfoDisplayed = true;
+            }
+            else if (Input.GetMouseButtonDown(2) && myAnimManager.isInfoDisplayed)
+            {
+                myAnimManager.HideMovement();
+                myAnimManager.HideStats();
+                myAnimManager.isInfoDisplayed = false;
+            }
+
+            #endregion
+        }
         /*if (myInteraction.canInteract == true)
         {
             myAnimManager.DisplayInteractionIcon();
@@ -69,21 +72,24 @@ public class MouseEventsEnnemi : MonoBehaviour
 
     public void OnMouseExit()
     {
-        #region InformationHiding
-
-        if (myAnimManager.isInfoDisplayed && myMovement.isMoving == false)
+        if (GameManager.Instance.isGamePaused == false)
         {
-            myAnimManager.HideMovement();
-            myAnimManager.HideStats();
-            myAnimManager.isInfoDisplayed = false;
-        }
+            #region InformationHiding
 
-        if (myMovement.isMoving == false && myInteraction.myCollideInteractionList.Count == 0)
-        {
-            myAnimManager.HideInteraction();
-            myAnimManager.HideStats();
+            if (myAnimManager.isInfoDisplayed && myMovement.isMoving == false)
+            {
+                myAnimManager.HideMovement();
+                myAnimManager.HideStats();
+                myAnimManager.isInfoDisplayed = false;
+            }
+
+            if (myMovement.isMoving == false && myInteraction.myCollideInteractionList.Count == 0)
+            {
+                myAnimManager.HideInteraction();
+                myAnimManager.HideStats();
+            }
+            #endregion
         }
-        #endregion
         /*if (myInteraction.canInteract == true)
         {
             myAnimManager.HideInteractionIcon();

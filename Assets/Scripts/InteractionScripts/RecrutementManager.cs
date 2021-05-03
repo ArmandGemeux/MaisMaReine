@@ -126,16 +126,21 @@ public class RecrutementManager : MonoBehaviour
     {
         if (GameManager.Instance.charismeAmount >= myFMToRecruit.charismaCost)
         {
+            GameManager.Instance.isGamePaused = false;
             GameManager.Instance.LowerCharismeValue(myFMToRecruit.charismaCost);
             StartCoroutine(SetCampToFidele());
             myAnim.SetBool("isOpen", false);
+
+            GameManager.Instance.IsAllCampActionsDone();
         }
         else
 	    {
+            GameManager.Instance.isGamePaused = false;
             myAnim.SetBool("isOpen", false);
             myFMToRecruit = null;
             recruitedSprite = null;
 
+            GameManager.Instance.IsAllCampActionsDone();
             //ICI jouer le clignottement de l'icône de charisme
             //ICI jouer SFX d'impossibilité de recruter le personnage
         }
@@ -143,13 +148,18 @@ public class RecrutementManager : MonoBehaviour
 
     public void CancelRecruitUnit()
     {
+        GameManager.Instance.isGamePaused = false;
         myAnim.SetBool("isOpen", false);
         myFMToRecruit = null;
         recruitedSprite = null;
+
+        GameManager.Instance.IsAllCampActionsDone();
     }
 
     public IEnumerator SetCampToFidele()
     {
+        QuestManager.Instance.OnRecruitUnit(myFMToRecruit);
+
         MovementEnemy myMovementScript = myFMToRecruit.GetComponentInChildren<MovementEnemy>();
 
         Destroy(myFMToRecruit.GetComponent<MouseEventsEnnemi>());
@@ -163,7 +173,11 @@ public class RecrutementManager : MonoBehaviour
         myFMToRecruit.myCamp = GameCamps.Fidele;
         myFMToRecruit.gameObject.tag = ("Fidele");
         myFMToRecruit.currentHP = myFMToRecruit.maxHp;
+
+        myFMToRecruit.GetComponent<AnimationManager>().UpdateMyReferences();
+
         myFMToRecruit.GetComponent<AnimationManager>().DesactivateReceiverSelection();
+        myFMToRecruit.GetComponent<AnimationManager>().DesactivateLauncherSelection();
 
         // ICI jouer VFX de changement d'apparence du personnage
         yield return new WaitForSeconds(0.1f);
@@ -178,14 +192,16 @@ public class RecrutementManager : MonoBehaviour
 
         DragCamera2D.Instance.UnfollowTargetCamera();
 
+        myFMToRecruit.GetComponentInChildren<Interaction>().myInteractionIcon.sprite = null;
         myFMToRecruit.fideleSprite.sprite = recruitedSprite;
 
         myFMToRecruit.transform.SetParent(myFideleParent.transform);
 
-        QuestManager.Instance.OnRecruitUnit(myFMToRecruit);
         recruitedSprite = null;
 
         myFMToRecruit.isAlive = true;
         myFMToRecruit = null;
+
+        GameManager.Instance.IsAllCampActionsDone();
     }
 }

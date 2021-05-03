@@ -36,7 +36,7 @@ public class QuestManager : MonoBehaviour
         public int questIndexToLaunch;
 
         [Space]
-        [Header("Prochaine dialogue")]
+        [Header("Prochain dialogue")]
 
         public bool isLauchingDialogue;
         public Dialogue dialogueToLaunch;
@@ -153,6 +153,22 @@ public class QuestManager : MonoBehaviour
             {
                 questsSetup[i].questDesc.text = mapQuests[questIdx].objectiveDesc;
                 questsSetup[i].questParent.SetActive(true);
+                foreach (FideleManager ofm in mapQuests[questIdx].specificUnitsToKill)
+                {
+                    ofm.questIcon.enabled = true;
+                }
+                foreach (FideleManager ofm in mapQuests[questIdx].specificUnitsToRecruit)
+                {
+                    ofm.questIcon.enabled = true;
+                }
+                foreach (FideleManager ofm in mapQuests[questIdx].specificUnitsToTalkTo)
+                {
+                    ofm.questIcon.enabled = true;
+                }
+                foreach (Interaction ifm in mapQuests[questIdx].specificUnitToReach)
+                {
+                    ifm.GetComponentInParent<FideleManager>().questIcon.enabled = true;
+                }
                 break;
             }
         }
@@ -269,7 +285,6 @@ public class QuestManager : MonoBehaviour
 
     private void ValidateQuest(int qIdx)
     {
-        Debug.Log("la quête numéro : " + qIdx);
         for (int i = 0; i < questsSetup.Count; i++)
         {
             if (questsSetup[i].questDesc.text == mapQuests[qIdx].objectiveDesc)
@@ -283,6 +298,23 @@ public class QuestManager : MonoBehaviour
                 if (mapQuests[qIdx].isLauchingDialogue)
                 {
                     DialogueManager.Instance.OpenDialogueWindow(mapQuests[qIdx].dialogueToLaunch);
+                }
+
+                foreach (FideleManager ofm in mapQuests[qIdx].specificUnitsToKill)
+                {
+                    ofm.questIcon.enabled = false;
+                }
+                foreach (FideleManager ofm in mapQuests[qIdx].specificUnitsToRecruit)
+                {
+                    ofm.questIcon.enabled = false;
+                }
+                foreach (FideleManager ofm in mapQuests[qIdx].specificUnitsToTalkTo)
+                {
+                    ofm.questIcon.enabled = false;
+                }
+                foreach (Interaction ifm in mapQuests[qIdx].specificUnitToReach)
+                {
+                    ifm.GetComponentInParent<FideleManager>().questIcon.enabled = false;
                 }
 
                 questsSetup[i].questDesc.text = "";

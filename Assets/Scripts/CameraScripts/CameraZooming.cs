@@ -26,7 +26,7 @@ public class CameraZooming : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (myCamera.m_Lens.OrthographicSize > maxZoomInValue)
+        if (myCamera.m_Lens.OrthographicSize > maxZoomInValue && GameManager.Instance.isGamePaused == false)
         {
             if (Input.GetAxis("Mouse ScrollWheel") > 0)
             {
@@ -36,7 +36,7 @@ public class CameraZooming : MonoBehaviour
         }
 
 
-        if (myCamera.m_Lens.OrthographicSize < maxZoomOutValue)
+        if (myCamera.m_Lens.OrthographicSize < maxZoomOutValue && GameManager.Instance.isGamePaused == false)
         {
             if (Input.GetAxis("Mouse ScrollWheel") < 0)
             {
@@ -45,26 +45,29 @@ public class CameraZooming : MonoBehaviour
             }
         }
 
-        if (myCamera.m_Lens.OrthographicSize == maxZoomOutValue)
-        {
-            //Debug.Log("Dezoom Max Atteint");
-        }
 
-        if (myCamera.m_Lens.OrthographicSize == maxZoomOutValue)
+        if (myCamera.m_Lens.OrthographicSize >= maxZoomOutValue && Input.GetAxis("Mouse ScrollWheel") <= -0.2)
         {
             //Debug.Log("Zoom Max Atteint");
-            mapScreen.SetActive(true);
+            ActivatePauseScreen();
             //Afficher écran de MiniMap
         }
-        else if (myCamera.m_Lens.OrthographicSize <= maxZoomOutValue && mapScreenPause == false)
+        else if (myCamera.m_Lens.OrthographicSize < maxZoomOutValue && mapScreenPause == true)
         {
-            mapScreen.SetActive(false);
+            DesactivatePauseScreen();
         }
     }
+    
 
-    public void PauseForMapScreen()
+    public void ActivatePauseScreen()
     {
-        mapScreen.SetActive(!mapScreen.activeSelf);
-        mapScreenPause = !mapScreenPause;
+        mapScreen.SetActive(true);
+        mapScreenPause = true;
+    }
+
+    public void DesactivatePauseScreen()
+    {
+        mapScreen.SetActive(false);
+        mapScreenPause = false;
     }
 }

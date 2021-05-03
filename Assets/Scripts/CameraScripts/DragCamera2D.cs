@@ -241,7 +241,10 @@ public class DragCamera2D : MonoBehaviour
 
 
        // if mouse is down
-        if (Input.GetMouseButton(1)) {
+        if (Input.GetMouseButton(1) && GameManager.Instance.isGamePaused == false) {
+
+            UnfollowTargetCamera();
+
             float x = Input.GetAxis("Mouse X") * dragSpeed;
             float y = Input.GetAxis("Mouse Y") * dragSpeed;
 

@@ -102,6 +102,8 @@ public class MovementEnemy : MonoBehaviour
 
         isMoving = false;
         hasMoved = true;
+
+        myAnimManager.CheckActionsLeftAmout();
     }
 
     public void OnTriggerEnter2D(Collider2D collision)

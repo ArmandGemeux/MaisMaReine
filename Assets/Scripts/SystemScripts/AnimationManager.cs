@@ -23,8 +23,6 @@ public class AnimationManager : MonoBehaviour
 
     [HideInInspector]
     public bool isInfoDisplayed = false;
-    private bool isLightOn = false;
-    private bool isLightColorSwitched = false;
 
     [HideInInspector]
     public bool haveAnInteraction = false;
@@ -50,19 +48,7 @@ public class AnimationManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        myAnim = GetComponent<Animator>();
-        myFM = GetComponent<FideleManager>();
-        myLight = GetComponentInChildren<Light2D>();
-        myInteraction = GetComponentInChildren<Interaction>();
-
-        if (GetComponentInChildren<Movement>() != null)
-        {
-            myMovement = GetComponentInChildren<Movement>();
-        }
-        else if (GetComponentInChildren<MovementEnemy>() != null)
-        {
-            myMovementEnemy = GetComponentInChildren<MovementEnemy>();
-        }
+        UpdateMyReferences();
     }
 
     // Update is called once per frame
@@ -76,6 +62,23 @@ public class AnimationManager : MonoBehaviour
         else
         {
             currentAttackRangeOnCanvas.text = ("??");
+        }
+    }
+
+    public void UpdateMyReferences()
+    {
+        myAnim = GetComponent<Animator>();
+        myFM = GetComponent<FideleManager>();
+        myLight = GetComponentInChildren<Light2D>();
+        myInteraction = GetComponentInChildren<Interaction>();
+
+        if (GetComponentInChildren<Movement>() != null)
+        {
+            myMovement = GetComponentInChildren<Movement>();
+        }
+        else if (GetComponentInChildren<MovementEnemy>() != null)
+        {
+            myMovementEnemy = GetComponentInChildren<MovementEnemy>();
         }
     }
 
@@ -149,7 +152,7 @@ public class AnimationManager : MonoBehaviour
 
     public void AbleToLand()
     {
-        myMovementZone.color = Color.green;
+        myMovementZone.color = Color.white;
     }
 
     public void DisplayMovement()
@@ -219,5 +222,28 @@ public class AnimationManager : MonoBehaviour
         myInteraction.myInteractionIcon.enabled = false;
 
         myInteraction.myInteractionIcon.sprite = null;
+    }
+
+    public void CheckActionsLeftAmout()
+    {
+        if (GameManager.Instance.currentCampTurn == myFM.myCamp)
+        {
+            if (myFM.myCamp == GameCamps.Fidele)
+            {
+                if (myInteraction.alreadyInteractedList.Count == myInteraction.myCollideInteractionList.Count && myMovement.hasMoved)
+                {
+                    myFM.isAllActionsDone = true;
+                    GameManager.Instance.IsAllCampActionsDone();
+                }
+            }
+            else
+            {
+                if (myInteraction.alreadyInteractedList.Count == myInteraction.myCollideInteractionList.Count && myMovementEnemy.hasMoved)
+                {
+                    myFM.isAllActionsDone = true;
+                    GameManager.Instance.IsAllCampActionsDone();
+                }
+            }
+        }
     }
 }
