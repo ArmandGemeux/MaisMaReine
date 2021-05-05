@@ -35,7 +35,10 @@ public class MouseEventsEnnemi : MonoBehaviour
 
     public void OnMouseEnter()
     {
-        myAnimManager.DisplayInteraction();
+        /*if (GameManager.Instance.isGamePaused == false)
+        {
+            myAnimManager.DisplayInteraction();
+        }*/
     }
 
     public void OnMouseUp()
@@ -45,7 +48,7 @@ public class MouseEventsEnnemi : MonoBehaviour
 
     public void OnMouseOver()
     {
-        if (GameManager.Instance.isGamePaused == false)
+        /*if (GameManager.Instance.isGamePaused == false)
         {
             #region InformationDisplaying
 
@@ -63,7 +66,7 @@ public class MouseEventsEnnemi : MonoBehaviour
             }
 
             #endregion
-        }
+        }*/
         /*if (myInteraction.canInteract == true)
         {
             myAnimManager.DisplayInteractionIcon();
@@ -72,7 +75,7 @@ public class MouseEventsEnnemi : MonoBehaviour
 
     public void OnMouseExit()
     {
-        if (GameManager.Instance.isGamePaused == false)
+        /*if (GameManager.Instance.isGamePaused == false)
         {
             #region InformationHiding
 
@@ -89,7 +92,7 @@ public class MouseEventsEnnemi : MonoBehaviour
                 myAnimManager.HideStats();
             }
             #endregion
-        }
+        }*/
         /*if (myInteraction.canInteract == true)
         {
             myAnimManager.HideInteractionIcon();

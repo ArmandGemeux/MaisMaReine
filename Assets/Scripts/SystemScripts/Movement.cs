@@ -19,6 +19,7 @@ public class Movement : MonoBehaviour
     private GameObject myMoveZone;
     private Collider2D myInteractionZoneCollider;
     private AnimationManager myAnimationManager;
+    private Interaction myInteraction;
 
     private DragCamera2D myCam;
 
@@ -26,6 +27,7 @@ public class Movement : MonoBehaviour
     void Start()
     {
         myFM = GetComponentInParent<FideleManager>();
+        myInteraction = myFM.GetComponentInChildren<Interaction>();
 
         myCam = GameObject.Find("MovingCamera_CM").GetComponent<DragCamera2D>();
         myCam.followTarget = null;
@@ -76,6 +78,12 @@ public class Movement : MonoBehaviour
                 transform.parent.position = transform.position;
                 transform.localPosition = Vector3.zero;
                 hasMoved = true;
+
+                for (int i = 0; i < myInteraction.myCollideInteractionList.Count; i++)
+                {
+                    QuestManager.Instance.OnUnitReached(myInteraction.myCollideInteractionList[i].GetComponent<Interaction>());
+                }
+
             }
             else
             {
