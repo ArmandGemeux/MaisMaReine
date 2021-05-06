@@ -297,7 +297,7 @@ public class QuestManager : MonoBehaviour
                 }
                 if (mapQuests[qIdx].isLauchingDialogue)
                 {
-                    DialogueManager.Instance.OpenDialogueWindow(mapQuests[qIdx].dialogueToLaunch);
+                    DialogueManager.Instance.OpenDialogueWindow(mapQuests[qIdx].dialogueToLaunch, null);
                 }
 
                 foreach (FideleManager ofm in mapQuests[qIdx].specificUnitsToKill)

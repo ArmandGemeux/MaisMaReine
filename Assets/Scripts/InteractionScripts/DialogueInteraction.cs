@@ -6,8 +6,6 @@ public class DialogueInteraction : MonoBehaviour
 {
     public Dialogue myDialogue;
 
-    public InteractionType nextInteractionType;
-
     private bool hasTalked;
 
     // Start is called before the first frame update
@@ -28,9 +26,8 @@ public class DialogueInteraction : MonoBehaviour
     {
         if (hasTalked == false)
         {
-            DialogueManager.Instance.OpenDialogueWindow(myDialogue);
+            DialogueManager.Instance.OpenDialogueWindow(myDialogue, thisFM);
             QuestManager.Instance.OnTalkedUnit(thisFM);
-            GetComponent<Interaction>().interactionType = nextInteractionType;
         }
         else
         {

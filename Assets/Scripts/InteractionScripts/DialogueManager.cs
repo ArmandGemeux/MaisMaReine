@@ -17,6 +17,7 @@ public class DialogueManager : MonoBehaviour
     private Dialogue currentDialogue;
 
     private Animator myAnim;
+    private FideleManager talkingFM;
 
     private Queue<string> lines;
 
@@ -44,7 +45,7 @@ public class DialogueManager : MonoBehaviour
 
         if (isStartDialogueExisting)
         {
-            OpenDialogueWindow(dialogueDebutTerritoire);
+            OpenDialogueWindow(dialogueDebutTerritoire, null);
         }
     }
 
@@ -54,8 +55,13 @@ public class DialogueManager : MonoBehaviour
         
     }
 
-    public void OpenDialogueWindow(Dialogue dialogue)
+    public void OpenDialogueWindow(Dialogue dialogue, FideleManager talkedFM)
     {
+        if (talkedFM != null)
+        {
+            talkingFM = talkedFM;
+        }
+
         GameManager.Instance.isGamePaused = true;
         myAnim.SetBool("isOpen", true);
 
@@ -126,6 +132,15 @@ public class DialogueManager : MonoBehaviour
             }
         }
 
+        if (talkingFM != null)
+        {
+            if (currentDialogue.nextInteractionType != InteractionType.Aucun)
+            {
+                talkingFM.GetComponentInChildren<Interaction>().interactionType = currentDialogue.nextInteractionType;
+            }
+        }
+
+        talkingFM = null;
         currentDialogue = null;
     }
 }

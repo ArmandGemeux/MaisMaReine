@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum InteractionType { Dialogue, Recrutement, Combat}
+public enum InteractionType {Aucun ,Dialogue, Recrutement, Combat}
 
 public class Interaction : MonoBehaviour
 {

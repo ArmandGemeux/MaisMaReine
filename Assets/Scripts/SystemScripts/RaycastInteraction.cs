@@ -61,7 +61,7 @@ public class RaycastInteraction : MonoBehaviour
                 interactionLauncherInteraction = hit.collider.GetComponentInChildren<Interaction>();
                 interactionLauncherFM = hit.collider.GetComponent<FideleManager>();
 
-                interactionLauncherAnim.ToggleLauncherOutline();
+                interactionLauncherAnim.SetOutlineSelected();
 
                 interactionLauncherAnim.isSelected = true;
                 
@@ -87,7 +87,7 @@ public class RaycastInteraction : MonoBehaviour
                 interactionLauncherAnim = hit.collider.GetComponent<AnimationManager>();
                 interactionLauncherInteraction = hit.collider.GetComponentInChildren<Interaction>();
 
-                interactionLauncherAnim.ToggleLauncherOutline();
+                interactionLauncherAnim.SetOutlineSelected();
 
                 interactionLauncherAnim.isSelected = true;
 
@@ -112,6 +112,7 @@ public class RaycastInteraction : MonoBehaviour
             interactionReceiverAnim = hit.collider.GetComponent<AnimationManager>();
             interactionReceiverInteraction = hit.collider.GetComponentInChildren<Interaction>();
             FideleManager interactionReceiverFM = hit.collider.GetComponentInParent<FideleManager>();
+            
 
             switch (interactionReceiverInteraction.interactionType) //Quel type d'interaction porte l'interactionReceiver ?
             {
@@ -121,6 +122,7 @@ public class RaycastInteraction : MonoBehaviour
                     //Debug.Log("Dialogue");
                     break;
                 case InteractionType.Recrutement:
+                    interactionLauncherInteraction.alreadyInteractedList.Add(interactionReceiverInteraction);
                     interactionReceiverInteraction.GetComponent<Recrutement>().LaunchRecruitement(interactionReceiverFM);
                     //Debug.Log("Recrutement");
                     break;
@@ -156,7 +158,7 @@ public class RaycastInteraction : MonoBehaviour
     {
         if (interactionLauncherAnim != null)
         {
-            interactionLauncherAnim.ToggleLauncherOutline();
+            interactionLauncherAnim.SetOutlineDefault();
             interactionLauncherAnim.DesactivateLauncherSelection();
 
             interactionLauncherAnim.isSelected = false;

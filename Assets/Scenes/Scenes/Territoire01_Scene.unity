@@ -632,14 +632,14 @@ MonoBehaviour:
   m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 18
+    OrthographicSize: 13
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.8880126, y: 1}
+    m_SensorSize: {x: 2.0425868, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -952,7 +952,7 @@ PrefabInstance:
     - target: {fileID: 4758114578806579400, guid: a036c676612233e4a9c9560cde0ccd9b,
         type: 3}
       propertyPath: interactionType
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4758114578806579400, guid: a036c676612233e4a9c9560cde0ccd9b,
         type: 3}
@@ -2284,7 +2284,7 @@ PrefabInstance:
     - target: {fileID: 4758114578806579400, guid: a036c676612233e4a9c9560cde0ccd9b,
         type: 3}
       propertyPath: interactionType
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4758114578806579400, guid: a036c676612233e4a9c9560cde0ccd9b,
         type: 3}
@@ -4747,6 +4747,11 @@ PrefabInstance:
       value: "Vous \xEAtes peu nombreux... Allez enr\xF4ler Rojis ! C'est un vaillant
         coeur, il vous aidera pour s\xFBr."
       objectReference: {fileID: 0}
+    - target: {fileID: 4758114577752251489, guid: a036c676612233e4a9c9560cde0ccd9b,
+        type: 3}
+      propertyPath: myDialogue.nextInteractionType
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4758114577887886679, guid: a036c676612233e4a9c9560cde0ccd9b,
         type: 3}
       propertyPath: m_Enabled
@@ -4966,6 +4971,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 68e84c1598127f641b706b816c881779,
         type: 3}
+    - target: {fileID: 4758114578806579400, guid: a036c676612233e4a9c9560cde0ccd9b,
+        type: 3}
+      propertyPath: interactionType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4758114578806579401, guid: a036c676612233e4a9c9560cde0ccd9b,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -5444,7 +5454,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 18
+  orthographic size: 13
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -7051,6 +7061,7 @@ MonoBehaviour:
       seul d\xE9placement par fid\xE8le par tour !\u201D"
     isStartingQuest: 1
     questIndexToStart: 0
+    nextInteractionType: 0
     cameraStartPos: {fileID: 173992197}
     cameraEndPos: {fileID: 788129620}
     unitsToSpawn: []
@@ -8400,6 +8411,11 @@ PrefabInstance:
       propertyPath: myDialogue.questIndexToStart
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 4758114577752251489, guid: a036c676612233e4a9c9560cde0ccd9b,
+        type: 3}
+      propertyPath: myDialogue.nextInteractionType
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4758114577949382674, guid: a036c676612233e4a9c9560cde0ccd9b,
         type: 3}
       propertyPath: maxHp
@@ -8564,7 +8580,7 @@ PrefabInstance:
     - target: {fileID: 4758114578806579400, guid: a036c676612233e4a9c9560cde0ccd9b,
         type: 3}
       propertyPath: interactionType
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4758114578806579400, guid: a036c676612233e4a9c9560cde0ccd9b,
         type: 3}
@@ -9377,7 +9393,7 @@ PrefabInstance:
     - target: {fileID: 4758114578806579400, guid: a036c676612233e4a9c9560cde0ccd9b,
         type: 3}
       propertyPath: interactionType
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4758114578806579400, guid: a036c676612233e4a9c9560cde0ccd9b,
         type: 3}
@@ -9741,7 +9757,7 @@ PrefabInstance:
     - target: {fileID: 4758114578806579400, guid: a036c676612233e4a9c9560cde0ccd9b,
         type: 3}
       propertyPath: interactionType
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4758114578806579400, guid: a036c676612233e4a9c9560cde0ccd9b,
         type: 3}
@@ -16982,8 +16998,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 272.93936, y: -166.57646}
-  m_SizeDelta: {x: 505.87872, y: 133.15292}
+  m_AnchoredPosition: {x: 272.93936, y: -161.92192}
+  m_SizeDelta: {x: 505.87872, y: 123.84385}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1369411811
 MonoBehaviour:
@@ -24455,8 +24471,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 272.93936, y: -449.72937}
-  m_SizeDelta: {x: 505.87872, y: 133.15292}
+  m_AnchoredPosition: {x: 272.93936, y: -435.76578}
+  m_SizeDelta: {x: 505.87872, y: 123.84385}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1580171082
 MonoBehaviour:
@@ -29362,8 +29378,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 272.93936, y: -732.8823}
-  m_SizeDelta: {x: 505.87872, y: 133.15292}
+  m_AnchoredPosition: {x: 272.93936, y: -709.6096}
+  m_SizeDelta: {x: 505.87872, y: 123.84385}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1587261589
 MonoBehaviour:
@@ -30589,6 +30605,11 @@ PrefabInstance:
       value: "Vous \xEAtes peu nombreux... Allez enr\xF4ler Rojis ! C'est un vaillant
         coeur, il vous aidera pour s\xFBr."
       objectReference: {fileID: 0}
+    - target: {fileID: 4758114577752251489, guid: a036c676612233e4a9c9560cde0ccd9b,
+        type: 3}
+      propertyPath: myDialogue.nextInteractionType
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4758114577949382674, guid: a036c676612233e4a9c9560cde0ccd9b,
         type: 3}
       propertyPath: maxAttackRange
@@ -30783,6 +30804,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 68e84c1598127f641b706b816c881779,
         type: 3}
+    - target: {fileID: 4758114578806579400, guid: a036c676612233e4a9c9560cde0ccd9b,
+        type: 3}
+      propertyPath: interactionType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5521634151119764577, guid: a036c676612233e4a9c9560cde0ccd9b,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -31046,6 +31072,7 @@ MonoBehaviour:
         cliquez-droit sur la personne avec laquelle vous voulez interagir.\u201D"
       isStartingQuest: 0
       questIndexToStart: 0
+      nextInteractionType: 0
       cameraStartPos: {fileID: 0}
       cameraEndPos: {fileID: 0}
       unitsToSpawn: []
@@ -31068,6 +31095,7 @@ MonoBehaviour:
       myDialogue: []
       isStartingQuest: 0
       questIndexToStart: 0
+      nextInteractionType: 0
       cameraStartPos: {fileID: 0}
       cameraEndPos: {fileID: 0}
       unitsToSpawn: []
@@ -31099,6 +31127,7 @@ MonoBehaviour:
       - Allons interagir... Je veux dire, nous battre, avec ce bandit !
       isStartingQuest: 1
       questIndexToStart: 3
+      nextInteractionType: 0
       cameraStartPos: {fileID: 0}
       cameraEndPos: {fileID: 339727194}
       unitsToSpawn:
@@ -31127,6 +31156,7 @@ MonoBehaviour:
       myDialogue: []
       isStartingQuest: 0
       questIndexToStart: 0
+      nextInteractionType: 0
       cameraStartPos: {fileID: 0}
       cameraEndPos: {fileID: 0}
       unitsToSpawn: []

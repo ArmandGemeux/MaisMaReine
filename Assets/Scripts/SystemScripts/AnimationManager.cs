@@ -112,9 +112,14 @@ public class AnimationManager : MonoBehaviour
         myAnim.SetBool("isInteractionLauncherSelected", false);
     }
 
-    public void ToggleLauncherOutline()
+    public void SetOutlineSelected()
     {
-        myOutline.enabled = !myOutline.enabled;
+        myFM.fideleSprite.material.SetColor("_Color", Color.white);
+    }
+
+    public void SetOutlineDefault()
+    {
+        myFM.fideleSprite.material.SetColor("_Color", Color.gray);
     }
 
     public void ActivateReceiverSelection()

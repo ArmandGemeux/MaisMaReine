@@ -12,6 +12,8 @@ public class Dialogue
     public bool isStartingQuest;
     public int questIndexToStart;
 
+    public InteractionType nextInteractionType;
+
     public GameObject cameraStartPos;
     public GameObject cameraEndPos;
 
