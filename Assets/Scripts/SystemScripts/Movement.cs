@@ -101,6 +101,8 @@ public class Movement : MonoBehaviour
                 }
             }
 
+            myInteraction.DisplayInteractionFeedbacks();
+
             isMoving = false;
         }
     }

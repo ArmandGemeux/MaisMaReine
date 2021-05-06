@@ -21,10 +21,10 @@ public class AnimationManager : MonoBehaviour
     [HideInInspector]
     public bool isMovementDisplayed = false;
 
-    [HideInInspector]
+    
     public bool isInfoDisplayed = false;
 
-    [HideInInspector]
+    
     public bool haveAnInteraction = false;
     [HideInInspector]
     public bool movementZoneIsTouchingInteraction = false;
@@ -238,6 +238,7 @@ public class AnimationManager : MonoBehaviour
                 if (myInteraction.alreadyInteractedList.Count == myInteraction.myCollideInteractionList.Count && myMovement.hasMoved)
                 {
                     myFM.isAllActionsDone = true;
+                    myFM.fideleSprite.color = new Color(0.5f, 0.5f, 0.5f, 1f);
                     GameManager.Instance.IsAllCampActionsDone();
                 }
             }

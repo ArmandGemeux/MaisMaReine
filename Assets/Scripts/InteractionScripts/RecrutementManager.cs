@@ -130,8 +130,6 @@ public class RecrutementManager : MonoBehaviour
             GameManager.Instance.LowerCharismeValue(myFMToRecruit.charismaCost);
             StartCoroutine(SetCampToFidele());
             myAnim.SetBool("isOpen", false);
-
-            GameManager.Instance.IsAllCampActionsDone();
         }
         else
 	    {
@@ -160,6 +158,9 @@ public class RecrutementManager : MonoBehaviour
     {
         QuestManager.Instance.OnRecruitUnit(myFMToRecruit);
 
+        myFMToRecruit.myCamp = GameCamps.Fidele;
+        myFMToRecruit.gameObject.tag = ("Fidele");
+
         MovementEnemy myMovementScript = myFMToRecruit.GetComponentInChildren<MovementEnemy>();
 
         Destroy(myFMToRecruit.GetComponent<MouseEventsEnnemi>());
@@ -170,14 +171,10 @@ public class RecrutementManager : MonoBehaviour
         Destroy(myMovementScript);
         Destroy(myMovementScript.GetComponent<NavMeshAgent>());
 
-        myFMToRecruit.myCamp = GameCamps.Fidele;
-        myFMToRecruit.gameObject.tag = ("Fidele");
         myFMToRecruit.currentHP = myFMToRecruit.maxHp;
 
         myFMToRecruit.GetComponent<AnimationManager>().UpdateMyReferences();
 
-        myFMToRecruit.GetComponent<AnimationManager>().DesactivateReceiverSelection();
-        myFMToRecruit.GetComponent<AnimationManager>().DesactivateLauncherSelection();
 
         // ICI jouer VFX de changement d'apparence du personnage
         yield return new WaitForSeconds(0.1f);
@@ -196,6 +193,44 @@ public class RecrutementManager : MonoBehaviour
         myFMToRecruit.fideleSprite.sprite = recruitedSprite;
 
         myFMToRecruit.transform.SetParent(myFideleParent.transform);
+
+        /*for (int i = 0; i < myFMToRecruit.GetComponentInChildren<Interaction>().myCollideInteractionList.Count; i++)
+        {
+            if (myFMToRecruit.GetComponentInChildren<Interaction>().myCollideInteractionList[i].myFideleManager.myCamp == myFMToRecruit.myCamp)
+            {
+                Debug.Log("On remove des interactions");
+                myFMToRecruit.GetComponentInChildren<Interaction>().RemoveCollindingCharacterFromInteractionList(myFMToRecruit.GetComponentInChildren<Interaction>().myCollideInteractionList[i]);
+                myFMToRecruit.GetComponentInChildren<Interaction>().RemoveCollidingCharacterFromAMList(myFMToRecruit.GetComponentInChildren<Interaction>().myCollideInteractionList[i].GetComponentInParent<AnimationManager>());
+
+                myFMToRecruit.GetComponentInChildren<Interaction>().myCollideInteractionList[i].DisplayInteractionFeedbacks();
+            }
+        }*/
+
+        foreach (AnimationManager cam in myFMToRecruit.GetComponentInChildren<Interaction>().myCollideAnimationManagerList)
+        {
+            cam.GetComponentInChildren<Interaction>().RemoveCollidingCharacterFromAMList(myFMToRecruit.GetComponent<AnimationManager>());
+            cam.GetComponent<AnimationManager>().haveAnInteraction = false;
+
+            cam.HideInteraction();
+            cam.DesactivateReceiverSelection();
+            cam.DesactivateLauncherSelection();
+        }
+
+        foreach (Interaction iam in myFMToRecruit.GetComponentInChildren<Interaction>().myCollideInteractionList)
+        {
+            iam.RemoveCollindingCharacterFromInteractionList(myFMToRecruit.GetComponentInChildren<Interaction>());
+
+            iam.DisplayInteractionFeedbacks();
+        }
+
+        myFMToRecruit.GetComponentInChildren<Interaction>().myCollideAnimationManagerList.Clear();
+        myFMToRecruit.GetComponentInChildren<Interaction>().myCollideInteractionList.Clear();
+
+        myFMToRecruit.GetComponent<AnimationManager>().haveAnInteraction = false;
+
+        myFMToRecruit.GetComponent<AnimationManager>().HideInteraction();
+        myFMToRecruit.GetComponent<AnimationManager>().DesactivateReceiverSelection();
+        myFMToRecruit.GetComponent<AnimationManager>().DesactivateLauncherSelection();
 
         recruitedSprite = null;
 

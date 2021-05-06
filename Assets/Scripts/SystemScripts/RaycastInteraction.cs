@@ -67,7 +67,7 @@ public class RaycastInteraction : MonoBehaviour
                 
                 foreach (Interaction myCollideInteraction in interactionLauncherInteraction.myCollideInteractionList)
                 {
-                    if (!interactionLauncherInteraction.alreadyFightedList.Contains(myCollideInteraction))
+                    if (!interactionLauncherInteraction.alreadyInteractedList.Contains(myCollideInteraction))
                     {
                         myCollideInteraction.canInteract = true;
                         myCollideInteraction.GetComponentInParent<AnimationManager>().ActivateReceiverSelection();
@@ -107,7 +107,7 @@ public class RaycastInteraction : MonoBehaviour
 
         if (hit.collider != null && hit.collider.gameObject.GetComponentInChildren<Interaction>() && hit.collider.gameObject.GetComponentInChildren<Interaction>().canInteract 
             && hit.collider.gameObject.GetComponent<FideleManager>().myCamp != GameCamps.Fidele && interactionLauncherInteraction.myCollideInteractionList.Contains(hit.collider.gameObject.GetComponentInChildren<Interaction>()) 
-            && !interactionLauncherInteraction.alreadyFightedList.Contains(hit.collider.gameObject.GetComponentInChildren<Interaction>()))
+            && !interactionLauncherInteraction.alreadyInteractedList.Contains(hit.collider.gameObject.GetComponentInChildren<Interaction>()))
         {
             interactionReceiverAnim = hit.collider.GetComponent<AnimationManager>();
             interactionReceiverInteraction = hit.collider.GetComponentInChildren<Interaction>();
@@ -127,7 +127,6 @@ public class RaycastInteraction : MonoBehaviour
                     //Debug.Log("Recrutement");
                     break;
                 case InteractionType.Combat:
-                    interactionLauncherInteraction.alreadyFightedList.Add(interactionReceiverInteraction);
                     interactionLauncherInteraction.alreadyInteractedList.Add(interactionReceiverInteraction);
                     interactionReceiverInteraction.GetComponent<Combat>().StartFight(interactionLauncherFM);
                     //Debug.Log("Combat");
@@ -137,6 +136,9 @@ public class RaycastInteraction : MonoBehaviour
             }
 
             interactionLauncherAnim.CheckActionsLeftAmout();
+
+            interactionReceiverInteraction.DisplayInteractionFeedbacks();
+            interactionLauncherInteraction.DisplayInteractionFeedbacks();
 
             //Debug.Log("Interaction");
             ResetReceiverInteraction();
@@ -161,6 +163,8 @@ public class RaycastInteraction : MonoBehaviour
             interactionLauncherAnim.SetOutlineDefault();
             interactionLauncherAnim.DesactivateLauncherSelection();
 
+            interactionLauncherInteraction.DisplayInteractionFeedbacks();
+
             interactionLauncherAnim.isSelected = false;
 
             interactionLauncherAnim = null;
@@ -173,6 +177,8 @@ public class RaycastInteraction : MonoBehaviour
     {
         if (interactionReceiverAnim != null)
         {
+            interactionReceiverInteraction.DisplayInteractionFeedbacks();
+
             interactionReceiverInteraction.canInteract = false;
             interactionReceiverInteraction = null;
             interactionReceiverAnim = null;

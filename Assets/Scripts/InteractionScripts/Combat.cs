@@ -254,7 +254,7 @@ public class Combat : MonoBehaviour
 
             foreach (Interaction dfmci in deadFM.GetComponentInChildren<Interaction>().myCollideInteractionList)
             {
-                dfmci.GetComponentInChildren<Interaction>().RemoveCollindingCharacterFromInteractionList(deadFM.GetComponentInChildren<Interaction>());
+                dfmci.RemoveCollindingCharacterFromInteractionList(deadFM.GetComponentInChildren<Interaction>());
             }
 
             foreach (FideleManager dfmcfm in deadFM.unitsInRange)
@@ -266,7 +266,7 @@ public class Combat : MonoBehaviour
             //winFM.GetComponentInChildren<Interaction>().myCollideInteractionList.Remove(deadFM.GetComponentInChildren<Interaction>());
 
             GameManager.Instance.RemoveAMapUnit(deadFM);
-            deadFM.gameObject.SetActive(false);
+            Destroy(deadFM.gameObject);
         }
         else if (deadFM.myCamp == GameCamps.Bandit && winFM.myCamp == GameCamps.Fidele)
         {

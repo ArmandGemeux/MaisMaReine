@@ -133,17 +133,20 @@ public class GameManager : MonoBehaviour
 
         if (currentCampTurn == GameCamps.Fidele)
         {
+            isGamePaused = false;
             foreach (FideleManager fm in allMapUnits)
             {
                 if (fm.myCamp == GameCamps.Fidele)
                 {
                     fm.GetComponentInChildren<Movement>().hasMoved = false;
+                    fm.fideleSprite.color = new Color(1f, 1f, 1f, 1f);
                 }
             }
         }
 
         if (currentCampTurn == GameCamps.Roi)
         {
+            isGamePaused = true;
             foreach (FideleManager fm in allMapUnits)
             {
                 if (fm.myCamp == GameCamps.Roi)
@@ -156,6 +159,7 @@ public class GameManager : MonoBehaviour
 
         if (currentCampTurn == GameCamps.Bandit)
         {
+            isGamePaused = true;
             foreach (FideleManager fm in allMapUnits)
             {
                 if (fm.myCamp == GameCamps.Bandit)
@@ -171,6 +175,7 @@ public class GameManager : MonoBehaviour
 
         if (currentCampTurn == GameCamps.Calamite)
         {
+            isGamePaused = true;
             foreach (FideleManager fm in allMapUnits)
             {
                 if (fm.myCamp == GameCamps.Calamite)
@@ -221,7 +226,6 @@ public class GameManager : MonoBehaviour
     {
         foreach (FideleManager fm in allMapUnits)
         {
-            fm.GetComponentInChildren<Interaction>().alreadyFightedList.Clear();
             fm.GetComponentInChildren<Interaction>().alreadyInteractedList.Clear();
         }
     }
