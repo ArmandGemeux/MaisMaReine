@@ -15,8 +15,6 @@ public class GameManager : MonoBehaviour
     public float timeValue;
     public bool canMoveEnemy = true; //Public pour playtest
 
-    public bool switchingTurn = false;
-
     private List<FideleManager> allMapUnits = new List<FideleManager>();
 
     public int charismeAmount;
@@ -117,10 +115,8 @@ public class GameManager : MonoBehaviour
     public void SwitchTurn()
     {
         myCampTurningFeedback.gameObject.SetActive(false);
-
-        switchingTurn = true;
+        
         currentCampTurn += 1;
-        switchingTurn = false;
 
         var lastTurn = campsInTerritoire.Last();
 
@@ -130,6 +126,7 @@ public class GameManager : MonoBehaviour
         }
 
         ResetTurn();
+        TurnFeedbackManager.Instance.SwitchTurnFeedback(currentCampTurn);
 
         if (currentCampTurn == GameCamps.Fidele)
         {
@@ -265,4 +262,6 @@ public class GameManager : MonoBehaviour
             }
         }
     }    
+
+    
 }
