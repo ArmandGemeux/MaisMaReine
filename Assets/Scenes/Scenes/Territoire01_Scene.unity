@@ -690,7 +690,7 @@ MonoBehaviour:
   minZoom: 0.5
   zoomStepSize: 5.69
   zoomToMouse: 0
-  followTarget: {fileID: 1572460883}
+  followTarget: {fileID: 0}
   lerpSpeed: 0.105
   offset: {x: 0, y: 0, z: -10}
   clampCamera: 1
@@ -2467,6 +2467,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mySwitchTurnText: {fileID: 1874230117}
+  myQuestText: {fileID: 440453067}
   bandeauBG: {fileID: 1010527742}
   boutonBG: {fileID: 1880093062}
   boutonIcon: {fileID: 1093896686}
@@ -2481,7 +2482,7 @@ MonoBehaviour:
   bandeauBGBandit: {fileID: 21300000, guid: b32a16729adba0943b302ef8bfc9018d, type: 3}
   boutonBGCalamite: {fileID: 21300000, guid: a40aee446a1c2b849bfc23ada0ec646c, type: 3}
   boutonIconCalamite: {fileID: 21300000, guid: 006d46b200aa6ce468186201eff4583c, type: 3}
-  bandeauBGCalamite: {fileID: 21300000, guid: 432f08eec3440cf47afeeadbbc905d3b, type: 3}
+  bandeauBGCalamite: {fileID: 21300000, guid: 5bbf9c65e1e2ec94eb5e47e0306d4d05, type: 3}
 --- !u!222 &318371253
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -24370,12 +24371,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1572215371}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1572460883 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4758114577949382680, guid: a036c676612233e4a9c9560cde0ccd9b,
-    type: 3}
-  m_PrefabInstance: {fileID: 292874753}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1578070998
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30644,7 +30639,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 292874753}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1572460883}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5ccc71daf61d7944bb4ced1a40b95519, type: 3}
