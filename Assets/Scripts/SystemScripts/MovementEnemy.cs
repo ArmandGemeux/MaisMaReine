@@ -74,7 +74,6 @@ public class MovementEnemy : MonoBehaviour
         {
             myFideleManager.UpdateAttackableUnitInRange();
             targetInteraction.GetComponent<Combat>().StartFight(myFideleManager);
-            Debug.Break();
             
             StopMoving();
         }

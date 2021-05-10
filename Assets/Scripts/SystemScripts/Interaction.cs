@@ -83,8 +83,8 @@ public class Interaction : MonoBehaviour
                 if (myCollideAnimationManager.GetComponent<FideleManager>().myCamp != GameCamps.Fidele && myFideleManager.myCamp == GameCamps.Fidele)
                 {
                     myCollideAnimationManager.haveAnInteraction = true;
-                    myCollideAnimationManager.DisplayInteraction();
-                    myAnimationManager.DisplayInteraction();
+                    //myCollideAnimationManager.DisplayInteraction();
+                    //myAnimationManager.DisplayInteraction();
 
                     if (!alreadyInteractedList.Contains(myCollideAnimationManager.GetComponentInChildren<Interaction>()))
                     {

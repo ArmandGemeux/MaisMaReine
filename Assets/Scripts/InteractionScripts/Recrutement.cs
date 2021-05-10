@@ -8,7 +8,7 @@ public class Recrutement : MonoBehaviour
     private FideleManager myFM;
     private MovementEnemy myMovementEnemy;
 
-    public Sprite myRecruitedSprite;
+    public List<Sprite> myRecruitedSprite;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +27,7 @@ public class Recrutement : MonoBehaviour
     {
         GameManager.Instance.isGamePaused = true;
 
-        RecrutementManager.Instance.OpenRecruitementWindow(fmToRecruit, myRecruitedSprite);
+        int spriteIndex = Random.Range(0, myRecruitedSprite.Count);
+        RecrutementManager.Instance.OpenRecruitementWindow(fmToRecruit, myRecruitedSprite[spriteIndex]);
     }
 }

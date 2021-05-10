@@ -41,6 +41,10 @@ public class MouseEventsFidele : MonoBehaviour
             if (myMovement.isMoving == false)
             {
                 myAnimManager.DisplayInteraction();
+                foreach (AnimationManager am in myInteraction.myCollideAnimationManagerList)
+                {
+                    am.DisplayInteraction();
+                }
             }
         }
     }
@@ -101,7 +105,7 @@ public class MouseEventsFidele : MonoBehaviour
         {
             #region InformationHiding
 
-            if (myAnimManager.isInfoDisplayed && myMovement.isMoving == false)
+            /*if (myAnimManager.isInfoDisplayed && myMovement.isMoving == false)
             {
                 myAnimManager.HideMovement();
                 myAnimManager.HideStats();
@@ -112,6 +116,15 @@ public class MouseEventsFidele : MonoBehaviour
             {
                 myAnimManager.HideInteraction();
                 myAnimManager.HideStats();
+            }*/
+
+            if (myMovement.isMoving == false)
+            {
+                myAnimManager.HideInteraction();
+                foreach (AnimationManager am in myInteraction.myCollideAnimationManagerList)
+                {
+                    am.HideInteraction();
+                }
             }
 
             #endregion

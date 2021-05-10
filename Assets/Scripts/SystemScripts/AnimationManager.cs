@@ -180,19 +180,19 @@ public class AnimationManager : MonoBehaviour
 
     public void DisplayInteraction()
     {
+        myAnim.SetBool("ActivateInteractionBool", true);
+        isInteractionDisplayed = true;
         if (isInteractionDisplayed == false)
         {
-            myAnim.SetBool("ActivateInteractionBool", true);
-            isInteractionDisplayed = true;
         }
     }
 
     public void HideInteraction()
     {
+        myAnim.SetBool("ActivateInteractionBool", false);
+        isInteractionDisplayed = false;
         if (isInteractionDisplayed && haveAnInteraction == false)
         {
-            myAnim.SetBool("ActivateInteractionBool", false);
-            isInteractionDisplayed = false;
         }
     }
 
