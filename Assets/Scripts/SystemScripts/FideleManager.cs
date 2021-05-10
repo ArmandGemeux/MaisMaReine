@@ -38,7 +38,7 @@ public class FideleManager : MonoBehaviour
     public SpriteRenderer fideleSprite;
     public SpriteRenderer questIcon;
 
-    [HideInInspector]
+    //[HideInInspector]
     public FideleManager myTarget;
     [HideInInspector]
     public bool isAllActionsDone = false;
@@ -117,29 +117,29 @@ public class FideleManager : MonoBehaviour
         myCamp = GameCamps.Converti;
     }
 
-    public void DetermineMyTarget()
+    public Transform DetermineMyTarget()
     {
         if (unitsInRange.Count > 0)
         {
-            attackableUnitsInRange = AttackableUnitsInRangeAmount();
+            UpdateAttackableUnitInRange();
             if (attackableUnitsInRange.Count == 1)
             {
                 myTarget = attackableUnitsInRange[0];
                 Debug.Log(myTarget.name + " ciblée !");
-                return;
+                return myTarget.transform;
             }
             else if (attackableUnitsInRange.Count > 1)
             {
                 myTarget = GetInRangeUnitWithSmallestHp();
                 Debug.Log(myTarget.name + " ciblée le plus faible !");
+                return myTarget.transform;
             }
             else if (attackableUnitsInRange.Count == 0)
             {
                 attackableUnitsNotInRange = AttackableUnitsNotInRangeAmount();
                 myTarget = GetClosestUnitNotInRange();
                 Debug.Log(myTarget.name + " ciblée hors range !");
-                Debug.Log("J'ai trouvé quelqu'un en dehors de la range ! Chutrofor !");
-                return;
+                return myTarget.transform;
             }
         }
         else if (unitsInRange.Count == 0)
@@ -148,8 +148,10 @@ public class FideleManager : MonoBehaviour
             myTarget = GetClosestUnitNotInRange();
             Debug.Log(myTarget.name + " ciblée hors range !");
             Debug.Log("J'ai trouvé quelqu'un en dehors de la range ! Chutrofor !");
-            return;
+            return myTarget.transform;
         }
+
+        return null;
 
         /*switch (myCamp)
         {
@@ -168,7 +170,16 @@ public class FideleManager : MonoBehaviour
 
     public void AddUnitInRange (FideleManager uir)
     {
+        if (attackableUnitsNotInRange.Contains(uir))
+        {
+            attackableUnitsNotInRange.Remove(uir);
+        }
         unitsInRange.Add(uir);
+    }
+
+    public void UpdateAttackableUnitInRange ()
+    {
+        attackableUnitsInRange = AttackableUnitsInRangeAmount();
     }
 
     public void RemoveUnitInRange(Collider2D cir)
@@ -178,6 +189,10 @@ public class FideleManager : MonoBehaviour
         {
             if (unitsInRange.Contains(tmpFM))
             {
+                if (attackableUnitsInRange.Contains(tmpFM))
+                {
+                    attackableUnitsInRange.Remove(tmpFM);
+                }
                 unitsInRange.Remove(tmpFM);
                 tmpFM.GetComponent<AnimationManager>().HideInteraction();
                 if (tmpFM == myTarget)
@@ -188,7 +203,25 @@ public class FideleManager : MonoBehaviour
         }
     }
 
-    private List<FideleManager> AttackableUnitsInRangeAmount()
+    public void KillUnit (FideleManager deadUnit)
+    {
+        if (attackableUnitsNotInRange.Contains(deadUnit))
+        {
+            attackableUnitsNotInRange.Remove(deadUnit);
+        }
+
+        if (attackableUnitsInRange.Contains(deadUnit))
+        {
+            attackableUnitsInRange.Remove(deadUnit);
+        }
+
+        if (unitsInRange.Contains(deadUnit))
+        {
+            unitsInRange.Remove(deadUnit);
+        }
+    }
+
+    public List<FideleManager> AttackableUnitsInRangeAmount()
     {
         List<FideleManager> tmpauir = new List<FideleManager>();
         foreach (FideleManager fm in unitsInRange)

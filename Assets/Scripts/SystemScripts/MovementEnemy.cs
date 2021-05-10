@@ -9,9 +9,6 @@ public class MovementEnemy : MonoBehaviour
     private AnimationManager myAnimManager;
     public Collider2D myMoveZoneCollider;
 
-    [SerializeField]
-    private Transform myTarget;
-
     private NavMeshAgent agent;
 
     private Interaction targetInteraction;
@@ -59,41 +56,33 @@ public class MovementEnemy : MonoBehaviour
 
     public void MoveToTarget()
     {
-        myFideleManager.DetermineMyTarget();
-        myTarget = myFideleManager.myTarget.transform;
+        Transform myTarget = null;
+        myTarget = myFideleManager.DetermineMyTarget();
 
         targetInteraction = myTarget.GetComponentInChildren<Interaction>();
         targetInteractionZone = targetInteraction.GetComponent<PolygonCollider2D>();
 
-        if (myFideleManager.myCamp == GameManager.Instance.currentCampTurn)
+        if (!myFideleManager.GetComponentInChildren<Interaction>().myCollideInteractionList.Contains(targetInteraction))
         {
-            if (hasMoved == false && targetLanded == false)
-            {
-                DragCamera2D.Instance.FollowTargetCamera(myFideleManager.gameObject);
-                isMoving = true;
-                agent.isStopped = false;
+            DragCamera2D.Instance.FollowTargetCamera(myFideleManager.gameObject);
+            isMoving = true;
+            agent.isStopped = false;
 
-                agent.SetDestination(myTarget.position);
-            }
-            else if (hasMoved == false && targetLanded == true)
-            {
-                targetInteraction.GetComponent<Combat>().StartFight(myFideleManager);
-                myTarget = null;
-                myFideleManager.myTarget = null;
-            }
-            else if (hasMoved == true && targetLanded == true)
-            {
-                myTarget = null;
-                myFideleManager.myTarget = null;
-                return;
-            }
+            agent.SetDestination(myTarget.position);
+        }
+        else if(myFideleManager.GetComponentInChildren<Interaction>().myCollideInteractionList.Contains(targetInteraction))
+        {
+            myFideleManager.UpdateAttackableUnitInRange();
+            targetInteraction.GetComponent<Combat>().StartFight(myFideleManager);
+            Debug.Break();
+            
+            StopMoving();
         }
     }
 
     public void StopMoving()
     {
         DragCamera2D.Instance.UnfollowTargetCamera();
-        myTarget = null;
         myFideleManager.myTarget = null;
 
         agent.isStopped = true;
@@ -110,10 +99,9 @@ public class MovementEnemy : MonoBehaviour
     {
         if (collision == targetInteractionZone && myFideleManager.myCamp == GameManager.Instance.currentCampTurn)
         {
-            StopMoving();
+            myFideleManager.UpdateAttackableUnitInRange();
             targetInteraction.GetComponent<Combat>().StartFight(myFideleManager);
-            targetLanded = true;
-            //Debug.Log("Je suis arrivé");
+            StopMoving();
         }
     }
 
@@ -122,12 +110,10 @@ public class MovementEnemy : MonoBehaviour
         if (collision == myMoveZoneCollider)
         {
             StopMoving();
-            //agent.SetDestination(gameObject.transform.position);
-            //Debug.Log("Je suis sorti de ma zone");
         }
         if (collision == targetInteractionZone)
         {
-            targetLanded = false;
+            StopMoving();
         }
     }
 }

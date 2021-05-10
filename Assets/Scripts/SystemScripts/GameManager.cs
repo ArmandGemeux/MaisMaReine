@@ -69,7 +69,6 @@ public class GameManager : MonoBehaviour
             }
         }
         myCampTurningFeedback.gameObject.SetActive(true);
-        Debug.Log("Toutes les actions ont été effectuées");
 
         if (currentCampTurn != GameCamps.Fidele)
         {
@@ -115,7 +114,15 @@ public class GameManager : MonoBehaviour
     public void SwitchTurn()
     {
         myCampTurningFeedback.gameObject.SetActive(false);
-        
+
+        for (int i = 0; i < allMapUnits.Count; i++)
+        {
+            if (allMapUnits[i].isAllActionsDone == true)
+            {
+                allMapUnits[i].isAllActionsDone = false;
+            }
+        }
+
         currentCampTurn += 1;
 
         var lastTurn = campsInTerritoire.Last();
@@ -144,14 +151,16 @@ public class GameManager : MonoBehaviour
         if (currentCampTurn == GameCamps.Roi)
         {
             isGamePaused = true;
+
             foreach (FideleManager fm in allMapUnits)
             {
                 if (fm.myCamp == GameCamps.Roi)
                 {
                     fm.GetComponentInChildren<MovementEnemy>().hasMoved = false;
-                    StartCoroutine(MoveRoi());
                 }
             }
+
+            StartCoroutine(MoveRoi());
         }
 
         if (currentCampTurn == GameCamps.Bandit)
@@ -164,10 +173,10 @@ public class GameManager : MonoBehaviour
                     if (fm.isAlive)
                     {
                         fm.GetComponentInChildren<MovementEnemy>().hasMoved = false;
-                        StartCoroutine(MoveBandit());
                     }
                 }
             }
+            StartCoroutine(MoveBandit());
         }
 
         if (currentCampTurn == GameCamps.Calamite)
@@ -178,9 +187,9 @@ public class GameManager : MonoBehaviour
                 if (fm.myCamp == GameCamps.Calamite)
                 {
                     fm.GetComponentInChildren<MovementEnemy>().hasMoved = false;
-                    StartCoroutine(MoveCalamite());
                 }
             }
+            StartCoroutine(MoveCalamite());
         }
     }
 

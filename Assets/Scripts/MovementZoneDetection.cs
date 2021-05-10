@@ -30,6 +30,8 @@ public class MovementZoneDetection : MonoBehaviour
                 return;
             }
             myFideleManager.AddUnitInRange(tmpFM);
+            
+            myFideleManager.UpdateAttackableUnitInRange();
         }
     }
 

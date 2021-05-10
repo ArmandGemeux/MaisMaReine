@@ -94,18 +94,18 @@ public class Combat : MonoBehaviour
             }
             else
             {
-                StartCoroutine(Attack());
+                StartCoroutine(Defend());
             }
         }
     }
 
-    public IEnumerator Attack()
+    public IEnumerator Defend()
     {
         if (attaquantFideleManager.isAlive && defenseurFideleManager.isAlive)
         {
             int attackValue = Random.Range(attaquantFideleManager.minAttackRange, attaquantFideleManager.maxAttackRange);
             defenseurFideleManager.currentHP -= attackValue;
-            Debug.Log("L'attaquant inflige" + attackValue + "points de dégâts, laissant son adversaire à " + defenseurFideleManager.currentHP);
+            Debug.Log(attaquantFideleManager.name +  " inflige " + attackValue + " points de dégâts, laissant " + defenseurFideleManager.name + " à " + defenseurFideleManager.currentHP);
 
             // ICI jouer VFX d'attaque simple
             // ICI jouer SFX d'attaque simple
@@ -180,7 +180,7 @@ public class Combat : MonoBehaviour
     {
         defenseurFideleManager.currentHP -= attaquantFideleManager.maxAttackRange*2;
         Debug.Log("OUH ! CRITIQUE !!");
-        Debug.Log("Avec un coup critique, l'attaquant inflige" + attaquantFideleManager.maxAttackRange*2 + "points de dégâts, laissant son adversaire à " + defenseurFideleManager.currentHP);
+        Debug.Log("Avec un coup critique, " + attaquantFideleManager.name + " inflige " + attaquantFideleManager.maxAttackRange*2 + " points de dégâts, laissant " + defenseurFideleManager.name + " à " + defenseurFideleManager.currentHP);
 
 
         // ICI jouer VFX de coup critiique
@@ -266,6 +266,7 @@ public class Combat : MonoBehaviour
             //winFM.GetComponentInChildren<Interaction>().myCollideInteractionList.Remove(deadFM.GetComponentInChildren<Interaction>());
 
             GameManager.Instance.RemoveAMapUnit(deadFM);
+            winFM.KillUnit(deadFM);
             Destroy(deadFM.gameObject);
         }
         else if (deadFM.myCamp == GameCamps.Bandit && winFM.myCamp == GameCamps.Fidele)

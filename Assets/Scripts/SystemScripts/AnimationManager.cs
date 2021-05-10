@@ -198,7 +198,6 @@ public class AnimationManager : MonoBehaviour
 
     public void FillAmountHealth()
     {
-        Debug.Log("Test");
         healthAmountImage.fillAmount = myFM.currentHP*1f / myFM.maxHp*1f;
     }
 
@@ -244,7 +243,7 @@ public class AnimationManager : MonoBehaviour
             }
             else
             {
-                if (myInteraction.alreadyInteractedList.Count == myInteraction.myCollideInteractionList.Count && myMovementEnemy.hasMoved)
+                if (/*myInteraction.alreadyInteractedList.Count == 1 && */myMovementEnemy.hasMoved)
                 {
                     myFM.isAllActionsDone = true;
                     GameManager.Instance.IsAllCampActionsDone();

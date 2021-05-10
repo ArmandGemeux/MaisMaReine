@@ -302,7 +302,10 @@ public class QuestManager : MonoBehaviour
 
                 foreach (FideleManager ofm in mapQuests[qIdx].specificUnitsToKill)
                 {
-                    ofm.questIcon.enabled = false;
+                    if (ofm != null)
+                    {
+                        ofm.questIcon.enabled = false;
+                    }
                 }
                 foreach (FideleManager ofm in mapQuests[qIdx].specificUnitsToRecruit)
                 {
