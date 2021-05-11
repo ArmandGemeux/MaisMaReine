@@ -21,16 +21,13 @@ public class Movement : MonoBehaviour
     private AnimationManager myAnimationManager;
     private Interaction myInteraction;
 
-    private DragCamera2D myCam;
-
     // Start is called before the first frame update
     void Start()
     {
         myFM = GetComponentInParent<FideleManager>();
         myInteraction = myFM.GetComponentInChildren<Interaction>();
 
-        myCam = GameObject.Find("MovingCamera_CM").GetComponent<DragCamera2D>();
-        myCam.followTarget = null;
+        DragCamera2D.Instance.followTarget = null;
 
         myAnimationManager = GetComponentInParent<AnimationManager>();
 

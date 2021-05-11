@@ -137,6 +137,7 @@ public class DialogueManager : MonoBehaviour
             if (currentDialogue.nextInteractionType != InteractionType.Aucun)
             {
                 talkingFM.GetComponentInChildren<Interaction>().interactionType = currentDialogue.nextInteractionType;
+                talkingFM.GetComponentInChildren<Interaction>().AnimationManagerUpdateIcon();
             }
         }
 

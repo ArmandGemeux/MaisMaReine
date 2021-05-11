@@ -72,10 +72,16 @@ public class Combat : MonoBehaviour
         defenseurFideleManager = GetComponentInParent<FideleManager>();
         defenseurAM = GetComponentInParent<AnimationManager>();
 
+        defenseurAM.keepInteractionDisplayed = true;
+        defenseurAM.DisplayInteraction();
+
         DragCamera2D.Instance.FollowTargetCamera(defenseurAM.gameObject);
 
         attaquantFideleManager = atkFM;
         attaquantAM = attaquantFideleManager.GetComponent<AnimationManager>();
+
+        attaquantAM.keepInteractionDisplayed = true;
+        attaquantAM.DisplayInteraction();
 
         dealingDamage = defenseurFideleManager.GetComponentInChildren<ParticleSystem>();
         receiveDamage = GetComponentInChildren<ParticleSystem>();
@@ -265,6 +271,12 @@ public class Combat : MonoBehaviour
             //winFM.GetComponentInChildren<Interaction>().myCollideAnimationManagerList.Remove(deadFM.GetComponent<AnimationManager>());
             //winFM.GetComponentInChildren<Interaction>().myCollideInteractionList.Remove(deadFM.GetComponentInChildren<Interaction>());
 
+            attaquantAM.keepInteractionDisplayed = false;
+            attaquantAM.HideInteraction();
+
+            defenseurAM.keepInteractionDisplayed = false;
+            defenseurAM.HideInteraction();
+
             GameManager.Instance.RemoveAMapUnit(deadFM);
             winFM.KillUnit(deadFM);
             Destroy(deadFM.gameObject);
@@ -272,12 +284,24 @@ public class Combat : MonoBehaviour
         else if (deadFM.myCamp == GameCamps.Bandit && winFM.myCamp == GameCamps.Fidele)
         {
             SwitchInteractionType(deadFM);
+
+            attaquantAM.keepInteractionDisplayed = false;
+            attaquantAM.HideInteraction();
+
+            defenseurAM.keepInteractionDisplayed = false;
+            defenseurAM.HideInteraction();
         }
     }
 
     public void EndFightNoDead()
     {
         Debug.Log("Combat terminé");
+
+        attaquantAM.keepInteractionDisplayed = false;
+        attaquantAM.HideInteraction();
+
+        defenseurAM.keepInteractionDisplayed = false;
+        defenseurAM.HideInteraction();
     }
 
     public void SwitchInteractionType(FideleManager deadFM)
@@ -286,7 +310,9 @@ public class Combat : MonoBehaviour
         // ICI jouer anim du Bandit qui change de camp
         // ICI changer graphisme du bandit qui change de camp
         GetComponent<Interaction>().interactionType = InteractionType.Recrutement;
-        
+        GetComponent<Interaction>().AnimationManagerUpdateIcon();
+
+
         deadFM.isAlive = false;
     }
 }

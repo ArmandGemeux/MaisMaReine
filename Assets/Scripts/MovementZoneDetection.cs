@@ -39,4 +39,17 @@ public class MovementZoneDetection : MonoBehaviour
     {
         myFideleManager.RemoveUnitInRange(collision);
     }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.GetComponent<Interaction>())
+        {
+            FideleManager tmpFM = collision.GetComponentInParent<FideleManager>();
+            if (tmpFM != myFideleManager && !myFideleManager.unitsInRange.Contains(tmpFM))
+            {
+                myFideleManager.AddUnitInRange(tmpFM);
+                myFideleManager.UpdateAttackableUnitInRange();
+            }
+        }
+    }
 }

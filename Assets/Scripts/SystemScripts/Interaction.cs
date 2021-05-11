@@ -90,13 +90,18 @@ public class Interaction : MonoBehaviour
                     {
                         myAnimationManager.isSelectable = true;
                         myAnimationManager.ActivateLauncherSelection();
+                        myCollideAnimationManager.DisplayInteractionIcon();
 
                         myCollideAnimationManager.ActivateReceiverSelection();
-                        myCollideAnimationManager.DisplayInteractionIcon();
                     }
                 }
             }
         }
+    }
+
+    public void AnimationManagerUpdateIcon()
+    {
+        myAnimationManager.UpdateInteractionIcon();
     }
 
     public void RemoveCollidingCharacterFromAMList(AnimationManager aMToRemove)

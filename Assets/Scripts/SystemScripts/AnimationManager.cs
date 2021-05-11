@@ -17,7 +17,7 @@ public class AnimationManager : MonoBehaviour
     [HideInInspector]
     public bool isStatsDisplayed = false;
     [HideInInspector]
-    public bool isInteractionDisplayed = false;
+    public bool keepInteractionDisplayed = false;
     [HideInInspector]
     public bool isMovementDisplayed = false;
 
@@ -181,18 +181,15 @@ public class AnimationManager : MonoBehaviour
     public void DisplayInteraction()
     {
         myAnim.SetBool("ActivateInteractionBool", true);
-        isInteractionDisplayed = true;
-        if (isInteractionDisplayed == false)
-        {
-        }
+        //keepInteractionDisplayed = true;
     }
 
     public void HideInteraction()
     {
-        myAnim.SetBool("ActivateInteractionBool", false);
-        isInteractionDisplayed = false;
-        if (isInteractionDisplayed && haveAnInteraction == false)
+        if (keepInteractionDisplayed == false)
         {
+            myAnim.SetBool("ActivateInteractionBool", false);
+            //keepInteractionDisplayed = false;
         }
     }
 
@@ -204,7 +201,11 @@ public class AnimationManager : MonoBehaviour
     public void DisplayInteractionIcon()
     {
         myInteraction.myInteractionIcon.enabled = true;
+        UpdateInteractionIcon();
+    }
 
+    public void UpdateInteractionIcon()
+    {
         switch (myInteraction.interactionType)
         {
             case InteractionType.Dialogue:
