@@ -146,7 +146,8 @@ public class RaycastInteraction : MonoBehaviour
                     break;
                 case InteractionType.Combat:
                     interactionLauncherInteraction.alreadyInteractedList.Add(interactionReceiverInteraction);
-                    interactionReceiverInteraction.GetComponent<Combat>().StartFight(interactionLauncherFM);
+                    //interactionReceiverInteraction.GetComponent<Combat>().StartFight(interactionLauncherFM);
+                    CombatManager.Instance.OpenCombatWindow(interactionLauncherFM, interactionReceiverFM);
                     //Debug.Log("Combat");
                     break;
                 default:
