@@ -950,7 +950,7 @@ MonoBehaviour:
   isSelectable: 0
   isSelected: 0
   isStatsDisplayed: 0
-  isInteractionDisplayed: 0
+  keepInteractionDisplayed: 0
   isMovementDisplayed: 0
   isInfoDisplayed: 0
   haveAnInteraction: 0
@@ -1410,8 +1410,8 @@ MonoBehaviour:
   hasInteract: 0
   myCollideInteractionList: []
   myCollideAnimationManagerList: []
-  alreadyFightedList: []
   alreadyInteractedList: []
+  myFideleManager: {fileID: 0}
   combatIcon: {fileID: 21300000, guid: 5aa0d71d789c93a468898d8acfcf2a09, type: 3}
   dialogueIcon: {fileID: 21300000, guid: c8e927090ec80f74599f34a1441516d2, type: 3}
   recrutementIcon: {fileID: 21300000, guid: 5639e7536f629884f907d06a418a7da6, type: 3}
@@ -2042,7 +2042,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyAttacksEffect
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8480950293069420721, guid: ce50f8a19712bdf40a52008031135cbf, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: ce50f8a19712bdf40a52008031135cbf, type: 3}
 --- !u!4 &6593709443618772518 stripped
 Transform:

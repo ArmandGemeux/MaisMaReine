@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Combat : MonoBehaviour
 {
@@ -14,11 +15,13 @@ public class Combat : MonoBehaviour
     private Interaction attaquantInteraction;
     private AnimationManager attaquantAM;
 
-    private ParticleSystem dealingDamage;
-    private ParticleSystem receiveDamage;
+    private ParticleSystem defenseurDamageEffect;
+    private ParticleSystem attaquantDamageEffect;
 
     private int isCritical;
     private int isMissed;
+
+    private TextMeshProUGUI myDamageFeedback;
 
     // Start is called before the first frame update
     void Start()
@@ -67,8 +70,11 @@ public class Combat : MonoBehaviour
 
     }
 
-    public void StartFight(FideleManager atkFM)
+    public void StartFight(FideleManager atkFM, TextMeshProUGUI myTMPDamageFeedback)
     {
+        myDamageFeedback = myTMPDamageFeedback;
+        myDamageFeedback.text = "";
+
         defenseurFideleManager = GetComponentInParent<FideleManager>();
         defenseurAM = GetComponentInParent<AnimationManager>();
 
@@ -83,8 +89,13 @@ public class Combat : MonoBehaviour
         attaquantAM.keepInteractionDisplayed = true;
         attaquantAM.DisplayInteraction();
 
-        dealingDamage = defenseurFideleManager.GetComponentInChildren<ParticleSystem>();
-        receiveDamage = GetComponentInChildren<ParticleSystem>();
+        defenseurDamageEffect = defenseurFideleManager.GetComponentInChildren<ParticleSystem>();
+        attaquantDamageEffect = attaquantFideleManager.GetComponentInChildren<ParticleSystem>();
+
+        attaquantFideleManager.isInteracting = true;
+        defenseurFideleManager.isInteracting = true;
+
+        GameManager.Instance.LowerOpacityFeedback();
 
         isCritical = Random.Range(0, 100);
         if (isCritical <= attaquantFideleManager.criticChances)
@@ -115,16 +126,16 @@ public class Combat : MonoBehaviour
 
             // ICI jouer VFX d'attaque simple
             // ICI jouer SFX d'attaque simple
+            myDamageFeedback.text = "-" + attackValue.ToString();
+            attaquantDamageEffect.Play();
 
-            receiveDamage.Play();
-
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(0.4f);
 
             // Ici jouer Anim dégâts reçus sur defenseur
             defenseurAM.ReceiveDamage();
             defenseurAM.FillAmountHealth();
 
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.7f);
 
             DragCamera2D.Instance.UnfollowTargetCamera();
 
@@ -146,15 +157,16 @@ public class Combat : MonoBehaviour
 
             // ICI jouer VFX de contre-attaque simple
             // ICI jouer SFX de contre-attaque simple
-            dealingDamage.Play();
+            myDamageFeedback.text = "-" + counterAttackValue.ToString();
+            defenseurDamageEffect.Play();
 
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(0.4f);
 
             // Ici jouer Anim dégâts reçus sur attaquant
             attaquantAM.ReceiveDamage();
             attaquantAM.FillAmountHealth();
 
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.7f);
 
             DragCamera2D.Instance.UnfollowTargetCamera();
 
@@ -180,6 +192,10 @@ public class Combat : MonoBehaviour
 
             StartCoroutine(Die(defenseurFideleManager, attaquantFideleManager));
         }
+        else
+        {
+            EndFightNoDead();
+        }
     }    
 
     public IEnumerator CriticalHit()
@@ -192,7 +208,8 @@ public class Combat : MonoBehaviour
         // ICI jouer VFX de coup critiique
         // ICI jouer SFX de coup critique
 
-        receiveDamage.Play();
+        myDamageFeedback.text = "-" + (attaquantFideleManager.maxAttackRange * 2).ToString() + (" !!");
+        attaquantDamageEffect.Play();
 
         yield return new WaitForSeconds(0.2f);
 
@@ -217,15 +234,16 @@ public class Combat : MonoBehaviour
         // ICI jouer VFX d'echec critiique
         // ICI jouer SFX d'echec critique
 
-        dealingDamage.Play();
+        myDamageFeedback.text = "-" + defenseurFideleManager.maxCounterAttackRange.ToString() + " !!";
+        defenseurDamageEffect.Play();
 
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.4f);
 
         // ICI jouer Anim dégâts reçus sur attaquant
         attaquantAM.ReceiveDamage();
         attaquantAM.FillAmountHealth();
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.7f);
 
         DragCamera2D.Instance.UnfollowTargetCamera();
 
@@ -235,6 +253,11 @@ public class Combat : MonoBehaviour
     public IEnumerator Die(FideleManager deadFM, FideleManager winFM)
     {
         Debug.Log("On Tue quelqu'un");
+
+        myDamageFeedback.text = "";
+        myDamageFeedback = null;
+        GameManager.Instance.isGamePaused = false;
+
         DragCamera2D.Instance.UnfollowTargetCamera();
 
         QuestManager.Instance.OnKillUnit(deadFM);
@@ -277,12 +300,20 @@ public class Combat : MonoBehaviour
             defenseurAM.keepInteractionDisplayed = false;
             defenseurAM.HideInteraction();
 
+
+            attaquantFideleManager.isInteracting = false;
+            defenseurFideleManager.isInteracting = false;
+            GameManager.Instance.ResetOpacityFeedback();
+
             GameManager.Instance.RemoveAMapUnit(deadFM);
             winFM.KillUnit(deadFM);
             Destroy(deadFM.gameObject);
         }
         else if (deadFM.myCamp == GameCamps.Bandit && winFM.myCamp == GameCamps.Fidele)
         {
+            attaquantFideleManager.isInteracting = false;
+            defenseurFideleManager.isInteracting = false;
+
             SwitchInteractionType(deadFM);
 
             attaquantAM.keepInteractionDisplayed = false;
@@ -296,12 +327,19 @@ public class Combat : MonoBehaviour
     public void EndFightNoDead()
     {
         Debug.Log("Combat terminé");
+        myDamageFeedback.text = "";
+        myDamageFeedback = null;
+
+        attaquantFideleManager.isInteracting = false;
+        defenseurFideleManager.isInteracting = false;
+        GameManager.Instance.ResetOpacityFeedback();
 
         attaquantAM.keepInteractionDisplayed = false;
         attaquantAM.HideInteraction();
 
         defenseurAM.keepInteractionDisplayed = false;
         defenseurAM.HideInteraction();
+        GameManager.Instance.isGamePaused = false;
     }
 
     public void SwitchInteractionType(FideleManager deadFM)

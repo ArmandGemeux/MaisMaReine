@@ -73,7 +73,7 @@ public class MovementEnemy : MonoBehaviour
         else if(myFideleManager.GetComponentInChildren<Interaction>().myCollideInteractionList.Contains(targetInteraction))
         {
             myFideleManager.UpdateAttackableUnitInRange();
-            targetInteraction.GetComponent<Combat>().StartFight(myFideleManager);
+            targetInteraction.GetComponent<Combat>().StartFight(myFideleManager, CombatManager.Instance.renderTextCombat);
             
             StopMoving();
         }
@@ -99,7 +99,7 @@ public class MovementEnemy : MonoBehaviour
         if (collision == targetInteractionZone && myFideleManager.myCamp == GameManager.Instance.currentCampTurn)
         {
             myFideleManager.UpdateAttackableUnitInRange();
-            targetInteraction.GetComponent<Combat>().StartFight(myFideleManager);
+            CombatManager.Instance.EnemyLaunchCombat(myFideleManager, targetInteraction.GetComponentInParent<FideleManager>());
             StopMoving();
         }
     }

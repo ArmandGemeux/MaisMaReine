@@ -238,6 +238,7 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator MoveRoi()
     {
+        //Cette fonction envoie au premier fidele de la liste correspondante au camp et n'ayant pas encore été déplacé l'ordre de se déplacer. Ce fidèle effectue l'action, puis renvoie l'activation de la fonction. Si aucun fidèle ne correspondant au camp est capable de se déplacer, fin.
         for (int i = 0; i < allMapUnits.Count; i++)
         {
             if (allMapUnits[i].myCamp == GameCamps.Roi)
@@ -272,5 +273,25 @@ public class GameManager : MonoBehaviour
         }
     }    
 
-    
+    public void LowerOpacityFeedback()
+    {
+        foreach (FideleManager fmu in allMapUnits)
+        {
+            if (fmu.isInteracting == false)
+            {
+                fmu.fideleSprite.color = new Color(1, 1, 1, 0.3f);
+            }
+        }
+    }
+
+    public void ResetOpacityFeedback()
+    {
+        foreach (FideleManager fmu in allMapUnits)
+        {
+            if (fmu.isInteracting == false)
+            {
+                fmu.fideleSprite.color = new Color(1, 1, 1, 1f);
+            }
+        }
+    }
 }

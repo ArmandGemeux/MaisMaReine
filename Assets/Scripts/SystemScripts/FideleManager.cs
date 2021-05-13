@@ -24,6 +24,8 @@ public class FideleManager : MonoBehaviour
     public int maxCounterAttackRange;
     public int minCounterAttackRange;
 
+    public bool isInteracting;
+
     [Range(0, 100)]
     public int criticChances;
     [Range(0, 100)]

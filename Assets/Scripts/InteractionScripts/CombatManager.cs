@@ -8,6 +8,12 @@ public class CombatManager : MonoBehaviour
 {
     private Animator myAnim;
 
+    public TextMeshProUGUI renderTextCombat;
+
+    [Header("Attaquant")]
+    private FideleManager attaquantFM;
+    private AnimationManager attaquantAM;
+
     public TextMeshProUGUI atkHP;
     public TextMeshProUGUI atkRange;
     public TextMeshProUGUI atkCriticChance;
@@ -16,19 +22,34 @@ public class CombatManager : MonoBehaviour
     public TextMeshProUGUI attaquantName;
     public Image attaquantIcone;
 
+    public Image attaquantFideleSprite;
+
+    [Header("Défenseur")]
+    private FideleManager defenseurFM;
+    private AnimationManager defenseurAM;
+
     public TextMeshProUGUI defHP;
     public TextMeshProUGUI defCounterAttackRange;
 
     public TextMeshProUGUI defenseurName;
     public Image defenseurIcone;
 
-    private FideleManager attaquantFM;
-    private FideleManager defenseurFM;
+    public Image defenseurFideleSprite;
 
     public Sprite reineSprite;
     public Sprite roiSprite;
     public Sprite calamiteSprite;
     public Sprite banditSprite;
+
+    private ParticleSystem myCombatEffect;
+
+    private ParticleSystem defenseurDamageEffect;
+    private ParticleSystem attaquantDamageEffect;
+
+    private int isCritical;
+    private int isMissed;
+
+    private TextMeshProUGUI myDamageFeedback;
 
     #region Singleton
 
@@ -52,6 +73,7 @@ public class CombatManager : MonoBehaviour
     void Start()
     {
         myAnim = GetComponent<Animator>();
+        renderTextCombat.text = "";
     }
 
     // Update is called once per frame
@@ -62,8 +84,14 @@ public class CombatManager : MonoBehaviour
 
     public void OpenCombatWindow(FideleManager atkFM, FideleManager defFM)
     {
+        GameManager.Instance.isGamePaused = true;
+
         attaquantFM = atkFM;
+        attaquantAM = attaquantFM.GetComponent<AnimationManager>();
+
         defenseurFM = defFM;
+        defenseurAM = defenseurFM.GetComponentInParent<AnimationManager>();
+
 
         myAnim.SetBool("OpenCombatWindow", true);
 
@@ -134,21 +162,363 @@ public class CombatManager : MonoBehaviour
         defCounterAttackRange.text = defFM.minCounterAttackRange.ToString() + (" - ") + defFM.maxCounterAttackRange.ToString();
     }
 
-    public void LaunchCombat()
+    public void PlayerLaunchCombat()
     {
-        defenseurFM.GetComponentInChildren<Combat>().StartFight(attaquantFM);
-
         myAnim.SetBool("OpenCombatWindow", false);
+        myAnim.SetBool("OpenCombatBandeau", true);
+
+        renderTextCombat.text = "";
+
+        defenseurAM.keepInteractionDisplayed = true;
+        defenseurAM.DisplayInteraction();
+
+        DragCamera2D.Instance.FollowTargetCamera(defenseurAM.gameObject);
+
+        attaquantAM.keepInteractionDisplayed = true;
+        attaquantAM.DisplayInteraction();
+
+        defenseurDamageEffect = defenseurFM.GetComponentInChildren<ParticleSystem>();
+        attaquantDamageEffect = attaquantFM.GetComponentInChildren<ParticleSystem>();
+
+        attaquantFM.isInteracting = true;
+        defenseurFM.isInteracting = true;
+
+        GameManager.Instance.LowerOpacityFeedback();
+
+        isCritical = Random.Range(0, 100);
+        if (isCritical <= attaquantFM.criticChances)
+        {
+            StartCoroutine(CriticalHit());
+        }
+        else
+        {
+            isMissed = Random.Range(0, 100);
+            if (isMissed <= attaquantFM.missChances)
+            {
+                StartCoroutine(Missed());
+            }
+            else
+            {
+                StartCoroutine(Defend());
+            }
+        }
+    }
+
+    public void EnemyLaunchCombat(FideleManager atkFM, FideleManager defFM)
+    {
+        if (attaquantFM == null && defenseurFM == null)
+        {
+            attaquantFM = atkFM;
+            attaquantAM = attaquantFM.GetComponent<AnimationManager>();
+
+            defenseurFM = defFM;
+            defenseurAM = defenseurFM.GetComponentInParent<AnimationManager>();
+        }
+        myAnim.SetBool("OpenCombatBandeau", true);
+        
+        renderTextCombat.text = "";
+
+        defenseurAM.keepInteractionDisplayed = true;
+        defenseurAM.DisplayInteraction();
+
+        DragCamera2D.Instance.FollowTargetCamera(defenseurAM.gameObject);
+
+        attaquantAM.keepInteractionDisplayed = true;
+        attaquantAM.DisplayInteraction();
+
+        defenseurDamageEffect = defenseurFM.GetComponentInChildren<ParticleSystem>();
+        attaquantDamageEffect = attaquantFM.GetComponentInChildren<ParticleSystem>();
+
+        attaquantFM.isInteracting = true;
+        defenseurFM.isInteracting = true;
+
+        GameManager.Instance.LowerOpacityFeedback();
+
+        isCritical = Random.Range(0, 100);
+        if (isCritical <= attaquantFM.criticChances)
+        {
+            StartCoroutine(CriticalHit());
+        }
+        else
+        {
+            isMissed = Random.Range(0, 100);
+            if (isMissed <= attaquantFM.missChances)
+            {
+                StartCoroutine(Missed());
+            }
+            else
+            {
+                StartCoroutine(Defend());
+            }
+        }
+    }
+
+    public IEnumerator Defend()
+    {
+        if (attaquantFM.isAlive && defenseurFM.isAlive)
+        {
+            int attackValue = Random.Range(attaquantFM.minAttackRange, attaquantFM.maxAttackRange);
+            defenseurFM.currentHP -= attackValue;
+            Debug.Log(attaquantFM.name + " inflige " + attackValue + " points de dégâts, laissant " + defenseurFM.name + " à " + defenseurFM.currentHP);
+
+            // ICI jouer VFX d'attaque simple
+            // ICI jouer SFX d'attaque simple
+            //myDamageFeedback.text = "-" + attackValue.ToString();
+            attaquantDamageEffect.Play();
+
+            yield return new WaitForSeconds(2f);
+
+            // Ici jouer Anim dégâts reçus sur defenseur
+            defenseurAM.ReceiveDamage();
+            defenseurAM.FillAmountHealth();
+
+            yield return new WaitForSeconds(2f);
+
+            DragCamera2D.Instance.UnfollowTargetCamera();
+
+
+            CheckHP();
+            yield return new WaitForSeconds(0.5f);
+
+            if (attaquantFM != null && defenseurFM != null)
+            {
+                if (attaquantFM.isAlive && defenseurFM.isAlive)
+                {
+                    StartCoroutine(CounterAttack());
+                }
+            }
+        }
+    }
+
+    public IEnumerator CounterAttack()
+    {
+        int counterAttackValue = Random.Range(defenseurFM.minCounterAttackRange, defenseurFM.maxCounterAttackRange);
+        attaquantFM.currentHP -= counterAttackValue;
+        Debug.Log("Le défenseur contre-attaque et inflige" + counterAttackValue + "points de dégâts, laissant son adversaire à " + attaquantFM.currentHP);
+
+
+        // ICI jouer VFX de contre-attaque simple
+        // ICI jouer SFX de contre-attaque simple
+        //myDamageFeedback.text = "-" + counterAttackValue.ToString();
+        defenseurDamageEffect.Play();
+
+        yield return new WaitForSeconds(2f);
+
+        // Ici jouer Anim dégâts reçus sur attaquant
+        attaquantAM.ReceiveDamage();
+        attaquantAM.FillAmountHealth();
+
+        yield return new WaitForSeconds(2f);
+
+        DragCamera2D.Instance.UnfollowTargetCamera();
+
+
+        CheckHP();
+        EndFightNoDead();
+    }
+
+    public void CheckHP()
+    {
+        if (attaquantFM.currentHP <= 0)
+        {
+            attaquantFM.isAlive = false;
+            Debug.Log("L'attaquant est vaincu !");
+
+            StartCoroutine(Die(attaquantFM, defenseurFM));
+        }
+        else if (defenseurFM.currentHP <= 0)
+        {
+            defenseurFM.isAlive = false;
+            Debug.Log("Le défenseur est vaincu !");
+
+            StartCoroutine(Die(defenseurFM, attaquantFM));
+        }
+        else
+        {
+            EndFightNoDead();
+        }
+    }
+
+    public IEnumerator CriticalHit()
+    {
+        defenseurFM.currentHP -= attaquantFM.maxAttackRange * 2;
+        Debug.Log("OUH ! CRITIQUE !!");
+        Debug.Log("Avec un coup critique, " + attaquantFM.name + " inflige " + attaquantFM.maxAttackRange * 2 + " points de dégâts, laissant " + defenseurFM.name + " à " + defenseurFM.currentHP);
+
+
+        // ICI jouer VFX de coup critiique
+        // ICI jouer SFX de coup critique
+
+        //myDamageFeedback.text = "-" + (attaquantFM.maxAttackRange * 2).ToString() + (" !!");
+        attaquantDamageEffect.Play();
+
+        yield return new WaitForSeconds(2f);
+
+        // ICI jouer Anim dégâts reçus sur defenseur
+        defenseurAM.ReceiveDamage();
+        defenseurAM.FillAmountHealth();
+
+        yield return new WaitForSeconds(2f);
+
+        DragCamera2D.Instance.UnfollowTargetCamera();
+
+        CheckHP();
+    }
+
+    public IEnumerator Missed()
+    {
+        attaquantFM.currentHP -= defenseurFM.maxCounterAttackRange;
+        Debug.Log("Loupé !! Aie aie aie !!");
+        Debug.Log("Avec un l'échec critique de l'attaquant, le défenseur contre attaque et inflige " + defenseurFM.maxCounterAttackRange + "points de dégâts, laissant son adversaire à " + attaquantFM.currentHP);
+
+
+        // ICI jouer VFX d'echec critiique
+        // ICI jouer SFX d'echec critique
+
+        //myDamageFeedback.text = "-" + defenseurFM.maxCounterAttackRange.ToString() + " !!";
+        defenseurDamageEffect.Play();
+
+        yield return new WaitForSeconds(2f);
+
+        // ICI jouer Anim dégâts reçus sur attaquant
+        attaquantAM.ReceiveDamage();
+        attaquantAM.FillAmountHealth();
+
+        yield return new WaitForSeconds(2f);
+
+        DragCamera2D.Instance.UnfollowTargetCamera();
+
+        CheckHP();
+    }
+
+    public IEnumerator Die(FideleManager deadFM, FideleManager winFM)
+    {
+        //Debug.Log("On Tue quelqu'un");
+        myAnim.SetBool("OpenCombatBandeau", false);
+
+        //myDamageFeedback.text = "";
+        //myDamageFeedback = null;
+        GameManager.Instance.isGamePaused = false;
+
+        DragCamera2D.Instance.UnfollowTargetCamera();
+
+        QuestManager.Instance.OnKillUnit(deadFM);
+
+        if (deadFM.myCamp != GameCamps.Bandit)
+        {
+            deadFM.GetComponent<AnimationManager>().Dying();
+            // ICI jouer Anim de mort
+            // ICI jouer SFX de mort
+
+            yield return new WaitForSeconds(1f);
+
+
+            if (deadFM.myCamp == GameCamps.Fidele)
+            {
+                GameManager.Instance.AddCharismeValue(-5);
+            }
+
+            foreach (AnimationManager dfmcam in deadFM.GetComponentInChildren<Interaction>().myCollideAnimationManagerList)
+            {
+                dfmcam.GetComponentInChildren<Interaction>().RemoveCollidingCharacterFromAMList(deadFM.GetComponent<AnimationManager>());
+            }
+
+            foreach (Interaction dfmci in deadFM.GetComponentInChildren<Interaction>().myCollideInteractionList)
+            {
+                dfmci.RemoveCollindingCharacterFromInteractionList(deadFM.GetComponentInChildren<Interaction>());
+            }
+
+            foreach (FideleManager dfmcfm in deadFM.unitsInRange)
+            {
+                dfmcfm.unitsInRange.Remove(deadFM);
+            }
+
+            //winFM.GetComponentInChildren<Interaction>().myCollideAnimationManagerList.Remove(deadFM.GetComponent<AnimationManager>());
+            //winFM.GetComponentInChildren<Interaction>().myCollideInteractionList.Remove(deadFM.GetComponentInChildren<Interaction>());
+
+            attaquantAM.keepInteractionDisplayed = false;
+            attaquantAM.HideInteraction();
+
+            defenseurAM.keepInteractionDisplayed = false;
+            defenseurAM.HideInteraction();
+
+
+            attaquantFM.isInteracting = false;
+            defenseurFM.isInteracting = false;
+            GameManager.Instance.ResetOpacityFeedback();
+
+            GameManager.Instance.RemoveAMapUnit(deadFM);
+            winFM.KillUnit(deadFM);
+            Destroy(deadFM.gameObject);
+        }
+        else if (deadFM.myCamp == GameCamps.Bandit && winFM.myCamp == GameCamps.Fidele)
+        {
+            attaquantFM.isInteracting = false;
+            defenseurFM.isInteracting = false;
+
+            SwitchInteractionType(deadFM);
+
+            attaquantAM.keepInteractionDisplayed = false;
+            attaquantAM.HideInteraction();
+
+            defenseurAM.keepInteractionDisplayed = false;
+            defenseurAM.HideInteraction();
+        }
 
         attaquantFM = null;
+        attaquantAM = null;
+
         defenseurFM = null;
+        defenseurAM = null;
+    }
+
+    public void EndFightNoDead()
+    {
+        //Debug.Log("Combat terminé");
+        myAnim.SetBool("OpenCombatBandeau", false);
+
+        //myDamageFeedback.text = "";
+        //myDamageFeedback = null;
+
+        attaquantFM.isInteracting = false;
+        defenseurFM.isInteracting = false;
+        GameManager.Instance.ResetOpacityFeedback();
+
+        attaquantAM.keepInteractionDisplayed = false;
+        attaquantAM.HideInteraction();
+
+        defenseurAM.keepInteractionDisplayed = false;
+        defenseurAM.HideInteraction();
+        GameManager.Instance.isGamePaused = false;
+
+        attaquantFM = null;
+        attaquantAM = null;
+
+        defenseurFM = null;
+        defenseurAM = null;
+    }
+
+    public void SwitchInteractionType(FideleManager deadFM)
+    {
+        // ICI jouer SFX de mort
+        // ICI jouer anim du Bandit qui change de camp
+        // ICI changer graphisme du bandit qui change de camp
+        GetComponent<Interaction>().interactionType = InteractionType.Recrutement;
+        GetComponent<Interaction>().AnimationManagerUpdateIcon();
+
+
+        deadFM.isAlive = false;
     }
 
     public void CancelCombat()
     {
         myAnim.SetBool("OpenCombatWindow", false);
+        GameManager.Instance.isGamePaused = false;
 
         attaquantFM = null;
+        attaquantAM = null;
+
         defenseurFM = null;
+        defenseurAM = null;
     }
 }

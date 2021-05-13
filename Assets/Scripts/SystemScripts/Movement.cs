@@ -57,6 +57,8 @@ public class Movement : MonoBehaviour
                 if (fmir.myCamp != myFM.myCamp)
                 {
                     fmir.GetComponent<AnimationManager>().DisplayInteraction();
+                    fmir.GetComponent<AnimationManager>().DisplayInteractionIcon();
+                    fmir.GetComponentInChildren<Interaction>().myInteractionIcon.color = Color.gray;
                 }
             }
 
@@ -95,6 +97,8 @@ public class Movement : MonoBehaviour
                 if (fmir.myCamp != myFM.myCamp)
                 {
                     fmir.GetComponent<AnimationManager>().HideInteraction();
+                    fmir.GetComponent<AnimationManager>().HideInteractionIcon();
+                    fmir.GetComponentInChildren<Interaction>().myInteractionIcon.color = Color.white;
                 }
             }
 
@@ -106,15 +110,18 @@ public class Movement : MonoBehaviour
 
     public void MovingCharacter()
     {
-        // ICI jouer VFX de début de déplacement
-        // ICI jouer SFX de début de déplacement
-        // ICI jouer Anim de déplacement
-        isMoving = true;
+        if (hasMoved == false)
+        {
+            // ICI jouer VFX de début de déplacement
+            // ICI jouer SFX de début de déplacement
+            // ICI jouer Anim de déplacement
+            isMoving = true;
 
-        // ICI utiliser Coroutine pour attendre la fin des effets pour déplacer
+            // ICI utiliser Coroutine pour attendre la fin des effets pour déplacer
 
-        myAnimationManager.DisplayInteraction();
-        myAnimationManager.DisplayMovement();
+            myAnimationManager.DisplayInteraction();
+            myAnimationManager.DisplayMovement();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
