@@ -10,9 +10,7 @@ public class CombatManager : MonoBehaviour
 
     public TextMeshProUGUI renderTextCombat;
 
-    [Header("Attaquant")]
-    private FideleManager attaquantFM;
-    private AnimationManager attaquantAM;
+    [Header("Attaquant Fenetre")]
 
     public TextMeshProUGUI atkHP;
     public TextMeshProUGUI atkRange;
@@ -22,11 +20,10 @@ public class CombatManager : MonoBehaviour
     public TextMeshProUGUI attaquantName;
     public Image attaquantIcone;
 
-    public Image attaquantFideleSprite;
+    private FideleManager attaquantFM;
+    private AnimationManager attaquantAM;
 
-    [Header("Défenseur")]
-    private FideleManager defenseurFM;
-    private AnimationManager defenseurAM;
+    [Header("Défenseur Fenetre")]
 
     public TextMeshProUGUI defHP;
     public TextMeshProUGUI defCounterAttackRange;
@@ -34,7 +31,20 @@ public class CombatManager : MonoBehaviour
     public TextMeshProUGUI defenseurName;
     public Image defenseurIcone;
 
+    private FideleManager defenseurFM;
+    private AnimationManager defenseurAM;
+
+    [Header("Attaquant Bandeau")]
+
+    public Image attaquantFideleSprite;
+    public TextMeshProUGUI attaquantHP;
+
+    [Header("Défenseur Bandeau")]
+
     public Image defenseurFideleSprite;
+    public TextMeshProUGUI defenseurHP;
+
+    [Header("Effects & Icones")]
 
     public Sprite reineSprite;
     public Sprite roiSprite;
@@ -79,7 +89,7 @@ public class CombatManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void OpenCombatWindow(FideleManager atkFM, FideleManager defFM)
@@ -165,6 +175,13 @@ public class CombatManager : MonoBehaviour
     public void PlayerLaunchCombat()
     {
         myAnim.SetBool("OpenCombatWindow", false);
+
+        attaquantFideleSprite.sprite = attaquantFM.fideleSprite.sprite;
+        defenseurFideleSprite.sprite = defenseurFM.fideleSprite.sprite;
+
+        attaquantHP.text = attaquantFM.currentHP.ToString();
+        defenseurHP.text = defenseurFM.currentHP.ToString();
+
         myAnim.SetBool("OpenCombatBandeau", true);
 
         renderTextCombat.text = "";
@@ -172,7 +189,7 @@ public class CombatManager : MonoBehaviour
         defenseurAM.keepInteractionDisplayed = true;
         defenseurAM.DisplayInteraction();
 
-        DragCamera2D.Instance.FollowTargetCamera(defenseurAM.gameObject);
+        DragCamera2D.Instance.FollowTargetCamera(attaquantFM.gameObject);
 
         attaquantAM.keepInteractionDisplayed = true;
         attaquantAM.DisplayInteraction();
@@ -188,18 +205,27 @@ public class CombatManager : MonoBehaviour
         isCritical = Random.Range(0, 100);
         if (isCritical <= attaquantFM.criticChances)
         {
-            StartCoroutine(CriticalHit());
+            if (attaquantFM != null && defenseurFM != null)
+            {
+                StartCoroutine(CriticalHit());
+            }
         }
         else
         {
             isMissed = Random.Range(0, 100);
             if (isMissed <= attaquantFM.missChances)
             {
-                StartCoroutine(Missed());
+                if (attaquantFM != null && defenseurFM != null)
+                {
+                    StartCoroutine(Missed());
+                }
             }
             else
             {
-                StartCoroutine(Defend());
+                if (attaquantFM != null && defenseurFM != null)
+                {
+                    StartCoroutine(Defend());
+                }
             }
         }
     }
@@ -214,14 +240,21 @@ public class CombatManager : MonoBehaviour
             defenseurFM = defFM;
             defenseurAM = defenseurFM.GetComponentInParent<AnimationManager>();
         }
+
         myAnim.SetBool("OpenCombatBandeau", true);
-        
+
+        attaquantFideleSprite.sprite = attaquantFM.fideleSprite.sprite;
+        defenseurFideleSprite.sprite = defenseurFM.fideleSprite.sprite;
+
+        attaquantHP.text = attaquantFM.currentHP.ToString();
+        defenseurHP.text = defenseurFM.currentHP.ToString();
+
         renderTextCombat.text = "";
 
         defenseurAM.keepInteractionDisplayed = true;
         defenseurAM.DisplayInteraction();
 
-        DragCamera2D.Instance.FollowTargetCamera(defenseurAM.gameObject);
+        DragCamera2D.Instance.FollowTargetCamera(attaquantFM.gameObject);
 
         attaquantAM.keepInteractionDisplayed = true;
         attaquantAM.DisplayInteraction();
@@ -237,24 +270,36 @@ public class CombatManager : MonoBehaviour
         isCritical = Random.Range(0, 100);
         if (isCritical <= attaquantFM.criticChances)
         {
-            StartCoroutine(CriticalHit());
+            if (attaquantFM != null && defenseurFM != null)
+            {
+                StartCoroutine(CriticalHit());
+            }
         }
         else
         {
             isMissed = Random.Range(0, 100);
             if (isMissed <= attaquantFM.missChances)
             {
-                StartCoroutine(Missed());
+                if (attaquantFM != null && defenseurFM != null)
+                {
+                    StartCoroutine(Missed());
+                }
             }
             else
             {
-                StartCoroutine(Defend());
+                if (attaquantFM != null && defenseurFM != null)
+                {
+                    StartCoroutine(Defend());
+                }
             }
         }
     }
 
     public IEnumerator Defend()
     {
+
+        Debug.Log("Defend() " + defenseurFM.name + " " + " " + attaquantFM.name);
+
         if (attaquantFM.isAlive && defenseurFM.isAlive)
         {
             int attackValue = Random.Range(attaquantFM.minAttackRange, attaquantFM.maxAttackRange);
@@ -271,11 +316,10 @@ public class CombatManager : MonoBehaviour
             // Ici jouer Anim dégâts reçus sur defenseur
             defenseurAM.ReceiveDamage();
             defenseurAM.FillAmountHealth();
+            
+            defenseurHP.text = defenseurFM.currentHP.ToString();
 
             yield return new WaitForSeconds(2f);
-
-            DragCamera2D.Instance.UnfollowTargetCamera();
-
 
             CheckHP();
             yield return new WaitForSeconds(0.5f);
@@ -292,6 +336,8 @@ public class CombatManager : MonoBehaviour
 
     public IEnumerator CounterAttack()
     {
+        Debug.Log("CounterAttack() " + defenseurFM.name + " " + " " + attaquantFM.name);
+
         int counterAttackValue = Random.Range(defenseurFM.minCounterAttackRange, defenseurFM.maxCounterAttackRange);
         attaquantFM.currentHP -= counterAttackValue;
         Debug.Log("Le défenseur contre-attaque et inflige" + counterAttackValue + "points de dégâts, laissant son adversaire à " + attaquantFM.currentHP);
@@ -308,39 +354,48 @@ public class CombatManager : MonoBehaviour
         attaquantAM.ReceiveDamage();
         attaquantAM.FillAmountHealth();
 
+        attaquantHP.text = attaquantFM.currentHP.ToString();
+
         yield return new WaitForSeconds(2f);
 
-        DragCamera2D.Instance.UnfollowTargetCamera();
-
-
         CheckHP();
-        EndFightNoDead();
+        yield return new WaitForSeconds(0.5f);
+
+        if (attaquantFM != null && defenseurFM != null)
+        {
+            if (attaquantFM.isAlive && defenseurFM.isAlive)
+            {
+                EndFightNoDead();
+            }
+        }
     }
 
     public void CheckHP()
     {
-        if (attaquantFM.currentHP <= 0)
+        if (attaquantFM != null && defenseurFM != null)
         {
-            attaquantFM.isAlive = false;
-            Debug.Log("L'attaquant est vaincu !");
+            if (attaquantFM.currentHP <= 0)
+            {
+                attaquantFM.isAlive = false;
+                Debug.Log("L'attaquant est vaincu !");
 
-            StartCoroutine(Die(attaquantFM, defenseurFM));
-        }
-        else if (defenseurFM.currentHP <= 0)
-        {
-            defenseurFM.isAlive = false;
-            Debug.Log("Le défenseur est vaincu !");
+                StartCoroutine(Die(attaquantFM, defenseurFM));
+            }
+            else if (defenseurFM.currentHP <= 0)
+            {
+                defenseurFM.isAlive = false;
+                Debug.Log("Le défenseur est vaincu !");
 
-            StartCoroutine(Die(defenseurFM, attaquantFM));
-        }
-        else
-        {
-            EndFightNoDead();
+                StartCoroutine(Die(defenseurFM, attaquantFM));
+            }
         }
     }
 
     public IEnumerator CriticalHit()
     {
+
+        Debug.Log("Critical() " + defenseurFM.name + " " + " " + attaquantFM.name);
+
         defenseurFM.currentHP -= attaquantFM.maxAttackRange * 2;
         Debug.Log("OUH ! CRITIQUE !!");
         Debug.Log("Avec un coup critique, " + attaquantFM.name + " inflige " + attaquantFM.maxAttackRange * 2 + " points de dégâts, laissant " + defenseurFM.name + " à " + defenseurFM.currentHP);
@@ -357,42 +412,69 @@ public class CombatManager : MonoBehaviour
         // ICI jouer Anim dégâts reçus sur defenseur
         defenseurAM.ReceiveDamage();
         defenseurAM.FillAmountHealth();
+        
+        defenseurHP.text = defenseurFM.currentHP.ToString();
 
         yield return new WaitForSeconds(2f);
 
-        DragCamera2D.Instance.UnfollowTargetCamera();
-
         CheckHP();
+        yield return new WaitForSeconds(0.5f);
+
+        if (attaquantFM != null && defenseurFM != null)
+        {
+            if (attaquantFM.isAlive && defenseurFM.isAlive)
+            {
+                EndFightNoDead();
+            }
+        }
     }
 
     public IEnumerator Missed()
     {
-        attaquantFM.currentHP -= defenseurFM.maxCounterAttackRange;
-        Debug.Log("Loupé !! Aie aie aie !!");
-        Debug.Log("Avec un l'échec critique de l'attaquant, le défenseur contre attaque et inflige " + defenseurFM.maxCounterAttackRange + "points de dégâts, laissant son adversaire à " + attaquantFM.currentHP);
+
+        Debug.Log("Missed " + defenseurFM.name + " " + " " + attaquantFM.name);
+
+        if (attaquantFM != null && defenseurFM != null)
+        {
+            attaquantFM.currentHP -= defenseurFM.maxCounterAttackRange;
+            Debug.Log("Loupé !! Aie aie aie !!");
+            Debug.Log("Avec un l'échec critique de l'attaquant, le défenseur contre attaque et inflige " + defenseurFM.maxCounterAttackRange + "points de dégâts, laissant son adversaire à " + attaquantFM.currentHP);
 
 
-        // ICI jouer VFX d'echec critiique
-        // ICI jouer SFX d'echec critique
+            // ICI jouer VFX d'echec critiique
+            // ICI jouer SFX d'echec critique
 
-        //myDamageFeedback.text = "-" + defenseurFM.maxCounterAttackRange.ToString() + " !!";
-        defenseurDamageEffect.Play();
+            //myDamageFeedback.text = "-" + defenseurFM.maxCounterAttackRange.ToString() + " !!";
+            defenseurDamageEffect.Play();
 
-        yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(2f);
 
-        // ICI jouer Anim dégâts reçus sur attaquant
-        attaquantAM.ReceiveDamage();
-        attaquantAM.FillAmountHealth();
+            // ICI jouer Anim dégâts reçus sur attaquant
+            attaquantAM.ReceiveDamage();
+            attaquantAM.FillAmountHealth();
 
-        yield return new WaitForSeconds(2f);
+            attaquantHP.text = attaquantFM.currentHP.ToString();
 
-        DragCamera2D.Instance.UnfollowTargetCamera();
+            yield return new WaitForSeconds(2f);           
 
-        CheckHP();
+            CheckHP();
+            yield return new WaitForSeconds(0.5f);
+
+            if (attaquantFM != null && defenseurFM != null)
+            {
+                if (attaquantFM.isAlive && defenseurFM.isAlive)
+                {
+                    EndFightNoDead();
+                }
+            }
+        }
     }
 
     public IEnumerator Die(FideleManager deadFM, FideleManager winFM)
     {
+
+        Debug.Log("Die() " + defenseurFM.name + " " + " " + attaquantFM.name);
+
         //Debug.Log("On Tue quelqu'un");
         myAnim.SetBool("OpenCombatBandeau", false);
 
@@ -465,17 +547,25 @@ public class CombatManager : MonoBehaviour
             defenseurAM.HideInteraction();
         }
 
+        attaquantFideleSprite.sprite = null;
+        defenseurFideleSprite.sprite = null;
+
         attaquantFM = null;
         attaquantAM = null;
 
         defenseurFM = null;
         defenseurAM = null;
+
+        GameManager.Instance.MoveUnit();
     }
 
     public void EndFightNoDead()
     {
+        Debug.Log("EndFightNoDead " + defenseurFM.name + " " + " " + attaquantFM.name);
+
         //Debug.Log("Combat terminé");
         myAnim.SetBool("OpenCombatBandeau", false);
+
 
         //myDamageFeedback.text = "";
         //myDamageFeedback = null;
@@ -491,11 +581,16 @@ public class CombatManager : MonoBehaviour
         defenseurAM.HideInteraction();
         GameManager.Instance.isGamePaused = false;
 
+        attaquantFideleSprite.sprite = null;
+        defenseurFideleSprite.sprite = null;
+
         attaquantFM = null;
         attaquantAM = null;
 
         defenseurFM = null;
         defenseurAM = null;
+
+        GameManager.Instance.MoveUnit();
     }
 
     public void SwitchInteractionType(FideleManager deadFM)

@@ -127,20 +127,17 @@ public class FideleManager : MonoBehaviour
             if (attackableUnitsInRange.Count == 1)
             {
                 myTarget = attackableUnitsInRange[0];
-                Debug.Log(myTarget.name + " ciblée !");
                 return myTarget.transform;
             }
             else if (attackableUnitsInRange.Count > 1)
             {
                 myTarget = GetInRangeUnitWithSmallestHp();
-                Debug.Log(myTarget.name + " ciblée le plus faible !");
                 return myTarget.transform;
             }
             else if (attackableUnitsInRange.Count == 0)
             {
                 attackableUnitsNotInRange = AttackableUnitsNotInRangeAmount();
                 myTarget = GetClosestUnitNotInRange();
-                Debug.Log(myTarget.name + " ciblée hors range !");
                 return myTarget.transform;
             }
         }
@@ -148,8 +145,6 @@ public class FideleManager : MonoBehaviour
         {
             attackableUnitsNotInRange = AttackableUnitsNotInRangeAmount();
             myTarget = GetClosestUnitNotInRange();
-            Debug.Log(myTarget.name + " ciblée hors range !");
-            Debug.Log("J'ai trouvé quelqu'un en dehors de la range ! Chutrofor !");
             return myTarget.transform;
         }
 

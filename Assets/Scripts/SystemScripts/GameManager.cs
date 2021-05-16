@@ -111,6 +111,14 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void PlayerSwitchTurn()
+    {
+        if (currentCampTurn == GameCamps.Fidele)
+        {
+            SwitchTurn();
+        }
+    }
+
     public void SwitchTurn()
     {
         myCampTurningFeedback.gameObject.SetActive(false);
@@ -160,7 +168,7 @@ public class GameManager : MonoBehaviour
                 }
             }
 
-            StartCoroutine(MoveRoi());
+            MoveUnit();
         }
 
         if (currentCampTurn == GameCamps.Bandit)
@@ -236,15 +244,28 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public IEnumerator MoveRoi()
+    public void MoveUnit()
     {
-        //Cette fonction envoie au premier fidele de la liste correspondante au camp et n'ayant pas encore été déplacé l'ordre de se déplacer. Ce fidèle effectue l'action, puis renvoie l'activation de la fonction. Si aucun fidèle ne correspondant au camp est capable de se déplacer, fin.
+        //Cette fonction envoie au premier fidele de la liste correspondante au camp et n'ayant pas encore été déplacé l'ordre de se déplacer. 
+        //Ce fidèle effectue l'action, puis renvoie l'activation de la fonction. Si aucun fidèle ne correspondant au camp est capable de se déplacer, fin.
         for (int i = 0; i < allMapUnits.Count; i++)
         {
-            if (allMapUnits[i].myCamp == GameCamps.Roi)
+            if (allMapUnits[i].myCamp == currentCampTurn)
             {
-                allMapUnits[i].GetComponentInChildren<MovementEnemy>().MoveToTarget();
-                yield return new WaitForSeconds(timeValue);
+                List<FideleManager> campUnit = new List<FideleManager>();
+                campUnit.Add(allMapUnits[i]);
+
+                for (int e = 0; e < campUnit.Count; e++)
+                {
+                    if (campUnit[e].GetComponentInChildren<MovementEnemy>() != null)
+                    {
+                        if (campUnit[e].GetComponentInChildren<MovementEnemy>().hasMoved == false)
+                        {
+                            campUnit[e].GetComponentInChildren<MovementEnemy>().MoveToTarget();
+                            return;
+                        }
+                    }
+                }
             }
         }
     }

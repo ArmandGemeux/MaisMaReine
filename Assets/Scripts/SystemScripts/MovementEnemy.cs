@@ -73,8 +73,8 @@ public class MovementEnemy : MonoBehaviour
         else if(myFideleManager.GetComponentInChildren<Interaction>().myCollideInteractionList.Contains(targetInteraction))
         {
             myFideleManager.UpdateAttackableUnitInRange();
-            targetInteraction.GetComponent<Combat>().StartFight(myFideleManager, CombatManager.Instance.renderTextCombat);
-            
+            CombatManager.Instance.EnemyLaunchCombat(myFideleManager, targetInteraction.GetComponentInParent<FideleManager>());
+
             StopMoving();
         }
     }
@@ -109,10 +109,14 @@ public class MovementEnemy : MonoBehaviour
         if (collision == myMoveZoneCollider)
         {
             StopMoving();
+
+            GameManager.Instance.MoveUnit();
         }
         if (collision == targetInteractionZone)
         {
             StopMoving();
+
+            GameManager.Instance.MoveUnit();
         }
     }
 }
