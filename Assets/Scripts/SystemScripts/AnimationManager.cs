@@ -7,7 +7,6 @@ using UnityEngine.UI;
 
 public class AnimationManager : MonoBehaviour
 {
-    [HideInInspector]
     public bool isSelectable = false;
     [HideInInspector]
     public bool isSelected = false;
@@ -63,6 +62,18 @@ public class AnimationManager : MonoBehaviour
         {
             currentAttackRangeOnCanvas.text = ("??");
         }
+
+        if (myMovement != null)
+        {
+            if (myMovement.hasMoved == false)
+            {
+                ActivateLauncherSelection();
+            }
+            else
+            {
+                DesactivateLauncherSelection();
+            }
+        }
     }
 
     public void UpdateMyReferences()
@@ -112,16 +123,6 @@ public class AnimationManager : MonoBehaviour
         myAnim.SetBool("isInteractionLauncherSelected", false);
     }
 
-    public void SetOutlineSelected()
-    {
-        myFM.fideleSprite.material.SetColor("_Color", Color.white);
-    }
-
-    public void SetOutlineDefault()
-    {
-        myFM.fideleSprite.material.SetColor("_Color", Color.gray);
-    }
-
     public void ActivateReceiverSelection()
     {
         myAnim.SetBool("isInteractionReceiverCanInteract", true);
@@ -131,6 +132,20 @@ public class AnimationManager : MonoBehaviour
     {
         myAnim.SetBool("isInteractionReceiverCanInteract", false);
     }
+
+    #region Outline
+    public void SetOutlineSelected()
+    {
+        myFM.fideleSprite.material.SetColor("_Color", Color.white);
+    }
+
+    public void SetOutlineDefault()
+    {
+        myFM.fideleSprite.material.SetColor("_Color", Color.gray);
+    }
+    #endregion
+
+    #region Stats
 
     public void DisplayStats()
     {
@@ -149,7 +164,9 @@ public class AnimationManager : MonoBehaviour
             isStatsDisplayed = false;
         }
     }
+    #endregion
 
+    #region MovementZone
     public void UnableToLand()
     {
         myMovementZone.color = Color.red;
@@ -177,7 +194,9 @@ public class AnimationManager : MonoBehaviour
             isMovementDisplayed = false;
         }
     }
+    #endregion
 
+    #region Interaction
     public void DisplayInteraction()
     {
         myAnim.SetBool("ActivateInteractionBool", true);
@@ -191,17 +210,6 @@ public class AnimationManager : MonoBehaviour
             myAnim.SetBool("ActivateInteractionBool", false);
             //keepInteractionDisplayed = false;
         }
-    }
-
-    public void FillAmountHealth()
-    {
-        healthAmountImage.fillAmount = myFM.currentHP*1f / myFM.maxHp*1f;
-    }
-
-    public void DisplayInteractionIcon()
-    {
-        myInteraction.myInteractionIcon.enabled = true;
-        UpdateInteractionIcon();
     }
 
     public void UpdateInteractionIcon()
@@ -222,11 +230,49 @@ public class AnimationManager : MonoBehaviour
         }
     }
 
+    public void DisplayInteractionIcon()
+    {
+        myInteraction.myInteractionIcon.enabled = true;
+        UpdateInteractionIcon();
+    }
+
     public void HideInteractionIcon()
     {
         myInteraction.myInteractionIcon.enabled = false;
 
         myInteraction.myInteractionIcon.sprite = null;
+    }
+
+    public void NoMoreInteractionColor()
+    {
+        myFM.fideleSprite.color = new Color(0.5f, 0.5f, 0.5f, 1f);
+    }
+
+    public void InteractionAvaibleColor()
+    {
+        myFM.fideleSprite.color = new Color(1f, 1f, 1f, 1f);
+    }
+    #endregion
+
+    public void FillAmountHealth()
+    {
+        healthAmountImage.fillAmount = myFM.currentHP*1f / myFM.maxHp*1f;
+    }
+
+    public void LowerOpacity()
+    {
+        myAnim.SetBool("SetOpacity", true);
+        /*Color tmp = myFM.fideleSprite.color;
+        tmp.a = 0.2f;
+        myFM.fideleSprite.color = tmp;*/
+    }
+
+    public void ResetOpacity()
+    {
+        myAnim.SetBool("SetOpacity", false);
+        /*Color tmp = myFM.fideleSprite.color;
+        tmp.a = 1f;
+        myFM.fideleSprite.color = tmp;*/
     }
 
     public void CheckActionsLeftAmout()
@@ -238,7 +284,6 @@ public class AnimationManager : MonoBehaviour
                 if (myInteraction.alreadyInteractedList.Count == myInteraction.myCollideInteractionList.Count && myMovement.hasMoved)
                 {
                     myFM.isAllActionsDone = true;
-                    myFM.fideleSprite.color = new Color(0.5f, 0.5f, 0.5f, 1f);
                     GameManager.Instance.IsAllCampActionsDone();
                 }
             }

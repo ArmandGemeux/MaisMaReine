@@ -30,8 +30,7 @@ public class MouseEventsFidele : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(myInteraction.canInteract + gameObject.name);
-        
+
     }
 
     public void OnMouseEnter()
@@ -126,7 +125,6 @@ public class MouseEventsFidele : MonoBehaviour
                     am.HideInteraction();
                 }
             }
-
             #endregion
         }
     }

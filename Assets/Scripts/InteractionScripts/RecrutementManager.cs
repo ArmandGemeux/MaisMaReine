@@ -156,7 +156,7 @@ public class RecrutementManager : MonoBehaviour
 
     public IEnumerator SetCampToFidele()
     {
-        QuestManager.Instance.OnRecruitUnit(myFMToRecruit);
+        QuestManager.Instance.OnRecruitUnit(myFMToRecruit);        
 
         myFMToRecruit.myCamp = GameCamps.Fidele;
         myFMToRecruit.gameObject.tag = ("Fidele");
@@ -213,7 +213,6 @@ public class RecrutementManager : MonoBehaviour
 
             cam.HideInteraction();
             cam.DesactivateReceiverSelection();
-            cam.DesactivateLauncherSelection();
         }
 
         foreach (Interaction iam in myFMToRecruit.GetComponentInChildren<Interaction>().myCollideInteractionList)
@@ -230,7 +229,6 @@ public class RecrutementManager : MonoBehaviour
 
         myFMToRecruit.GetComponent<AnimationManager>().HideInteraction();
         myFMToRecruit.GetComponent<AnimationManager>().DesactivateReceiverSelection();
-        myFMToRecruit.GetComponent<AnimationManager>().DesactivateLauncherSelection();
 
         recruitedSprite = null;
 

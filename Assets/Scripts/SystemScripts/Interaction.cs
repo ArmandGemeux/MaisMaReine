@@ -55,6 +55,7 @@ public class Interaction : MonoBehaviour
             myCollideAnimationManagerList.Add(collision.GetComponentInParent<AnimationManager>());
 
             DisplayInteractionFeedbacks();
+            CheckForAvaibleInteractions();
         }
     }
 
@@ -78,24 +79,49 @@ public class Interaction : MonoBehaviour
     {
         if (myCollideAnimationManagerList.Count >= 1)
         {
-            foreach (AnimationManager myCollideAnimationManager in myCollideAnimationManagerList)
+            foreach (AnimationManager cam in myCollideAnimationManagerList)
             {
-                if (myCollideAnimationManager.GetComponent<FideleManager>().myCamp != GameCamps.Fidele && myFideleManager.myCamp == GameCamps.Fidele)
+                if (cam.GetComponent<FideleManager>().myCamp != GameCamps.Fidele && myFideleManager.myCamp == GameCamps.Fidele)
                 {
-                    myCollideAnimationManager.haveAnInteraction = true;
+                    cam.haveAnInteraction = true;
                     //myCollideAnimationManager.DisplayInteraction();
                     //myAnimationManager.DisplayInteraction();
 
-                    if (!alreadyInteractedList.Contains(myCollideAnimationManager.GetComponentInChildren<Interaction>()))
+                    if (!alreadyInteractedList.Contains(cam.GetComponentInChildren<Interaction>()))
                     {
                         myAnimationManager.isSelectable = true;
-                        myAnimationManager.ActivateLauncherSelection();
-                        myCollideAnimationManager.DisplayInteractionIcon();
+                        //myAnimationManager.ActivateLauncherSelection();
+                        cam.DisplayInteractionIcon();
 
-                        myCollideAnimationManager.ActivateReceiverSelection();
+                        cam.ActivateReceiverSelection();
                     }
                 }
             }
+        }
+    }
+
+    public void CheckForAvaibleInteractions()
+    {
+        if (myFideleManager.myCamp == GameCamps.Fidele)
+        {
+            if (myCollideInteractionList.Count >= 1)
+            {
+                for (int i = 0; i < myCollideInteractionList.Count; i++)
+                {
+                    if (!alreadyInteractedList.Contains(myCollideInteractionList[i]))
+                    {
+                        myAnimationManager.InteractionAvaibleColor();
+                        return;
+                    }
+                    myAnimationManager.NoMoreInteractionColor();
+                }
+            }
+            else if (myCollideInteractionList.Count == 0)
+            {
+                myAnimationManager.InteractionAvaibleColor();
+                return;
+            }
+            myAnimationManager.NoMoreInteractionColor();
         }
     }
 
@@ -117,7 +143,6 @@ public class Interaction : MonoBehaviour
                 aMToRemove.DesactivateReceiverSelection();
 
                 myAnimationManager.HideInteraction();
-                myAnimationManager.DesactivateLauncherSelection();
             }
         }
 

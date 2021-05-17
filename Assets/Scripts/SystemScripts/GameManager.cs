@@ -151,7 +151,7 @@ public class GameManager : MonoBehaviour
                 if (fm.myCamp == GameCamps.Fidele)
                 {
                     fm.GetComponentInChildren<Movement>().hasMoved = false;
-                    fm.fideleSprite.color = new Color(1f, 1f, 1f, 1f);
+                    fm.GetComponent<AnimationManager>().InteractionAvaibleColor();
                 }
             }
         }
@@ -300,7 +300,8 @@ public class GameManager : MonoBehaviour
         {
             if (fmu.isInteracting == false)
             {
-                fmu.fideleSprite.color = new Color(1, 1, 1, 0.3f);
+                Debug.Log("On baisse l'opacité");
+                fmu.GetComponent<AnimationManager>().LowerOpacity();
             }
         }
     }
@@ -311,7 +312,8 @@ public class GameManager : MonoBehaviour
         {
             if (fmu.isInteracting == false)
             {
-                fmu.fideleSprite.color = new Color(1, 1, 1, 1f);
+                Debug.Log("On rétabli l'opacité");
+                fmu.GetComponent<AnimationManager>().ResetOpacity();
             }
         }
     }

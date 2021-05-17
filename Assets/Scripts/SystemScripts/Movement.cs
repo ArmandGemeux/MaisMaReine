@@ -42,7 +42,7 @@ public class Movement : MonoBehaviour
 
         if (isMoving && Input.GetMouseButton(0) && hasMoved == false)
         {
-            Cursor.visible = false;
+            CursorManager.Instance.SetCursorToMovement();
             // ICI jouer VFX de déplacement en cours
             // ICI jouer SFX de déplacement en cours
             // ICI jouer Anim de déplacement en cours
@@ -50,7 +50,6 @@ public class Movement : MonoBehaviour
             mousePosition = Input.mousePosition;
             mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
             transform.position = Vector2.Lerp(transform.position, mousePosition, moveSpeed);
-
 
             foreach (FideleManager fmir in myFM.unitsInRange)
             {
@@ -66,7 +65,7 @@ public class Movement : MonoBehaviour
         }
         else if (isMoving && Input.GetMouseButtonUp(0))
         {
-            Cursor.visible = true;
+            CursorManager.Instance.SetCursorToDefault();
             // ICI jouer VFX de déplacement terminé
             // ICI jouer SFX de déplacement terminé
             // ICI jouer Anim de déplacement terminé
@@ -104,6 +103,8 @@ public class Movement : MonoBehaviour
 
             myInteraction.DisplayInteractionFeedbacks();
 
+            myInteraction.CheckForAvaibleInteractions();
+
             isMoving = false;
         }
     }
@@ -121,6 +122,10 @@ public class Movement : MonoBehaviour
 
             myAnimationManager.DisplayInteraction();
             myAnimationManager.DisplayMovement();
+        }
+        else
+        {
+            myInteraction.DisplayInteractionFeedbacks();
         }
     }
 

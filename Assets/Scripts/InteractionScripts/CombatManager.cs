@@ -224,7 +224,7 @@ public class CombatManager : MonoBehaviour
             {
                 if (attaquantFM != null && defenseurFM != null)
                 {
-                    StartCoroutine(Defend());
+                    StartCoroutine(Attack());
                 }
             }
         }
@@ -289,16 +289,16 @@ public class CombatManager : MonoBehaviour
             {
                 if (attaquantFM != null && defenseurFM != null)
                 {
-                    StartCoroutine(Defend());
+                    StartCoroutine(Attack());
                 }
             }
         }
     }
 
-    public IEnumerator Defend()
+    public IEnumerator Attack()
     {
 
-        Debug.Log("Defend() " + defenseurFM.name + " " + " " + attaquantFM.name);
+        Debug.Log("Attack() " + defenseurFM.name + " " + " " + attaquantFM.name);
 
         if (attaquantFM.isAlive && defenseurFM.isAlive)
         {
@@ -308,10 +308,17 @@ public class CombatManager : MonoBehaviour
 
             // ICI jouer VFX d'attaque simple
             // ICI jouer SFX d'attaque simple
+
             //myDamageFeedback.text = "-" + attackValue.ToString();
+
+            myAnim.SetTrigger("LaunchAttack");
+
+            yield return new WaitForSeconds(0.3f);
+
+            myAnim.SetTrigger("DefenseurReceiveDamage");
             attaquantDamageEffect.Play();
 
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(1f);
 
             // Ici jouer Anim dégâts reçus sur defenseur
             defenseurAM.ReceiveDamage();
@@ -319,7 +326,7 @@ public class CombatManager : MonoBehaviour
             
             defenseurHP.text = defenseurFM.currentHP.ToString();
 
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(1f);
 
             CheckHP();
             yield return new WaitForSeconds(0.5f);
@@ -346,9 +353,14 @@ public class CombatManager : MonoBehaviour
         // ICI jouer VFX de contre-attaque simple
         // ICI jouer SFX de contre-attaque simple
         //myDamageFeedback.text = "-" + counterAttackValue.ToString();
+        myAnim.SetTrigger("LaunchCounterAttack");
+
+        yield return new WaitForSeconds(0.3f);
+
+        myAnim.SetTrigger("AttaquantReceiveDamage");
         defenseurDamageEffect.Play();
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
 
         // Ici jouer Anim dégâts reçus sur attaquant
         attaquantAM.ReceiveDamage();
@@ -356,7 +368,7 @@ public class CombatManager : MonoBehaviour
 
         attaquantHP.text = attaquantFM.currentHP.ToString();
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
 
         CheckHP();
         yield return new WaitForSeconds(0.5f);
@@ -407,6 +419,8 @@ public class CombatManager : MonoBehaviour
         //myDamageFeedback.text = "-" + (attaquantFM.maxAttackRange * 2).ToString() + (" !!");
         attaquantDamageEffect.Play();
 
+        myAnim.SetTrigger("DefenseurReceiveDamage");
+
         yield return new WaitForSeconds(2f);
 
         // ICI jouer Anim dégâts reçus sur defenseur
@@ -444,6 +458,8 @@ public class CombatManager : MonoBehaviour
             // ICI jouer VFX d'echec critiique
             // ICI jouer SFX d'echec critique
 
+            myAnim.SetTrigger("AttaquantReceiveDamage");
+
             //myDamageFeedback.text = "-" + defenseurFM.maxCounterAttackRange.ToString() + " !!";
             defenseurDamageEffect.Play();
 
@@ -472,7 +488,6 @@ public class CombatManager : MonoBehaviour
 
     public IEnumerator Die(FideleManager deadFM, FideleManager winFM)
     {
-
         Debug.Log("Die() " + defenseurFM.name + " " + " " + attaquantFM.name);
 
         //Debug.Log("On Tue quelqu'un");
@@ -503,17 +518,32 @@ public class CombatManager : MonoBehaviour
             foreach (AnimationManager dfmcam in deadFM.GetComponentInChildren<Interaction>().myCollideAnimationManagerList)
             {
                 dfmcam.GetComponentInChildren<Interaction>().RemoveCollidingCharacterFromAMList(deadFM.GetComponent<AnimationManager>());
+
+                dfmcam.GetComponent<AnimationManager>().haveAnInteraction = false;
+
+                dfmcam.HideInteraction();
+                dfmcam.DesactivateReceiverSelection();
             }
 
             foreach (Interaction dfmci in deadFM.GetComponentInChildren<Interaction>().myCollideInteractionList)
             {
                 dfmci.RemoveCollindingCharacterFromInteractionList(deadFM.GetComponentInChildren<Interaction>());
+
+                dfmci.DisplayInteractionFeedbacks();
             }
 
             foreach (FideleManager dfmcfm in deadFM.unitsInRange)
             {
                 dfmcfm.unitsInRange.Remove(deadFM);
             }
+
+            deadFM.GetComponentInChildren<Interaction>().myCollideAnimationManagerList.Clear();
+            deadFM.GetComponentInChildren<Interaction>().myCollideInteractionList.Clear();
+
+            deadFM.GetComponent<AnimationManager>().haveAnInteraction = false;
+
+            deadFM.GetComponent<AnimationManager>().HideInteraction();
+            deadFM.GetComponent<AnimationManager>().DesactivateReceiverSelection();
 
             //winFM.GetComponentInChildren<Interaction>().myCollideAnimationManagerList.Remove(deadFM.GetComponent<AnimationManager>());
             //winFM.GetComponentInChildren<Interaction>().myCollideInteractionList.Remove(deadFM.GetComponentInChildren<Interaction>());
@@ -565,7 +595,6 @@ public class CombatManager : MonoBehaviour
 
         //Debug.Log("Combat terminé");
         myAnim.SetBool("OpenCombatBandeau", false);
-
 
         //myDamageFeedback.text = "";
         //myDamageFeedback = null;

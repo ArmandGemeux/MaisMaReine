@@ -146,7 +146,6 @@ public class RaycastInteraction : MonoBehaviour
                     break;
                 case InteractionType.Combat:
                     interactionLauncherInteraction.alreadyInteractedList.Add(interactionReceiverInteraction);
-                    //interactionReceiverInteraction.GetComponent<Combat>().StartFight(interactionLauncherFM);
                     CombatManager.Instance.OpenCombatWindow(interactionLauncherFM, interactionReceiverFM);
                     //Debug.Log("Combat");
                     break;
@@ -155,6 +154,8 @@ public class RaycastInteraction : MonoBehaviour
             }
 
             interactionLauncherAnim.CheckActionsLeftAmout();
+
+            interactionLauncherInteraction.CheckForAvaibleInteractions();
 
             interactionReceiverInteraction.DisplayInteractionFeedbacks();
             interactionLauncherInteraction.DisplayInteractionFeedbacks();
@@ -185,7 +186,6 @@ public class RaycastInteraction : MonoBehaviour
         if (interactionLauncherAnim != null)
         {
             interactionLauncherAnim.SetOutlineDefault();
-            interactionLauncherAnim.DesactivateLauncherSelection();
             interactionLauncherAnim.keepInteractionDisplayed = false;
 
             foreach (AnimationManager cam in interactionLauncherInteraction.myCollideAnimationManagerList)
