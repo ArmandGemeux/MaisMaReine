@@ -157,8 +157,8 @@ public class RaycastInteraction : MonoBehaviour
 
             interactionLauncherInteraction.CheckForAvaibleInteractions();
 
-            interactionReceiverInteraction.DisplayInteractionFeedbacks();
-            interactionLauncherInteraction.DisplayInteractionFeedbacks();
+            interactionReceiverInteraction.FideleDisplayInteractionFeedbacks();
+            interactionLauncherInteraction.FideleDisplayInteractionFeedbacks();
 
             //Debug.Log("Interaction");
             ResetReceiverInteraction();
@@ -193,7 +193,7 @@ public class RaycastInteraction : MonoBehaviour
                 cam.keepInteractionDisplayed = false;
             }
 
-            interactionLauncherInteraction.DisplayInteractionFeedbacks();
+            interactionLauncherInteraction.FideleDisplayInteractionFeedbacks();
 
             interactionLauncherAnim.isSelected = false;
 
@@ -207,7 +207,7 @@ public class RaycastInteraction : MonoBehaviour
     {
         if (interactionReceiverAnim != null)
         {
-            interactionReceiverInteraction.DisplayInteractionFeedbacks();
+            interactionReceiverInteraction.FideleDisplayInteractionFeedbacks();
 
             interactionReceiverInteraction.canInteract = false;
             interactionReceiverInteraction = null;

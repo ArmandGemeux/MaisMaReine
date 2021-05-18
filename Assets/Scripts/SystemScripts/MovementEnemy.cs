@@ -62,9 +62,10 @@ public class MovementEnemy : MonoBehaviour
         targetInteraction = myTarget.GetComponentInChildren<Interaction>();
         targetInteractionZone = targetInteraction.GetComponent<PolygonCollider2D>();
 
+        DragCamera2D.Instance.FollowTargetCamera(myFideleManager.gameObject);
+
         if (!myFideleManager.GetComponentInChildren<Interaction>().myCollideInteractionList.Contains(targetInteraction))
         {
-            DragCamera2D.Instance.FollowTargetCamera(myFideleManager.gameObject);
             isMoving = true;
             agent.isStopped = false;
 
@@ -81,7 +82,6 @@ public class MovementEnemy : MonoBehaviour
 
     public void StopMoving()
     {
-        DragCamera2D.Instance.UnfollowTargetCamera();
         myFideleManager.myTarget = null;
 
         agent.isStopped = true;
@@ -92,6 +92,7 @@ public class MovementEnemy : MonoBehaviour
         hasMoved = true;
 
         myAnimManager.CheckActionsLeftAmout();
+        DragCamera2D.Instance.UnfollowTargetCamera();
     }
 
     public void OnTriggerEnter2D(Collider2D collision)

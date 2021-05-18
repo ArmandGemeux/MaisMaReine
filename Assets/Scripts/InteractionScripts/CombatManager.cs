@@ -38,11 +38,13 @@ public class CombatManager : MonoBehaviour
 
     public Image attaquantFideleSprite;
     public TextMeshProUGUI attaquantHP;
+    public ParticleSystem attaquantDamageTextPS;
 
     [Header("Défenseur Bandeau")]
 
     public Image defenseurFideleSprite;
     public TextMeshProUGUI defenseurHP;
+    public ParticleSystem defenseurDamageTextPS;
 
     [Header("Effects & Icones")]
 
@@ -51,15 +53,15 @@ public class CombatManager : MonoBehaviour
     public Sprite calamiteSprite;
     public Sprite banditSprite;
 
-    private ParticleSystem myCombatEffect;
+    //private ParticleSystem myCombatEffect;
 
-    private ParticleSystem defenseurDamageEffect;
-    private ParticleSystem attaquantDamageEffect;
+    //private ParticleSystem defenseurDamageEffect;
+    //private ParticleSystem attaquantDamageEffect;
 
     private int isCritical;
     private int isMissed;
 
-    private TextMeshProUGUI myDamageFeedback;
+    //private TextMeshProUGUI myDamageFeedback;
 
     #region Singleton
 
@@ -83,7 +85,6 @@ public class CombatManager : MonoBehaviour
     void Start()
     {
         myAnim = GetComponent<Animator>();
-        renderTextCombat.text = "";
     }
 
     // Update is called once per frame
@@ -117,7 +118,7 @@ public class CombatManager : MonoBehaviour
                 attaquantIcone.sprite = banditSprite;
                 break;
             case GameCamps.BanditCalamiteux:
-                attaquantIcone.sprite = calamiteSprite;
+                attaquantIcone.sprite = banditSprite;
                 break;
             case GameCamps.Calamite:
                 attaquantIcone.sprite = calamiteSprite;
@@ -144,7 +145,7 @@ public class CombatManager : MonoBehaviour
                 defenseurIcone.sprite = banditSprite;
                 break;
             case GameCamps.BanditCalamiteux:
-                defenseurIcone.sprite = calamiteSprite;
+                defenseurIcone.sprite = banditSprite;
                 break;
             case GameCamps.Calamite:
                 defenseurIcone.sprite = calamiteSprite;
@@ -184,8 +185,6 @@ public class CombatManager : MonoBehaviour
 
         myAnim.SetBool("OpenCombatBandeau", true);
 
-        renderTextCombat.text = "";
-
         defenseurAM.keepInteractionDisplayed = true;
         defenseurAM.DisplayInteraction();
 
@@ -194,8 +193,8 @@ public class CombatManager : MonoBehaviour
         attaquantAM.keepInteractionDisplayed = true;
         attaquantAM.DisplayInteraction();
 
-        defenseurDamageEffect = defenseurFM.GetComponentInChildren<ParticleSystem>();
-        attaquantDamageEffect = attaquantFM.GetComponentInChildren<ParticleSystem>();
+        //defenseurDamageEffect = defenseurFM.GetComponentInChildren<ParticleSystem>();
+        //attaquantDamageEffect = attaquantFM.GetComponentInChildren<ParticleSystem>();
 
         attaquantFM.isInteracting = true;
         defenseurFM.isInteracting = true;
@@ -241,6 +240,8 @@ public class CombatManager : MonoBehaviour
             defenseurAM = defenseurFM.GetComponentInParent<AnimationManager>();
         }
 
+        GameManager.Instance.isGamePaused = true;
+
         myAnim.SetBool("OpenCombatBandeau", true);
 
         attaquantFideleSprite.sprite = attaquantFM.fideleSprite.sprite;
@@ -249,18 +250,17 @@ public class CombatManager : MonoBehaviour
         attaquantHP.text = attaquantFM.currentHP.ToString();
         defenseurHP.text = defenseurFM.currentHP.ToString();
 
-        renderTextCombat.text = "";
-
         defenseurAM.keepInteractionDisplayed = true;
         defenseurAM.DisplayInteraction();
 
+        DragCamera2D.Instance.UnfollowTargetCamera();
         DragCamera2D.Instance.FollowTargetCamera(attaquantFM.gameObject);
 
         attaquantAM.keepInteractionDisplayed = true;
         attaquantAM.DisplayInteraction();
 
-        defenseurDamageEffect = defenseurFM.GetComponentInChildren<ParticleSystem>();
-        attaquantDamageEffect = attaquantFM.GetComponentInChildren<ParticleSystem>();
+        //defenseurDamageEffect = defenseurFM.GetComponentInChildren<ParticleSystem>();
+        //attaquantDamageEffect = attaquantFM.GetComponentInChildren<ParticleSystem>();
 
         attaquantFM.isInteracting = true;
         defenseurFM.isInteracting = true;
@@ -296,8 +296,7 @@ public class CombatManager : MonoBehaviour
     }
 
     public IEnumerator Attack()
-    {
-
+    {    
         Debug.Log("Attack() " + defenseurFM.name + " " + " " + attaquantFM.name);
 
         if (attaquantFM.isAlive && defenseurFM.isAlive)
@@ -316,11 +315,13 @@ public class CombatManager : MonoBehaviour
             yield return new WaitForSeconds(0.3f);
 
             myAnim.SetTrigger("DefenseurReceiveDamage");
-            attaquantDamageEffect.Play();
+            //attaquantDamageEffect.Play();
 
             yield return new WaitForSeconds(1f);
 
             // Ici jouer Anim dégâts reçus sur defenseur
+            renderTextCombat.text = "- " + attackValue.ToString();
+            defenseurDamageTextPS.gameObject.SetActive(true);
             defenseurAM.ReceiveDamage();
             defenseurAM.FillAmountHealth();
             
@@ -330,6 +331,8 @@ public class CombatManager : MonoBehaviour
 
             CheckHP();
             yield return new WaitForSeconds(0.5f);
+
+            defenseurDamageTextPS.gameObject.SetActive(false);
 
             if (attaquantFM != null && defenseurFM != null)
             {
@@ -358,11 +361,16 @@ public class CombatManager : MonoBehaviour
         yield return new WaitForSeconds(0.3f);
 
         myAnim.SetTrigger("AttaquantReceiveDamage");
-        defenseurDamageEffect.Play();
+
+        //defenseurDamageEffect.Play();
 
         yield return new WaitForSeconds(1f);
 
         // Ici jouer Anim dégâts reçus sur attaquant
+
+        renderTextCombat.text = "- " + counterAttackValue.ToString();
+        attaquantDamageTextPS.gameObject.SetActive(true);
+
         attaquantAM.ReceiveDamage();
         attaquantAM.FillAmountHealth();
 
@@ -372,6 +380,8 @@ public class CombatManager : MonoBehaviour
 
         CheckHP();
         yield return new WaitForSeconds(0.5f);
+
+        attaquantDamageTextPS.gameObject.SetActive(false);
 
         if (attaquantFM != null && defenseurFM != null)
         {
@@ -409,6 +419,7 @@ public class CombatManager : MonoBehaviour
         Debug.Log("Critical() " + defenseurFM.name + " " + " " + attaquantFM.name);
 
         defenseurFM.currentHP -= attaquantFM.maxAttackRange * 2;
+
         Debug.Log("OUH ! CRITIQUE !!");
         Debug.Log("Avec un coup critique, " + attaquantFM.name + " inflige " + attaquantFM.maxAttackRange * 2 + " points de dégâts, laissant " + defenseurFM.name + " à " + defenseurFM.currentHP);
 
@@ -417,13 +428,15 @@ public class CombatManager : MonoBehaviour
         // ICI jouer SFX de coup critique
 
         //myDamageFeedback.text = "-" + (attaquantFM.maxAttackRange * 2).ToString() + (" !!");
-        attaquantDamageEffect.Play();
+        //attaquantDamageEffect.Play();
 
         myAnim.SetTrigger("DefenseurReceiveDamage");
 
         yield return new WaitForSeconds(2f);
 
         // ICI jouer Anim dégâts reçus sur defenseur
+        renderTextCombat.text = "- " + (attaquantFM.maxAttackRange * 2).ToString();
+        defenseurDamageTextPS.gameObject.SetActive(true);
         defenseurAM.ReceiveDamage();
         defenseurAM.FillAmountHealth();
         
@@ -433,6 +446,8 @@ public class CombatManager : MonoBehaviour
 
         CheckHP();
         yield return new WaitForSeconds(0.5f);
+
+        defenseurDamageTextPS.gameObject.SetActive(false);
 
         if (attaquantFM != null && defenseurFM != null)
         {
@@ -461,11 +476,14 @@ public class CombatManager : MonoBehaviour
             myAnim.SetTrigger("AttaquantReceiveDamage");
 
             //myDamageFeedback.text = "-" + defenseurFM.maxCounterAttackRange.ToString() + " !!";
-            defenseurDamageEffect.Play();
+            //defenseurDamageEffect.Play();
 
             yield return new WaitForSeconds(2f);
 
             // ICI jouer Anim dégâts reçus sur attaquant
+            renderTextCombat.text = "- " + (defenseurFM.maxCounterAttackRange * 2).ToString();
+            attaquantDamageTextPS.gameObject.SetActive(true);
+
             attaquantAM.ReceiveDamage();
             attaquantAM.FillAmountHealth();
 
@@ -475,6 +493,8 @@ public class CombatManager : MonoBehaviour
 
             CheckHP();
             yield return new WaitForSeconds(0.5f);
+
+            attaquantDamageTextPS.gameObject.SetActive(false);
 
             if (attaquantFM != null && defenseurFM != null)
             {
@@ -529,7 +549,7 @@ public class CombatManager : MonoBehaviour
             {
                 dfmci.RemoveCollindingCharacterFromInteractionList(deadFM.GetComponentInChildren<Interaction>());
 
-                dfmci.DisplayInteractionFeedbacks();
+                dfmci.FideleDisplayInteractionFeedbacks();
             }
 
             foreach (FideleManager dfmcfm in deadFM.unitsInRange)
@@ -553,6 +573,9 @@ public class CombatManager : MonoBehaviour
 
             defenseurAM.keepInteractionDisplayed = false;
             defenseurAM.HideInteraction();
+
+            attaquantFM.GetComponentInChildren<Interaction>().OtherCampDisplayInteractionFeedbacks();
+            defenseurFM.GetComponentInChildren<Interaction>().OtherCampDisplayInteractionFeedbacks();
 
 
             attaquantFM.isInteracting = false;
@@ -595,6 +618,10 @@ public class CombatManager : MonoBehaviour
 
         //Debug.Log("Combat terminé");
         myAnim.SetBool("OpenCombatBandeau", false);
+
+
+        attaquantFM.GetComponentInChildren<Interaction>().OtherCampDisplayInteractionFeedbacks();
+        defenseurFM.GetComponentInChildren<Interaction>().OtherCampDisplayInteractionFeedbacks();
 
         //myDamageFeedback.text = "";
         //myDamageFeedback = null;

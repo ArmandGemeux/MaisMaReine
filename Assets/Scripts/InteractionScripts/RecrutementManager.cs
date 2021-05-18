@@ -219,7 +219,7 @@ public class RecrutementManager : MonoBehaviour
         {
             iam.RemoveCollindingCharacterFromInteractionList(myFMToRecruit.GetComponentInChildren<Interaction>());
 
-            iam.DisplayInteractionFeedbacks();
+            iam.FideleDisplayInteractionFeedbacks();
         }
 
         myFMToRecruit.GetComponentInChildren<Interaction>().myCollideAnimationManagerList.Clear();

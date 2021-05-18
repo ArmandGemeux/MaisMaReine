@@ -100,6 +100,15 @@ public class TurnFeedbackManager : MonoBehaviour
                 StartCoroutine(ResetFeedback());
                 break;
             case GameCamps.BanditCalamiteux:
+                myAnim.SetTrigger("Displaying");
+                mySwitchTurnText.text = "Les Bandits jouent";
+                myQuestText.enabled = false;
+
+                bandeauBG.sprite = bandeauBGBandit;
+                boutonBG.sprite = boutonBGBandit;
+                boutonIcon.sprite = boutonIconBandit;
+
+                StartCoroutine(ResetFeedback());
                 break;
             case GameCamps.Calamite:
                 break;

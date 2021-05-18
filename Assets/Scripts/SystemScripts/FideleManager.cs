@@ -87,14 +87,11 @@ public class FideleManager : MonoBehaviour
                 attackableUnits.Add(GameCamps.Fidele);
                 attackableUnits.Add(GameCamps.Roi);
                 attackableUnits.Add(GameCamps.Converti);
-                attackableUnits.Add(GameCamps.Villageois);
                 break;
             case GameCamps.BanditCalamiteux:
                 attackableUnits.Add(GameCamps.Fidele);
                 attackableUnits.Add(GameCamps.Roi);
-                attackableUnits.Add(GameCamps.Villageois);
                 attackableUnits.Add(GameCamps.Converti);
-                attackableUnits.Add(GameCamps.Bandit);
                 break;
             case GameCamps.Calamite:
                 attackableUnits.Add(GameCamps.Fidele);

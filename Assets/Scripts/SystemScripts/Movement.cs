@@ -91,17 +91,19 @@ public class Movement : MonoBehaviour
             myAnimationManager.HideMovement();
             myAnimationManager.HideInteraction();
 
-            foreach (FideleManager fmir in myFM.unitsInRange)
+            foreach (FideleManager fmir in GameManager.Instance.allMapUnits)
             {
                 if (fmir.myCamp != myFM.myCamp)
                 {
                     fmir.GetComponent<AnimationManager>().HideInteraction();
                     fmir.GetComponent<AnimationManager>().HideInteractionIcon();
                     fmir.GetComponentInChildren<Interaction>().myInteractionIcon.color = Color.white;
+
+                    fmir.GetComponentInChildren<Interaction>().OtherCampDisplayInteractionFeedbacks();
                 }
             }
 
-            myInteraction.DisplayInteractionFeedbacks();
+            myInteraction.FideleDisplayInteractionFeedbacks();
 
             myInteraction.CheckForAvaibleInteractions();
 
@@ -125,7 +127,7 @@ public class Movement : MonoBehaviour
         }
         else
         {
-            myInteraction.DisplayInteractionFeedbacks();
+            myInteraction.FideleDisplayInteractionFeedbacks();
         }
     }
 

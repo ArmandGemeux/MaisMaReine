@@ -54,7 +54,7 @@ public class Interaction : MonoBehaviour
             myCollideInteractionList.Add(collision.GetComponent<Interaction>());
             myCollideAnimationManagerList.Add(collision.GetComponentInParent<AnimationManager>());
 
-            DisplayInteractionFeedbacks();
+            FideleDisplayInteractionFeedbacks();
             CheckForAvaibleInteractions();
         }
     }
@@ -71,11 +71,11 @@ public class Interaction : MonoBehaviour
 
             RemoveCollidingCharacterFromAMList(myExitingAM);
 
-            DisplayInteractionFeedbacks();
+            FideleDisplayInteractionFeedbacks();
         }
     }
 
-    public void DisplayInteractionFeedbacks()
+    public void FideleDisplayInteractionFeedbacks()
     {
         if (myCollideAnimationManagerList.Count >= 1)
         {
@@ -90,13 +90,32 @@ public class Interaction : MonoBehaviour
                     if (!alreadyInteractedList.Contains(cam.GetComponentInChildren<Interaction>()))
                     {
                         myAnimationManager.isSelectable = true;
-                        //myAnimationManager.ActivateLauncherSelection();
                         cam.DisplayInteractionIcon();
 
                         cam.ActivateReceiverSelection();
                     }
                 }
             }
+        }
+    }
+
+    public void OtherCampDisplayInteractionFeedbacks()
+    {
+        if (myCollideAnimationManagerList.Count >= 1)
+        {
+            for (int i = 0; i < myCollideAnimationManagerList.Count; i++)
+            {
+                if (myCollideAnimationManagerList[i].GetComponent<FideleManager>().myCamp == GameCamps.Fidele && myFideleManager.myCamp != GameCamps.Fidele && !myCollideAnimationManagerList[i].GetComponentInChildren<Interaction>().alreadyInteractedList.Contains(this))
+                {
+                    myAnimationManager.DisplayInteractionIcon();
+                    return;
+                }
+                myAnimationManager.HideInteractionIcon();
+            }
+        }
+        else
+        {
+            myAnimationManager.HideInteractionIcon();
         }
     }
 
@@ -147,7 +166,7 @@ public class Interaction : MonoBehaviour
         }
 
         myCollideAnimationManagerList.Remove(aMToRemove);
-        DisplayInteractionFeedbacks();
+        FideleDisplayInteractionFeedbacks();
     }
 
     public void RemoveCollindingCharacterFromInteractionList(Interaction interactionToRemove)
@@ -162,6 +181,6 @@ public class Interaction : MonoBehaviour
         }
 
         myCollideInteractionList.Remove(interactionToRemove);
-        DisplayInteractionFeedbacks();
+        FideleDisplayInteractionFeedbacks();
     }
 }

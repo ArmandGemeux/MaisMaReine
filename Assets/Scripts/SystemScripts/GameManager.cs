@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     public float timeValue;
     public bool canMoveEnemy = true; //Public pour playtest
 
-    private List<FideleManager> allMapUnits = new List<FideleManager>();
+    public List<FideleManager> allMapUnits = new List<FideleManager>();
 
     public int charismeAmount;
 
@@ -130,14 +130,16 @@ public class GameManager : MonoBehaviour
                 allMapUnits[i].isAllActionsDone = false;
             }
         }
+        
+        int ccti = (int)currentCampTurn+1;
 
-        currentCampTurn += 1;
-
-        var lastTurn = campsInTerritoire.Last();
-
-        if (currentCampTurn == lastTurn + 1)
+        if (currentCampTurn < campsInTerritoire.Last())
         {
-            currentCampTurn = campsInTerritoire[0];
+            currentCampTurn = campsInTerritoire[ccti];
+        }
+        else if (currentCampTurn == campsInTerritoire.Last())
+        {
+            currentCampTurn = campsInTerritoire.First();
         }
 
         ResetTurn();
@@ -155,49 +157,18 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
-
-        if (currentCampTurn == GameCamps.Roi)
+        else
         {
             isGamePaused = true;
 
             foreach (FideleManager fm in allMapUnits)
             {
-                if (fm.myCamp == GameCamps.Roi)
+                if (fm.myCamp == currentCampTurn)
                 {
                     fm.GetComponentInChildren<MovementEnemy>().hasMoved = false;
                 }
             }
-
             MoveUnit();
-        }
-
-        if (currentCampTurn == GameCamps.Bandit)
-        {
-            isGamePaused = true;
-            foreach (FideleManager fm in allMapUnits)
-            {
-                if (fm.myCamp == GameCamps.Bandit)
-                {
-                    if (fm.isAlive)
-                    {
-                        fm.GetComponentInChildren<MovementEnemy>().hasMoved = false;
-                    }
-                }
-            }
-            StartCoroutine(MoveBandit());
-        }
-
-        if (currentCampTurn == GameCamps.Calamite)
-        {
-            isGamePaused = true;
-            foreach (FideleManager fm in allMapUnits)
-            {
-                if (fm.myCamp == GameCamps.Calamite)
-                {
-                    fm.GetComponentInChildren<MovementEnemy>().hasMoved = false;
-                }
-            }
-            StartCoroutine(MoveCalamite());
         }
     }
 
@@ -300,7 +271,6 @@ public class GameManager : MonoBehaviour
         {
             if (fmu.isInteracting == false)
             {
-                Debug.Log("On baisse l'opacité");
                 fmu.GetComponent<AnimationManager>().LowerOpacity();
             }
         }
@@ -312,7 +282,6 @@ public class GameManager : MonoBehaviour
         {
             if (fmu.isInteracting == false)
             {
-                Debug.Log("On rétabli l'opacité");
                 fmu.GetComponent<AnimationManager>().ResetOpacity();
             }
         }
