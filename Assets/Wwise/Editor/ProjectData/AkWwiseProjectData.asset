@@ -345,22 +345,8 @@ MonoBehaviour:
     ParentPath: SoundBanks\Default Work Unit
     guid: b311a2bd52a23c4dbdcf8844b631cdf1
     GuidInternal: 
-    m_lastTime: -8585802782672368161
+    m_lastTime: -8585802637995106385
     List:
-    - name: Fideles
-      guid: db6ff5e38535934ea8b7d4d8c95bd5ec
-      id: 1593220861
-      PathAndIcons:
-      - ElementName: SoundBanks
-        ObjectType: 5
-        guid: 00000000000000000000000000000000
-      - ElementName: Default Work Unit
-        ObjectType: 12
-        guid: b311a2bd52a23c4dbdcf8844b631cdf1
-      - ElementName: Fideles
-        ObjectType: 7
-        guid: db6ff5e38535934ea8b7d4d8c95bd5ec
-      Path: SoundBanks\Default Work Unit\Fideles
     - name: SFX
       guid: e099aefcf0f1f245962d19205b1d628d
       id: 393239870
@@ -375,20 +361,6 @@ MonoBehaviour:
         ObjectType: 7
         guid: e099aefcf0f1f245962d19205b1d628d
       Path: SoundBanks\Default Work Unit\SFX
-    - name: UI
-      guid: 557191d8ff7f064dad23c55896015dce
-      id: 1551306167
-      PathAndIcons:
-      - ElementName: SoundBanks
-        ObjectType: 5
-        guid: 00000000000000000000000000000000
-      - ElementName: Default Work Unit
-        ObjectType: 12
-        guid: b311a2bd52a23c4dbdcf8844b631cdf1
-      - ElementName: UI
-        ObjectType: 7
-        guid: 557191d8ff7f064dad23c55896015dce
-      Path: SoundBanks\Default Work Unit\UI
   EventWwu:
   - PhysicalPath: Events\Default Work Unit.wwu
     PathAndIcons:
@@ -401,8 +373,382 @@ MonoBehaviour:
     ParentPath: Events\Default Work Unit
     guid: af4625c0e4e9ed43a62873aec7c92b52
     GuidInternal: 
-    m_lastTime: -8585837023906198687
-    List: []
+    m_lastTime: -8585802637995325574
+    List:
+    - name: Event_Attaque_Epee
+      guid: 1d98ed078e44aa4f8ff4ff0421de8fe7
+      id: 3811235563
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: af4625c0e4e9ed43a62873aec7c92b52
+      - ElementName: Event_Attaque_Epee
+        ObjectType: 3
+        guid: 1d98ed078e44aa4f8ff4ff0421de8fe7
+      Path: Events\Default Work Unit\Event_Attaque_Epee
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: Event_Clique_Bouton_Baston
+      guid: 993ee60fa7b51649a347e9a2e7f4de3b
+      id: 2839960383
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: af4625c0e4e9ed43a62873aec7c92b52
+      - ElementName: Event_Clique_Bouton_Baston
+        ObjectType: 3
+        guid: 993ee60fa7b51649a347e9a2e7f4de3b
+      Path: Events\Default Work Unit\Event_Clique_Bouton_Baston
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: Event_Clique_Fidele_Bandeau
+      guid: b3878e9ff115574989c141dac347ad4c
+      id: 1488930380
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: af4625c0e4e9ed43a62873aec7c92b52
+      - ElementName: Event_Clique_Fidele_Bandeau
+        ObjectType: 3
+        guid: b3878e9ff115574989c141dac347ad4c
+      Path: Events\Default Work Unit\Event_Clique_Fidele_Bandeau
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: Event_Clique_Fidele_Combat
+      guid: a9b55e2c6ec7b34ea2462952446b7e4a
+      id: 756834820
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: af4625c0e4e9ed43a62873aec7c92b52
+      - ElementName: Event_Clique_Fidele_Combat
+        ObjectType: 3
+        guid: a9b55e2c6ec7b34ea2462952446b7e4a
+      Path: Events\Default Work Unit\Event_Clique_Fidele_Combat
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: Event_Clique_Fidele_Dialogue
+      guid: c0b27b24bcef9549aea865666304d342
+      id: 3768621174
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: af4625c0e4e9ed43a62873aec7c92b52
+      - ElementName: Event_Clique_Fidele_Dialogue
+        ObjectType: 3
+        guid: c0b27b24bcef9549aea865666304d342
+      Path: Events\Default Work Unit\Event_Clique_Fidele_Dialogue
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: Event_Clique_Fidele_Recrutement
+      guid: f6f2c28b13e140428df908ea91e3a552
+      id: 1117462416
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: af4625c0e4e9ed43a62873aec7c92b52
+      - ElementName: Event_Clique_Fidele_Recrutement
+        ObjectType: 3
+        guid: f6f2c28b13e140428df908ea91e3a552
+      Path: Events\Default Work Unit\Event_Clique_Fidele_Recrutement
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: Event_Contre_Attaque_Epee
+      guid: 333d56eba2342e439f5c962d15179d6f
+      id: 2630947717
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: af4625c0e4e9ed43a62873aec7c92b52
+      - ElementName: Event_Contre_Attaque_Epee
+        ObjectType: 3
+        guid: 333d56eba2342e439f5c962d15179d6f
+      Path: Events\Default Work Unit\Event_Contre_Attaque_Epee
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: Event_Fidele_Sans_Action
+      guid: 3f331652c48c104dbd05787d5c0ea839
+      id: 965117638
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: af4625c0e4e9ed43a62873aec7c92b52
+      - ElementName: Event_Fidele_Sans_Action
+        ObjectType: 3
+        guid: 3f331652c48c104dbd05787d5c0ea839
+      Path: Events\Default Work Unit\Event_Fidele_Sans_Action
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: Event_Interaction_Recrutement
+      guid: 4ff666fafc6e0749ae67cbc5d059538d
+      id: 4092098687
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: af4625c0e4e9ed43a62873aec7c92b52
+      - ElementName: Event_Interaction_Recrutement
+        ObjectType: 3
+        guid: 4ff666fafc6e0749ae67cbc5d059538d
+      Path: Events\Default Work Unit\Event_Interaction_Recrutement
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: Event_Mort
+      guid: 2790bb949c94a94baeb3a0eeebf691bd
+      id: 1699538348
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: af4625c0e4e9ed43a62873aec7c92b52
+      - ElementName: Event_Mort
+        ObjectType: 3
+        guid: 2790bb949c94a94baeb3a0eeebf691bd
+      Path: Events\Default Work Unit\Event_Mort
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: Event_Pause_Vent
+      guid: 97d5e3d6a4031f44b7b5dc841aa69099
+      id: 164432226
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: af4625c0e4e9ed43a62873aec7c92b52
+      - ElementName: Event_Pause_Vent
+        ObjectType: 3
+        guid: 97d5e3d6a4031f44b7b5dc841aa69099
+      Path: Events\Default Work Unit\Event_Pause_Vent
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: Event_Recrutement_Accepte
+      guid: 0273eff2fa652f4c9747fc30e7b712ba
+      id: 1968642834
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: af4625c0e4e9ed43a62873aec7c92b52
+      - ElementName: Event_Recrutement_Accepte
+        ObjectType: 3
+        guid: 0273eff2fa652f4c9747fc30e7b712ba
+      Path: Events\Default Work Unit\Event_Recrutement_Accepte
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: Event_Recrutement_Refuse
+      guid: bb714f6c9a2e6142990501d137039d3c
+      id: 2644997053
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: af4625c0e4e9ed43a62873aec7c92b52
+      - ElementName: Event_Recrutement_Refuse
+        ObjectType: 3
+        guid: bb714f6c9a2e6142990501d137039d3c
+      Path: Events\Default Work Unit\Event_Recrutement_Refuse
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: Event_Reussite_Critique
+      guid: cce2919fdda6bf409ab78650b04c468f
+      id: 4014485723
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: af4625c0e4e9ed43a62873aec7c92b52
+      - ElementName: Event_Reussite_Critique
+        ObjectType: 3
+        guid: cce2919fdda6bf409ab78650b04c468f
+      Path: Events\Default Work Unit\Event_Reussite_Critique
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: Event_UI_Bandeau_Fidele_Lefttoright
+      guid: 33f932a218fda740821737f0d0dc6927
+      id: 349269192
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: af4625c0e4e9ed43a62873aec7c92b52
+      - ElementName: Event_UI_Bandeau_Fidele_Lefttoright
+        ObjectType: 3
+        guid: 33f932a218fda740821737f0d0dc6927
+      Path: Events\Default Work Unit\Event_UI_Bandeau_Fidele_Lefttoright
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: Event_UI_Bandeau_Fidele_Righttoleft
+      guid: 71c995b17c5b6d4e93299e57a1a7af24
+      id: 694759564
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: af4625c0e4e9ed43a62873aec7c92b52
+      - ElementName: Event_UI_Bandeau_Fidele_Righttoleft
+        ObjectType: 3
+        guid: 71c995b17c5b6d4e93299e57a1a7af24
+      Path: Events\Default Work Unit\Event_UI_Bandeau_Fidele_Righttoleft
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: Event_UI_Clique_Bouton_Menu
+      guid: 07fad0f7355a6442903b7a4b34cd2418
+      id: 1387593318
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: af4625c0e4e9ed43a62873aec7c92b52
+      - ElementName: Event_UI_Clique_Bouton_Menu
+        ObjectType: 3
+        guid: 07fad0f7355a6442903b7a4b34cd2418
+      Path: Events\Default Work Unit\Event_UI_Clique_Bouton_Menu
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: Event_UI_Gain_Charisme
+      guid: c7e1574633d94244b168794c8116455c
+      id: 3776204507
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: af4625c0e4e9ed43a62873aec7c92b52
+      - ElementName: Event_UI_Gain_Charisme
+        ObjectType: 3
+        guid: c7e1574633d94244b168794c8116455c
+      Path: Events\Default Work Unit\Event_UI_Gain_Charisme
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: Event_UI_Obtention_quete
+      guid: 04acfcb6902f4d4181146b360abfd444
+      id: 2059410396
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: af4625c0e4e9ed43a62873aec7c92b52
+      - ElementName: Event_UI_Obtention_quete
+        ObjectType: 3
+        guid: 04acfcb6902f4d4181146b360abfd444
+      Path: Events\Default Work Unit\Event_UI_Obtention_quete
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: Event_UI_PNJ_Recrute
+      guid: 3c50af236cdc5f4c9fcde26b52d58ee5
+      id: 777863556
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: af4625c0e4e9ed43a62873aec7c92b52
+      - ElementName: Event_UI_PNJ_Recrute
+        ObjectType: 3
+        guid: 3c50af236cdc5f4c9fcde26b52d58ee5
+      Path: Events\Default Work Unit\Event_UI_PNJ_Recrute
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: Event_UI_Quete_Termine
+      guid: ae341c4ffe689443ab00ad381bbf6a33
+      id: 552716342
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: af4625c0e4e9ed43a62873aec7c92b52
+      - ElementName: Event_UI_Quete_Termine
+        ObjectType: 3
+        guid: ae341c4ffe689443ab00ad381bbf6a33
+      Path: Events\Default Work Unit\Event_UI_Quete_Termine
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: Event_UI_Survole_Bouton
+      guid: c9712e3c5cb62647b518de6121e59e35
+      id: 3384763883
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: af4625c0e4e9ed43a62873aec7c92b52
+      - ElementName: Event_UI_Survole_Bouton
+        ObjectType: 3
+        guid: c9712e3c5cb62647b518de6121e59e35
+      Path: Events\Default Work Unit\Event_UI_Survole_Bouton
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
   RtpcWwu:
   - PhysicalPath: Game Parameters\Default Work Unit.wwu
     PathAndIcons:
@@ -654,7 +1000,7 @@ MonoBehaviour:
     m_lastTime: -8585837023906587637
     List: []
   ExpandedFileSystemItemIds: 
-  ExpandedWaapiItemIds: 010000000a0000000b000000
+  ExpandedWaapiItemIds: 01000000060000000a0000000b0000000c000000
   AutoSyncSelection: 0
   autoPopulateEnabled: 1
   currentDataSource: 0
