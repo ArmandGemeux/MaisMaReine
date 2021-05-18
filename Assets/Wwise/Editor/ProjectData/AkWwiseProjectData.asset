@@ -345,8 +345,50 @@ MonoBehaviour:
     ParentPath: SoundBanks\Default Work Unit
     guid: b311a2bd52a23c4dbdcf8844b631cdf1
     GuidInternal: 
-    m_lastTime: -8585837023905420760
-    List: []
+    m_lastTime: -8585802782672368161
+    List:
+    - name: Fideles
+      guid: db6ff5e38535934ea8b7d4d8c95bd5ec
+      id: 1593220861
+      PathAndIcons:
+      - ElementName: SoundBanks
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: b311a2bd52a23c4dbdcf8844b631cdf1
+      - ElementName: Fideles
+        ObjectType: 7
+        guid: db6ff5e38535934ea8b7d4d8c95bd5ec
+      Path: SoundBanks\Default Work Unit\Fideles
+    - name: SFX
+      guid: e099aefcf0f1f245962d19205b1d628d
+      id: 393239870
+      PathAndIcons:
+      - ElementName: SoundBanks
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: b311a2bd52a23c4dbdcf8844b631cdf1
+      - ElementName: SFX
+        ObjectType: 7
+        guid: e099aefcf0f1f245962d19205b1d628d
+      Path: SoundBanks\Default Work Unit\SFX
+    - name: UI
+      guid: 557191d8ff7f064dad23c55896015dce
+      id: 1551306167
+      PathAndIcons:
+      - ElementName: SoundBanks
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: b311a2bd52a23c4dbdcf8844b631cdf1
+      - ElementName: UI
+        ObjectType: 7
+        guid: 557191d8ff7f064dad23c55896015dce
+      Path: SoundBanks\Default Work Unit\UI
   EventWwu:
   - PhysicalPath: Events\Default Work Unit.wwu
     PathAndIcons:
@@ -612,7 +654,7 @@ MonoBehaviour:
     m_lastTime: -8585837023906587637
     List: []
   ExpandedFileSystemItemIds: 
-  ExpandedWaapiItemIds: 
+  ExpandedWaapiItemIds: 010000000a0000000b000000
   AutoSyncSelection: 0
   autoPopulateEnabled: 1
   currentDataSource: 0
