@@ -160,6 +160,11 @@ public class RaycastInteraction : MonoBehaviour
             interactionReceiverInteraction.OtherCampDisplayInteractionFeedbacks();
             interactionLauncherInteraction.FideleDisplayInteractionFeedbacks();
 
+            foreach (Interaction myCollideInteraction in interactionLauncherInteraction.myCollideInteractionList)
+            {
+                myCollideInteraction.GetComponentInParent<AnimationManager>().DesactivateReceiverSelection();
+            }
+
             //Debug.Log("Interaction");
             ResetReceiverInteraction();
             ResetLauncherInteraction();

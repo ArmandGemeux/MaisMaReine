@@ -99,6 +99,8 @@ public class Movement : MonoBehaviour
                     fmir.GetComponent<AnimationManager>().HideInteractionIcon();
                     fmir.GetComponentInChildren<Interaction>().myInteractionIcon.color = Color.white;
 
+                    fmir.GetComponent<AnimationManager>().DesactivateReceiverSelection();
+
                     fmir.GetComponentInChildren<Interaction>().OtherCampDisplayInteractionFeedbacks();
                 }
             }

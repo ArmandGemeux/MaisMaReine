@@ -54,8 +54,12 @@ public class Interaction : MonoBehaviour
             myCollideInteractionList.Add(collision.GetComponent<Interaction>());
             myCollideAnimationManagerList.Add(collision.GetComponentInParent<AnimationManager>());
 
-            FideleDisplayInteractionFeedbacks();
-            CheckForAvaibleInteractions();
+            if (myFideleManager.myCamp == GameCamps.Fidele)
+            {
+                FideleDisplayInteractionFeedbacks();
+                CheckForAvaibleInteractions();
+                collision.GetComponentInParent<AnimationManager>().ActivateReceiverSelection();
+            }
         }
     }
 
@@ -91,8 +95,6 @@ public class Interaction : MonoBehaviour
                     {
                         myAnimationManager.isSelectable = true;
                         cam.DisplayInteractionIcon();
-
-                        cam.ActivateReceiverSelection();
                     }
                 }
             }
