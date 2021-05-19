@@ -11,6 +11,32 @@
 
 namespace AK
 {
+    namespace EVENTS
+    {
+        static const AkUniqueID EVENT_ATTAQUE_EPEE = 3811235563U;
+        static const AkUniqueID EVENT_CLIQUE_BOUTON_BASTON = 2839960383U;
+        static const AkUniqueID EVENT_CLIQUE_FIDELE_BANDEAU = 1488930380U;
+        static const AkUniqueID EVENT_CLIQUE_FIDELE_COMBAT = 756834820U;
+        static const AkUniqueID EVENT_CLIQUE_FIDELE_DIALOGUE = 3768621174U;
+        static const AkUniqueID EVENT_CLIQUE_FIDELE_RECRUTEMENT = 1117462416U;
+        static const AkUniqueID EVENT_CONTRE_ATTAQUE_EPEE = 2630947717U;
+        static const AkUniqueID EVENT_FIDELE_SANS_ACTION = 965117638U;
+        static const AkUniqueID EVENT_INTERACTION_RECRUTEMENT = 4092098687U;
+        static const AkUniqueID EVENT_MORT = 1699538348U;
+        static const AkUniqueID EVENT_PAUSE_VENT = 164432226U;
+        static const AkUniqueID EVENT_RECRUTEMENT_ACCEPTE = 1968642834U;
+        static const AkUniqueID EVENT_RECRUTEMENT_REFUSE = 2644997053U;
+        static const AkUniqueID EVENT_REUSSITE_CRITIQUE = 4014485723U;
+        static const AkUniqueID EVENT_UI_BANDEAU_FIDELE_LEFTTORIGHT = 349269192U;
+        static const AkUniqueID EVENT_UI_BANDEAU_FIDELE_RIGHTTOLEFT = 694759564U;
+        static const AkUniqueID EVENT_UI_CLIQUE_BOUTON_MENU = 1387593318U;
+        static const AkUniqueID EVENT_UI_GAIN_CHARISME = 3776204507U;
+        static const AkUniqueID EVENT_UI_OBTENTION_QUETE = 2059410396U;
+        static const AkUniqueID EVENT_UI_PNJ_RECRUTE = 777863556U;
+        static const AkUniqueID EVENT_UI_QUETE_TERMINE = 552716342U;
+        static const AkUniqueID EVENT_UI_SURVOLE_BOUTON = 3384763883U;
+    } // namespace EVENTS
+
     namespace GAME_PARAMETERS
     {
         static const AkUniqueID PLAYBACK_RATE = 1524500807U;
@@ -30,9 +56,7 @@ namespace AK
     namespace BANKS
     {
         static const AkUniqueID INIT = 1355168291U;
-        static const AkUniqueID FIDELES = 1593220861U;
         static const AkUniqueID SFX = 393239870U;
-        static const AkUniqueID UI = 1551306167U;
     } // namespace BANKS
 
     namespace BUSSES
