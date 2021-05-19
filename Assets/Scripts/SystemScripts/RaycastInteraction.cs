@@ -157,7 +157,7 @@ public class RaycastInteraction : MonoBehaviour
 
             interactionLauncherInteraction.CheckForAvaibleInteractions();
 
-            interactionReceiverInteraction.FideleDisplayInteractionFeedbacks();
+            interactionReceiverInteraction.OtherCampDisplayInteractionFeedbacks();
             interactionLauncherInteraction.FideleDisplayInteractionFeedbacks();
 
             //Debug.Log("Interaction");

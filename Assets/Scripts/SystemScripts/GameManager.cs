@@ -154,7 +154,9 @@ public class GameManager : MonoBehaviour
                 {
                     fm.GetComponentInChildren<Movement>().hasMoved = false;
                     fm.GetComponent<AnimationManager>().InteractionAvaibleColor();
+                    fm.GetComponentInChildren<Interaction>().FideleDisplayInteractionFeedbacks();
                 }
+                fm.GetComponentInChildren<Interaction>().OtherCampDisplayInteractionFeedbacks();
             }
         }
         else
