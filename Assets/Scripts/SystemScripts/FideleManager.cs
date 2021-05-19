@@ -42,7 +42,7 @@ public class FideleManager : MonoBehaviour
 
     //[HideInInspector]
     public FideleManager myTarget;
-    [HideInInspector]
+
     public bool isAllActionsDone = false;
 
     private List<GameCamps> attackableUnits = new List<GameCamps>();

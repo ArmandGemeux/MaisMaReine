@@ -72,10 +72,11 @@ public class Movement : MonoBehaviour
 
             if (isLanbable)
             {
-                myAnimationManager.CheckActionsLeftAmout();
                 transform.parent.position = transform.position;
                 transform.localPosition = Vector3.zero;
                 hasMoved = true;
+
+                myAnimationManager.CheckActionsLeftAmout();
 
                 for (int i = 0; i < myInteraction.myCollideInteractionList.Count; i++)
                 {

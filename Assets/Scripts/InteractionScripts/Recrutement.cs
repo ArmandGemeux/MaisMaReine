@@ -23,11 +23,11 @@ public class Recrutement : MonoBehaviour
         
     }
 
-    public void LaunchRecruitement(FideleManager fmToRecruit)
+    public void LaunchRecruitement(FideleManager fmToRecruit, FideleManager recruiterFM)
     {
         GameManager.Instance.isGamePaused = true;
 
         int spriteIndex = Random.Range(0, myRecruitedSprite.Count);
-        RecrutementManager.Instance.OpenRecruitementWindow(fmToRecruit, myRecruitedSprite[spriteIndex]);
+        RecrutementManager.Instance.OpenRecruitementWindow(fmToRecruit, myRecruitedSprite[spriteIndex], recruiterFM);
     }
 }

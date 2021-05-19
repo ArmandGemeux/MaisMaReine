@@ -518,8 +518,10 @@ public class CombatManager : MonoBehaviour
         GameManager.Instance.isGamePaused = false;
 
         DragCamera2D.Instance.UnfollowTargetCamera();
-
         QuestManager.Instance.OnKillUnit(deadFM);
+
+        defenseurAM.CheckActionsLeftAmout();
+        attaquantAM.CheckActionsLeftAmout();
 
         if (deadFM.myCamp != GameCamps.Bandit)
         {
@@ -619,6 +621,8 @@ public class CombatManager : MonoBehaviour
         //Debug.Log("Combat terminé");
         myAnim.SetBool("OpenCombatBandeau", false);
 
+        defenseurAM.CheckActionsLeftAmout();
+        attaquantAM.CheckActionsLeftAmout();
 
         attaquantFM.GetComponentInChildren<Interaction>().OtherCampDisplayInteractionFeedbacks();
         defenseurFM.GetComponentInChildren<Interaction>().OtherCampDisplayInteractionFeedbacks();

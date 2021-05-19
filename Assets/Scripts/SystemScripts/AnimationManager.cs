@@ -281,19 +281,31 @@ public class AnimationManager : MonoBehaviour
         {
             if (myFM.myCamp == GameCamps.Fidele)
             {
-                if (myInteraction.alreadyInteractedList.Count == myInteraction.myCollideInteractionList.Count && myMovement.hasMoved)
+                if (myMovement.hasMoved)
                 {
-                    myFM.isAllActionsDone = true;
-                    GameManager.Instance.IsAllCampActionsDone();
+                    if (myInteraction.myCollideInteractionList.Count == 0)
+                    {
+                        NoMoreInteractionColor();
+                        myFM.isAllActionsDone = true;
+                        GameManager.Instance.IsAllCampActionsDone();
+                    }
+                    else if (myInteraction.alreadyInteractedList.Count >= myInteraction.myCollideInteractionList.Count)
+                    {
+                        NoMoreInteractionColor();
+                        Debug.Log(myFM.name + " Liste plus remplie");
+                        myFM.isAllActionsDone = true;
+                        GameManager.Instance.IsAllCampActionsDone();
+                    }
+                    else
+                    {
+                        InteractionAvaibleColor();
+                    }
                 }
             }
             else
             {
-                if (/*myInteraction.alreadyInteractedList.Count == 1 && */myMovementEnemy.hasMoved)
-                {
-                    myFM.isAllActionsDone = true;
-                    GameManager.Instance.IsAllCampActionsDone();
-                }
+                myFM.isAllActionsDone = true;
+                GameManager.Instance.IsAllCampActionsDone();
             }
         }
     }

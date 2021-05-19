@@ -55,6 +55,14 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public void GlobalActionsCheck()
+    {
+        for (int i = 0; i < allMapUnits.Count; i++)
+        {
+            allMapUnits[i].GetComponent<AnimationManager>().CheckActionsLeftAmout();
+        }
+    }
+
     public void IsAllCampActionsDone()
     {
         for (int i = 0; i < allMapUnits.Count; i++)
@@ -68,12 +76,13 @@ public class GameManager : MonoBehaviour
                 }                
             }
         }
+        SwitchTurn();
         myCampTurningFeedback.gameObject.SetActive(true);
 
-        if (currentCampTurn != GameCamps.Fidele)
+        /*if (currentCampTurn != GameCamps.Fidele)
         {
-            SwitchTurn();
-        }
+        SwitchTurn();
+        }*/
     }
 
     public void LoadCharismeValueBetweenScenes()

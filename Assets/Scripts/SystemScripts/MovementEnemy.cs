@@ -90,8 +90,6 @@ public class MovementEnemy : MonoBehaviour
 
         isMoving = false;
         hasMoved = true;
-
-        myAnimManager.CheckActionsLeftAmout();
         DragCamera2D.Instance.UnfollowTargetCamera();
     }
 
@@ -109,12 +107,14 @@ public class MovementEnemy : MonoBehaviour
     {
         if (collision == myMoveZoneCollider)
         {
+            myAnimManager.CheckActionsLeftAmout();
             StopMoving();
 
             GameManager.Instance.MoveUnit();
         }
         if (collision == targetInteractionZone)
         {
+            myAnimManager.CheckActionsLeftAmout();
             StopMoving();
 
             GameManager.Instance.MoveUnit();

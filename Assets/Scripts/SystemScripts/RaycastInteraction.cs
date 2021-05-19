@@ -135,13 +135,13 @@ public class RaycastInteraction : MonoBehaviour
             switch (interactionReceiverInteraction.interactionType) //Quel type d'interaction porte l'interactionReceiver ?
             {
                 case InteractionType.Dialogue:
-                    interactionLauncherInteraction.alreadyInteractedList.Add(interactionReceiverInteraction);
+                    //interactionLauncherInteraction.alreadyInteractedList.Add(interactionReceiverInteraction);
                     interactionReceiverInteraction.GetComponent<DialogueInteraction>().StartDialogue(interactionReceiverFM);
                     //Debug.Log("Dialogue");
                     break;
                 case InteractionType.Recrutement:
                     interactionLauncherInteraction.alreadyInteractedList.Add(interactionReceiverInteraction);
-                    interactionReceiverInteraction.GetComponent<Recrutement>().LaunchRecruitement(interactionReceiverFM);
+                    interactionReceiverInteraction.GetComponent<Recrutement>().LaunchRecruitement(interactionReceiverFM, interactionLauncherFM);
                     //Debug.Log("Recrutement");
                     break;
                 case InteractionType.Combat:
@@ -152,8 +152,6 @@ public class RaycastInteraction : MonoBehaviour
                 default:
                     break;
             }
-
-            interactionLauncherAnim.CheckActionsLeftAmout();
 
             interactionLauncherInteraction.CheckForAvaibleInteractions();
 

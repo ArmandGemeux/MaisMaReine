@@ -8,6 +8,7 @@ using UnityEngine.UI.Extensions;
 public class RecrutementManager : MonoBehaviour
 {
     private FideleManager myFMToRecruit;
+    private FideleManager myRecruiterFM;
 
     public GameObject myFideleParent;
 
@@ -100,7 +101,7 @@ public class RecrutementManager : MonoBehaviour
         gainCharismePS.gameObject.SetActive(false);
     }
 
-    public void OpenRecruitementWindow(FideleManager fmToRecruit, Sprite fmToRecruitSprite)
+    public void OpenRecruitementWindow(FideleManager fmToRecruit, Sprite fmToRecruitSprite, FideleManager recruiterFM)
     {
         myAnim.SetBool("isOpen", true);
         recruitedSprite = fmToRecruitSprite;
@@ -120,6 +121,7 @@ public class RecrutementManager : MonoBehaviour
         charismeCostValue.text = " : " + fmToRecruit.charismaCost.ToString();
 
         myFMToRecruit = fmToRecruit;
+        myRecruiterFM = recruiterFM;
     }
 
     public void RecruitUnit()
@@ -135,10 +137,12 @@ public class RecrutementManager : MonoBehaviour
 	    {
             GameManager.Instance.isGamePaused = false;
             myAnim.SetBool("isOpen", false);
+
+            myRecruiterFM.GetComponent<AnimationManager>().CheckActionsLeftAmout();
+
             myFMToRecruit = null;
             recruitedSprite = null;
 
-            GameManager.Instance.IsAllCampActionsDone();
             //ICI jouer le clignottement de l'icône de charisme
             //ICI jouer SFX d'impossibilité de recruter le personnage
         }
@@ -148,10 +152,12 @@ public class RecrutementManager : MonoBehaviour
     {
         GameManager.Instance.isGamePaused = false;
         myAnim.SetBool("isOpen", false);
+
+        myRecruiterFM.GetComponent<AnimationManager>().CheckActionsLeftAmout();
+
         myFMToRecruit = null;
         recruitedSprite = null;
-
-        GameManager.Instance.IsAllCampActionsDone();
+        
     }
 
     public IEnumerator SetCampToFidele()
@@ -208,11 +214,13 @@ public class RecrutementManager : MonoBehaviour
 
         foreach (AnimationManager cam in myFMToRecruit.GetComponentInChildren<Interaction>().myCollideAnimationManagerList)
         {
-            cam.GetComponentInChildren<Interaction>().RemoveCollidingCharacterFromAMList(myFMToRecruit.GetComponent<AnimationManager>());
-            cam.GetComponent<AnimationManager>().haveAnInteraction = false;
+            //Debug.Log(cam.name + "test");
+            //cam.CheckActionsLeftAmout();
+            cam.haveAnInteraction = false;
 
             cam.HideInteraction();
-            cam.DesactivateReceiverSelection();
+
+            cam.GetComponentInChildren<Interaction>().RemoveCollidingCharacterFromAMList(myFMToRecruit.GetComponent<AnimationManager>());
         }
 
         foreach (Interaction iam in myFMToRecruit.GetComponentInChildren<Interaction>().myCollideInteractionList)
@@ -229,12 +237,15 @@ public class RecrutementManager : MonoBehaviour
 
         myFMToRecruit.GetComponent<AnimationManager>().HideInteraction();
         myFMToRecruit.GetComponent<AnimationManager>().DesactivateReceiverSelection();
+        
+        myFMToRecruit.GetComponent<AnimationManager>().CheckActionsLeftAmout();
+
+        GameManager.Instance.GlobalActionsCheck();
 
         recruitedSprite = null;
 
         myFMToRecruit.isAlive = true;
         myFMToRecruit = null;
-
-        GameManager.Instance.IsAllCampActionsDone();
+        myRecruiterFM = null;
     }
 }
