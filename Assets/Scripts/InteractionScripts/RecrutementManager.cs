@@ -49,6 +49,12 @@ public class RecrutementManager : MonoBehaviour
 
     public ParticleSystem recruitEffect;
 
+    [Header("Sounds")]
+
+    public AK.Wwise.Event boutonSFX;
+    public AK.Wwise.Event recrutementFumeeSFX;
+    public AK.Wwise.Event gainCharismeSFX;
+
     #region Singleton
     public static RecrutementManager Instance;
 
@@ -81,6 +87,11 @@ public class RecrutementManager : MonoBehaviour
         yield return new WaitForSeconds(1.6f);
 
         totalCharismeAmountText.text = GameManager.Instance.charismeAmount.ToString();
+
+        if (addedCharismeValue > 0)
+        {
+            gainCharismeSFX.Post(gameObject);
+        }
 
         yield return new WaitForSeconds(2f);
 
@@ -126,6 +137,7 @@ public class RecrutementManager : MonoBehaviour
 
     public void RecruitUnit()
     {
+        boutonSFX.Post(gameObject);
         if (GameManager.Instance.charismeAmount >= myFMToRecruit.charismaCost)
         {
             GameManager.Instance.isGamePaused = false;
@@ -152,6 +164,7 @@ public class RecrutementManager : MonoBehaviour
 
     public void CancelRecruitUnit()
     {
+        boutonSFX.Post(gameObject);
         GameManager.Instance.isGamePaused = false;
         myAnim.SetBool("isOpen", false);
 
@@ -185,12 +198,13 @@ public class RecrutementManager : MonoBehaviour
 
 
         // ICI jouer VFX de changement d'apparence du personnage
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.6f);
 
         DragCamera2D.Instance.FollowTargetCamera(myFMToRecruit.gameObject);
 
         recruitEffect.gameObject.transform.position = myFMToRecruit.transform.position;
         recruitEffect.Play();
+        recrutementFumeeSFX.Post(gameObject);
         // ICI jouer SFX de changement d'apparence du personnage
 
         yield return new WaitForSeconds(0.2f);

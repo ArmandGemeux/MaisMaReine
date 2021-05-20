@@ -11,6 +11,12 @@ public class RaycastInteraction : MonoBehaviour
     public Interaction interactionReceiverInteraction;
     public AnimationManager interactionReceiverAnim;
 
+    [Header ("Sounds")]
+
+    public AK.Wwise.Event combatLancementInteractionSFX;
+    public AK.Wwise.Event dialogueLancementInteractionSFX;
+    public AK.Wwise.Event recrutementLancementInteractionSFX;
+
     #region Singleton
 
     public static RaycastInteraction Instance;
@@ -137,16 +143,19 @@ public class RaycastInteraction : MonoBehaviour
                 case InteractionType.Dialogue:
                     //interactionLauncherInteraction.alreadyInteractedList.Add(interactionReceiverInteraction);
                     interactionReceiverInteraction.GetComponent<DialogueInteraction>().StartDialogue(interactionReceiverFM);
+                    dialogueLancementInteractionSFX.Post(gameObject);
                     //Debug.Log("Dialogue");
                     break;
                 case InteractionType.Recrutement:
                     interactionLauncherInteraction.alreadyInteractedList.Add(interactionReceiverInteraction);
                     interactionReceiverInteraction.GetComponent<Recrutement>().LaunchRecruitement(interactionReceiverFM, interactionLauncherFM);
+                    recrutementLancementInteractionSFX.Post(gameObject);
                     //Debug.Log("Recrutement");
                     break;
                 case InteractionType.Combat:
                     interactionLauncherInteraction.alreadyInteractedList.Add(interactionReceiverInteraction);
                     CombatManager.Instance.OpenCombatWindow(interactionLauncherFM, interactionReceiverFM);
+                    combatLancementInteractionSFX.Post(gameObject);
                     //Debug.Log("Combat");
                     break;
                 default:

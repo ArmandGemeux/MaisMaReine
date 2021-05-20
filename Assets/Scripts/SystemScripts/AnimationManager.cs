@@ -285,13 +285,11 @@ public class AnimationManager : MonoBehaviour
                 {
                     if (myInteraction.myCollideInteractionList.Count == 0)
                     {
-                        NoMoreInteractionColor();
                         myFM.isAllActionsDone = true;
                         GameManager.Instance.IsAllCampActionsDone();
                     }
                     else if (myInteraction.alreadyInteractedList.Count >= myInteraction.myCollideInteractionList.Count)
                     {
-                        NoMoreInteractionColor();
                         Debug.Log(myFM.name + " Liste plus remplie");
                         myFM.isAllActionsDone = true;
                         GameManager.Instance.IsAllCampActionsDone();

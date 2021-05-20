@@ -6,6 +6,9 @@ using System;
 
 public class QuestManager : MonoBehaviour
 {
+    public AK.Wwise.Event questSetupSFX;
+    public AK.Wwise.Event questEndedSFX;
+
     [Serializable]
     public struct QuestSetup
     {
@@ -147,6 +150,7 @@ public class QuestManager : MonoBehaviour
 
     public void SetupQuest(int questIdx)
     {
+        questSetupSFX.Post(gameObject);
         for (int i = 0; i < questsSetup.Count; i++)
         {
             if (questsSetup[i].questDesc.text.Length == 0)
@@ -289,6 +293,7 @@ public class QuestManager : MonoBehaviour
         {
             if (questsSetup[i].questDesc.text == mapQuests[qIdx].objectiveDesc)
             {
+                questEndedSFX.Post(gameObject);
                 GameManager.Instance.AddCharismeValue(mapQuests[qIdx].charismeQuestReward);
 
                 if (mapQuests[qIdx].isLauchingQuest)

@@ -7,6 +7,9 @@ public class Movement : MonoBehaviour
     private Vector3 mousePosition;
     private float moveSpeed = 2;
 
+    private bool isInsideMapLimits = true;
+    private bool isInAnObstacle = false;
+
     private Vector2 startPosition;
 
     public bool isMoving = false;
@@ -21,9 +24,13 @@ public class Movement : MonoBehaviour
     private AnimationManager myAnimationManager;
     private Interaction myInteraction;
 
+    private Collider2D myMapLimit;
+
     // Start is called before the first frame update
     void Start()
     {
+        myMapLimit = GameObject.FindGameObjectWithTag("MapLimit").GetComponent<Collider2D>();
+
         myFM = GetComponentInParent<FideleManager>();
         myInteraction = myFM.GetComponentInChildren<Interaction>();
 
@@ -136,12 +143,12 @@ public class Movement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == ("Obstacle"))
+        /*if (collision.tag == ("Obstacle"))
         {
             isLanbable = false;
             //Debug.Log(collision.name);
             myAnimationManager.UnableToLand();
-        }
+        }*/
 
         /*if (collision.gameObject == myMoveZone)
         {
@@ -155,22 +162,37 @@ public class Movement : MonoBehaviour
         if (collision.gameObject == myMoveZone)
         {
             isLanbable = false;
-            //Debug.Log(collision.name);
             myAnimationManager.UnableToLand();
+        }
+
+        if (collision.tag == ("Obstacle"))
+        {
+            isInAnObstacle = false;
+        }
+        if (collision.tag == ("MapLimit"))
+        {
+            isInsideMapLimits = true;
         }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject == myMoveZone)
+        if (collision.tag == ("Obstacle"))
+        {
+            isInAnObstacle = true;
+            isLanbable = false;
+            myAnimationManager.UnableToLand();
+        }
+        else if (collision.tag == ("MapLimit"))
+        {
+            isInsideMapLimits = false;
+            isLanbable = false;
+            myAnimationManager.UnableToLand();
+        }
+        else if (collision.gameObject == myMoveZone && isInAnObstacle == false && isInsideMapLimits)
         {
             isLanbable = true;
             myAnimationManager.AbleToLand();
-        }
-        else if (collision.tag == ("Obstacle"))
-        {
-            isLanbable = false;
-            myAnimationManager.UnableToLand();
         }
     }
 }
