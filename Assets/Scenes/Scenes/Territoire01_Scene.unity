@@ -4948,7 +4948,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 1062584195}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 360415401}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5ccc71daf61d7944bb4ced1a40b95519, type: 3}
@@ -5617,7 +5617,7 @@ MonoBehaviour:
   minZoom: 0.5
   zoomStepSize: 5.69
   zoomToMouse: 0
-  followTarget: {fileID: 788129620}
+  followTarget: {fileID: 0}
   lerpSpeed: 0.105
   offset: {x: 0, y: 0, z: -10}
   clampCamera: 1
@@ -22614,6 +22614,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ccc71daf61d7944bb4ced1a40b95519, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &360415401 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4758114577949382680, guid: a036c676612233e4a9c9560cde0ccd9b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1062584195}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &362019163
 GameObject:
   m_ObjectHideFlags: 0
@@ -42052,7 +42058,7 @@ MonoBehaviour:
     dialogueIndexToStart: 0
     nextInteractionType: 0
     cameraStartPos: {fileID: 0}
-    cameraEndPos: {fileID: 0}
+    cameraEndPos: {fileID: 360415401}
     unitsToSpawn: []
   isStartDialogueExisting: 1
 --- !u!95 &877799155
@@ -42769,7 +42775,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0.88, y: 1}
-  m_AnchoredPosition: {x: -16.999939, y: 0}
+  m_AnchoredPosition: {x: -16.999878, y: 0}
   m_SizeDelta: {x: -34, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &959563479

@@ -149,8 +149,10 @@ public class DialogueManager : MonoBehaviour
         {
             OpenDialogueWindow(dialogueScenario[currentDialogue.dialogueIndexToStart], null);
         }
-
-        talkingFM = null;
-        currentDialogue = null;
+        else
+        {
+            talkingFM = null;
+            currentDialogue = null;
+        }
     }
 }
