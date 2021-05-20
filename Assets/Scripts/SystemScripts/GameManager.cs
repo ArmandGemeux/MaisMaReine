@@ -78,11 +78,6 @@ public class GameManager : MonoBehaviour
         }
         SwitchTurn();
         myCampTurningFeedback.gameObject.SetActive(true);
-
-        /*if (currentCampTurn != GameCamps.Fidele)
-        {
-        SwitchTurn();
-        }*/
     }
 
     public void LoadCharismeValueBetweenScenes()
