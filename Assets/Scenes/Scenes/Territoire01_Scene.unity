@@ -5617,7 +5617,7 @@ MonoBehaviour:
   minZoom: 0.5
   zoomStepSize: 5.69
   zoomToMouse: 0
-  followTarget: {fileID: 0}
+  followTarget: {fileID: 788129620}
   lerpSpeed: 0.105
   offset: {x: 0, y: 0, z: -10}
   clampCamera: 1
