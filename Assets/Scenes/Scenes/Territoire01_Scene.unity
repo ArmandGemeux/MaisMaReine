@@ -5566,7 +5566,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.9213836, y: 1}
+    m_SensorSize: {x: 2.0770712, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -23822,7 +23822,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: -1
+  m_firstOverflowCharacterIndex: 0
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -35383,7 +35383,6 @@ GameObject:
   - component: {fileID: 626866962}
   - component: {fileID: 626866964}
   - component: {fileID: 626866965}
-  - component: {fileID: 626866967}
   - component: {fileID: 626866966}
   - component: {fileID: 626866961}
   m_Layer: 0
@@ -35551,23 +35550,6 @@ MonoBehaviour:
     positionOffset: {x: 0, y: 0, z: 0}
   m_posOffsetData: {fileID: 0}
   listenerMask: 1
---- !u!114 &626866967
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 626866960}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a363701b3537f6049a644d643422c19b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  testSound:
-    idInternal: 0
-    valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: b52a4e433d1a0bf4db952a24005419ad,
-      type: 2}
 --- !u!1 &632889748
 GameObject:
   m_ObjectHideFlags: 0
@@ -83298,6 +83280,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   renderTextCombat: {fileID: 154976278}
+  uiBoutonBastonSFX:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 5f8a37411614d2344ba9d4fe2e29c8cd,
+      type: 2}
+  attaqueEpeeSFX:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: ee346265c26c0bb4a95ec129721da2af,
+      type: 2}
+  contreAttaqueEpeeSFX:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 50db011e0cda9f642b3383c0c8ef34d8,
+      type: 2}
+  coupCritiqueSFX:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 3e03dd500f368d5418842bd5b5de7df6,
+      type: 2}
+  echecCritiqueSFX:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 0}
+  criSFX:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: f4d105a5680efd74b85adbef9a156034,
+      type: 2}
+  mortSFX:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 1cbb2700b8e3b294a8503eaa27238de7,
+      type: 2}
   atkHP: {fileID: 1168883363}
   atkRange: {fileID: 1962334077}
   atkCriticChance: {fileID: 2124790199}
@@ -88356,7 +88372,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: -1
+  m_firstOverflowCharacterIndex: 0
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -100052,8 +100068,7 @@ MonoBehaviour:
   data:
     idInternal: 0
     valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: b52a4e433d1a0bf4db952a24005419ad,
-      type: 2}
+    WwiseObjectReference: {fileID: 0}
   useCallbacks: 0
   Callbacks: []
   playingId: 0

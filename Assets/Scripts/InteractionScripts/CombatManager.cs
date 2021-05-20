@@ -10,6 +10,19 @@ public class CombatManager : MonoBehaviour
 
     public TextMeshProUGUI renderTextCombat;
 
+    [Header("Sounds Interface")]
+
+    public AK.Wwise.Event uiBoutonBastonSFX;
+
+    [Header("Sounds Combat")]
+
+    public AK.Wwise.Event attaqueEpeeSFX;
+    public AK.Wwise.Event contreAttaqueEpeeSFX;
+    public AK.Wwise.Event coupCritiqueSFX;
+    public AK.Wwise.Event echecCritiqueSFX;
+    public AK.Wwise.Event criSFX;
+    public AK.Wwise.Event mortSFX;
+
     [Header("Attaquant Fenetre")]
 
     public TextMeshProUGUI atkHP;
@@ -106,6 +119,9 @@ public class CombatManager : MonoBehaviour
 
         myAnim.SetBool("OpenCombatWindow", true);
 
+        criSFX.Post(gameObject);
+
+
         switch (atkFM.myCamp)
         {
             case GameCamps.Fidele:
@@ -184,6 +200,8 @@ public class CombatManager : MonoBehaviour
         defenseurHP.text = defenseurFM.currentHP.ToString();
 
         myAnim.SetBool("OpenCombatBandeau", true);
+
+        uiBoutonBastonSFX.Post(gameObject);
 
         defenseurAM.keepInteractionDisplayed = true;
         defenseurAM.DisplayInteraction();
@@ -311,6 +329,7 @@ public class CombatManager : MonoBehaviour
             //myDamageFeedback.text = "-" + attackValue.ToString();
 
             myAnim.SetTrigger("LaunchAttack");
+            attaqueEpeeSFX.Post(gameObject);
 
             yield return new WaitForSeconds(0.3f);
 
@@ -357,6 +376,7 @@ public class CombatManager : MonoBehaviour
         // ICI jouer SFX de contre-attaque simple
         //myDamageFeedback.text = "-" + counterAttackValue.ToString();
         myAnim.SetTrigger("LaunchCounterAttack");
+        contreAttaqueEpeeSFX.Post(gameObject);
 
         yield return new WaitForSeconds(0.3f);
 
@@ -431,6 +451,7 @@ public class CombatManager : MonoBehaviour
         //attaquantDamageEffect.Play();
 
         myAnim.SetTrigger("DefenseurReceiveDamage");
+        coupCritiqueSFX.Post(gameObject);
 
         yield return new WaitForSeconds(2f);
 
@@ -474,6 +495,7 @@ public class CombatManager : MonoBehaviour
             // ICI jouer SFX d'echec critique
 
             myAnim.SetTrigger("AttaquantReceiveDamage");
+            //echecCritiqueSFX.Post(gameObject);
 
             //myDamageFeedback.text = "-" + defenseurFM.maxCounterAttackRange.ToString() + " !!";
             //defenseurDamageEffect.Play();
@@ -601,6 +623,8 @@ public class CombatManager : MonoBehaviour
             defenseurAM.keepInteractionDisplayed = false;
             defenseurAM.HideInteraction();
         }
+
+        mortSFX.Post(gameObject);
 
         attaquantFideleSprite.sprite = null;
         defenseurFideleSprite.sprite = null;

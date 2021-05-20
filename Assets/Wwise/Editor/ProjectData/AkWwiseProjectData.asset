@@ -373,7 +373,7 @@ MonoBehaviour:
     ParentPath: Events\Default Work Unit
     guid: af4625c0e4e9ed43a62873aec7c92b52
     GuidInternal: 
-    m_lastTime: -8585802637995325574
+    m_lastTime: -8585801082210486564
     List:
     - name: Event_Attaque_Epee
       guid: 1d98ed078e44aa4f8ff4ff0421de8fe7
@@ -1000,7 +1000,7 @@ MonoBehaviour:
     m_lastTime: -8585837023906587637
     List: []
   ExpandedFileSystemItemIds: 
-  ExpandedWaapiItemIds: 01000000060000000a0000000b0000000c000000
+  ExpandedWaapiItemIds: 010000000600000007000000080000000a0000000b0000000c000000
   AutoSyncSelection: 0
   autoPopulateEnabled: 1
   currentDataSource: 0
