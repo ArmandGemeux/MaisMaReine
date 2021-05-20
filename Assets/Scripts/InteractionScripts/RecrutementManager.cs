@@ -132,6 +132,8 @@ public class RecrutementManager : MonoBehaviour
             GameManager.Instance.LowerCharismeValue(myFMToRecruit.charismaCost);
             StartCoroutine(SetCampToFidele());
             myAnim.SetBool("isOpen", false);
+
+            
         }
         else
 	    {
