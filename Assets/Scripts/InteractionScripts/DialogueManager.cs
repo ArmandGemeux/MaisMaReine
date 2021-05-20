@@ -11,8 +11,9 @@ public class DialogueManager : MonoBehaviour
 
     [Header("Dialogue début territoire")]
 
+    public List<Dialogue> dialogueScenario;
+
     public bool isStartDialogueExisting;
-    public Dialogue dialogueDebutTerritoire;
 
     private Dialogue currentDialogue;
 
@@ -45,18 +46,21 @@ public class DialogueManager : MonoBehaviour
 
         if (isStartDialogueExisting)
         {
-            OpenDialogueWindow(dialogueDebutTerritoire, null);
+            OpenDialogueWindow(dialogueScenario[0], null);
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        //Debug.Log(currentDialogue.name);
     }
 
     public void OpenDialogueWindow(Dialogue dialogue, FideleManager talkedFM)
     {
+        talkingFM = null;
+        currentDialogue = null;
+
         if (talkedFM != null)
         {
             talkingFM = talkedFM;
@@ -122,6 +126,15 @@ public class DialogueManager : MonoBehaviour
             DragCamera2D.Instance.FollowTargetCamera(currentDialogue.cameraEndPos);
         }
 
+        if (talkingFM != null)
+        {
+            if (currentDialogue.nextInteractionType != InteractionType.Aucun)
+            {
+                talkingFM.GetComponentInChildren<Interaction>().interactionType = currentDialogue.nextInteractionType;
+                talkingFM.GetComponentInChildren<Interaction>().AnimationManagerUpdateIcon();
+            }
+        }
+
         if (currentDialogue.isStartingQuest)
         {
             QuestManager.Instance.SetupQuest(currentDialogue.questIndexToStart);
@@ -132,13 +145,9 @@ public class DialogueManager : MonoBehaviour
             }
         }
 
-        if (talkingFM != null)
+        if (currentDialogue.isStartingADialogue)
         {
-            if (currentDialogue.nextInteractionType != InteractionType.Aucun)
-            {
-                talkingFM.GetComponentInChildren<Interaction>().interactionType = currentDialogue.nextInteractionType;
-                talkingFM.GetComponentInChildren<Interaction>().AnimationManagerUpdateIcon();
-            }
+            OpenDialogueWindow(dialogueScenario[currentDialogue.dialogueIndexToStart], null);
         }
 
         talkingFM = null;

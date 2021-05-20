@@ -5559,14 +5559,14 @@ MonoBehaviour:
   m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 23
+    OrthographicSize: 16
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.8113208, y: 1}
+    m_SensorSize: {x: 1.6529969, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -5617,7 +5617,7 @@ MonoBehaviour:
   minZoom: 0.5
   zoomStepSize: 5.69
   zoomToMouse: 0
-  followTarget: {fileID: 173992197}
+  followTarget: {fileID: 0}
   lerpSpeed: 0.105
   offset: {x: 0, y: 0, z: -10}
   clampCamera: 1
@@ -22682,6 +22682,7 @@ Transform:
   - {fileID: 173992198}
   - {fileID: 788129621}
   - {fileID: 339727195}
+  - {fileID: 1441429033}
   m_Father: {fileID: 0}
   m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -35474,7 +35475,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 23
+  orthographic size: 16
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -42017,29 +42018,43 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterName: {fileID: 1386264729}
   characterLines: {fileID: 337987016}
-  isStartDialogueExisting: 1
-  dialogueDebutTerritoire:
-    name: Elya
+  dialogueScenario:
+  - name: Elya
     myDialogue:
     - "Bien bien bien, nous voici au village Hit\xE9 sur l'\xEEle du c\u0153ur, c\u2019est
       d\u2019ici que proviennent une part des ressources agricoles du ch\xE2teau."
-    - " Cet endroit a toujours \xE9t\xE9 calme et sans danger, parfait pour commencer
+    - "Cet endroit a toujours \xE9t\xE9 calme et sans danger, parfait pour commencer
       votre ascension Ma Reine !"
     - "Parfait ! Aaron et Humbre, vos plus fid\xE8les soldats, sont d\xE9j\xE0 sur
       le terrain, on peut les distinguer gr\xE2ce \xE0 leur couleur bleue, votre
       couleur ma Reine."
     - "D\xE9pla\xE7ons-les jusqu\u2019\xE0 ce bon villageois, histoire de faire connaissance
-      ! C\u2019est bon pour la c\xF4te... "
+      ! C\u2019est bon pour la r\xE9putation..."
     - "Pour cela, maintenez le clique gauche sur un fid\xE8le, puis d\xE9placez-le
       dans la zone de d\xE9placement qui s\u2019affiche."
-    - "Attention, nos fid\xE8les ont beau \xEAtre braves, ils ont leur limite : Un
-      seul d\xE9placement par fid\xE8le par tour !\u201D"
+    - "Attention, nos fid\xE8les ont beau \xEAtre braves, ils ont leurs limites :
+      Un seul d\xE9placement par fid\xE8le par tour !"
     isStartingQuest: 1
     questIndexToStart: 0
+    isStartingADialogue: 0
+    dialogueIndexToStart: 0
     nextInteractionType: 0
     cameraStartPos: {fileID: 173992197}
     cameraEndPos: {fileID: 788129620}
     unitsToSpawn: []
+  - name: Elya
+    myDialogue:
+    - "Voici nos ennemis. Nous devons prot\xE9ger le village de leur menace !"
+    - En avant !
+    isStartingQuest: 0
+    questIndexToStart: 0
+    isStartingADialogue: 0
+    dialogueIndexToStart: 0
+    nextInteractionType: 0
+    cameraStartPos: {fileID: 0}
+    cameraEndPos: {fileID: 0}
+    unitsToSpawn: []
+  isStartDialogueExisting: 1
 --- !u!95 &877799155
 Animator:
   serializedVersion: 3
@@ -42754,7 +42769,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0.88, y: 1}
-  m_AnchoredPosition: {x: -17, y: 0}
+  m_AnchoredPosition: {x: -16.999939, y: 0}
   m_SizeDelta: {x: -34, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &959563479
@@ -83390,6 +83405,36 @@ MonoBehaviour:
   roiSprite: {fileID: 21300000, guid: 2f6cf58c36a38d14c9f2a811afac8057, type: 3}
   calamiteSprite: {fileID: 21300000, guid: 4445933fb4e5a4a43ba734cbe246cecd, type: 3}
   banditSprite: {fileID: 21300000, guid: bda3c2d62608af640ae59c5f7c04243b, type: 3}
+--- !u!1 &1441429032
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1441429033}
+  m_Layer: 0
+  m_Name: CameraPositionFidele
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1441429033
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1441429032}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.06, y: -14.49, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 369070661}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1473978303
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -115753,6 +115798,8 @@ MonoBehaviour:
         cliquez-droit sur la personne avec laquelle vous voulez interagir.\u201D"
       isStartingQuest: 1
       questIndexToStart: 1
+      isStartingADialogue: 0
+      dialogueIndexToStart: 0
       nextInteractionType: 0
       cameraStartPos: {fileID: 0}
       cameraEndPos: {fileID: 0}
@@ -115776,6 +115823,8 @@ MonoBehaviour:
       myDialogue: []
       isStartingQuest: 0
       questIndexToStart: 0
+      isStartingADialogue: 0
+      dialogueIndexToStart: 0
       nextInteractionType: 0
       cameraStartPos: {fileID: 0}
       cameraEndPos: {fileID: 0}
@@ -115808,6 +115857,8 @@ MonoBehaviour:
       - Allons interagir... Je veux dire, nous battre, avec ce bandit !
       isStartingQuest: 1
       questIndexToStart: 3
+      isStartingADialogue: 1
+      dialogueIndexToStart: 1
       nextInteractionType: 0
       cameraStartPos: {fileID: 0}
       cameraEndPos: {fileID: 339727194}
@@ -115837,6 +115888,8 @@ MonoBehaviour:
       myDialogue: []
       isStartingQuest: 0
       questIndexToStart: 0
+      isStartingADialogue: 0
+      dialogueIndexToStart: 0
       nextInteractionType: 0
       cameraStartPos: {fileID: 0}
       cameraEndPos: {fileID: 0}
