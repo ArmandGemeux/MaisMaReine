@@ -25,6 +25,17 @@ public class GameManager : MonoBehaviour
 
     static public int charismeAmountStatic;
 
+    [Header ("Tuto")]
+
+    public bool isMapTuto;
+
+    public FideleManager firstFideleToMove;
+    public bool firstFideleToMoveHasMoved;
+
+    public FideleManager firstFideleToInteractWith;
+    public bool firstFideleToInteractWithHasInteracted;
+
+
     #region Singleton
     public static GameManager Instance;
 
@@ -161,6 +172,15 @@ public class GameManager : MonoBehaviour
                     fm.GetComponentInChildren<Interaction>().FideleDisplayInteractionFeedbacks();
                 }
                 fm.GetComponentInChildren<Interaction>().OtherCampDisplayInteractionFeedbacks();
+            }
+
+            for (int i = 0; i < allMapUnits.Count; i++)
+            {
+                if (allMapUnits[i].myCamp == GameCamps.Fidele)
+                {
+                    DragCamera2D.Instance.FollowTargetCamera(allMapUnits[i].gameObject);
+                    return;
+                }
             }
         }
         else

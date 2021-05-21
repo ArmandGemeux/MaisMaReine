@@ -15,7 +15,7 @@ public class Movement : MonoBehaviour
     public bool isMoving = false;
     public bool hasMoved = false;
 
-    private bool isLanbable;
+    private bool isLanbable = false;
 
     //public GameObject myCollideZone;
     private FideleManager myFM;
@@ -90,6 +90,10 @@ public class Movement : MonoBehaviour
                     QuestManager.Instance.OnUnitReached(myInteraction.myCollideInteractionList[i].GetComponent<Interaction>());
                 }
 
+                if (GameManager.Instance.isMapTuto)
+                {
+                    GameManager.Instance.firstFideleToMoveHasMoved = true;
+                }
             }
             else
             {
@@ -123,76 +127,180 @@ public class Movement : MonoBehaviour
 
     public void MovingCharacter()
     {
-        if (hasMoved == false)
+        if (GameManager.Instance.isMapTuto)
         {
-            // ICI jouer VFX de début de déplacement
-            // ICI jouer SFX de début de déplacement
-            // ICI jouer Anim de déplacement
-            isMoving = true;
+            if (GameManager.Instance.firstFideleToMoveHasMoved == false)
+            {
+                if (myFM == GameManager.Instance.firstFideleToMove)
+                {
+                    if (hasMoved == false)
+                    {
+                        // ICI jouer VFX de début de déplacement
+                        // ICI jouer SFX de début de déplacement
+                        // ICI jouer Anim de déplacement
+                        isMoving = true;
 
-            // ICI utiliser Coroutine pour attendre la fin des effets pour déplacer
+                        // ICI utiliser Coroutine pour attendre la fin des effets pour déplacer
 
-            myAnimationManager.DisplayInteraction();
-            myAnimationManager.DisplayMovement();
+                        myAnimationManager.DisplayInteraction();
+                        myAnimationManager.DisplayMovement();
+                    }
+                    else
+                    {
+                        myInteraction.FideleDisplayInteractionFeedbacks();
+                    }
+                }
+            }
+            else
+            {
+                if (hasMoved == false)
+                {
+                    // ICI jouer VFX de début de déplacement
+                    // ICI jouer SFX de début de déplacement
+                    // ICI jouer Anim de déplacement
+                    isMoving = true;
+
+                    // ICI utiliser Coroutine pour attendre la fin des effets pour déplacer
+
+                    myAnimationManager.DisplayInteraction();
+                    myAnimationManager.DisplayMovement();
+                }
+                else
+                {
+                    myInteraction.FideleDisplayInteractionFeedbacks();
+                }
+            }
         }
         else
         {
-            myInteraction.FideleDisplayInteractionFeedbacks();
+            if (hasMoved == false)
+            {
+                // ICI jouer VFX de début de déplacement
+                // ICI jouer SFX de début de déplacement
+                // ICI jouer Anim de déplacement
+                isMoving = true;
+
+                // ICI utiliser Coroutine pour attendre la fin des effets pour déplacer
+
+                myAnimationManager.DisplayInteraction();
+                myAnimationManager.DisplayMovement();
+            }
+            else
+            {
+                myInteraction.FideleDisplayInteractionFeedbacks();
+            }
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        /*if (collision.tag == ("Obstacle"))
-        {
-            isLanbable = false;
-            //Debug.Log(collision.name);
-            myAnimationManager.UnableToLand();
-        }*/
 
-        /*if (collision.gameObject == myMoveZone)
-        {
-            isLanbable = true;
-            myAnimationManager.AbleToLand();
-        }*/
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject == myMoveZone)
+        if (GameManager.Instance.isMapTuto)
         {
-            isLanbable = false;
-            myAnimationManager.UnableToLand();
+            if (GameManager.Instance.firstFideleToMoveHasMoved == false)
+            {
+                isLanbable = false;
+                myAnimationManager.UnableToLand();
+                if (collision.tag == ("TutoZone"))
+                {
+                    isLanbable = false;
+                    myAnimationManager.UnableToLand();
+                }
+            }
+            else
+            {
+                if (collision.gameObject == myMoveZone)
+                {
+                    isLanbable = false;
+                    myAnimationManager.UnableToLand();
+                }
+
+                if (collision.tag == ("Obstacle"))
+                {
+                    isInAnObstacle = false;
+                }
+                if (collision.tag == ("MapLimit"))
+                {
+                    isInsideMapLimits = true;
+                }
+            }
+        }
+        else
+        {
+            if (collision.gameObject == myMoveZone)
+            {
+                isLanbable = false;
+                myAnimationManager.UnableToLand();
+            }
+
+            if (collision.tag == ("Obstacle"))
+            {
+                isInAnObstacle = false;
+            }
+            if (collision.tag == ("MapLimit"))
+            {
+                isInsideMapLimits = true;
+            }
         }
 
-        if (collision.tag == ("Obstacle"))
-        {
-            isInAnObstacle = false;
-        }
-        if (collision.tag == ("MapLimit"))
-        {
-            isInsideMapLimits = true;
-        }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.tag == ("Obstacle"))
+        if (GameManager.Instance.isMapTuto)
         {
-            isInAnObstacle = true;
-            isLanbable = false;
-            myAnimationManager.UnableToLand();
+            if (GameManager.Instance.firstFideleToMoveHasMoved == false)
+            {
+                if (collision.tag == ("TutoZone"))
+                {
+                    isLanbable = true;
+                    myAnimationManager.AbleToLand();
+                }
+            }
+            else
+            {
+                if (collision.tag == ("Obstacle"))
+                {
+                    isInAnObstacle = true;
+                    isLanbable = false;
+                    myAnimationManager.UnableToLand();
+                }
+                else if (collision.tag == ("MapLimit"))
+                {
+                    isInsideMapLimits = false;
+                    isLanbable = false;
+                    myAnimationManager.UnableToLand();
+                }
+                else if (collision.gameObject == myMoveZone && isInAnObstacle == false && isInsideMapLimits)
+                {
+                    isLanbable = true;
+                    myAnimationManager.AbleToLand();
+                }
+            }
         }
-        else if (collision.tag == ("MapLimit"))
+        else
         {
-            isInsideMapLimits = false;
-            isLanbable = false;
-            myAnimationManager.UnableToLand();
-        }
-        else if (collision.gameObject == myMoveZone && isInAnObstacle == false && isInsideMapLimits)
-        {
-            isLanbable = true;
-            myAnimationManager.AbleToLand();
+            if (collision.tag == ("Obstacle"))
+            {
+                isInAnObstacle = true;
+                isLanbable = false;
+                myAnimationManager.UnableToLand();
+            }
+            else if (collision.tag == ("MapLimit"))
+            {
+                isInsideMapLimits = false;
+                isLanbable = false;
+                myAnimationManager.UnableToLand();
+            }
+            else if (collision.gameObject == myMoveZone && isInAnObstacle == false && isInsideMapLimits)
+            {
+                isLanbable = true;
+                myAnimationManager.AbleToLand();
+            }
         }
     }
 }

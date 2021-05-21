@@ -90,7 +90,6 @@ public class MovementEnemy : MonoBehaviour
 
         isMoving = false;
         hasMoved = true;
-        DragCamera2D.Instance.UnfollowTargetCamera();
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
@@ -110,6 +109,7 @@ public class MovementEnemy : MonoBehaviour
             myAnimManager.CheckActionsLeftAmout();
             StopMoving();
 
+            DragCamera2D.Instance.UnfollowTargetCamera();
             GameManager.Instance.MoveUnit();
         }
         if (collision == targetInteractionZone)
@@ -117,6 +117,7 @@ public class MovementEnemy : MonoBehaviour
             myAnimManager.CheckActionsLeftAmout();
             StopMoving();
 
+            DragCamera2D.Instance.UnfollowTargetCamera();
             GameManager.Instance.MoveUnit();
         }
     }

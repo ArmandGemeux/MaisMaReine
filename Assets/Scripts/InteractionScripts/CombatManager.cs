@@ -270,8 +270,7 @@ public class CombatManager : MonoBehaviour
 
         defenseurAM.keepInteractionDisplayed = true;
         defenseurAM.DisplayInteraction();
-
-        DragCamera2D.Instance.UnfollowTargetCamera();
+        
         DragCamera2D.Instance.FollowTargetCamera(attaquantFM.gameObject);
 
         attaquantAM.keepInteractionDisplayed = true;
@@ -642,6 +641,8 @@ public class CombatManager : MonoBehaviour
     {
         Debug.Log("EndFightNoDead " + defenseurFM.name + " " + " " + attaquantFM.name);
 
+        DragCamera2D.Instance.UnfollowTargetCamera();
+
         //Debug.Log("Combat terminé");
         myAnim.SetBool("OpenCombatBandeau", false);
 
@@ -660,9 +661,12 @@ public class CombatManager : MonoBehaviour
 
         attaquantAM.keepInteractionDisplayed = false;
         attaquantAM.HideInteraction();
+        attaquantAM.DesactivateReceiverSelection();
 
         defenseurAM.keepInteractionDisplayed = false;
         defenseurAM.HideInteraction();
+        defenseurAM.DesactivateReceiverSelection();
+        
         GameManager.Instance.isGamePaused = false;
 
         attaquantFideleSprite.sprite = null;
