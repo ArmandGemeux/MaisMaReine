@@ -103,6 +103,16 @@ public class AnimationManager : MonoBehaviour
         myAnim.SetBool("isCharacterAblePlay", false);
     }*/
 
+    public void ActivateCursorIndicator()
+    {
+        myAnim.SetBool("isTutoCursorVisible", true);
+    }
+
+    public void DesactivateCursorIndicator()
+    {
+        myAnim.SetBool("isTutoCursorVisible", false);
+    }
+
     public void ReceiveDamage()
     {
         myAnim.SetTrigger("CharacterReceiveDamage");

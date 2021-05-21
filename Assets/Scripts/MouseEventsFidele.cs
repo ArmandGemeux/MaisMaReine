@@ -64,7 +64,7 @@ public class MouseEventsFidele : MonoBehaviour
 
             if (myFideleManager.myCamp == GameCamps.Fidele)
             {
-                myAnimManager.isSelectable = false;
+                //myAnimManager.isSelectable = false;
                 RaycastInteraction.Instance.ResetLauncherInteraction();
                 RaycastInteraction.Instance.ResetReceiverInteraction();
 

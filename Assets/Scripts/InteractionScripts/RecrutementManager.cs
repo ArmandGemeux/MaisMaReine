@@ -258,6 +258,12 @@ public class RecrutementManager : MonoBehaviour
 
         GameManager.Instance.GlobalActionsCheck();
 
+        if (myFMToRecruit == GameManager.Instance.firstFideleToInteractWith)
+        {
+            GameManager.Instance.firstFideleToInteractWithHasInteracted = true;
+            GameManager.Instance.firstFideleToInteractWith.GetComponent<AnimationManager>().DesactivateCursorIndicator();
+        }
+
         recruitedSprite = null;
 
         myFMToRecruit.isAlive = true;

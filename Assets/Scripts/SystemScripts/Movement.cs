@@ -97,7 +97,10 @@ public class Movement : MonoBehaviour
             }
             else
             {
-                transform.localPosition = Vector3.zero;
+                transform.localPosition = Vector3.zero; if (GameManager.Instance.isMapTuto)
+                {
+                    myFM.GetComponent<AnimationManager>().DesactivateCursorIndicator();
+                }
             }
 
             myAnimationManager.HideMovement();
@@ -139,6 +142,7 @@ public class Movement : MonoBehaviour
                         // ICI jouer SFX de début de déplacement
                         // ICI jouer Anim de déplacement
                         isMoving = true;
+                        myFM.GetComponent<AnimationManager>().DesactivateCursorIndicator();
 
                         // ICI utiliser Coroutine pour attendre la fin des effets pour déplacer
 
@@ -151,7 +155,7 @@ public class Movement : MonoBehaviour
                     }
                 }
             }
-            else
+            else if (GameManager.Instance.firstFideleToInteractWithHasInteracted)
             {
                 if (hasMoved == false)
                 {
@@ -190,11 +194,6 @@ public class Movement : MonoBehaviour
                 myInteraction.FideleDisplayInteractionFeedbacks();
             }
         }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-
     }
 
     private void OnTriggerExit2D(Collider2D collision)

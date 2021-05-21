@@ -58,12 +58,26 @@ public class GameManager : MonoBehaviour
     {
         isGamePaused = false;
         charismeAmount = charismeAmountStatic;
+
+        if (isMapTuto)
+        {
+            firstFideleToMove.GetComponent<AnimationManager>().ActivateCursorIndicator();
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        if (isMapTuto)
+        {
+            if (firstFideleToMoveHasMoved)
+            {
+                if (firstFideleToInteractWithHasInteracted == false)
+                {
+                    firstFideleToInteractWith.GetComponent<AnimationManager>().ActivateCursorIndicator();
+                }
+            }
+        }
     }
 
     public void GlobalActionsCheck()
