@@ -191,6 +191,8 @@ public class GameManager : MonoBehaviour
         if (currentCampTurn == GameCamps.Fidele)
         {
             isGamePaused = false;
+            RaycastInteraction.Instance.ResetLauncherInteraction();
+
             foreach (FideleManager fm in allMapUnits)
             {
                 if (fm.myCamp == GameCamps.Fidele)

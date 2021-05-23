@@ -109,9 +109,11 @@ public class Movement : MonoBehaviour
                 {
                     RaycastInteraction.Instance.SetFideleSelectedInteractionLauncher(myFM);
                 }
+                Debug.Log("Déplacement effectué");
             }
             else
             {
+                Debug.Log("Retour envoyeur");
                 transform.localPosition = Vector3.zero; if (GameManager.Instance.isMapTuto)
                 {
                     myFM.GetComponent<AnimationManager>().DesactivateCursorIndicator();
