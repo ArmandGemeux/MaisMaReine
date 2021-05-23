@@ -242,7 +242,7 @@ public class RecrutementManager : MonoBehaviour
 
         foreach (Interaction iam in myFMToRecruit.GetComponentInChildren<Interaction>().myCollideInteractionList)
         {
-            iam.RemoveCollindingCharacterFromInteractionList(myFMToRecruit.GetComponentInChildren<Interaction>());
+            iam.RemoveCollidingCharacterFromInteractionList(myFMToRecruit.GetComponentInChildren<Interaction>());
 
             iam.FideleDisplayInteractionFeedbacks();
         }
@@ -252,7 +252,9 @@ public class RecrutementManager : MonoBehaviour
 
         myFMToRecruit.GetComponent<AnimationManager>().haveAnInteraction = false;
 
+        myFMToRecruit.GetComponent<AnimationManager>().keepInteractionDisplayed = false;
         myFMToRecruit.GetComponent<AnimationManager>().HideInteraction();
+
         myFMToRecruit.GetComponent<AnimationManager>().DesactivateReceiverSelection();
         
         myFMToRecruit.GetComponent<AnimationManager>().CheckActionsLeftAmout();
@@ -264,6 +266,8 @@ public class RecrutementManager : MonoBehaviour
             GameManager.Instance.firstFideleToInteractWithHasInteracted = true;
             GameManager.Instance.firstFideleToInteractWith.GetComponent<AnimationManager>().DesactivateCursorIndicator();
         }
+
+        RaycastInteraction.Instance.CheckInteractionLauncherState();
 
         recruitedSprite = null;
 

@@ -300,7 +300,6 @@ public class AnimationManager : MonoBehaviour
                     }
                     else if (myInteraction.alreadyInteractedList.Count >= myInteraction.myCollideInteractionList.Count)
                     {
-                        Debug.Log(myFM.name + " Liste plus remplie");
                         myFM.isAllActionsDone = true;
                         GameManager.Instance.IsAllCampActionsDone();
                     }

@@ -571,7 +571,7 @@ public class CombatManager : MonoBehaviour
 
             foreach (Interaction dfmci in deadFM.GetComponentInChildren<Interaction>().myCollideInteractionList)
             {
-                dfmci.RemoveCollindingCharacterFromInteractionList(deadFM.GetComponentInChildren<Interaction>());
+                dfmci.RemoveCollidingCharacterFromInteractionList(deadFM.GetComponentInChildren<Interaction>());
 
                 dfmci.FideleDisplayInteractionFeedbacks();
             }

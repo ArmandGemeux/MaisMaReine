@@ -63,25 +63,7 @@ public class RaycastInteraction : MonoBehaviour
         {
             if (hit.collider != null && hit.collider.gameObject.GetComponent<AnimationManager>() && hit.collider.gameObject.GetComponent<AnimationManager>().isSelectable && hit.collider.gameObject.GetComponent<FideleManager>().myCamp == GameCamps.Fidele)
             {
-                interactionLauncherAnim = hit.collider.GetComponent<AnimationManager>();
-                interactionLauncherInteraction = hit.collider.GetComponentInChildren<Interaction>();
-                interactionLauncherFM = hit.collider.GetComponent<FideleManager>();
-
-                interactionLauncherAnim.SetOutlineSelected();
-                interactionLauncherAnim.keepInteractionDisplayed = true;
-
-                interactionLauncherAnim.isSelected = true;
-                
-                foreach (Interaction myCollideInteraction in interactionLauncherInteraction.myCollideInteractionList)
-                {
-                    if (!interactionLauncherInteraction.alreadyInteractedList.Contains(myCollideInteraction))
-                    {
-                        myCollideInteraction.canInteract = true;
-                        myCollideInteraction.GetComponentInParent<AnimationManager>().ActivateReceiverSelection();
-                        myCollideInteraction.GetComponentInParent<AnimationManager>().keepInteractionDisplayed = true;
-                        myCollideInteraction.GetComponentInParent<AnimationManager>().DisplayInteraction();
-                    }
-                }
+                SetFideleSelected(hit.collider.gameObject.GetComponent<FideleManager>());
             }
         }
         else
@@ -102,24 +84,7 @@ public class RaycastInteraction : MonoBehaviour
                 ResetReceiverInteraction();
                 ResetLauncherInteraction();
 
-                interactionLauncherAnim = hit.collider.GetComponent<AnimationManager>();
-                interactionLauncherInteraction = hit.collider.GetComponentInChildren<Interaction>();
-                interactionLauncherAnim.keepInteractionDisplayed = true;
-
-                interactionLauncherAnim.SetOutlineSelected();
-
-                interactionLauncherAnim.isSelected = true;
-
-                foreach (Interaction myCollideInteraction in interactionLauncherInteraction.myCollideInteractionList)
-                {
-                    if (!interactionLauncherInteraction.alreadyInteractedList.Contains(myCollideInteraction))
-                    {
-                        myCollideInteraction.canInteract = true;
-                        myCollideInteraction.GetComponentInParent<AnimationManager>().ActivateReceiverSelection();
-                        myCollideInteraction.GetComponentInParent<AnimationManager>().keepInteractionDisplayed = true;
-                        myCollideInteraction.GetComponentInParent<AnimationManager>().DisplayInteraction();
-                    }
-                }
+                SetFideleSelected(hit.collider.gameObject.GetComponent<FideleManager>());
             }
         }
     }
@@ -167,14 +132,9 @@ public class RaycastInteraction : MonoBehaviour
             interactionReceiverInteraction.OtherCampDisplayInteractionFeedbacks();
             interactionLauncherInteraction.FideleDisplayInteractionFeedbacks();
 
-            foreach (Interaction myCollideInteraction in interactionLauncherInteraction.myCollideInteractionList)
-            {
-                myCollideInteraction.GetComponentInParent<AnimationManager>().DesactivateReceiverSelection();
-            }
+            Debug.Log("Fin interaction : " + interactionLauncherFM.name);
 
-            //Debug.Log("Interaction");
             ResetReceiverInteraction();
-            ResetLauncherInteraction();
         }
         else if (hit.collider == null || !hit.collider.GetComponentInChildren<Interaction>())
         {
@@ -199,6 +159,7 @@ public class RaycastInteraction : MonoBehaviour
         {
             interactionLauncherAnim.SetOutlineDefault();
             interactionLauncherAnim.keepInteractionDisplayed = false;
+            interactionLauncherAnim.HideInteraction();
 
             foreach (AnimationManager cam in interactionLauncherInteraction.myCollideAnimationManagerList)
             {
@@ -221,9 +182,65 @@ public class RaycastInteraction : MonoBehaviour
         {
             interactionReceiverInteraction.FideleDisplayInteractionFeedbacks();
 
-            interactionReceiverInteraction.canInteract = false;
             interactionReceiverInteraction = null;
             interactionReceiverAnim = null;
+        }
+    }
+
+    public void SetFideleSelected(FideleManager ilf)
+    {
+        interactionLauncherAnim = ilf.GetComponent<AnimationManager>();
+        interactionLauncherInteraction = ilf.GetComponentInChildren<Interaction>();
+        interactionLauncherFM = ilf;
+
+        interactionLauncherAnim.SetOutlineSelected();
+        interactionLauncherAnim.keepInteractionDisplayed = true;
+        interactionLauncherAnim.DisplayInteraction();
+
+        interactionLauncherAnim.isSelected = true;
+
+        foreach (Interaction myCollideInteraction in interactionLauncherInteraction.myCollideInteractionList)
+        {
+            if (!interactionLauncherInteraction.alreadyInteractedList.Contains(myCollideInteraction))
+            {
+                myCollideInteraction.canInteract = true;
+                myCollideInteraction.GetComponentInParent<AnimationManager>().ActivateReceiverSelection();
+                myCollideInteraction.GetComponentInParent<AnimationManager>().keepInteractionDisplayed = true;
+                myCollideInteraction.GetComponentInParent<AnimationManager>().DisplayInteraction();
+            }
+        }
+    }
+
+    public void CheckInteractionLauncherState()
+    {
+        if (interactionLauncherFM != null)
+        {
+            if (interactionLauncherInteraction.myCollideInteractionList.Count > 0)
+            {
+                for (int i = 0; i < interactionLauncherInteraction.myCollideInteractionList.Count; i++)
+                {
+                    if (interactionLauncherInteraction.myCollideInteractionList[i].canInteract)
+                    {
+                        return;
+                    }
+                    else
+                    {
+                        foreach (Interaction myCollideInteraction in interactionLauncherInteraction.myCollideInteractionList)
+                        {
+                            myCollideInteraction.GetComponentInParent<AnimationManager>().DesactivateReceiverSelection();
+                        }
+                        ResetLauncherInteraction();
+                    }
+                }
+            }
+            else
+            {
+                foreach (Interaction myCollideInteraction in interactionLauncherInteraction.myCollideInteractionList)
+                {
+                    myCollideInteraction.GetComponentInParent<AnimationManager>().DesactivateReceiverSelection();
+                }
+                ResetLauncherInteraction();
+            }
         }
     }
 }

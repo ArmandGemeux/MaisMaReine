@@ -69,7 +69,7 @@ public class Interaction : MonoBehaviour
         {
             Interaction myExitingCollision = collision.GetComponent<Interaction>();
 
-            RemoveCollindingCharacterFromInteractionList(myExitingCollision);
+            RemoveCollidingCharacterFromInteractionList(myExitingCollision);
 
             AnimationManager myExitingAM = collision.GetComponentInParent<AnimationManager>();
 
@@ -171,7 +171,7 @@ public class Interaction : MonoBehaviour
         FideleDisplayInteractionFeedbacks();
     }
 
-    public void RemoveCollindingCharacterFromInteractionList(Interaction interactionToRemove)
+    public void RemoveCollidingCharacterFromInteractionList(Interaction interactionToRemove)
     {
         if (myCollideInteractionList.Count >= 1)
         {

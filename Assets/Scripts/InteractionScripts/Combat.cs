@@ -283,7 +283,7 @@ public class Combat : MonoBehaviour
 
             foreach (Interaction dfmci in deadFM.GetComponentInChildren<Interaction>().myCollideInteractionList)
             {
-                dfmci.RemoveCollindingCharacterFromInteractionList(deadFM.GetComponentInChildren<Interaction>());
+                dfmci.RemoveCollidingCharacterFromInteractionList(deadFM.GetComponentInChildren<Interaction>());
             }
 
             foreach (FideleManager dfmcfm in deadFM.unitsInRange)

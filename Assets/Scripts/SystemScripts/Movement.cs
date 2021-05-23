@@ -18,6 +18,7 @@ public class Movement : MonoBehaviour
 
     private bool isLanbable = false;
 
+    //public Sprite testDlcmtSprite;
 
     //public GameObject myCollideZone;
     private FideleManager myFM;
@@ -56,6 +57,7 @@ public class Movement : MonoBehaviour
         if (isMoving && Input.GetMouseButton(0) && hasMoved == false)
         {
             CursorManager.Instance.SetCursorToMovement();
+            //myFM.fideleSprite.sprite = testDlcmtSprite;
             myDeadZone.SetActive(true);
             // ICI jouer VFX de déplacement en cours
             // ICI jouer SFX de déplacement en cours
@@ -131,6 +133,11 @@ public class Movement : MonoBehaviour
             myInteraction.FideleDisplayInteractionFeedbacks();
 
             myInteraction.CheckForAvaibleInteractions();
+
+            if (myAnimationManager.isSelectable)
+            {
+                RaycastInteraction.Instance.SetFideleSelected(myFM);
+            }
 
             isMoving = false;
         }
