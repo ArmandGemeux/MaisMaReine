@@ -46,10 +46,10 @@ public class RaycastInteraction : MonoBehaviour
     {
         if (GameManager.Instance.isGamePaused == false)
         {
-            if (GameManager.Instance.currentCampTurn == GameCamps.Fidele && Input.GetMouseButtonDown(1))
+            if (GameManager.Instance.currentCampTurn == GameCamps.Fidele && Input.GetMouseButtonDown(0))
                 LookForInteractionLauncher();
 
-            if (GameManager.Instance.currentCampTurn == GameCamps.Fidele && Input.GetMouseButtonDown(1) && interactionLauncherAnim != null)
+            if (GameManager.Instance.currentCampTurn == GameCamps.Fidele && Input.GetMouseButtonDown(0) && interactionLauncherAnim != null)
                 LookForInteractionReceiver();
         }
     }
@@ -63,7 +63,7 @@ public class RaycastInteraction : MonoBehaviour
         {
             if (hit.collider != null && hit.collider.gameObject.GetComponent<AnimationManager>() && hit.collider.gameObject.GetComponent<AnimationManager>().isSelectable && hit.collider.gameObject.GetComponent<FideleManager>().myCamp == GameCamps.Fidele)
             {
-                SetFideleSelected(hit.collider.gameObject.GetComponent<FideleManager>());
+                SetFideleSelectedInteractionLauncher(hit.collider.gameObject.GetComponent<FideleManager>());
             }
         }
         else
@@ -84,7 +84,7 @@ public class RaycastInteraction : MonoBehaviour
                 ResetReceiverInteraction();
                 ResetLauncherInteraction();
 
-                SetFideleSelected(hit.collider.gameObject.GetComponent<FideleManager>());
+                SetFideleSelectedInteractionLauncher(hit.collider.gameObject.GetComponent<FideleManager>());
             }
         }
     }
@@ -187,26 +187,29 @@ public class RaycastInteraction : MonoBehaviour
         }
     }
 
-    public void SetFideleSelected(FideleManager ilf)
+    public void SetFideleSelectedInteractionLauncher(FideleManager ilf)
     {
-        interactionLauncherAnim = ilf.GetComponent<AnimationManager>();
-        interactionLauncherInteraction = ilf.GetComponentInChildren<Interaction>();
-        interactionLauncherFM = ilf;
-
-        interactionLauncherAnim.SetOutlineSelected();
-        interactionLauncherAnim.keepInteractionDisplayed = true;
-        interactionLauncherAnim.DisplayInteraction();
-
-        interactionLauncherAnim.isSelected = true;
-
-        foreach (Interaction myCollideInteraction in interactionLauncherInteraction.myCollideInteractionList)
+        if (ilf.GetComponent<AnimationManager>().isSelectable)
         {
-            if (!interactionLauncherInteraction.alreadyInteractedList.Contains(myCollideInteraction))
+            interactionLauncherAnim = ilf.GetComponent<AnimationManager>();
+            interactionLauncherInteraction = ilf.GetComponentInChildren<Interaction>();
+            interactionLauncherFM = ilf;
+
+            interactionLauncherAnim.SetOutlineSelected();
+            interactionLauncherAnim.keepInteractionDisplayed = true;
+            interactionLauncherAnim.DisplayInteraction();
+
+            interactionLauncherAnim.isSelected = true;
+
+            foreach (Interaction myCollideInteraction in interactionLauncherInteraction.myCollideInteractionList)
             {
-                myCollideInteraction.canInteract = true;
-                myCollideInteraction.GetComponentInParent<AnimationManager>().ActivateReceiverSelection();
-                myCollideInteraction.GetComponentInParent<AnimationManager>().keepInteractionDisplayed = true;
-                myCollideInteraction.GetComponentInParent<AnimationManager>().DisplayInteraction();
+                if (!interactionLauncherInteraction.alreadyInteractedList.Contains(myCollideInteraction))
+                {
+                    myCollideInteraction.canInteract = true;
+                    myCollideInteraction.GetComponentInParent<AnimationManager>().ActivateReceiverSelection();
+                    myCollideInteraction.GetComponentInParent<AnimationManager>().keepInteractionDisplayed = true;
+                    myCollideInteraction.GetComponentInParent<AnimationManager>().DisplayInteraction();
+                }
             }
         }
     }

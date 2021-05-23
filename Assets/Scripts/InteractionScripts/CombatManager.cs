@@ -320,6 +320,12 @@ public class CombatManager : MonoBehaviour
         {
             int attackValue = Random.Range(attaquantFM.minAttackRange, attaquantFM.maxAttackRange);
             defenseurFM.currentHP -= attackValue;
+
+            if (defenseurFM.currentHP <= 0)
+            {
+                defenseurFM.currentHP = 0;
+            }
+
             Debug.Log(attaquantFM.name + " inflige " + attackValue + " points de dégâts, laissant " + defenseurFM.name + " à " + defenseurFM.currentHP);
 
             // ICI jouer VFX d'attaque simple
@@ -368,6 +374,12 @@ public class CombatManager : MonoBehaviour
 
         int counterAttackValue = Random.Range(defenseurFM.minCounterAttackRange, defenseurFM.maxCounterAttackRange);
         attaquantFM.currentHP -= counterAttackValue;
+
+        if (attaquantFM.currentHP <= 0)
+        {
+            attaquantFM.currentHP = 0;
+        }
+
         Debug.Log("Le défenseur contre-attaque et inflige" + counterAttackValue + "points de dégâts, laissant son adversaire à " + attaquantFM.currentHP);
 
 
@@ -439,6 +451,11 @@ public class CombatManager : MonoBehaviour
 
         defenseurFM.currentHP -= attaquantFM.maxAttackRange * 2;
 
+        if (defenseurFM.currentHP <= 0)
+        {
+            defenseurFM.currentHP = 0;
+        }
+
         Debug.Log("OUH ! CRITIQUE !!");
         Debug.Log("Avec un coup critique, " + attaquantFM.name + " inflige " + attaquantFM.maxAttackRange * 2 + " points de dégâts, laissant " + defenseurFM.name + " à " + defenseurFM.currentHP);
 
@@ -487,6 +504,12 @@ public class CombatManager : MonoBehaviour
         if (attaquantFM != null && defenseurFM != null)
         {
             attaquantFM.currentHP -= defenseurFM.maxCounterAttackRange;
+
+            if (attaquantFM.currentHP <= 0)
+            {
+                attaquantFM.currentHP = 0;
+            }
+
             Debug.Log("Loupé !! Aie aie aie !!");
             Debug.Log("Avec un l'échec critique de l'attaquant, le défenseur contre attaque et inflige " + defenseurFM.maxCounterAttackRange + "points de dégâts, laissant son adversaire à " + attaquantFM.currentHP);
 

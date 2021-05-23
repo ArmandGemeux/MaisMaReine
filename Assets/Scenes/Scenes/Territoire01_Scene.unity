@@ -5639,7 +5639,7 @@ MonoBehaviour:
   m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 13
+    OrthographicSize: 16
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -29672,7 +29672,7 @@ MonoBehaviour:
   charismeAmount: 0
   isGamePaused: 0
   myCampTurningFeedback: {fileID: 1582545466}
-  isMapTuto: 1
+  isMapTuto: 0
   firstFideleToMove: {fileID: 3329264679958164020}
   firstFideleToMoveHasMoved: 0
   firstFideleToInteractWith: {fileID: 18825758}
@@ -35790,7 +35790,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 13
+  orthographic size: 16
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -79336,8 +79336,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1682110244}
   - {fileID: 359999179}
+  - {fileID: 1682110244}
   - {fileID: 1664526079}
   - {fileID: 1774264384}
   - {fileID: 154425150}

@@ -9,6 +9,7 @@ public class MouseEventsFidele : MonoBehaviour
     private AnimationManager myAnimManager;
 
     private Interaction myInteraction;
+    float tmpTimer = 0;
 
     #region Movement
 
@@ -58,7 +59,9 @@ public class MouseEventsFidele : MonoBehaviour
 
     public void OnMouseDrag()
     {
-        if (GameManager.Instance.isGamePaused == false)
+        tmpTimer += Time.deltaTime;
+
+        if (GameManager.Instance.isGamePaused == false && tmpTimer > 0.3)
         {
             #region Movement
 
@@ -72,6 +75,10 @@ public class MouseEventsFidele : MonoBehaviour
             }
 
             #endregion
+        }
+        else if (GameManager.Instance.isGamePaused == false && tmpTimer < 0.3)
+        {
+            RaycastInteraction.Instance.SetFideleSelectedInteractionLauncher(myFideleManager);
         }
     }
 
@@ -127,5 +134,10 @@ public class MouseEventsFidele : MonoBehaviour
             }
             #endregion
         }
+    }
+
+    public void OnMouseUp()
+    {
+        tmpTimer = 0;
     }
 }

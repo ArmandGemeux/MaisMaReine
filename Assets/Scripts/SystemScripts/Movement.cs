@@ -104,6 +104,11 @@ public class Movement : MonoBehaviour
                 {
                     GameManager.Instance.firstFideleToMoveHasMoved = true;
                 }
+
+                if (myAnimationManager.isSelectable)
+                {
+                    RaycastInteraction.Instance.SetFideleSelectedInteractionLauncher(myFM);
+                }
             }
             else
             {
@@ -131,50 +136,10 @@ public class Movement : MonoBehaviour
             }
 
             myInteraction.FideleDisplayInteractionFeedbacks();
-
             myInteraction.CheckForAvaibleInteractions();
-
-            if (myAnimationManager.isSelectable)
-            {
-                RaycastInteraction.Instance.SetFideleSelected(myFM);
-            }
 
             isMoving = false;
         }
-
-        /*if (isMoving && Input.GetMouseButtonDown(1))
-        {
-            isMoving = false;
-
-            Debug.Log("Annulation");
-            CursorManager.Instance.SetCursorToDefault();
-
-            transform.localPosition = Vector3.zero; if (GameManager.Instance.isMapTuto)
-            {
-                myFM.GetComponent<AnimationManager>().DesactivateCursorIndicator();
-            }
-
-            myAnimationManager.HideMovement();
-            myAnimationManager.HideInteraction();
-
-            foreach (FideleManager fmir in GameManager.Instance.allMapUnits)
-            {
-                if (fmir.myCamp != myFM.myCamp)
-                {
-                    fmir.GetComponent<AnimationManager>().HideInteraction();
-                    fmir.GetComponent<AnimationManager>().HideInteractionIcon();
-                    fmir.GetComponentInChildren<Interaction>().myInteractionIcon.color = Color.white;
-
-                    fmir.GetComponent<AnimationManager>().DesactivateReceiverSelection();
-
-                    fmir.GetComponentInChildren<Interaction>().OtherCampDisplayInteractionFeedbacks();
-                }
-            }
-
-            myInteraction.FideleDisplayInteractionFeedbacks();
-
-            myInteraction.CheckForAvaibleInteractions();
-        }*/
     }
 
     public void MovingCharacter()

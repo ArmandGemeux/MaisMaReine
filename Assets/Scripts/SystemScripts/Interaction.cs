@@ -44,7 +44,10 @@ public class Interaction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (myCollideInteractionList.Count == 0)
+        {
+            myAnimationManager.isSelectable = false;
+        }
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
@@ -132,17 +135,21 @@ public class Interaction : MonoBehaviour
                     if (!alreadyInteractedList.Contains(myCollideInteractionList[i]))
                     {
                         myAnimationManager.InteractionAvaibleColor();
+                        myAnimationManager.isSelectable = true;
                         return;
                     }
                     myAnimationManager.NoMoreInteractionColor();
+                    myAnimationManager.isSelectable = false;
                 }
             }
             else if (myCollideInteractionList.Count == 0)
             {
                 myAnimationManager.InteractionAvaibleColor();
+                myAnimationManager.isSelectable = false;
                 return;
             }
             myAnimationManager.NoMoreInteractionColor();
+            myAnimationManager.isSelectable = false;
         }
     }
 
