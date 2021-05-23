@@ -12,6 +12,7 @@ TagManager:
   - Interaction
   - MapLimit
   - TutoZone
+  - DeadZone
   layers:
   - Default
   - TransparentFX

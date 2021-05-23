@@ -18,6 +18,8 @@ public class MovementEnemy : MonoBehaviour
     public bool isMoving = false;
     public bool targetLanded = false;
 
+    public GameObject deadZonetmp;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +30,9 @@ public class MovementEnemy : MonoBehaviour
 
         myFideleManager = GetComponentInParent<FideleManager>();
         myAnimManager = GetComponentInParent<AnimationManager>();
+
+        deadZonetmp = myAnimManager.GetComponentInChildren<DeadZone>().gameObject;
+        deadZonetmp.SetActive(false);
         //myMoveZoneCollider = GetComponentInChildren<Collider2D>();
     }
 

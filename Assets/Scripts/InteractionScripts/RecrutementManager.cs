@@ -183,6 +183,7 @@ public class RecrutementManager : MonoBehaviour
         myFMToRecruit.gameObject.tag = ("Fidele");
 
         MovementEnemy myMovementScript = myFMToRecruit.GetComponentInChildren<MovementEnemy>();
+        myMovementScript.deadZonetmp.SetActive(true);
 
         Destroy(myFMToRecruit.GetComponent<MouseEventsEnnemi>());
         myFMToRecruit.gameObject.AddComponent<MouseEventsFidele>();

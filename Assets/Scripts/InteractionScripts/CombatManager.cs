@@ -450,6 +450,7 @@ public class CombatManager : MonoBehaviour
         //attaquantDamageEffect.Play();
 
         myAnim.SetTrigger("DefenseurReceiveDamage");
+        myAnim.SetTrigger("LaunchCoupCritique");
         coupCritiqueSFX.Post(gameObject);
 
         yield return new WaitForSeconds(2f);

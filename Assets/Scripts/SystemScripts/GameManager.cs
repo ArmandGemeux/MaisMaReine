@@ -58,11 +58,7 @@ public class GameManager : MonoBehaviour
     {
         isGamePaused = false;
         charismeAmount = charismeAmountStatic;
-
-        if (isMapTuto)
-        {
-            firstFideleToMove.GetComponent<AnimationManager>().ActivateCursorIndicator();
-        }
+       
     }
 
     // Update is called once per frame
@@ -76,6 +72,11 @@ public class GameManager : MonoBehaviour
                 {
                     firstFideleToInteractWith.GetComponent<AnimationManager>().ActivateCursorIndicator();
                 }
+            }
+
+            if (firstFideleToMoveHasMoved == false && firstFideleToMove.GetComponentInChildren<Movement>().isMoving == false)
+            {
+                firstFideleToMove.GetComponent<AnimationManager>().ActivateCursorIndicator();
             }
         }
     }
@@ -142,9 +143,22 @@ public class GameManager : MonoBehaviour
 
     public void PlayerSwitchTurn()
     {
-        if (currentCampTurn == GameCamps.Fidele)
+        if (isMapTuto == false)
         {
-            SwitchTurn();
+            if (currentCampTurn == GameCamps.Fidele)
+            {
+                SwitchTurn();
+            }
+        }
+        else
+        {
+            if (firstFideleToInteractWithHasInteracted)
+            {
+                if (currentCampTurn == GameCamps.Fidele)
+                {
+                    SwitchTurn();
+                }
+            }
         }
     }
 

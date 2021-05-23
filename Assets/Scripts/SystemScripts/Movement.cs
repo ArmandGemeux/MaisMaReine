@@ -9,6 +9,7 @@ public class Movement : MonoBehaviour
 
     private bool isInsideMapLimits = true;
     private bool isInAnObstacle = false;
+    private bool isInDeadZone = true;
 
     private Vector2 startPosition;
 
@@ -17,9 +18,11 @@ public class Movement : MonoBehaviour
 
     private bool isLanbable = false;
 
+
     //public GameObject myCollideZone;
     private FideleManager myFM;
-    private GameObject myMoveZone;
+    public GameObject myMoveZone;
+    public GameObject myDeadZone;
     private Collider2D myInteractionZoneCollider;
     private AnimationManager myAnimationManager;
     private Interaction myInteraction;
@@ -39,7 +42,10 @@ public class Movement : MonoBehaviour
         myAnimationManager = GetComponentInParent<AnimationManager>();
 
         myMoveZone = myAnimationManager.GetComponentInChildren<MovementZoneDetection>().gameObject;
+        myDeadZone = myMoveZone.GetComponentInChildren<DeadZone>().gameObject;
         myInteractionZoneCollider = myMoveZone.GetComponent<PolygonCollider2D>();
+
+        myDeadZone.SetActive(false);
     }
 
     // Update is called once per frame
@@ -50,6 +56,7 @@ public class Movement : MonoBehaviour
         if (isMoving && Input.GetMouseButton(0) && hasMoved == false)
         {
             CursorManager.Instance.SetCursorToMovement();
+            myDeadZone.SetActive(true);
             // ICI jouer VFX de déplacement en cours
             // ICI jouer SFX de déplacement en cours
             // ICI jouer Anim de déplacement en cours
@@ -73,6 +80,7 @@ public class Movement : MonoBehaviour
         else if (isMoving && Input.GetMouseButtonUp(0))
         {
             CursorManager.Instance.SetCursorToDefault();
+            myDeadZone.SetActive(false);
             // ICI jouer VFX de déplacement terminé
             // ICI jouer SFX de déplacement terminé
             // ICI jouer Anim de déplacement terminé
@@ -126,6 +134,40 @@ public class Movement : MonoBehaviour
 
             isMoving = false;
         }
+
+        /*if (isMoving && Input.GetMouseButtonDown(1))
+        {
+            isMoving = false;
+
+            Debug.Log("Annulation");
+            CursorManager.Instance.SetCursorToDefault();
+
+            transform.localPosition = Vector3.zero; if (GameManager.Instance.isMapTuto)
+            {
+                myFM.GetComponent<AnimationManager>().DesactivateCursorIndicator();
+            }
+
+            myAnimationManager.HideMovement();
+            myAnimationManager.HideInteraction();
+
+            foreach (FideleManager fmir in GameManager.Instance.allMapUnits)
+            {
+                if (fmir.myCamp != myFM.myCamp)
+                {
+                    fmir.GetComponent<AnimationManager>().HideInteraction();
+                    fmir.GetComponent<AnimationManager>().HideInteractionIcon();
+                    fmir.GetComponentInChildren<Interaction>().myInteractionIcon.color = Color.white;
+
+                    fmir.GetComponent<AnimationManager>().DesactivateReceiverSelection();
+
+                    fmir.GetComponentInChildren<Interaction>().OtherCampDisplayInteractionFeedbacks();
+                }
+            }
+
+            myInteraction.FideleDisplayInteractionFeedbacks();
+
+            myInteraction.CheckForAvaibleInteractions();
+        }*/
     }
 
     public void MovingCharacter()
@@ -217,7 +259,10 @@ public class Movement : MonoBehaviour
                     isLanbable = false;
                     myAnimationManager.UnableToLand();
                 }
-
+                if (collision.gameObject == myDeadZone)
+                {
+                    isInDeadZone = false;
+                }
                 if (collision.tag == ("Obstacle"))
                 {
                     isInAnObstacle = false;
@@ -235,7 +280,10 @@ public class Movement : MonoBehaviour
                 isLanbable = false;
                 myAnimationManager.UnableToLand();
             }
-
+            if (collision.gameObject == myDeadZone)
+            {
+                isInDeadZone = false;
+            }
             if (collision.tag == ("Obstacle"))
             {
                 isInAnObstacle = false;
@@ -274,7 +322,13 @@ public class Movement : MonoBehaviour
                     isLanbable = false;
                     myAnimationManager.UnableToLand();
                 }
-                else if (collision.gameObject == myMoveZone && isInAnObstacle == false && isInsideMapLimits)
+                else if (collision.gameObject == myDeadZone)
+                {
+                    isInDeadZone = true;
+                    isLanbable = false;
+                    myAnimationManager.UnableToLand();
+                }
+                else if (collision.gameObject == myMoveZone && isInAnObstacle == false && isInsideMapLimits && isInDeadZone == false)
                 {
                     isLanbable = true;
                     myAnimationManager.AbleToLand();
@@ -295,7 +349,13 @@ public class Movement : MonoBehaviour
                 isLanbable = false;
                 myAnimationManager.UnableToLand();
             }
-            else if (collision.gameObject == myMoveZone && isInAnObstacle == false && isInsideMapLimits)
+            else if (collision.gameObject == myDeadZone)
+            {
+                isInDeadZone = true;
+                isLanbable = false;
+                myAnimationManager.UnableToLand();
+            }
+            else if (collision.gameObject == myMoveZone && isInAnObstacle == false && isInsideMapLimits && isInDeadZone == false)
             {
                 isLanbable = true;
                 myAnimationManager.AbleToLand();
