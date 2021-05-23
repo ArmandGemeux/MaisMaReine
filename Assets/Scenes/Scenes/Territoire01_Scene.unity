@@ -29670,7 +29670,7 @@ MonoBehaviour:
   charismeAmount: 0
   isGamePaused: 0
   myCampTurningFeedback: {fileID: 1582545466}
-  isMapTuto: 0
+  isMapTuto: 1
   firstFideleToMove: {fileID: 3329264679958164020}
   firstFideleToMoveHasMoved: 0
   firstFideleToInteractWith: {fileID: 18825758}
