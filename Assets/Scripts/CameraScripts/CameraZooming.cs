@@ -12,6 +12,8 @@ public class CameraZooming : MonoBehaviour
     public int maxZoomInValue;
     public int maxZoomOutValue;
 
+    private bool isMenuPauseOpenByEscape;
+
     private void Awake()
     {
         myCamera = GetComponent<CinemachineVirtualCamera>();
@@ -26,38 +28,50 @@ public class CameraZooming : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (mapScreenPause == false)
+            {
+                isMenuPauseOpenByEscape = true;
+                ActivatePauseScreen();
+            }
+            else
+            {
+                isMenuPauseOpenByEscape = false;
+                DesactivatePauseScreen();
+            }
+        }
+        else if (myCamera.m_Lens.OrthographicSize >= maxZoomOutValue && Input.GetAxis("Mouse ScrollWheel") <= -0.2)
+        {
+            ActivatePauseScreen();
+        }
+        else if (isMenuPauseOpenByEscape == false && myCamera.m_Lens.OrthographicSize < maxZoomOutValue && mapScreenPause == true)
+        {
+            isMenuPauseOpenByEscape = false;
+            DesactivatePauseScreen();
+        }
+
         if (myCamera.m_Lens.OrthographicSize > maxZoomInValue && GameManager.Instance.isGamePaused == false)
         {
             if (Input.GetAxis("Mouse ScrollWheel") > 0)
             {
                 myCamera.m_Lens.OrthographicSize = Mathf.Max(myCamera.m_Lens.OrthographicSize - 1, 1);
-                //Debug.Log("Zooooooom");
             }
         }
-
 
         if (myCamera.m_Lens.OrthographicSize < maxZoomOutValue && GameManager.Instance.isGamePaused == false)
         {
             if (Input.GetAxis("Mouse ScrollWheel") < 0)
             {
                 myCamera.m_Lens.OrthographicSize = Mathf.Max(myCamera.m_Lens.OrthographicSize + 1, 1);
-                //Debug.Log("Dézooooooom");
             }
-        }
-
-
-        if (myCamera.m_Lens.OrthographicSize >= maxZoomOutValue && Input.GetAxis("Mouse ScrollWheel") <= -0.2)
-        {
-            //Debug.Log("Zoom Max Atteint");
-            ActivatePauseScreen();
-            //Afficher écran de MiniMap
-        }
-        else if (myCamera.m_Lens.OrthographicSize < maxZoomOutValue && mapScreenPause == true)
-        {
-            DesactivatePauseScreen();
-        }
+        }        
     }
     
+    private void CheckCurrentZoomValue()
+    {
+        
+    }
 
     public void ActivatePauseScreen()
     {

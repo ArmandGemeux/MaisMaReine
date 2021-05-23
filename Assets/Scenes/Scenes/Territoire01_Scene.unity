@@ -5639,7 +5639,7 @@ MonoBehaviour:
   m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 16
+    OrthographicSize: 30
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -5697,7 +5697,7 @@ MonoBehaviour:
   minZoom: 0.5
   zoomStepSize: 5.69
   zoomToMouse: 0
-  followTarget: {fileID: 0}
+  followTarget: {fileID: 788129620}
   lerpSpeed: 0.105
   offset: {x: 0, y: 0, z: -10}
   clampCamera: 1
@@ -35790,7 +35790,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 16
+  orthographic size: 30
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
