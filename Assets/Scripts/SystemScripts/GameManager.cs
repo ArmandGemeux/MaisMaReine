@@ -21,8 +21,6 @@ public class GameManager : MonoBehaviour
 
     public bool isGamePaused;
 
-    public ParticleSystem myCampTurningFeedback;
-
     static public int charismeAmountStatic;
 
     [Header ("Tuto")]
@@ -97,13 +95,11 @@ public class GameManager : MonoBehaviour
             {
                 if (allMapUnits[i].isAllActionsDone == false)
                 {
-                    myCampTurningFeedback.gameObject.SetActive(false);
                     return;
                 }                
             }
         }
         SwitchTurn();
-        myCampTurningFeedback.gameObject.SetActive(true);
     }
 
     public void LoadCharismeValueBetweenScenes()
@@ -164,8 +160,6 @@ public class GameManager : MonoBehaviour
 
     public void SwitchTurn()
     {
-        myCampTurningFeedback.gameObject.SetActive(false);
-
         for (int i = 0; i < allMapUnits.Count; i++)
         {
             if (allMapUnits[i].isAllActionsDone == true)

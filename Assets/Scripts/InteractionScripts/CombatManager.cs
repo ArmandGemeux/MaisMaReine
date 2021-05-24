@@ -518,6 +518,7 @@ public class CombatManager : MonoBehaviour
             // ICI jouer SFX d'echec critique
 
             myAnim.SetTrigger("AttaquantReceiveDamage");
+            myAnim.SetTrigger("LaunchEchecCritique");
             //echecCritiqueSFX.Post(gameObject);
 
             //myDamageFeedback.text = "-" + defenseurFM.maxCounterAttackRange.ToString() + " !!";
@@ -526,7 +527,7 @@ public class CombatManager : MonoBehaviour
             yield return new WaitForSeconds(2f);
 
             // ICI jouer Anim dégâts reçus sur attaquant
-            renderTextCombat.text = "- " + (defenseurFM.maxCounterAttackRange * 2).ToString();
+            renderTextCombat.text = "- " + (defenseurFM.maxCounterAttackRange).ToString();
             attaquantDamageTextPS.gameObject.SetActive(true);
 
             attaquantAM.ReceiveDamage();
