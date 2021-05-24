@@ -44,16 +44,19 @@ public class CursorManager : MonoBehaviour
 
     public void SetCursorToDefault()
     {
+        myImage.color = new Color(1, 1, 1, 1);
         myImage.sprite = defaultCursor;
     }
 
     public void SetCursorToMovement()
     {
-        myImage.sprite = movementCursor;
+        myImage.color = new Color (0,0,0,0);
+        Cursor.visible = false;
     }
 
     public void SetCursorToOverInteraction()
     {
+        myImage.color = new Color(1, 1, 1, 1);
         myImage.sprite = overInteractionCursor;
     }
 }

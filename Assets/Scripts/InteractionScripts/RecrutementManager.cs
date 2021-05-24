@@ -23,8 +23,6 @@ public class RecrutementManager : MonoBehaviour
     [Header("Caractéristiques")]
     public TextMeshProUGUI hpValue;
 
-    public TextMeshProUGUI moveZoneValue;
-
     public TextMeshProUGUI attackRangeValue;
 
     public TextMeshProUGUI criticChancesValue;
@@ -37,7 +35,8 @@ public class RecrutementManager : MonoBehaviour
 
     private Animator myAnim;
 
-    private Sprite recruitedSprite;
+    private Sprite idleRecruitedSprite;
+    private Sprite movingRecruitedSprite;
     #endregion
 
     [Header("Feedbacks et Charisme")]
@@ -112,16 +111,16 @@ public class RecrutementManager : MonoBehaviour
         gainCharismePS.gameObject.SetActive(false);
     }
 
-    public void OpenRecruitementWindow(FideleManager fmToRecruit, Sprite fmToRecruitSprite, FideleManager recruiterFM)
+    public void OpenRecruitementWindow(FideleManager fmToRecruit, Sprite fmtrIdleSprite, Sprite fmtrMovingSprite, FideleManager recruiterFM)
     {
         myAnim.SetBool("isOpen", true);
-        recruitedSprite = fmToRecruitSprite;
+        idleRecruitedSprite = fmtrIdleSprite;
+        movingRecruitedSprite = fmtrMovingSprite;
 
         characterNom.text = fmToRecruit.fidelePrenom + " " + fmToRecruit.fideleNom;
         characterCamp.text = fmToRecruit.myCamp.ToString();
 
         hpValue.text = fmToRecruit.maxHp.ToString();
-        moveZoneValue.text = fmToRecruit.moveZoneValue.ToString();
 
         attackRangeValue.text = fmToRecruit.minAttackRange.ToString() + " - " + fmToRecruit.maxAttackRange.ToString();
         criticChancesValue.text = fmToRecruit.criticChances.ToString() + "%";
@@ -155,7 +154,8 @@ public class RecrutementManager : MonoBehaviour
             myRecruiterFM.GetComponent<AnimationManager>().CheckActionsLeftAmout();
 
             myFMToRecruit = null;
-            recruitedSprite = null;
+            idleRecruitedSprite = null;
+            movingRecruitedSprite = null;
 
             //ICI jouer le clignottement de l'icône de charisme
             //ICI jouer SFX d'impossibilité de recruter le personnage
@@ -171,8 +171,8 @@ public class RecrutementManager : MonoBehaviour
         myRecruiterFM.GetComponent<AnimationManager>().CheckActionsLeftAmout();
 
         myFMToRecruit = null;
-        recruitedSprite = null;
-        
+        idleRecruitedSprite = null;
+        movingRecruitedSprite = null;
     }
 
     public IEnumerator SetCampToFidele()
@@ -213,7 +213,10 @@ public class RecrutementManager : MonoBehaviour
         DragCamera2D.Instance.UnfollowTargetCamera();
 
         myFMToRecruit.GetComponentInChildren<Interaction>().myInteractionIcon.sprite = null;
-        myFMToRecruit.fideleSprite.sprite = recruitedSprite;
+        myFMToRecruit.idleFideleSprite = idleRecruitedSprite;
+        myFMToRecruit.movingFideleSprite = movingRecruitedSprite;
+
+        myFMToRecruit.currentFideleSprite.sprite = myFMToRecruit.idleFideleSprite;
 
         myFMToRecruit.transform.SetParent(myFideleParent.transform);
 
@@ -269,7 +272,8 @@ public class RecrutementManager : MonoBehaviour
 
         RaycastInteraction.Instance.CheckInteractionLauncherState();
 
-        recruitedSprite = null;
+        idleRecruitedSprite = null;
+        movingRecruitedSprite = null;
 
         myFMToRecruit.isAlive = true;
         myFMToRecruit = null;

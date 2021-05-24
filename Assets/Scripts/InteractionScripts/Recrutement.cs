@@ -2,13 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using System;
 
 public class Recrutement : MonoBehaviour
 {
     private FideleManager myFM;
     private MovementEnemy myMovementEnemy;
 
-    public List<Sprite> myRecruitedSprite;
+    [Serializable]
+    public struct RecrutementSprites
+    {
+        public Sprite idleSprite;
+        public Sprite movingSprite;
+    }
+
+    public List<RecrutementSprites> myRecruitedSprites;
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +35,7 @@ public class Recrutement : MonoBehaviour
     {
         GameManager.Instance.isGamePaused = true;
 
-        int spriteIndex = Random.Range(0, myRecruitedSprite.Count);
-        RecrutementManager.Instance.OpenRecruitementWindow(fmToRecruit, myRecruitedSprite[spriteIndex], recruiterFM);
+        int idleSpriteIndex = UnityEngine.Random.Range(0, myRecruitedSprites.Count);
+        RecrutementManager.Instance.OpenRecruitementWindow(fmToRecruit, myRecruitedSprites[idleSpriteIndex].idleSprite, myRecruitedSprites[idleSpriteIndex].movingSprite, recruiterFM);
     }
 }

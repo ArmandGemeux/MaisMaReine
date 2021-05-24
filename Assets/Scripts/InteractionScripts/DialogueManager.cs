@@ -22,6 +22,10 @@ public class DialogueManager : MonoBehaviour
 
     private Queue<string> lines;
 
+    public Image myTalkingCharacter;
+
+    public Sprite elyaSprite;
+
     #region Singleton
     public static DialogueManager Instance;
 
@@ -71,6 +75,17 @@ public class DialogueManager : MonoBehaviour
 
         currentDialogue = dialogue;
         characterName.text = currentDialogue.name;
+
+        if (currentDialogue.name == "Elya")
+        {
+            myTalkingCharacter.color = new Color(1, 1, 1, 1);
+            myTalkingCharacter.sprite = elyaSprite;
+        }
+        else
+        {
+            myTalkingCharacter.color = new Color(0, 0, 0, 0);
+            myTalkingCharacter.sprite = null;
+        }
 
         if (currentDialogue.cameraStartPos != null)
         {

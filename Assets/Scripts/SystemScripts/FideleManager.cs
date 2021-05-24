@@ -37,7 +37,9 @@ public class FideleManager : MonoBehaviour
     public enum FidelePeuple {Humain, Gnome, Golem, Elfe, Animal}
     public FidelePeuple fidelePeuple;
 
-    public SpriteRenderer fideleSprite;
+    public SpriteRenderer currentFideleSprite;
+    public Sprite movingFideleSprite;
+    public Sprite idleFideleSprite;
     public SpriteRenderer questIcon;
 
     //[HideInInspector]

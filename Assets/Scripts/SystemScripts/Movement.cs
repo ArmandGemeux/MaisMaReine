@@ -57,7 +57,7 @@ public class Movement : MonoBehaviour
         if (isMoving && Input.GetMouseButton(0) && hasMoved == false)
         {
             CursorManager.Instance.SetCursorToMovement();
-            //myFM.fideleSprite.sprite = testDlcmtSprite;
+            myFM.currentFideleSprite.sprite = myFM.movingFideleSprite;
             myDeadZone.SetActive(true);
             // ICI jouer VFX de déplacement en cours
             // ICI jouer SFX de déplacement en cours
@@ -120,6 +120,7 @@ public class Movement : MonoBehaviour
                 }
             }
 
+            myFM.currentFideleSprite.sprite = myFM.idleFideleSprite;
             myAnimationManager.HideMovement();
             myAnimationManager.HideInteraction();
 

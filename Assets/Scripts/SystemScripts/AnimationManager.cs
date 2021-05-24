@@ -146,12 +146,12 @@ public class AnimationManager : MonoBehaviour
     #region Outline
     public void SetOutlineSelected()
     {
-        myFM.fideleSprite.material.SetColor("_Color", Color.white);
+        myFM.currentFideleSprite.material.SetColor("_Color", Color.white);
     }
 
     public void SetOutlineDefault()
     {
-        myFM.fideleSprite.material.SetColor("_Color", Color.gray);
+        myFM.currentFideleSprite.material.SetColor("_Color", Color.gray);
     }
     #endregion
 
@@ -255,12 +255,12 @@ public class AnimationManager : MonoBehaviour
 
     public void NoMoreInteractionColor()
     {
-        myFM.fideleSprite.color = new Color(0.5f, 0.5f, 0.5f, 1f);
+        myFM.currentFideleSprite.color = new Color(0.5f, 0.5f, 0.5f, 1f);
     }
 
     public void InteractionAvaibleColor()
     {
-        myFM.fideleSprite.color = new Color(1f, 1f, 1f, 1f);
+        myFM.currentFideleSprite.color = new Color(1f, 1f, 1f, 1f);
     }
     #endregion
 

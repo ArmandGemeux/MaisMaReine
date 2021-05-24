@@ -193,8 +193,8 @@ public class CombatManager : MonoBehaviour
     {
         myAnim.SetBool("OpenCombatWindow", false);
 
-        attaquantFideleSprite.sprite = attaquantFM.fideleSprite.sprite;
-        defenseurFideleSprite.sprite = defenseurFM.fideleSprite.sprite;
+        attaquantFideleSprite.sprite = attaquantFM.currentFideleSprite.sprite;
+        defenseurFideleSprite.sprite = defenseurFM.currentFideleSprite.sprite;
 
         attaquantHP.text = attaquantFM.currentHP.ToString();
         defenseurHP.text = defenseurFM.currentHP.ToString();
@@ -262,8 +262,8 @@ public class CombatManager : MonoBehaviour
 
         myAnim.SetBool("OpenCombatBandeau", true);
 
-        attaquantFideleSprite.sprite = attaquantFM.fideleSprite.sprite;
-        defenseurFideleSprite.sprite = defenseurFM.fideleSprite.sprite;
+        attaquantFideleSprite.sprite = attaquantFM.currentFideleSprite.sprite;
+        defenseurFideleSprite.sprite = defenseurFM.currentFideleSprite.sprite;
 
         attaquantHP.text = attaquantFM.currentHP.ToString();
         defenseurHP.text = defenseurFM.currentHP.ToString();
@@ -418,7 +418,7 @@ public class CombatManager : MonoBehaviour
         {
             if (attaquantFM.isAlive && defenseurFM.isAlive)
             {
-                EndFightNoDead();
+                StartCoroutine(EndFightNoDead());
             }
         }
     }
@@ -491,7 +491,7 @@ public class CombatManager : MonoBehaviour
         {
             if (attaquantFM.isAlive && defenseurFM.isAlive)
             {
-                EndFightNoDead();
+                StartCoroutine(EndFightNoDead());
             }
         }
     }
@@ -545,7 +545,7 @@ public class CombatManager : MonoBehaviour
             {
                 if (attaquantFM.isAlive && defenseurFM.isAlive)
                 {
-                    EndFightNoDead();
+                    StartCoroutine(EndFightNoDead());
                 }
             }
         }
@@ -649,6 +649,8 @@ public class CombatManager : MonoBehaviour
 
         mortSFX.Post(gameObject);
 
+        yield return new WaitForSeconds(0.4f);
+
         attaquantFideleSprite.sprite = null;
         defenseurFideleSprite.sprite = null;
 
@@ -661,7 +663,7 @@ public class CombatManager : MonoBehaviour
         GameManager.Instance.MoveUnit();
     }
 
-    public void EndFightNoDead()
+    public IEnumerator EndFightNoDead()
     {
         Debug.Log("EndFightNoDead " + defenseurFM.name + " " + " " + attaquantFM.name);
 
@@ -692,6 +694,8 @@ public class CombatManager : MonoBehaviour
         defenseurAM.DesactivateReceiverSelection();
         
         GameManager.Instance.isGamePaused = false;
+
+        yield return new WaitForSeconds(0.4f);
 
         attaquantFideleSprite.sprite = null;
         defenseurFideleSprite.sprite = null;
