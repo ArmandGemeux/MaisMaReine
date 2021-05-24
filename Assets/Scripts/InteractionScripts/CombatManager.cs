@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class CombatManager : MonoBehaviour
 {
     private Animator myAnim;
-
+    public bool isInFight = false;
     public TextMeshProUGUI renderTextCombat;
 
     [Header("Sounds Interface")]
@@ -192,6 +192,7 @@ public class CombatManager : MonoBehaviour
     public void PlayerLaunchCombat()
     {
         myAnim.SetBool("OpenCombatWindow", false);
+        isInFight = true;
 
         attaquantFideleSprite.sprite = attaquantFM.currentFideleSprite.sprite;
         defenseurFideleSprite.sprite = defenseurFM.currentFideleSprite.sprite;
@@ -261,6 +262,7 @@ public class CombatManager : MonoBehaviour
         GameManager.Instance.isGamePaused = true;
 
         myAnim.SetBool("OpenCombatBandeau", true);
+        isInFight = true;
 
         attaquantFideleSprite.sprite = attaquantFM.currentFideleSprite.sprite;
         defenseurFideleSprite.sprite = defenseurFM.currentFideleSprite.sprite;
@@ -561,7 +563,11 @@ public class CombatManager : MonoBehaviour
 
         //myDamageFeedback.text = "";
         //myDamageFeedback = null;
-        GameManager.Instance.isGamePaused = false;
+
+        if (attaquantFM.myCamp == GameCamps.Fidele)
+        {
+            GameManager.Instance.isGamePaused = false;
+        }
 
         DragCamera2D.Instance.UnfollowTargetCamera();
         QuestManager.Instance.OnKillUnit(deadFM);
@@ -662,6 +668,8 @@ public class CombatManager : MonoBehaviour
         defenseurAM = null;
 
         GameManager.Instance.MoveUnit();
+
+        isInFight = false;
     }
 
     public IEnumerator EndFightNoDead()
@@ -693,8 +701,11 @@ public class CombatManager : MonoBehaviour
         defenseurAM.keepInteractionDisplayed = false;
         defenseurAM.HideInteraction();
         defenseurAM.DesactivateReceiverSelection();
-        
-        GameManager.Instance.isGamePaused = false;
+
+        if (attaquantFM.myCamp == GameCamps.Fidele)
+        {
+            GameManager.Instance.isGamePaused = false;
+        }
 
         yield return new WaitForSeconds(0.4f);
 
@@ -708,6 +719,8 @@ public class CombatManager : MonoBehaviour
         defenseurAM = null;
 
         GameManager.Instance.MoveUnit();
+
+        isInFight = false;
     }
 
     public void SwitchInteractionType(FideleManager deadFM)

@@ -12,6 +12,8 @@ public class RecrutementManager : MonoBehaviour
 
     public GameObject myFideleParent;
 
+    public bool isRecruiting = false;
+
     #region Nom et Camp
     [Header("Nom et Camp")]
     public TextMeshProUGUI characterNom;
@@ -177,7 +179,8 @@ public class RecrutementManager : MonoBehaviour
 
     public IEnumerator SetCampToFidele()
     {
-        QuestManager.Instance.OnRecruitUnit(myFMToRecruit);        
+        QuestManager.Instance.OnRecruitUnit(myFMToRecruit);
+        isRecruiting = true;
 
         myFMToRecruit.myCamp = GameCamps.Fidele;
         myFMToRecruit.gameObject.tag = ("Fidele");
@@ -278,5 +281,7 @@ public class RecrutementManager : MonoBehaviour
         myFMToRecruit.isAlive = true;
         myFMToRecruit = null;
         myRecruiterFM = null;
+
+        isRecruiting = false;
     }
 }

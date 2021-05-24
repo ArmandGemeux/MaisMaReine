@@ -26,6 +26,8 @@ public class DialogueManager : MonoBehaviour
 
     public Sprite elyaSprite;
 
+    public bool isInDialogue = false;
+
     #region Singleton
     public static DialogueManager Instance;
 
@@ -62,6 +64,8 @@ public class DialogueManager : MonoBehaviour
 
     public void OpenDialogueWindow(Dialogue dialogue, FideleManager talkedFM)
     {
+        isInDialogue = true;
+
         talkingFM = null;
         currentDialogue = null;
 
@@ -169,5 +173,7 @@ public class DialogueManager : MonoBehaviour
             talkingFM = null;
             currentDialogue = null;
         }
+
+        isInDialogue = false;
     }
 }

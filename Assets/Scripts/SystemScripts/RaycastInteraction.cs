@@ -98,43 +98,46 @@ public class RaycastInteraction : MonoBehaviour
             && hit.collider.gameObject.GetComponent<FideleManager>().myCamp != GameCamps.Fidele && interactionLauncherInteraction.myCollideInteractionList.Contains(hit.collider.gameObject.GetComponentInChildren<Interaction>()) 
             && !interactionLauncherInteraction.alreadyInteractedList.Contains(hit.collider.gameObject.GetComponentInChildren<Interaction>()))
         {
-            interactionReceiverAnim = hit.collider.GetComponent<AnimationManager>();
-            interactionReceiverInteraction = hit.collider.GetComponentInChildren<Interaction>();
-            FideleManager interactionReceiverFM = hit.collider.GetComponentInParent<FideleManager>();
-            
-
-            switch (interactionReceiverInteraction.interactionType) //Quel type d'interaction porte l'interactionReceiver ?
+            if (CombatManager.Instance.isInFight == false && RecrutementManager.Instance.isRecruiting == false && DialogueManager.Instance.isInDialogue == false)
             {
-                case InteractionType.Dialogue:
-                    //interactionLauncherInteraction.alreadyInteractedList.Add(interactionReceiverInteraction);
-                    interactionReceiverInteraction.GetComponent<DialogueInteraction>().StartDialogue(interactionReceiverFM);
-                    dialogueLancementInteractionSFX.Post(gameObject);
-                    //Debug.Log("Dialogue");
-                    break;
-                case InteractionType.Recrutement:
-                    interactionLauncherInteraction.alreadyInteractedList.Add(interactionReceiverInteraction);
-                    interactionReceiverInteraction.GetComponent<Recrutement>().LaunchRecruitement(interactionReceiverFM, interactionLauncherFM);
-                    recrutementLancementInteractionSFX.Post(gameObject);
-                    //Debug.Log("Recrutement");
-                    break;
-                case InteractionType.Combat:
-                    interactionLauncherInteraction.alreadyInteractedList.Add(interactionReceiverInteraction);
-                    CombatManager.Instance.OpenCombatWindow(interactionLauncherFM, interactionReceiverFM);
-                    combatLancementInteractionSFX.Post(gameObject);
-                    //Debug.Log("Combat");
-                    break;
-                default:
-                    break;
+                interactionReceiverAnim = hit.collider.GetComponent<AnimationManager>();
+                interactionReceiverInteraction = hit.collider.GetComponentInChildren<Interaction>();
+                FideleManager interactionReceiverFM = hit.collider.GetComponentInParent<FideleManager>();
+
+
+                switch (interactionReceiverInteraction.interactionType) //Quel type d'interaction porte l'interactionReceiver ?
+                {
+                    case InteractionType.Dialogue:
+                        //interactionLauncherInteraction.alreadyInteractedList.Add(interactionReceiverInteraction);
+                        interactionReceiverInteraction.GetComponent<DialogueInteraction>().StartDialogue(interactionReceiverFM);
+                        dialogueLancementInteractionSFX.Post(gameObject);
+                        //Debug.Log("Dialogue");
+                        break;
+                    case InteractionType.Recrutement:
+                        interactionLauncherInteraction.alreadyInteractedList.Add(interactionReceiverInteraction);
+                        interactionReceiverInteraction.GetComponent<Recrutement>().LaunchRecruitement(interactionReceiverFM, interactionLauncherFM);
+                        recrutementLancementInteractionSFX.Post(gameObject);
+                        //Debug.Log("Recrutement");
+                        break;
+                    case InteractionType.Combat:
+                        interactionLauncherInteraction.alreadyInteractedList.Add(interactionReceiverInteraction);
+                        CombatManager.Instance.OpenCombatWindow(interactionLauncherFM, interactionReceiverFM);
+                        combatLancementInteractionSFX.Post(gameObject);
+                        //Debug.Log("Combat");
+                        break;
+                    default:
+                        break;
+                }
+
+                interactionLauncherInteraction.CheckForAvaibleInteractions();
+
+                interactionReceiverInteraction.OtherCampDisplayInteractionFeedbacks();
+                interactionLauncherInteraction.FideleDisplayInteractionFeedbacks();
+
+                Debug.Log("Fin interaction : " + interactionLauncherFM.name);
+
+                ResetReceiverInteraction();
             }
-
-            interactionLauncherInteraction.CheckForAvaibleInteractions();
-
-            interactionReceiverInteraction.OtherCampDisplayInteractionFeedbacks();
-            interactionLauncherInteraction.FideleDisplayInteractionFeedbacks();
-
-            Debug.Log("Fin interaction : " + interactionLauncherFM.name);
-
-            ResetReceiverInteraction();
         }
         else if (hit.collider == null || !hit.collider.GetComponentInChildren<Interaction>())
         {

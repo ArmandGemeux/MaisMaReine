@@ -139,18 +139,15 @@ public class GameManager : MonoBehaviour
 
     public void PlayerSwitchTurn()
     {
-        if (isMapTuto == false)
+        if (isGamePaused == false && currentCampTurn == GameCamps.Fidele)
         {
-            if (currentCampTurn == GameCamps.Fidele)
+            if (isMapTuto == false)
             {
                 SwitchTurn();
             }
-        }
-        else
-        {
-            if (firstFideleToInteractWithHasInteracted)
+            else
             {
-                if (currentCampTurn == GameCamps.Fidele)
+                if (firstFideleToInteractWithHasInteracted)
                 {
                     SwitchTurn();
                 }

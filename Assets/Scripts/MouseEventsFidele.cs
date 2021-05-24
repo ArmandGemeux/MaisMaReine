@@ -60,7 +60,7 @@ public class MouseEventsFidele : MonoBehaviour
 
     public void OnMouseDrag()
     {
-        if (GameManager.Instance.isGamePaused == false)
+        if (GameManager.Instance.isGamePaused == false && myFideleManager.myCamp == GameCamps.Fidele)
         {
             tmpTimer += Time.deltaTime;
 
@@ -68,14 +68,12 @@ public class MouseEventsFidele : MonoBehaviour
             {
                 #region Movement
 
-                if (myFideleManager.myCamp == GameCamps.Fidele)
-                {
-                    //myAnimManager.isSelectable = false;
-                    RaycastInteraction.Instance.ResetLauncherInteraction();
-                    RaycastInteraction.Instance.ResetReceiverInteraction();
+                //myAnimManager.isSelectable = false;
+                RaycastInteraction.Instance.ResetLauncherInteraction();
+                RaycastInteraction.Instance.ResetReceiverInteraction();
 
-                    myMovement.MovingCharacter();
-                }
+                myMovement.MovingCharacter();
+
                 #endregion
             }
             else if (tmpTimer < 0.3)
