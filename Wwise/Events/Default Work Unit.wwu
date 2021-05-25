@@ -245,6 +245,91 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Event Name="Event_Deplacement_Bandit" ID="{FFA57FB7-E24D-4751-9EBE-D4CD7BB8511D}"/>
+				<Event Name="Event_Deplacement_Soldat" ID="{628FD362-90C6-4F64-9B3C-CB0373B36474}"/>
+				<Event Name="Event_Deplacement_Calamite" ID="{636E58F7-0B06-4247-B4C4-46ACB2751218}"/>
+				<Event Name="Event_Mouv_Fidele_Chute" ID="{3A171EC5-569D-4015-9A9B-66B815C23A61}">
+					<ChildrenList>
+						<Action Name="" ID="{A16E398F-20F5-4509-9729-8B5342DB8EE2}" ShortID="304039771">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Mouv_Chute" ID="{4E2C855A-104E-4C35-BE41-714534118048}" WorkUnitID="{961EADD6-4800-4D30-B7C5-4203C2A7B882}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Event_Mouv_Fidele_Attrape" ID="{79D7091C-FE68-488B-A733-81DF59A15DA3}"/>
+				<Event Name="Event_UI_Clique_Discussion" ID="{01C9CE98-A258-4BFF-BC40-7DE4BC182D54}">
+					<ChildrenList>
+						<Action Name="" ID="{994CDBE0-4E06-486D-9C21-03058E48C0CC}" ShortID="506574063">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Clique_Discu" ID="{7F7023CE-2A74-4FC6-8436-B1EC8405314B}" WorkUnitID="{961EADD6-4800-4D30-B7C5-4203C2A7B882}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Event_Dialogue_To_Jeu" ID="{97207710-0139-4EBA-8779-CFE354561768}">
+					<ChildrenList>
+						<Action Name="" ID="{8F51EB50-2F5C-4E40-95BA-F655095A77C6}" ShortID="1053011175">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Dialogue to jeu" ID="{A34C16DE-CD27-43DF-B7D1-446110114FD4}" WorkUnitID="{961EADD6-4800-4D30-B7C5-4203C2A7B882}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Event_Fighting_Musique" ID="{A12195A4-35A6-44D3-9CC8-95B33FFC049C}"/>
+				<Event Name="Event_InGame_Musique" ID="{5F4D0259-C852-4178-8C6F-60F26C616D50}"/>
+				<Event Name="Event_UI_Clique_Territoire" ID="{65B96822-F0FC-401D-82A3-C2532FD03FB7}">
+					<ChildrenList>
+						<Action Name="" ID="{6F871AF7-67E2-41BF-992E-A7FA6DD44CD3}" ShortID="694086385">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Clique_territoire" ID="{45ED4D8D-8E3A-45A8-AF06-655A7C1F714D}" WorkUnitID="{961EADD6-4800-4D30-B7C5-4203C2A7B882}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Event_Menu_Musique" ID="{43A0FEFB-E0AA-4B0C-A2CB-6AA18E4974AD}"/>
+				<Event Name="Event_Attaque_Ennemi" ID="{081CA9D9-4958-4CC5-AFB2-E2E995EC4918}">
+					<ChildrenList>
+						<Action Name="" ID="{7034D37E-A905-4CD8-9CAF-4B814CB18D7F}" ShortID="695641938">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="13"/>
+								<Property Name="Lowpass" Type="int16" Value="25"/>
+								<Property Name="Pitch" Type="int32" Value="-100"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Clique_Fidele_Combat" ID="{1150461E-9304-406B-9982-4B5CD0BC45A4}" WorkUnitID="{961EADD6-4800-4D30-B7C5-4203C2A7B882}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+						<Action Name="" ID="{6358A59A-550A-4E8D-B443-D219B70BA4EC}" ShortID="634871425">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Clique_Fidele_Combat" ID="{1150461E-9304-406B-9982-4B5CD0BC45A4}" WorkUnitID="{961EADD6-4800-4D30-B7C5-4203C2A7B882}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Event_Echec_Critique" ID="{0BE49B9D-890A-4510-BB60-D1980E99EA21}">
+					<ChildrenList>
+						<Action Name="" ID="{F1B21B64-AC5C-41E1-B979-1782463EAB74}" ShortID="731972939">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="echec_critique_2" ID="{5A1B646D-6CF7-4C4E-A02B-288786C93ED9}" WorkUnitID="{961EADD6-4800-4D30-B7C5-4203C2A7B882}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>

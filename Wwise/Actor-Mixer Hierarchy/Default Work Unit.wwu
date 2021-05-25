@@ -2200,6 +2200,34 @@
 								<MediaID ID="307925096"/>
 							</MediaIDList>
 						</AudioFileSource>
+						<AudioFileSource Name="echec_critique_2" ID="{A90D69F4-65D3-46BA-A624-B3F3B03942B1}">
+							<Language>SFX</Language>
+							<AudioFile>echec_critique_2.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="615781091"/>
+							</MediaIDList>
+						</AudioFileSource>
+						<AudioFileSource Name="bodyfallHVY" ID="{C37ECF87-722D-4A3C-B0DC-66FE0BD41789}">
+							<Language>SFX</Language>
+							<AudioFile>bodyfallHVY.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="301505234"/>
+							</MediaIDList>
+						</AudioFileSource>
+						<AudioFileSource Name="bodyfallMED" ID="{0725B24F-34B6-4442-A108-F480715109C3}">
+							<Language>SFX</Language>
+							<AudioFile>bodyfallMED.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="288790028"/>
+							</MediaIDList>
+						</AudioFileSource>
+						<AudioFileSource Name="bodyfallSML" ID="{7D12A16F-115D-4772-B1ED-0DAC7C16D2F7}">
+							<Language>SFX</Language>
+							<AudioFile>bodyfallSML.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="861073420"/>
+							</MediaIDList>
+						</AudioFileSource>
 					</ChildrenList>
 					<ObjectLists/>
 					<ActiveSourceList>
@@ -2547,6 +2575,180 @@
 					</ChildrenList>
 					<ObjectLists/>
 				</RandomSequenceContainer>
+				<RandomSequenceContainer Name="Mouv_Chute" ID="{4E2C855A-104E-4C35-BE41-714534118048}" ShortID="319187118">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{B46421AE-3385-4820-898C-253ACADCEBF1}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{091001EB-4621-4454-BD80-6681E533C65E}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<Sound Name="bodyfallHVY" ID="{E693B270-32CE-410A-B69B-11B429447566}" ShortID="1015784546">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{B46421AE-3385-4820-898C-253ACADCEBF1}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{091001EB-4621-4454-BD80-6681E533C65E}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="bodyfallHVY" ID="{D7A7E2AC-1C42-4133-A9F7-882DBB27709C}">
+									<Language>SFX</Language>
+									<AudioFile>bodyfallHVY.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="301505234"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="bodyfallHVY" ID="{D7A7E2AC-1C42-4133-A9F7-882DBB27709C}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="bodyfallMED" ID="{CA66CB6B-C42F-4D11-BA79-F537A796B76C}" ShortID="263743630">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{B46421AE-3385-4820-898C-253ACADCEBF1}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{091001EB-4621-4454-BD80-6681E533C65E}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="bodyfallMED" ID="{E60CD0FD-8DF5-4F60-9363-1E77811BC0B6}">
+									<Language>SFX</Language>
+									<AudioFile>bodyfallMED.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="288790028"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="bodyfallMED" ID="{E60CD0FD-8DF5-4F60-9363-1E77811BC0B6}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="bodyfallSML" ID="{5F060914-73F0-43FF-8990-866075669EBA}" ShortID="583535365">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{B46421AE-3385-4820-898C-253ACADCEBF1}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{091001EB-4621-4454-BD80-6681E533C65E}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="bodyfallSML" ID="{80D851C1-9B28-4775-B19E-B54BE25C5BC6}">
+									<Language>SFX</Language>
+									<AudioFile>bodyfallSML.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="861073420"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="bodyfallSML" ID="{80D851C1-9B28-4775-B19E-B54BE25C5BC6}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+					</ChildrenList>
+					<ObjectLists/>
+				</RandomSequenceContainer>
+				<Sound Name="echec_critique_2" ID="{5A1B646D-6CF7-4C4E-A02B-288786C93ED9}" ShortID="1052975523">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{B46421AE-3385-4820-898C-253ACADCEBF1}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{091001EB-4621-4454-BD80-6681E533C65E}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="echec_critique_2" ID="{706842FD-164E-4936-B987-A02DBEADFDB8}">
+							<Language>SFX</Language>
+							<AudioFile>echec_critique_2.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="615781091"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ObjectLists/>
+					<ActiveSourceList>
+						<ActiveSource Name="echec_critique_2" ID="{706842FD-164E-4936-B987-A02DBEADFDB8}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+				<Sound Name="Clique_territoire" ID="{45ED4D8D-8E3A-45A8-AF06-655A7C1F714D}" ShortID="727313045">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{B46421AE-3385-4820-898C-253ACADCEBF1}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{091001EB-4621-4454-BD80-6681E533C65E}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="Clique_territoire" ID="{CDC397E1-3541-4856-816B-1D633D76B3CB}">
+							<Language>SFX</Language>
+							<AudioFile>Clique_territoire.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="404207655"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ObjectLists/>
+					<ActiveSourceList>
+						<ActiveSource Name="Clique_territoire" ID="{CDC397E1-3541-4856-816B-1D633D76B3CB}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+				<Sound Name="Clique_Discu" ID="{7F7023CE-2A74-4FC6-8436-B1EC8405314B}" ShortID="23045529">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{B46421AE-3385-4820-898C-253ACADCEBF1}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{091001EB-4621-4454-BD80-6681E533C65E}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="Clique_Discu" ID="{F9672CE0-34BB-4C2C-A90C-8A519CFF4654}">
+							<Language>SFX</Language>
+							<AudioFile>Clique_Discu.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="200426078"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ObjectLists/>
+					<ActiveSourceList>
+						<ActiveSource Name="Clique_Discu" ID="{F9672CE0-34BB-4C2C-A90C-8A519CFF4654}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+				<Sound Name="Dialogue to jeu" ID="{A34C16DE-CD27-43DF-B7D1-446110114FD4}" ShortID="715160428">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{B46421AE-3385-4820-898C-253ACADCEBF1}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{091001EB-4621-4454-BD80-6681E533C65E}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="Dialogue to jeu" ID="{50A50862-7823-44E3-BAC8-F85251B71C14}">
+							<Language>SFX</Language>
+							<AudioFile>Dialogue to jeu.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="237412588"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ObjectLists/>
+					<ActiveSourceList>
+						<ActiveSource Name="Dialogue to jeu" ID="{50A50862-7823-44E3-BAC8-F85251B71C14}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
 			</ChildrenList>
 		</WorkUnit>
 	</AudioObjects>
