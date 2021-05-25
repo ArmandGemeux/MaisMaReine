@@ -78,9 +78,9 @@ public class DialogueManager : MonoBehaviour
         myAnim.SetBool("isOpen", true);
 
         currentDialogue = dialogue;
-        characterName.text = currentDialogue.name;
+        characterName.text = currentDialogue.characterName;
 
-        if (currentDialogue.name == "Elya")
+        if (currentDialogue.characterName == "Elya")
         {
             myTalkingCharacter.color = new Color(1, 1, 1, 1);
             myTalkingCharacter.sprite = elyaSprite;
