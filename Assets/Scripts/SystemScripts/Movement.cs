@@ -90,7 +90,7 @@ public class Movement : MonoBehaviour
             {
                 transform.parent.position = transform.position;
                 transform.localPosition = Vector3.zero;
-                //hasMoved = true;
+                hasMoved = true;
 
                 myAnimationManager.CheckActionsLeftAmout();
 
