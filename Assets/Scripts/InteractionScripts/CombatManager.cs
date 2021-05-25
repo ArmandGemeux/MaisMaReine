@@ -741,6 +741,12 @@ public class CombatManager : MonoBehaviour
         myAnim.SetBool("OpenCombatWindow", false);
         GameManager.Instance.isGamePaused = false;
 
+        attaquantFM.GetComponentInChildren<Interaction>().alreadyInteractedList.Remove(defenseurFM.GetComponentInChildren<Interaction>());
+
+        attaquantAM.CheckActionsLeftAmout();
+
+        attaquantFM.GetComponentInChildren<Interaction>().OtherCampDisplayInteractionFeedbacks();
+
         attaquantFM = null;
         attaquantAM = null;
 
