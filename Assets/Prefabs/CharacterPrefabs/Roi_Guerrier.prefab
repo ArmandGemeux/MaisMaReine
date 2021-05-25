@@ -840,7 +840,9 @@ MonoBehaviour:
   missChances: 0
   charismaCost: 20
   fidelePeuple: 1
-  fideleSprite: {fileID: 0}
+  currentFideleSprite: {fileID: 0}
+  movingFideleSprite: {fileID: 0}
+  idleFideleSprite: {fileID: 0}
   questIcon: {fileID: 0}
   myTarget: {fileID: 0}
   isAllActionsDone: 0
@@ -1011,7 +1013,7 @@ GameObject:
   - component: {fileID: 4758114578481973395}
   - component: {fileID: 2253512733103795650}
   - component: {fileID: 2253512733103795653}
-  - component: {fileID: 3661184121626727385}
+  - component: {fileID: 1125603340917148201}
   m_Layer: 2
   m_Name: MovementCollider
   m_TagString: Untagged
@@ -1095,8 +1097,9 @@ MonoBehaviour:
   hasMoved: 0
   isMoving: 0
   targetLanded: 0
---- !u!60 &3661184121626727385
-PolygonCollider2D:
+  deadZonetmp: {fileID: 0}
+--- !u!61 &1125603340917148201
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1108,7 +1111,7 @@ PolygonCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -1.25}
+  m_Offset: {x: 0, y: -1.5}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1118,38 +1121,9 @@ PolygonCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 5.076709, y: -0.06783104}
-      - {x: 4.9965982, y: 0.34285927}
-      - {x: 4.7580566, y: 0.7248955}
-      - {x: 4.28734, y: 1.0367393}
-      - {x: 3.6584842, y: 1.3644352}
-      - {x: 3.175472, y: 1.5064983}
-      - {x: 2.3535242, y: 1.7240582}
-      - {x: 1.3592439, y: 1.8443928}
-      - {x: -0.03272128, y: 1.953083}
-      - {x: -1.049773, y: 1.8810062}
-      - {x: -2.0762675, y: 1.767971}
-      - {x: -3.0054781, y: 1.5537052}
-      - {x: -3.8818161, y: 1.2809448}
-      - {x: -4.5777607, y: 0.84233475}
-      - {x: -4.946086, y: 0.45897484}
-      - {x: -5.0469446, y: 0.1186142}
-      - {x: -4.991275, y: -0.3035984}
-      - {x: -4.691437, y: -0.70973396}
-      - {x: -4.1394978, y: -1.1181717}
-      - {x: -3.5289123, y: -1.3783627}
-      - {x: -2.8021872, y: -1.612854}
-      - {x: -1.8112757, y: -1.8033257}
-      - {x: -0.83758044, y: -1.9072285}
-      - {x: 0.16619897, y: -1.9393978}
-      - {x: 1.266861, y: -1.859705}
-      - {x: 1.897142, y: -1.789072}
-      - {x: 2.9138985, y: -1.5911541}
-      - {x: 3.8085155, y: -1.2971039}
-      - {x: 4.5072765, y: -0.91667175}
-      - {x: 4.9132824, y: -0.47822952}
+  serializedVersion: 2
+  m_Size: {x: 0.25, y: 0.25}
+  m_EdgeRadius: 0
 --- !u!1 &4758114578510304328
 GameObject:
   m_ObjectHideFlags: 0
@@ -1460,7 +1434,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98a1a896f713e5d488e258acdab7f38a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myRecruitedSprite: []
+  myRecruitedSprites: []
 --- !u!114 &4758114577752251489
 MonoBehaviour:
   m_ObjectHideFlags: 0

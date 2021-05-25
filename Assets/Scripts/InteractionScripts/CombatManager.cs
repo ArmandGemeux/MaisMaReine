@@ -448,7 +448,6 @@ public class CombatManager : MonoBehaviour
 
     public IEnumerator CriticalHit()
     {
-
         Debug.Log("Critical() " + defenseurFM.name + " " + " " + attaquantFM.name);
 
         defenseurFM.currentHP -= attaquantFM.maxAttackRange * 2;
@@ -657,6 +656,8 @@ public class CombatManager : MonoBehaviour
         mortSFX.Post(gameObject);
 
         yield return new WaitForSeconds(0.4f);
+
+        GameManager.Instance.CheckIfTerritoireIsEnded();
 
         attaquantFideleSprite.sprite = null;
         defenseurFideleSprite.sprite = null;

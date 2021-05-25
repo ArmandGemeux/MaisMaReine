@@ -39,15 +39,9 @@ public class MovementEnemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*if (myFideleManager.currentCamp.ToString() == GameManager.Instance.currentCampTurn.ToString())
-        {
-            FindTarget();
-        }
-        else
-        {
-            agent.isStopped = true;
-        }*/
-
+        /*Vector3 curMove = transform.position - previousPosition;
+        currentSpeed = curMove.magnitude / Time.deltaTime;
+        previousPosition = transform.position;*/
 
         //Liste qui défile un par un pour les déplacements FAIT
         //Quand c'est le tour de ce personnage : FAIT
@@ -74,7 +68,7 @@ public class MovementEnemy : MonoBehaviour
             isMoving = true;
             agent.isStopped = false;
 
-            agent.SetDestination(myTarget.position);
+            agent.SetDestination(myTarget.GetComponentInChildren<Interaction>().transform.position);
         }
         else if(myFideleManager.GetComponentInChildren<Interaction>().myCollideInteractionList.Contains(targetInteraction))
         {
@@ -87,9 +81,11 @@ public class MovementEnemy : MonoBehaviour
 
     public void StopMoving()
     {
-        myFideleManager.myTarget = null;
+        agent.velocity = new Vector3(0, 0, 0);
 
+        myFideleManager.myTarget = null;
         agent.isStopped = true;
+
         transform.parent.position = transform.position;
         transform.localPosition = Vector3.zero;
 

@@ -184,6 +184,7 @@ public class GameManager : MonoBehaviour
             isGamePaused = false;
             RaycastInteraction.Instance.ResetLauncherInteraction();
 
+
             foreach (FideleManager fm in allMapUnits)
             {
                 if (fm.myCamp == GameCamps.Fidele)
@@ -194,7 +195,6 @@ public class GameManager : MonoBehaviour
                 }
                 fm.GetComponentInChildren<Interaction>().OtherCampDisplayInteractionFeedbacks();
             }
-
             for (int i = 0; i < allMapUnits.Count; i++)
             {
                 if (allMapUnits[i].myCamp == GameCamps.Fidele)
@@ -330,6 +330,21 @@ public class GameManager : MonoBehaviour
             if (fmu.isInteracting == false)
             {
                 fmu.GetComponent<AnimationManager>().ResetOpacity();
+            }
+        }
+    }
+
+    public void CheckIfTerritoireIsEnded()
+    {
+        for (int i = 0; i < allMapUnits.Count; i++)
+        {
+            if (allMapUnits[i].myCamp == GameCamps.Fidele)
+            {
+                Debug.Log("Encore un fidèle en vie");
+            }
+            else
+            {
+                Debug.Log("Fin Du Territoire, Reine sans Fidele");
             }
         }
     }
