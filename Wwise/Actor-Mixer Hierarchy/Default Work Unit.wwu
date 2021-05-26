@@ -2749,6 +2749,436 @@
 						<ActiveSource Name="Dialogue to jeu" ID="{50A50862-7823-44E3-BAC8-F85251B71C14}" Platform="Linked"/>
 					</ActiveSourceList>
 				</Sound>
+				<RandomSequenceContainer Name="Deplacement_Bandit" ID="{C2A10ED6-42B2-4E28-B0E9-715F78C9B842}" ShortID="434705495">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{B46421AE-3385-4820-898C-253ACADCEBF1}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{091001EB-4621-4454-BD80-6681E533C65E}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<Sound Name="Déplacement_Bandit" ID="{26954ECA-6FB1-4314-B395-E201678E1CDB}" ShortID="538564024">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{B46421AE-3385-4820-898C-253ACADCEBF1}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{091001EB-4621-4454-BD80-6681E533C65E}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Déplacement_Bandit" ID="{0C74EE7A-E575-4E68-A399-9147DF250341}">
+									<Language>SFX</Language>
+									<AudioFile>Déplacement_Bandit.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="399042507"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="Déplacement_Bandit" ID="{0C74EE7A-E575-4E68-A399-9147DF250341}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Déplacement_Bandit_2" ID="{FCAF55C2-F210-49B7-8CA8-709EDF3B1B85}" ShortID="145288940">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{B46421AE-3385-4820-898C-253ACADCEBF1}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{091001EB-4621-4454-BD80-6681E533C65E}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Déplacement_Bandit_2" ID="{477E0306-6652-4ACE-BD11-142C9F72680E}">
+									<Language>SFX</Language>
+									<AudioFile>Déplacement_Bandit_2.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="324157802"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="Déplacement_Bandit_2" ID="{477E0306-6652-4ACE-BD11-142C9F72680E}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Déplacement_Bandit_3" ID="{DC2D18B8-95C5-43E6-9A3A-571AFC6F2007}" ShortID="724812687">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{B46421AE-3385-4820-898C-253ACADCEBF1}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{091001EB-4621-4454-BD80-6681E533C65E}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Déplacement_Bandit_3" ID="{23C2FFB4-EE41-4581-A048-38D5D573FFC9}">
+									<Language>SFX</Language>
+									<AudioFile>Déplacement_Bandit_3.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="916223357"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="Déplacement_Bandit_3" ID="{23C2FFB4-EE41-4581-A048-38D5D573FFC9}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Déplacement_Bandit_4" ID="{D1C536BE-1713-4FD4-BA16-798963B23BA4}" ShortID="1025367818">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{B46421AE-3385-4820-898C-253ACADCEBF1}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{091001EB-4621-4454-BD80-6681E533C65E}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Déplacement_Bandit_4" ID="{9A49AD38-48A3-448D-B7CD-BAC64D952991}">
+									<Language>SFX</Language>
+									<AudioFile>Déplacement_Bandit_4.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="890718477"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="Déplacement_Bandit_4" ID="{9A49AD38-48A3-448D-B7CD-BAC64D952991}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+					</ChildrenList>
+					<ObjectLists/>
+				</RandomSequenceContainer>
+				<RandomSequenceContainer Name="Deplacement_Soldat" ID="{DE742C45-8C2C-4DF2-95EA-E645709900A2}" ShortID="211239720">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{B46421AE-3385-4820-898C-253ACADCEBF1}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{091001EB-4621-4454-BD80-6681E533C65E}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<Sound Name="Déplacement_Solda_2" ID="{5CA15015-95D1-4E34-9B4F-471A486552BF}" ShortID="297511529">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{B46421AE-3385-4820-898C-253ACADCEBF1}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{091001EB-4621-4454-BD80-6681E533C65E}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Déplacement_Solda_2" ID="{A9E94BBA-0925-4075-9F91-3BE3B39D0CD2}">
+									<Language>SFX</Language>
+									<AudioFile>Déplacement_Solda_2.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="687674998"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="Déplacement_Solda_2" ID="{A9E94BBA-0925-4075-9F91-3BE3B39D0CD2}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Déplacement_Solda_3" ID="{BE78044F-8C7F-49DA-A070-8CDF69A40DE6}" ShortID="372849018">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{B46421AE-3385-4820-898C-253ACADCEBF1}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{091001EB-4621-4454-BD80-6681E533C65E}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Déplacement_Solda_3" ID="{5B4D8F50-37F6-4960-AA42-82D97F08CDE7}">
+									<Language>SFX</Language>
+									<AudioFile>Déplacement_Solda_3.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="525452010"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="Déplacement_Solda_3" ID="{5B4D8F50-37F6-4960-AA42-82D97F08CDE7}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Déplacement_Solda_4" ID="{8FBF96B5-40AB-48DE-9218-7B6B0EC0C9AE}" ShortID="4002910">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{B46421AE-3385-4820-898C-253ACADCEBF1}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{091001EB-4621-4454-BD80-6681E533C65E}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Déplacement_Solda_4" ID="{B31641FF-6257-45BA-9A49-2A3DA303EDE9}">
+									<Language>SFX</Language>
+									<AudioFile>Déplacement_Solda_4.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="210736807"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="Déplacement_Solda_4" ID="{B31641FF-6257-45BA-9A49-2A3DA303EDE9}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Déplacement_Solda_5" ID="{098AF0E2-963C-49A7-BB6F-E6D730F553CD}" ShortID="432266195">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{B46421AE-3385-4820-898C-253ACADCEBF1}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{091001EB-4621-4454-BD80-6681E533C65E}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Déplacement_Solda_5" ID="{64DC75C4-BC44-4BF6-A8C6-A7CCC3FEFBDE}">
+									<Language>SFX</Language>
+									<AudioFile>Déplacement_Solda_5.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="28146187"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="Déplacement_Solda_5" ID="{64DC75C4-BC44-4BF6-A8C6-A7CCC3FEFBDE}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Déplacement_Solda_6" ID="{65EDDE72-5766-4ED7-BEB7-096692DF0ED3}" ShortID="176440721">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{B46421AE-3385-4820-898C-253ACADCEBF1}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{091001EB-4621-4454-BD80-6681E533C65E}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Déplacement_Solda_6" ID="{ABC7EB97-DE0F-408C-B371-D4137289490C}">
+									<Language>SFX</Language>
+									<AudioFile>Déplacement_Solda_6.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="713865844"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="Déplacement_Solda_6" ID="{ABC7EB97-DE0F-408C-B371-D4137289490C}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Déplacement_Solda_7" ID="{BDD9967C-6E56-4DE2-B61C-E8923DAD7B46}" ShortID="434843883">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{B46421AE-3385-4820-898C-253ACADCEBF1}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{091001EB-4621-4454-BD80-6681E533C65E}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Déplacement_Solda_7" ID="{E3FF2EC9-D925-4033-AC28-4276FBD29AC4}">
+									<Language>SFX</Language>
+									<AudioFile>Déplacement_Solda_7.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="642800865"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="Déplacement_Solda_7" ID="{E3FF2EC9-D925-4033-AC28-4276FBD29AC4}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Déplacement_Solda_8" ID="{C566295B-4003-4085-94F6-DA151737643E}" ShortID="670140511">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{B46421AE-3385-4820-898C-253ACADCEBF1}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{091001EB-4621-4454-BD80-6681E533C65E}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Déplacement_Solda_8" ID="{7C8D875A-2394-4C88-83D4-6F374748BC26}">
+									<Language>SFX</Language>
+									<AudioFile>Déplacement_Solda_8.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="841043309"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="Déplacement_Solda_8" ID="{7C8D875A-2394-4C88-83D4-6F374748BC26}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Déplacement_Soldat" ID="{7FCEDDE6-0E1F-4FFE-935B-EEA2CB5196AE}" ShortID="442909546">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{B46421AE-3385-4820-898C-253ACADCEBF1}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{091001EB-4621-4454-BD80-6681E533C65E}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Déplacement_Soldat" ID="{845B0CD0-5A78-44C8-ACAA-9BA0C90D2A4D}">
+									<Language>SFX</Language>
+									<AudioFile>Déplacement_Soldat.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="65992091"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="Déplacement_Soldat" ID="{845B0CD0-5A78-44C8-ACAA-9BA0C90D2A4D}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+					</ChildrenList>
+					<ObjectLists/>
+				</RandomSequenceContainer>
+				<RandomSequenceContainer Name="Mouv_Attrape" ID="{E5127CD6-68C1-459C-9BB6-BEE56F9D0958}" ShortID="63198216">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{B46421AE-3385-4820-898C-253ACADCEBF1}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{091001EB-4621-4454-BD80-6681E533C65E}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<Sound Name="Mouv_attrape_1" ID="{D58C1CF9-0B4F-44AA-844B-EEB08C644C0D}" ShortID="195167663">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{B46421AE-3385-4820-898C-253ACADCEBF1}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{091001EB-4621-4454-BD80-6681E533C65E}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Mouv_attrape_1" ID="{BB17CBA3-9E73-488C-BD31-F40ABFC6D50A}">
+									<Language>SFX</Language>
+									<AudioFile>Mouv_attrape_1.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="839173070"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="Mouv_attrape_1" ID="{BB17CBA3-9E73-488C-BD31-F40ABFC6D50A}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Mouv_attrape_2" ID="{7FD52BAE-ABFA-403D-95AD-4D84B0F512B1}" ShortID="875199114">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{B46421AE-3385-4820-898C-253ACADCEBF1}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{091001EB-4621-4454-BD80-6681E533C65E}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Mouv_attrape_2" ID="{F467CE7D-8176-44D3-BD4B-4AF595AD4F2C}">
+									<Language>SFX</Language>
+									<AudioFile>Mouv_attrape_2.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="556743107"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="Mouv_attrape_2" ID="{F467CE7D-8176-44D3-BD4B-4AF595AD4F2C}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Mouv_attrape_3" ID="{AF34592C-EAB3-4540-995C-3FD56A1F096D}" ShortID="791438993">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{B46421AE-3385-4820-898C-253ACADCEBF1}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{091001EB-4621-4454-BD80-6681E533C65E}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Mouv_attrape_3" ID="{15DF8F97-086B-473D-939C-A9561F8C869F}">
+									<Language>SFX</Language>
+									<AudioFile>Mouv_attrape_3.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="1051043344"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="Mouv_attrape_3" ID="{15DF8F97-086B-473D-939C-A9561F8C869F}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Mouv_attrape_4" ID="{991260D0-5000-47D8-ACC0-E28EC7D14F03}" ShortID="2613440">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{B46421AE-3385-4820-898C-253ACADCEBF1}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{091001EB-4621-4454-BD80-6681E533C65E}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Mouv_attrape_4" ID="{1BB7FF0C-69D3-4DAB-B72D-D03406002A49}">
+									<Language>SFX</Language>
+									<AudioFile>Mouv_attrape_4.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="171293753"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="Mouv_attrape_4" ID="{1BB7FF0C-69D3-4DAB-B72D-D03406002A49}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Mouv_attrape_5" ID="{67D429C1-3781-4BDF-8B9D-964C2E07FA8B}" ShortID="148364082">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{B46421AE-3385-4820-898C-253ACADCEBF1}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{091001EB-4621-4454-BD80-6681E533C65E}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Mouv_attrape_5" ID="{8DF0FCF0-D675-449C-8159-67667984A1B9}">
+									<Language>SFX</Language>
+									<AudioFile>Mouv_attrape_5.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="83271106"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="Mouv_attrape_5" ID="{8DF0FCF0-D675-449C-8159-67667984A1B9}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+					</ChildrenList>
+					<ObjectLists/>
+				</RandomSequenceContainer>
 			</ChildrenList>
 		</WorkUnit>
 	</AudioObjects>
