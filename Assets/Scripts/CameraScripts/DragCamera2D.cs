@@ -241,7 +241,7 @@ public class DragCamera2D : MonoBehaviour
 
 
        // if mouse is down
-        if (Input.GetMouseButton(1) && GameManager.Instance.isGamePaused == false && RaycastInteraction.Instance.interactionLauncherAnim == null && GameManager.Instance.currentCampTurn == GameCamps.Fidele) {
+        if (Input.GetMouseButton(1) && GameManager.Instance.isGamePaused == false && GameManager.Instance.currentCampTurn == GameCamps.Fidele) {
 
             UnfollowTargetCamera();
 

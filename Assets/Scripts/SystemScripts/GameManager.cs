@@ -334,13 +334,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void CheckIfTerritoireIsEnded()
+    public void CheckIfPlayerLost()
     {
         for (int i = 0; i < allMapUnits.Count; i++)
         {
             if (allMapUnits[i].myCamp == GameCamps.Fidele)
             {
-                Debug.Log("Encore un fidèle en vie");
+                return;
             }
             else
             {

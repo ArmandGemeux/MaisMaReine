@@ -499,7 +499,6 @@ public class CombatManager : MonoBehaviour
 
     public IEnumerator Missed()
     {
-
         Debug.Log("Missed " + defenseurFM.name + " " + " " + attaquantFM.name);
 
         if (attaquantFM != null && defenseurFM != null)
@@ -657,7 +656,10 @@ public class CombatManager : MonoBehaviour
 
         yield return new WaitForSeconds(0.4f);
 
-        GameManager.Instance.CheckIfTerritoireIsEnded();
+        if (deadFM.myCamp == GameCamps.Fidele)
+        {
+            GameManager.Instance.CheckIfPlayerLost();
+        }
 
         attaquantFideleSprite.sprite = null;
         defenseurFideleSprite.sprite = null;
@@ -668,9 +670,9 @@ public class CombatManager : MonoBehaviour
         defenseurFM = null;
         defenseurAM = null;
 
-        GameManager.Instance.MoveUnit();
-
         isInFight = false;
+
+        GameManager.Instance.MoveUnit();
     }
 
     public IEnumerator EndFightNoDead()
@@ -719,9 +721,9 @@ public class CombatManager : MonoBehaviour
         defenseurFM = null;
         defenseurAM = null;
 
-        GameManager.Instance.MoveUnit();
-
         isInFight = false;
+
+        GameManager.Instance.MoveUnit();
     }
 
     public void SwitchInteractionType(FideleManager deadFM)

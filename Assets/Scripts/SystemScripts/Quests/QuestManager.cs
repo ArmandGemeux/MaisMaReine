@@ -14,6 +14,7 @@ public class QuestManager : MonoBehaviour
     {
         public GameObject questParent;
         public TextMeshProUGUI questDesc;
+
     }
 
     [Serializable]
@@ -86,6 +87,11 @@ public class QuestManager : MonoBehaviour
     private List<QuestSubObjectives> questsSubObjectivesLeft = new List<QuestSubObjectives>();
 
     public List<QuestSetup> questsSetup;
+
+    [Header ("Fin de territoire")]
+
+    public int questCompletedCounter = 0;
+    public Dialogue territoireEndDialogue;
 
     #region Singleton
     public static QuestManager Instance;
@@ -325,9 +331,16 @@ public class QuestManager : MonoBehaviour
                     ifm.GetComponentInParent<FideleManager>().questIcon.enabled = false;
                 }
 
+                questCompletedCounter++;
+
                 questsSetup[i].questDesc.text = "";
                 questsSetup[i].questParent.SetActive(false);
             }
+        }
+
+        if (mapQuests.Count == questCompletedCounter)
+        {
+            DialogueManager.Instance.OpenDialogueWindow(territoireEndDialogue, null);
         }
     }
 }

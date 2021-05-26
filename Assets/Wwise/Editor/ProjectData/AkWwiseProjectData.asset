@@ -373,8 +373,25 @@ MonoBehaviour:
     ParentPath: Events\Default Work Unit
     guid: af4625c0e4e9ed43a62873aec7c92b52
     GuidInternal: 
-    m_lastTime: -8585800806987558718
+    m_lastTime: -8585796269341436850
     List:
+    - name: Event_Attaque_Ennemi
+      guid: d9a91c085849c54cafb2e2e995ec4918
+      id: 1367752278
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: af4625c0e4e9ed43a62873aec7c92b52
+      - ElementName: Event_Attaque_Ennemi
+        ObjectType: 3
+        guid: d9a91c085849c54cafb2e2e995ec4918
+      Path: Events\Default Work Unit\Event_Attaque_Ennemi
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
     - name: Event_Attaque_Epee
       guid: 1d98ed078e44aa4f8ff4ff0421de8fe7
       id: 3811235563
@@ -494,6 +511,91 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
+    - name: Event_Deplacement_Bandit
+      guid: b77fa5ff4de251479ebed4cd7bb8511d
+      id: 184803725
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: af4625c0e4e9ed43a62873aec7c92b52
+      - ElementName: Event_Deplacement_Bandit
+        ObjectType: 3
+        guid: b77fa5ff4de251479ebed4cd7bb8511d
+      Path: Events\Default Work Unit\Event_Deplacement_Bandit
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: Event_Deplacement_Calamite
+      guid: f7586e63060b4742b4c446acb2751218
+      id: 3492786481
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: af4625c0e4e9ed43a62873aec7c92b52
+      - ElementName: Event_Deplacement_Calamite
+        ObjectType: 3
+        guid: f7586e63060b4742b4c446acb2751218
+      Path: Events\Default Work Unit\Event_Deplacement_Calamite
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: Event_Deplacement_Soldat
+      guid: 62d38f62c690644f9b3ccb0373b36474
+      id: 3702838202
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: af4625c0e4e9ed43a62873aec7c92b52
+      - ElementName: Event_Deplacement_Soldat
+        ObjectType: 3
+        guid: 62d38f62c690644f9b3ccb0373b36474
+      Path: Events\Default Work Unit\Event_Deplacement_Soldat
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: Event_Dialogue_To_Jeu
+      guid: 107720973901ba4e8779cfe354561768
+      id: 1261669237
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: af4625c0e4e9ed43a62873aec7c92b52
+      - ElementName: Event_Dialogue_To_Jeu
+        ObjectType: 3
+        guid: 107720973901ba4e8779cfe354561768
+      Path: Events\Default Work Unit\Event_Dialogue_To_Jeu
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: Event_Echec_Critique
+      guid: 9d9be40b0a891045bb60d1980e99ea21
+      id: 1779567033
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: af4625c0e4e9ed43a62873aec7c92b52
+      - ElementName: Event_Echec_Critique
+        ObjectType: 3
+        guid: 9d9be40b0a891045bb60d1980e99ea21
+      Path: Events\Default Work Unit\Event_Echec_Critique
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
     - name: Event_Fidele_Sans_Action
       guid: 3f331652c48c104dbd05787d5c0ea839
       id: 965117638
@@ -508,6 +610,40 @@ MonoBehaviour:
         ObjectType: 3
         guid: 3f331652c48c104dbd05787d5c0ea839
       Path: Events\Default Work Unit\Event_Fidele_Sans_Action
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: Event_Fighting_Musique
+      guid: a49521a1a635d3449cc895b33ffc049c
+      id: 4086306696
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: af4625c0e4e9ed43a62873aec7c92b52
+      - ElementName: Event_Fighting_Musique
+        ObjectType: 3
+        guid: a49521a1a635d3449cc895b33ffc049c
+      Path: Events\Default Work Unit\Event_Fighting_Musique
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: Event_InGame_Musique
+      guid: 59024d5f52c878418c6f60f26c616d50
+      id: 3451542069
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: af4625c0e4e9ed43a62873aec7c92b52
+      - ElementName: Event_InGame_Musique
+        ObjectType: 3
+        guid: 59024d5f52c878418c6f60f26c616d50
+      Path: Events\Default Work Unit\Event_InGame_Musique
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
@@ -528,6 +664,23 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
+    - name: Event_Menu_Musique
+      guid: fbfea043aae00c4ba2cb6aa18e4974ad
+      id: 4260672095
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: af4625c0e4e9ed43a62873aec7c92b52
+      - ElementName: Event_Menu_Musique
+        ObjectType: 3
+        guid: fbfea043aae00c4ba2cb6aa18e4974ad
+      Path: Events\Default Work Unit\Event_Menu_Musique
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
     - name: Event_Mort
       guid: 2790bb949c94a94baeb3a0eeebf691bd
       id: 1699538348
@@ -542,6 +695,40 @@ MonoBehaviour:
         ObjectType: 3
         guid: 2790bb949c94a94baeb3a0eeebf691bd
       Path: Events\Default Work Unit\Event_Mort
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: Event_Mouv_Fidele_Attrape
+      guid: 1c09d77968fe8b48a73381df59a15da3
+      id: 489201999
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: af4625c0e4e9ed43a62873aec7c92b52
+      - ElementName: Event_Mouv_Fidele_Attrape
+        ObjectType: 3
+        guid: 1c09d77968fe8b48a73381df59a15da3
+      Path: Events\Default Work Unit\Event_Mouv_Fidele_Attrape
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: Event_Mouv_Fidele_Chute
+      guid: c51e173a9d5615409a9b66b815c23a61
+      id: 2880414047
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: af4625c0e4e9ed43a62873aec7c92b52
+      - ElementName: Event_Mouv_Fidele_Chute
+        ObjectType: 3
+        guid: c51e173a9d5615409a9b66b815c23a61
+      Path: Events\Default Work Unit\Event_Mouv_Fidele_Chute
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
@@ -661,6 +848,40 @@ MonoBehaviour:
         ObjectType: 3
         guid: 07fad0f7355a6442903b7a4b34cd2418
       Path: Events\Default Work Unit\Event_UI_Clique_Bouton_Menu
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: Event_UI_Clique_Discussion
+      guid: 98cec90158a2ff4bbc407de4bc182d54
+      id: 1041178781
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: af4625c0e4e9ed43a62873aec7c92b52
+      - ElementName: Event_UI_Clique_Discussion
+        ObjectType: 3
+        guid: 98cec90158a2ff4bbc407de4bc182d54
+      Path: Events\Default Work Unit\Event_UI_Clique_Discussion
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: Event_UI_Clique_Territoire
+      guid: 2268b965fcf01d4082a3c2532fd03fb7
+      id: 1051972340
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: af4625c0e4e9ed43a62873aec7c92b52
+      - ElementName: Event_UI_Clique_Territoire
+        ObjectType: 3
+        guid: 2268b965fcf01d4082a3c2532fd03fb7
+      Path: Events\Default Work Unit\Event_UI_Clique_Territoire
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
@@ -999,9 +1220,9 @@ MonoBehaviour:
     GuidInternal: 
     m_lastTime: -8585800806979126001
     List: []
-  ExpandedFileSystemItemIds: 0200000003000000
+  ExpandedFileSystemItemIds: 02000000040000000700000008000000
   ExpandedWaapiItemIds: 01000000020000000300000006000000080000000a0000000b0000000c0000001f000000
   AutoSyncSelection: 0
   autoPopulateEnabled: 1
-  currentDataSource: 1
+  currentDataSource: 0
   CurrentPluginConfig: 

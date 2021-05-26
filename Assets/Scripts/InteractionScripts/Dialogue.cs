@@ -15,6 +15,8 @@ public class Dialogue
     public bool isStartingADialogue;
     public int dialogueIndexToStart;
 
+    public bool isPlayingFinTerritoireAnimation;
+
     public InteractionType nextInteractionType;
 
     public GameObject cameraStartPos;

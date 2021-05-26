@@ -9,6 +9,8 @@ public class MovementEnemy : MonoBehaviour
     private AnimationManager myAnimManager;
     public Collider2D myMoveZoneCollider;
 
+    public bool isAttackableUnitInMyZone;
+
     private NavMeshAgent agent;
 
     private Interaction targetInteraction;
@@ -70,13 +72,17 @@ public class MovementEnemy : MonoBehaviour
 
             agent.SetDestination(myTarget.GetComponentInChildren<Interaction>().transform.position);
         }
-        else if(myFideleManager.GetComponentInChildren<Interaction>().myCollideInteractionList.Contains(targetInteraction))
+        else if (myFideleManager.GetComponentInChildren<Interaction>().myCollideInteractionList.Contains(targetInteraction))
         {
             myFideleManager.UpdateAttackableUnitInRange();
             CombatManager.Instance.EnemyLaunchCombat(myFideleManager, targetInteraction.GetComponentInParent<FideleManager>());
 
             StopMoving();
         }
+
+        /*if (isAttackableUnitInMyZone)
+        {
+        }*/
     }
 
     public void StopMoving()
@@ -106,14 +112,6 @@ public class MovementEnemy : MonoBehaviour
     public void OnTriggerExit2D(Collider2D collision)
     {
         if (collision == myMoveZoneCollider)
-        {
-            myAnimManager.CheckActionsLeftAmout();
-            StopMoving();
-
-            DragCamera2D.Instance.UnfollowTargetCamera();
-            GameManager.Instance.MoveUnit();
-        }
-        if (collision == targetInteractionZone)
         {
             myAnimManager.CheckActionsLeftAmout();
             StopMoving();

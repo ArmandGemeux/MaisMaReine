@@ -168,6 +168,10 @@ public class DialogueManager : MonoBehaviour
         {
             OpenDialogueWindow(dialogueScenario[currentDialogue.dialogueIndexToStart], null);
         }
+        else if (currentDialogue.isPlayingFinTerritoireAnimation)
+        {
+            myAnim.SetTrigger("triggerTerritoireFin");
+        }
         else
         {
             talkingFM = null;
