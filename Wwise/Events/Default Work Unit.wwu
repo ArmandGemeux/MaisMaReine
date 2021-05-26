@@ -245,8 +245,28 @@
 						</Action>
 					</ChildrenList>
 				</Event>
-				<Event Name="Event_Deplacement_Bandit" ID="{FFA57FB7-E24D-4751-9EBE-D4CD7BB8511D}"/>
-				<Event Name="Event_Deplacement_Soldat" ID="{628FD362-90C6-4F64-9B3C-CB0373B36474}"/>
+				<Event Name="Event_Deplacement_Bandit" ID="{FFA57FB7-E24D-4751-9EBE-D4CD7BB8511D}">
+					<ChildrenList>
+						<Action Name="" ID="{5CCFE858-7B41-45C6-888F-5CA440C3D38C}" ShortID="814055478">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Deplacement_Bandit" ID="{C2A10ED6-42B2-4E28-B0E9-715F78C9B842}" WorkUnitID="{961EADD6-4800-4D30-B7C5-4203C2A7B882}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Event_Deplacement_Soldat" ID="{628FD362-90C6-4F64-9B3C-CB0373B36474}">
+					<ChildrenList>
+						<Action Name="" ID="{9FC19D5C-BF2B-4FF0-A4D2-8F9D56D3AC86}" ShortID="726015740">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Deplacement_Soldat" ID="{DE742C45-8C2C-4DF2-95EA-E645709900A2}" WorkUnitID="{961EADD6-4800-4D30-B7C5-4203C2A7B882}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 				<Event Name="Event_Deplacement_Calamite" ID="{636E58F7-0B06-4247-B4C4-46ACB2751218}"/>
 				<Event Name="Event_Mouv_Fidele_Chute" ID="{3A171EC5-569D-4015-9A9B-66B815C23A61}">
 					<ChildrenList>
@@ -259,7 +279,17 @@
 						</Action>
 					</ChildrenList>
 				</Event>
-				<Event Name="Event_Mouv_Fidele_Attrape" ID="{79D7091C-FE68-488B-A733-81DF59A15DA3}"/>
+				<Event Name="Event_Mouv_Fidele_Attrape" ID="{79D7091C-FE68-488B-A733-81DF59A15DA3}">
+					<ChildrenList>
+						<Action Name="" ID="{E7FF6611-8580-487B-9726-4F114ED615C7}" ShortID="536625563">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Mouv_Attrape" ID="{E5127CD6-68C1-459C-9BB6-BEE56F9D0958}" WorkUnitID="{961EADD6-4800-4D30-B7C5-4203C2A7B882}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 				<Event Name="Event_UI_Clique_Discussion" ID="{01C9CE98-A258-4BFF-BC40-7DE4BC182D54}">
 					<ChildrenList>
 						<Action Name="" ID="{994CDBE0-4E06-486D-9C21-03058E48C0CC}" ShortID="506574063">
