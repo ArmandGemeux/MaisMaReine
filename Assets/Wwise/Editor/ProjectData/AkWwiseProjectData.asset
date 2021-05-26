@@ -345,7 +345,7 @@ MonoBehaviour:
     ParentPath: SoundBanks\Default Work Unit
     guid: b311a2bd52a23c4dbdcf8844b631cdf1
     GuidInternal: 
-    m_lastTime: -8585800806979145949
+    m_lastTime: -8585795778392565884
     List:
     - name: SFX
       guid: e099aefcf0f1f245962d19205b1d628d
@@ -1221,7 +1221,7 @@ MonoBehaviour:
     m_lastTime: -8585800806979126001
     List: []
   ExpandedFileSystemItemIds: 02000000040000000700000008000000
-  ExpandedWaapiItemIds: 01000000020000000300000006000000080000000a0000000b0000000c0000001f000000
+  ExpandedWaapiItemIds: 01000000020000000600000007000000080000000a0000000b0000000c0000001f0000002e0000002f000000
   AutoSyncSelection: 0
   autoPopulateEnabled: 1
   currentDataSource: 0

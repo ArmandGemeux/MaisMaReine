@@ -11,7 +11,7 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="393239870" Language="SFX" Hash="3503539534">
+		<SoundBank Id="393239870" Language="SFX" Hash="1259914024">
 			<ObjectPath>\SoundBanks\Default Work Unit\SFX</ObjectPath>
 			<ShortName>SFX</ShortName>
 			<Path>SFX.bnk</Path>
@@ -168,6 +168,24 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
+				<Event Id="184803725" Name="Event_Deplacement_Bandit" ObjectPath="\Events\Default Work Unit\Event_Deplacement_Bandit" MaxAttenuation="0.000000" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000"/>
+				<Event Id="3702838202" Name="Event_Deplacement_Soldat" ObjectPath="\Events\Default Work Unit\Event_Deplacement_Soldat" MaxAttenuation="0.000000" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000"/>
+				<Event Id="1261669237" Name="Event_Dialogue_To_Jeu" ObjectPath="\Events\Default Work Unit\Event_Dialogue_To_Jeu" DurationType="OneShot" DurationMin="1.956667" DurationMax="1.956667">
+					<IncludedMemoryFiles>
+						<File Id="237412588" Language="SFX">
+							<ShortName>Dialogue to jeu.wav</ShortName>
+							<Path>SFX\Dialogue to jeu_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1779567033" Name="Event_Echec_Critique" ObjectPath="\Events\Default Work Unit\Event_Echec_Critique" DurationType="OneShot" DurationMin="3.614458" DurationMax="3.614458">
+					<IncludedMemoryFiles>
+						<File Id="615781091" Language="SFX">
+							<ShortName>echec_critique_2.wav</ShortName>
+							<Path>SFX\echec_critique_2_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
 				<Event Id="965117638" Name="Event_Fidele_Sans_Action" ObjectPath="\Events\Default Work Unit\Event_Fidele_Sans_Action" DurationType="OneShot" DurationMin="0.400544" DurationMax="1.381587">
 					<IncludedMemoryFiles>
 						<File Id="183227138" Language="SFX">
@@ -309,6 +327,23 @@
 						<File Id="941062096" Language="SFX">
 							<ShortName>Mort\Cris_21.wav</ShortName>
 							<Path>SFX\Mort\Cris_21_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="489201999" Name="Event_Mouv_Fidele_Attrape" ObjectPath="\Events\Default Work Unit\Event_Mouv_Fidele_Attrape" MaxAttenuation="0.000000" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000"/>
+				<Event Id="2880414047" Name="Event_Mouv_Fidele_Chute" ObjectPath="\Events\Default Work Unit\Event_Mouv_Fidele_Chute" DurationType="OneShot" DurationMin="0.402721" DurationMax="0.569433">
+					<IncludedMemoryFiles>
+						<File Id="288790028" Language="SFX">
+							<ShortName>bodyfallMED.wav</ShortName>
+							<Path>SFX\bodyfallMED_10C4C929.wem</Path>
+						</File>
+						<File Id="301505234" Language="SFX">
+							<ShortName>bodyfallHVY.wav</ShortName>
+							<Path>SFX\bodyfallHVY_10C4C929.wem</Path>
+						</File>
+						<File Id="861073420" Language="SFX">
+							<ShortName>bodyfallSML.wav</ShortName>
+							<Path>SFX\bodyfallSML_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
