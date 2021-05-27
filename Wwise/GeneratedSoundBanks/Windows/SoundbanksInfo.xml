@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <SoundBanksInfo Platform="Windows" BasePlatform="Windows" SchemaVersion="12" SoundbankVersion="140">
 	<RootPaths>
-		<ProjectRoot>C:\Users\Utilisateur\Desktop\3eme_annee\MMR_B3G_Git\Wwise\</ProjectRoot>
-		<SourceFilesRoot>C:\Users\Utilisateur\Desktop\3eme_annee\MMR_B3G_Git\Wwise\.cache\Windows\</SourceFilesRoot>
-		<SoundBanksRoot>C:\Users\Utilisateur\Desktop\3eme_annee\MMR_B3G_Git\Wwise\GeneratedSoundBanks\Windows\</SoundBanksRoot>
+		<ProjectRoot>C:\Users\Burea\OneDrive\Documents\MaisMaReine\Wwise\</ProjectRoot>
+		<SourceFilesRoot>C:\Users\Burea\OneDrive\Documents\MaisMaReine\Wwise\.cache\Windows\</SourceFilesRoot>
+		<SoundBanksRoot>C:\Users\Burea\OneDrive\Documents\MaisMaReine\Wwise\GeneratedSoundBanks\Windows\</SoundBanksRoot>
 		<ExternalSourcesInputFile></ExternalSourcesInputFile>
-		<ExternalSourcesOutputRoot>C:\Users\Utilisateur\Desktop\3eme_annee\MMR_B3G_Git\Wwise\GeneratedSoundBanks\Windows</ExternalSourcesOutputRoot>
+		<ExternalSourcesOutputRoot>C:\Users\Burea\OneDrive\Documents\MaisMaReine\Wwise\GeneratedSoundBanks\Windows</ExternalSourcesOutputRoot>
 	</RootPaths>
 	<DialogueEvents/>
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="393239870" Language="SFX" Hash="1749413395">
+		<SoundBank Id="393239870" Language="SFX" Hash="1673028105">
 			<ObjectPath>\SoundBanks\Default Work Unit\SFX</ObjectPath>
 			<ShortName>SFX</ShortName>
 			<Path>SFX.bnk</Path>
@@ -429,6 +429,14 @@
 						<File Id="109764714" Language="SFX">
 							<ShortName>Musique en jeu.wav</ShortName>
 							<Path>SFX\Musique en jeu_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3273629223" Name="Event_Musique_Menu" ObjectPath="\Events\Default Work Unit\Event_Musique_Menu" DurationType="OneShot" DurationMin="332.205719" DurationMax="332.205719">
+					<IncludedMemoryFiles>
+						<File Id="928275369" Language="SFX">
+							<ShortName>Musique menu.wav</ShortName>
+							<Path>SFX\Musique menu_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>

@@ -3291,6 +3291,29 @@
 						<ActiveSource Name="Musique en jeu" ID="{4A4E6E32-76EE-4D93-84AD-1E4B4A4332C2}" Platform="Linked"/>
 					</ActiveSourceList>
 				</Sound>
+				<Sound Name="Musique menu" ID="{6DB42383-4491-497D-8B26-1148D18A0F2F}" ShortID="971473216">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{B46421AE-3385-4820-898C-253ACADCEBF1}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{091001EB-4621-4454-BD80-6681E533C65E}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="Musique menu" ID="{3719F497-5AAF-44AB-B395-CBC4B3775B4C}">
+							<Language>SFX</Language>
+							<AudioFile>Musique menu.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="928275369"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ObjectLists/>
+					<ActiveSourceList>
+						<ActiveSource Name="Musique menu" ID="{3719F497-5AAF-44AB-B395-CBC4B3775B4C}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
 			</ChildrenList>
 		</WorkUnit>
 	</AudioObjects>
