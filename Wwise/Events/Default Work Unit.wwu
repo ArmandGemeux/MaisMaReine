@@ -369,6 +369,7 @@
 					</ChildrenList>
 				</Event>
 <<<<<<< HEAD
+<<<<<<< HEAD
 				<Event Name="Event_Musique_Menu" ID="{F8DBF778-191F-4A00-A3BC-55D89810C8A9}">
 					<ChildrenList>
 						<Action Name="" ID="{5A3C0E6A-729B-4ACD-962F-3CDD76695DDF}" ShortID="749037814">
@@ -388,6 +389,8 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+=======
+>>>>>>> parent of 1499fac... Push Menu Musique
 			</ChildrenList>
 		</WorkUnit>
 	</Events>
