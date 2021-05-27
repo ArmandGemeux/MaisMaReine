@@ -112,7 +112,6 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	863149676	PNJ_rejoint_camp	C:\Users\Utilisateur\Desktop\3eme_annee\MMR_B3G_Git\Wwise\.cache\Windows\SFX\PNJ_rejoint_camp_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\PNJ_rejoint_camp		275136
 	865298652	Kiap_16	C:\Users\Utilisateur\Desktop\3eme_annee\MMR_B3G_Git\Wwise\.cache\Windows\SFX\Combat\Kiap_16_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Clique_Fidele_Combat\Kiap_16		58432
 	867799705	Kiap_5	C:\Users\Utilisateur\Desktop\3eme_annee\MMR_B3G_Git\Wwise\.cache\Windows\SFX\Combat\Kiap_5_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Clique_Fidele_Combat\Kiap_5		58432
-	874339176	click_bouton	C:\Users\Utilisateur\Desktop\3eme_annee\MMR_B3G_Git\Wwise\.cache\Windows\SFX\click_bouton_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\click_bouton		46580
 	874735293	Cris_20	C:\Users\Utilisateur\Desktop\3eme_annee\MMR_B3G_Git\Wwise\.cache\Windows\SFX\Mort\Cris_20_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Mort\Cris_20		76132
 	876065495	Cris_7	C:\Users\Utilisateur\Desktop\3eme_annee\MMR_B3G_Git\Wwise\.cache\Windows\SFX\Mort\Cris_7_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Mort\Cris_7		155968
 	888621936	Non_1	C:\Users\Utilisateur\Desktop\3eme_annee\MMR_B3G_Git\Wwise\.cache\Windows\SFX\Fidèle sans action\Non_1_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Sans_action\Non_1		243776

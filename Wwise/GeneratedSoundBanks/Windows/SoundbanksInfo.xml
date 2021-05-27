@@ -11,7 +11,7 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="393239870" Language="SFX" Hash="3666815191">
+		<SoundBank Id="393239870" Language="SFX" Hash="92188208">
 			<ObjectPath>\SoundBanks\Default Work Unit\SFX</ObjectPath>
 			<ShortName>SFX</ShortName>
 			<Path>SFX.bnk</Path>
@@ -497,11 +497,11 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="1387593318" Name="Event_UI_Clique_Bouton_Menu" ObjectPath="\Events\Default Work Unit\Event_UI_Clique_Bouton_Menu" DurationType="OneShot" DurationMin="0.527392" DurationMax="0.527392">
+				<Event Id="1387593318" Name="Event_UI_Clique_Bouton_Menu" ObjectPath="\Events\Default Work Unit\Event_UI_Clique_Bouton_Menu" DurationType="OneShot" DurationMin="0.500000" DurationMax="0.500000">
 					<IncludedMemoryFiles>
-						<File Id="874339176" Language="SFX">
-							<ShortName>click_bouton.wav</ShortName>
-							<Path>SFX\click_bouton_10C4C929.wem</Path>
+						<File Id="928294472" Language="SFX">
+							<ShortName>Souris-passe_Bouton_UI.wav</ShortName>
+							<Path>SFX\Souris-passe_Bouton_UI_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>

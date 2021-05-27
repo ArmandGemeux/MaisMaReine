@@ -71,10 +71,10 @@
 				</Event>
 				<Event Name="Event_UI_Clique_Bouton_Menu" ID="{F7D0FA07-5A35-4264-903B-7A4B34CD2418}">
 					<ChildrenList>
-						<Action Name="" ID="{07CE3890-E297-4D71-9BFB-8A4FB3C1F94C}" ShortID="933547412">
+						<Action Name="" ID="{AB647B3B-4FD3-4B19-A2EC-E9E904D5FD2B}" ShortID="771331205">
 							<ReferenceList>
 								<Reference Name="Target">
-									<ObjectRef Name="click_bouton" ID="{F6E6D110-3AE7-48B7-AE9F-713310D93889}" WorkUnitID="{961EADD6-4800-4D30-B7C5-4203C2A7B882}"/>
+									<ObjectRef Name="Souris-passe_Bouton_UI" ID="{32EB3E9E-0C44-4612-9B61-B98953ABCBD7}" WorkUnitID="{961EADD6-4800-4D30-B7C5-4203C2A7B882}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>
