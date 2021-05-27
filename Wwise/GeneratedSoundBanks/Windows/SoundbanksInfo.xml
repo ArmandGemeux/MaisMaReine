@@ -11,7 +11,7 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="393239870" Language="SFX" Hash="1259914024">
+		<SoundBank Id="393239870" Language="SFX" Hash="3666815191">
 			<ObjectPath>\SoundBanks\Default Work Unit\SFX</ObjectPath>
 			<ShortName>SFX</ShortName>
 			<Path>SFX.bnk</Path>
@@ -168,8 +168,62 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="184803725" Name="Event_Deplacement_Bandit" ObjectPath="\Events\Default Work Unit\Event_Deplacement_Bandit" MaxAttenuation="0.000000" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000"/>
-				<Event Id="3702838202" Name="Event_Deplacement_Soldat" ObjectPath="\Events\Default Work Unit\Event_Deplacement_Soldat" MaxAttenuation="0.000000" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000"/>
+				<Event Id="184803725" Name="Event_Deplacement_Bandit" ObjectPath="\Events\Default Work Unit\Event_Deplacement_Bandit" DurationType="OneShot" DurationMin="1.477483" DurationMax="2.902948">
+					<IncludedMemoryFiles>
+						<File Id="324157802" Language="SFX">
+							<ShortName>Déplacement_Bandit_2.wav</ShortName>
+							<Path>SFX\Déplacement_Bandit_2_10C4C929.wem</Path>
+						</File>
+						<File Id="399042507" Language="SFX">
+							<ShortName>Déplacement_Bandit.wav</ShortName>
+							<Path>SFX\Déplacement_Bandit_10C4C929.wem</Path>
+						</File>
+						<File Id="890718477" Language="SFX">
+							<ShortName>Déplacement_Bandit_4.wav</ShortName>
+							<Path>SFX\Déplacement_Bandit_4_10C4C929.wem</Path>
+						</File>
+						<File Id="916223357" Language="SFX">
+							<ShortName>Déplacement_Bandit_3.wav</ShortName>
+							<Path>SFX\Déplacement_Bandit_3_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3702838202" Name="Event_Deplacement_Soldat" ObjectPath="\Events\Default Work Unit\Event_Deplacement_Soldat" DurationType="OneShot" DurationMin="0.354104" DurationMax="0.545669">
+					<IncludedMemoryFiles>
+						<File Id="28146187" Language="SFX">
+							<ShortName>Déplacement_Solda_5.wav</ShortName>
+							<Path>SFX\Déplacement_Solda_5_10C4C929.wem</Path>
+						</File>
+						<File Id="65992091" Language="SFX">
+							<ShortName>Déplacement_Soldat.wav</ShortName>
+							<Path>SFX\Déplacement_Soldat_10C4C929.wem</Path>
+						</File>
+						<File Id="210736807" Language="SFX">
+							<ShortName>Déplacement_Solda_4.wav</ShortName>
+							<Path>SFX\Déplacement_Solda_4_10C4C929.wem</Path>
+						</File>
+						<File Id="525452010" Language="SFX">
+							<ShortName>Déplacement_Solda_3.wav</ShortName>
+							<Path>SFX\Déplacement_Solda_3_10C4C929.wem</Path>
+						</File>
+						<File Id="642800865" Language="SFX">
+							<ShortName>Déplacement_Solda_7.wav</ShortName>
+							<Path>SFX\Déplacement_Solda_7_10C4C929.wem</Path>
+						</File>
+						<File Id="687674998" Language="SFX">
+							<ShortName>Déplacement_Solda_2.wav</ShortName>
+							<Path>SFX\Déplacement_Solda_2_10C4C929.wem</Path>
+						</File>
+						<File Id="713865844" Language="SFX">
+							<ShortName>Déplacement_Solda_6.wav</ShortName>
+							<Path>SFX\Déplacement_Solda_6_10C4C929.wem</Path>
+						</File>
+						<File Id="841043309" Language="SFX">
+							<ShortName>Déplacement_Solda_8.wav</ShortName>
+							<Path>SFX\Déplacement_Solda_8_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
 				<Event Id="1261669237" Name="Event_Dialogue_To_Jeu" ObjectPath="\Events\Default Work Unit\Event_Dialogue_To_Jeu" DurationType="OneShot" DurationMin="1.956667" DurationMax="1.956667">
 					<IncludedMemoryFiles>
 						<File Id="237412588" Language="SFX">
@@ -230,6 +284,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
+				<Event Id="4260672095" Name="Event_Menu_Musique" ObjectPath="\Events\Default Work Unit\Event_Menu_Musique" MaxAttenuation="0.000000" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000"/>
 				<Event Id="1699538348" Name="Event_Mort" ObjectPath="\Events\Default Work Unit\Event_Mort" DurationType="OneShot" DurationMin="0.366893" DurationMax="1.449524">
 					<IncludedMemoryFiles>
 						<File Id="89893094" Language="SFX">
@@ -330,7 +385,30 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="489201999" Name="Event_Mouv_Fidele_Attrape" ObjectPath="\Events\Default Work Unit\Event_Mouv_Fidele_Attrape" MaxAttenuation="0.000000" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000"/>
+				<Event Id="489201999" Name="Event_Mouv_Fidele_Attrape" ObjectPath="\Events\Default Work Unit\Event_Mouv_Fidele_Attrape" DurationType="OneShot" DurationMin="0.290249" DurationMax="0.552358">
+					<IncludedMemoryFiles>
+						<File Id="83271106" Language="SFX">
+							<ShortName>Mouv_attrape_5.wav</ShortName>
+							<Path>SFX\Mouv_attrape_5_10C4C929.wem</Path>
+						</File>
+						<File Id="171293753" Language="SFX">
+							<ShortName>Mouv_attrape_4.wav</ShortName>
+							<Path>SFX\Mouv_attrape_4_10C4C929.wem</Path>
+						</File>
+						<File Id="556743107" Language="SFX">
+							<ShortName>Mouv_attrape_2.wav</ShortName>
+							<Path>SFX\Mouv_attrape_2_10C4C929.wem</Path>
+						</File>
+						<File Id="839173070" Language="SFX">
+							<ShortName>Mouv_attrape_1.wav</ShortName>
+							<Path>SFX\Mouv_attrape_1_10C4C929.wem</Path>
+						</File>
+						<File Id="1051043344" Language="SFX">
+							<ShortName>Mouv_attrape_3.wav</ShortName>
+							<Path>SFX\Mouv_attrape_3_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
 				<Event Id="2880414047" Name="Event_Mouv_Fidele_Chute" ObjectPath="\Events\Default Work Unit\Event_Mouv_Fidele_Chute" DurationType="OneShot" DurationMin="0.402721" DurationMax="0.569433">
 					<IncludedMemoryFiles>
 						<File Id="288790028" Language="SFX">
@@ -424,6 +502,14 @@
 						<File Id="874339176" Language="SFX">
 							<ShortName>click_bouton.wav</ShortName>
 							<Path>SFX\click_bouton_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1051972340" Name="Event_UI_Clique_Territoire" ObjectPath="\Events\Default Work Unit\Event_UI_Clique_Territoire" DurationType="OneShot" DurationMin="1.600917" DurationMax="1.600917">
+					<IncludedMemoryFiles>
+						<File Id="404207655" Language="SFX">
+							<ShortName>Clique_territoire.wav</ShortName>
+							<Path>SFX\Clique_territoire_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>

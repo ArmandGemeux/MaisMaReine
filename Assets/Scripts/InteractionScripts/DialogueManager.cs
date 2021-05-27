@@ -93,7 +93,7 @@ public class DialogueManager : MonoBehaviour
 
         if (currentDialogue.cameraStartPos != null)
         {
-            DragCamera2D.Instance.FollowTargetCamera(currentDialogue.cameraStartPos);
+            StartCoroutine(DragCamera2D.Instance.FollowTargetCamera(currentDialogue.cameraStartPos));
         }
 
         lines.Clear();
@@ -110,7 +110,7 @@ public class DialogueManager : MonoBehaviour
     {
         if (lines.Count == 0)
         {
-            EndDialogue();
+            StartCoroutine(EndDialogue());
             return;
         }
         else
@@ -134,7 +134,7 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    public void EndDialogue()
+    public IEnumerator EndDialogue()
     {
         // ICI jouer SFX de fin de dialogue
         GameManager.Instance.isGamePaused = false;
@@ -142,7 +142,7 @@ public class DialogueManager : MonoBehaviour
 
         if (currentDialogue.cameraEndPos != null)
         {
-            DragCamera2D.Instance.FollowTargetCamera(currentDialogue.cameraEndPos);
+            StartCoroutine(DragCamera2D.Instance.FollowTargetCamera(currentDialogue.cameraEndPos));
         }
 
         if (talkingFM != null)
@@ -156,6 +156,7 @@ public class DialogueManager : MonoBehaviour
 
         if (currentDialogue.isStartingQuest)
         {
+            yield return new WaitForSeconds(.2f);
             QuestManager.Instance.SetupQuest(currentDialogue.questIndexToStart);
 
             foreach (FideleManager fmToSpawn in currentDialogue.unitsToSpawn)
@@ -166,10 +167,12 @@ public class DialogueManager : MonoBehaviour
 
         if (currentDialogue.isStartingADialogue)
         {
+            yield return new WaitForSeconds(.2f);
             OpenDialogueWindow(dialogueScenario[currentDialogue.dialogueIndexToStart], null);
         }
         else if (currentDialogue.isPlayingFinTerritoireAnimation)
         {
+            yield return new WaitForSeconds(.3f);
             myAnim.SetTrigger("triggerTerritoireFin");
         }
         else
@@ -177,7 +180,6 @@ public class DialogueManager : MonoBehaviour
             talkingFM = null;
             currentDialogue = null;
         }
-
         isInDialogue = false;
     }
 }

@@ -116,6 +116,15 @@ public class RecrutementManager : MonoBehaviour
     public void OpenRecruitementWindow(FideleManager fmToRecruit, Sprite fmtrIdleSprite, Sprite fmtrMovingSprite, FideleManager recruiterFM)
     {
         myAnim.SetBool("isOpen", true);
+
+        if (GameManager.Instance.isMapTuto)
+        {
+            if (GameManager.Instance.firstFideleToInteractWithHasInteracted == false)
+            {
+                myAnim.SetBool("isCursorVisible", true);
+            }
+        }
+
         idleRecruitedSprite = fmtrIdleSprite;
         movingRecruitedSprite = fmtrMovingSprite;
 
@@ -146,7 +155,13 @@ public class RecrutementManager : MonoBehaviour
             StartCoroutine(SetCampToFidele());
             myAnim.SetBool("isOpen", false);
 
-            
+            if (GameManager.Instance.isMapTuto)
+            {
+                if (GameManager.Instance.firstFideleToInteractWithHasInteracted == false)
+                {
+                    myAnim.SetBool("isCursorVisible", false);
+                }
+            }
         }
         else
 	    {
@@ -166,15 +181,33 @@ public class RecrutementManager : MonoBehaviour
 
     public void CancelRecruitUnit()
     {
-        boutonSFX.Post(gameObject);
-        GameManager.Instance.isGamePaused = false;
-        myAnim.SetBool("isOpen", false);
+        if (GameManager.Instance.isMapTuto)
+        {
+            if (GameManager.Instance.firstFideleToInteractWithHasInteracted)
+            {
+                boutonSFX.Post(gameObject);
+                GameManager.Instance.isGamePaused = false;
+                myAnim.SetBool("isOpen", false);
 
-        myRecruiterFM.GetComponent<AnimationManager>().CheckActionsLeftAmout();
+                myRecruiterFM.GetComponent<AnimationManager>().CheckActionsLeftAmout();
 
-        myFMToRecruit = null;
-        idleRecruitedSprite = null;
-        movingRecruitedSprite = null;
+                myFMToRecruit = null;
+                idleRecruitedSprite = null;
+                movingRecruitedSprite = null;
+            }
+        }
+        else
+        {
+            boutonSFX.Post(gameObject);
+            GameManager.Instance.isGamePaused = false;
+            myAnim.SetBool("isOpen", false);
+
+            myRecruiterFM.GetComponent<AnimationManager>().CheckActionsLeftAmout();
+
+            myFMToRecruit = null;
+            idleRecruitedSprite = null;
+            movingRecruitedSprite = null;
+        }
     }
 
     public IEnumerator SetCampToFidele()
@@ -204,7 +237,7 @@ public class RecrutementManager : MonoBehaviour
         // ICI jouer VFX de changement d'apparence du personnage
         yield return new WaitForSeconds(0.6f);
 
-        DragCamera2D.Instance.FollowTargetCamera(myFMToRecruit.gameObject);
+        StartCoroutine(DragCamera2D.Instance.FollowTargetCamera(myFMToRecruit.gameObject));
 
         recruitEffect.gameObject.transform.position = myFMToRecruit.transform.position;
         recruitEffect.Play();

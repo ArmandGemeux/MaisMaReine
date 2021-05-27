@@ -123,11 +123,7 @@ public class TurnFeedbackManager : MonoBehaviour
 
     public IEnumerator ResetFeedback()
     {
-        yield return new WaitForSeconds(1.5f);
-
-        myAnim.SetTrigger("Displaying");
-
-        yield return new WaitForSeconds(.7f);
+        yield return new WaitForSeconds(1f);
         mySwitchTurnText.text = "";
     }
 }

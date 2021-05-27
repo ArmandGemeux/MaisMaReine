@@ -195,11 +195,11 @@ public class GameManager : MonoBehaviour
                 }
                 fm.GetComponentInChildren<Interaction>().OtherCampDisplayInteractionFeedbacks();
             }
-            for (int i = 0; i < allMapUnits.Count; i++)
+            for (int i = allMapUnits.Count-1; i > 0; i--)
             {
                 if (allMapUnits[i].myCamp == GameCamps.Fidele)
                 {
-                    DragCamera2D.Instance.FollowTargetCamera(allMapUnits[i].gameObject);
+                    StartCoroutine(DragCamera2D.Instance.FollowTargetCamera(allMapUnits[i].gameObject));
                     return;
                 }
             }

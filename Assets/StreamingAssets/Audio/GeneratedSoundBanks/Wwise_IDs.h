@@ -20,12 +20,13 @@ namespace AK
         static const AkUniqueID EVENT_CLIQUE_FIDELE_DIALOGUE = 3768621174U;
         static const AkUniqueID EVENT_CLIQUE_FIDELE_RECRUTEMENT = 1117462416U;
         static const AkUniqueID EVENT_CONTRE_ATTAQUE_EPEE = 2630947717U;
-        static const AkUniqueID EVENT_DEPLACEMENT_ENNEMI_BANDIT = 1295635912U;
-        static const AkUniqueID EVENT_DEPLACEMENT_ENNEMI_SOLDAT = 1289266071U;
+        static const AkUniqueID EVENT_DEPLACEMENT_BANDIT = 184803725U;
+        static const AkUniqueID EVENT_DEPLACEMENT_SOLDAT = 3702838202U;
         static const AkUniqueID EVENT_DIALOGUE_TO_JEU = 1261669237U;
         static const AkUniqueID EVENT_ECHEC_CRITIQUE = 1779567033U;
         static const AkUniqueID EVENT_FIDELE_SANS_ACTION = 965117638U;
         static const AkUniqueID EVENT_INTERACTION_RECRUTEMENT = 4092098687U;
+        static const AkUniqueID EVENT_MENU_MUSIQUE = 4260672095U;
         static const AkUniqueID EVENT_MORT = 1699538348U;
         static const AkUniqueID EVENT_MOUV_FIDELE_ATTRAPE = 489201999U;
         static const AkUniqueID EVENT_MOUV_FIDELE_CHUTE = 2880414047U;
@@ -36,16 +37,12 @@ namespace AK
         static const AkUniqueID EVENT_UI_BANDEAU_FIDELE_LEFTTORIGHT = 349269192U;
         static const AkUniqueID EVENT_UI_BANDEAU_FIDELE_RIGHTTOLEFT = 694759564U;
         static const AkUniqueID EVENT_UI_CLIQUE_BOUTON_MENU = 1387593318U;
-        static const AkUniqueID EVENT_UI_CLIQUE_DISCUSSION = 1041178781U;
         static const AkUniqueID EVENT_UI_CLIQUE_TERRITOIRE = 1051972340U;
         static const AkUniqueID EVENT_UI_GAIN_CHARISME = 3776204507U;
         static const AkUniqueID EVENT_UI_OBTENTION_QUETE = 2059410396U;
         static const AkUniqueID EVENT_UI_PNJ_RECRUTE = 777863556U;
         static const AkUniqueID EVENT_UI_QUETE_TERMINE = 552716342U;
         static const AkUniqueID EVENT_UI_SURVOLE_BOUTON = 3384763883U;
-        static const AkUniqueID MUSIQUE_INGAME = 297755610U;
-        static const AkUniqueID MUSIQUE_MENU = 3187340304U;
-        static const AkUniqueID MUSIQUE_TERRITOIRE = 1051550144U;
     } // namespace EVENTS
 
     namespace GAME_PARAMETERS

@@ -81,7 +81,7 @@ public class Combat : MonoBehaviour
         defenseurAM.keepInteractionDisplayed = true;
         defenseurAM.DisplayInteraction();
 
-        DragCamera2D.Instance.FollowTargetCamera(defenseurAM.gameObject);
+        StartCoroutine(DragCamera2D.Instance.FollowTargetCamera(defenseurAM.gameObject));
 
         attaquantFideleManager = atkFM;
         attaquantAM = attaquantFideleManager.GetComponent<AnimationManager>();

@@ -128,28 +128,33 @@ public class Interaction : MonoBehaviour
     {
         if (myFideleManager.myCamp == GameCamps.Fidele)
         {
-            if (myCollideInteractionList.Count >= 1)
+            if (myFideleManager.GetComponentInChildren<Movement>().hasMoved)
             {
-                for (int i = 0; i < myCollideInteractionList.Count; i++)
+                if (myCollideInteractionList.Count >= 1)
                 {
-                    if (!alreadyInteractedList.Contains(myCollideInteractionList[i]))
+                    for (int i = 0; i < myCollideInteractionList.Count; i++)
                     {
-                        myAnimationManager.InteractionAvaibleColor();
-                        myAnimationManager.isSelectable = true;
-                        return;
+                        if (!alreadyInteractedList.Contains(myCollideInteractionList[i]))
+                        {
+                            myAnimationManager.InteractionAvaibleColor();
+                            myAnimationManager.isSelectable = true;
+                            return;
+                        }
+                        myAnimationManager.NoMoreInteractionColor();
+                        myAnimationManager.isSelectable = false;
                     }
+                }
+                else if (myCollideInteractionList.Count == 0)
+                {
                     myAnimationManager.NoMoreInteractionColor();
                     myAnimationManager.isSelectable = false;
+                    return;
                 }
             }
-            else if (myCollideInteractionList.Count == 0)
+            else
             {
-                myAnimationManager.InteractionAvaibleColor();
-                myAnimationManager.isSelectable = false;
                 return;
             }
-            myAnimationManager.NoMoreInteractionColor();
-            myAnimationManager.isSelectable = false;
         }
     }
 

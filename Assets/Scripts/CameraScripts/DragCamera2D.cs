@@ -145,8 +145,9 @@ public class DragCamera2D : MonoBehaviour
        
     }
 
-    public void FollowTargetCamera(GameObject gotf)
+    public IEnumerator FollowTargetCamera(GameObject gotf)
     {
+        yield return new WaitForSeconds(.1f);
         followTarget = gotf;
     }
 

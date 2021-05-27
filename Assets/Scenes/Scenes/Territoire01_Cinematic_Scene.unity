@@ -2789,8 +2789,8 @@ RectTransform:
   m_Father: {fileID: 1013512294}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.13711138, y: 0.044695716}
-  m_AnchorMax: {x: 0.8552688, y: 0.33266598}
+  m_AnchorMin: {x: 0.13194287, y: 0.13427441}
+  m_AnchorMax: {x: 0.87206644, y: 0.44521353}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -3513,8 +3513,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: -140, y: 89.34}
-  m_SizeDelta: {x: 355, y: 500}
+  m_AnchoredPosition: {x: -195, y: 40}
+  m_SizeDelta: {x: 355, y: 580}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &647270899
 MonoBehaviour:
@@ -3973,8 +3973,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 145, y: 40.5}
-  m_SizeDelta: {x: 243.5, y: 490.4}
+  m_AnchoredPosition: {x: 195, y: 40}
+  m_SizeDelta: {x: 355, y: 580}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &790708659
 MonoBehaviour:
@@ -4685,7 +4685,7 @@ Transform:
   - {fileID: 1808310294}
   - {fileID: 2055363630}
   - {fileID: 960380075}
-  - {fileID: 1366540840}
+  - {fileID: 1608988490}
   - {fileID: 214527618}
   - {fileID: 1759420694}
   - {fileID: 1159023964}
@@ -5054,6 +5054,7 @@ MonoBehaviour:
     questIndexToStart: 0
     isStartingADialogue: 1
     dialogueIndexToStart: 1
+    isPlayingFinTerritoireAnimation: 0
     nextInteractionType: 0
     cameraStartPos: {fileID: 0}
     cameraEndPos: {fileID: 0}
@@ -5065,6 +5066,7 @@ MonoBehaviour:
     questIndexToStart: 0
     isStartingADialogue: 1
     dialogueIndexToStart: 2
+    isPlayingFinTerritoireAnimation: 0
     nextInteractionType: 0
     cameraStartPos: {fileID: 0}
     cameraEndPos: {fileID: 0}
@@ -5080,6 +5082,7 @@ MonoBehaviour:
     questIndexToStart: 0
     isStartingADialogue: 1
     dialogueIndexToStart: 3
+    isPlayingFinTerritoireAnimation: 0
     nextInteractionType: 0
     cameraStartPos: {fileID: 0}
     cameraEndPos: {fileID: 0}
@@ -5091,6 +5094,7 @@ MonoBehaviour:
     questIndexToStart: 0
     isStartingADialogue: 1
     dialogueIndexToStart: 4
+    isPlayingFinTerritoireAnimation: 0
     nextInteractionType: 0
     cameraStartPos: {fileID: 0}
     cameraEndPos: {fileID: 0}
@@ -5103,6 +5107,7 @@ MonoBehaviour:
     questIndexToStart: 0
     isStartingADialogue: 1
     dialogueIndexToStart: 5
+    isPlayingFinTerritoireAnimation: 0
     nextInteractionType: 0
     cameraStartPos: {fileID: 0}
     cameraEndPos: {fileID: 0}
@@ -5118,6 +5123,7 @@ MonoBehaviour:
     questIndexToStart: 0
     isStartingADialogue: 1
     dialogueIndexToStart: 6
+    isPlayingFinTerritoireAnimation: 0
     nextInteractionType: 0
     cameraStartPos: {fileID: 0}
     cameraEndPos: {fileID: 0}
@@ -5129,6 +5135,7 @@ MonoBehaviour:
     questIndexToStart: 0
     isStartingADialogue: 0
     dialogueIndexToStart: 0
+    isPlayingFinTerritoireAnimation: 0
     nextInteractionType: 0
     cameraStartPos: {fileID: 0}
     cameraEndPos: {fileID: 0}
@@ -5476,8 +5483,8 @@ RectTransform:
   m_Father: {fileID: 483615924}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.19754311, y: 0.05384604}
-  m_AnchorMax: {x: 0.80465937, y: 0.7781992}
+  m_AnchorMin: {x: 0.20117496, y: 0.08554289}
+  m_AnchorMax: {x: 0.80465937, y: 0.752857}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -6990,7 +6997,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 76.18213, y: 61.34}
+    oldSize: {x: 75.803055, y: 64.44}
     newSize: {x: 80.024414, y: 90}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -7196,12 +7203,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2601411447876297314, guid: e50cd606a5090384c996f9eaff364cbd,
     type: 3}
   m_PrefabInstance: {fileID: 641987668}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1366540840 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7556182783430762792, guid: f7dba13db280da84f836460682a3238e,
-    type: 3}
-  m_PrefabInstance: {fileID: 1970294099}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1381614001
 PrefabInstance:
@@ -7990,6 +7991,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b438ce8157d45fa458741dad63c76d9f, type: 3}
+--- !u!4 &1608988490 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6895563522047002799, guid: f7dba13db280da84f836460682a3238e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1970294099}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1611828373
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9549,8 +9556,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 34
+  m_fontSizeBase: 34
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -9566,7 +9573,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: 0
+  m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -9635,8 +9642,8 @@ RectTransform:
   m_Father: {fileID: 483615924}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.40479773, y: 0.8396038}
-  m_AnchorMax: {x: 0.5959178, y: 0.968678}
+  m_AnchorMin: {x: 0.40479773, y: 0.8279476}
+  m_AnchorMax: {x: 0.5959178, y: 0.9523595}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}

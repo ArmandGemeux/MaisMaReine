@@ -207,7 +207,7 @@ public class CombatManager : MonoBehaviour
         defenseurAM.keepInteractionDisplayed = true;
         defenseurAM.DisplayInteraction();
 
-        DragCamera2D.Instance.FollowTargetCamera(attaquantFM.gameObject);
+        StartCoroutine(DragCamera2D.Instance.FollowTargetCamera(attaquantFM.gameObject));
 
         attaquantAM.keepInteractionDisplayed = true;
         attaquantAM.DisplayInteraction();
@@ -272,8 +272,8 @@ public class CombatManager : MonoBehaviour
 
         defenseurAM.keepInteractionDisplayed = true;
         defenseurAM.DisplayInteraction();
-        
-        DragCamera2D.Instance.FollowTargetCamera(attaquantFM.gameObject);
+
+        StartCoroutine(DragCamera2D.Instance.FollowTargetCamera(attaquantFM.gameObject));
 
         attaquantAM.keepInteractionDisplayed = true;
         attaquantAM.DisplayInteraction();

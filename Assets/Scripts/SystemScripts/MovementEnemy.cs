@@ -63,7 +63,7 @@ public class MovementEnemy : MonoBehaviour
         targetInteraction = myTarget.GetComponentInChildren<Interaction>();
         targetInteractionZone = targetInteraction.GetComponent<PolygonCollider2D>();
 
-        DragCamera2D.Instance.FollowTargetCamera(myFideleManager.gameObject);
+        StartCoroutine(DragCamera2D.Instance.FollowTargetCamera(myFideleManager.gameObject));
 
         if (!myFideleManager.GetComponentInChildren<Interaction>().myCollideInteractionList.Contains(targetInteraction))
         {

@@ -345,7 +345,7 @@ MonoBehaviour:
     ParentPath: SoundBanks\Default Work Unit
     guid: b311a2bd52a23c4dbdcf8844b631cdf1
     GuidInternal: 
-    m_lastTime: -8585795769960810676
+    m_lastTime: -8585794954834296468
     List:
     - name: SFX
       guid: e099aefcf0f1f245962d19205b1d628d
@@ -373,7 +373,7 @@ MonoBehaviour:
     ParentPath: Events\Default Work Unit
     guid: af4625c0e4e9ed43a62873aec7c92b52
     GuidInternal: 
-    m_lastTime: -8585795776636618079
+    m_lastTime: -8585795774607795334
     List:
     - name: Event_Attaque_Ennemi
       guid: d9a91c085849c54cafb2e2e995ec4918
@@ -1220,9 +1220,9 @@ MonoBehaviour:
     GuidInternal: 
     m_lastTime: -8585800845685924486
     List: []
-  ExpandedFileSystemItemIds: 
-  ExpandedWaapiItemIds: 
-  AutoSyncSelection: 0
+  ExpandedFileSystemItemIds: 0200000003000000
+  ExpandedWaapiItemIds: 010000000200000004000000050000000700000008000000
+  AutoSyncSelection: 1
   autoPopulateEnabled: 1
   currentDataSource: 0
   CurrentPluginConfig: 
