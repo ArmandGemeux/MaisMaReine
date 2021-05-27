@@ -345,7 +345,7 @@ MonoBehaviour:
     ParentPath: SoundBanks\Default Work Unit
     guid: b311a2bd52a23c4dbdcf8844b631cdf1
     GuidInternal: 
-    m_lastTime: -8585794947469193916
+    m_lastTime: -8585794852228172582
     List:
     - name: SFX
       guid: e099aefcf0f1f245962d19205b1d628d
@@ -373,7 +373,7 @@ MonoBehaviour:
     ParentPath: Events\Default Work Unit
     guid: af4625c0e4e9ed43a62873aec7c92b52
     GuidInternal: 
-    m_lastTime: -8585794940675893072
+    m_lastTime: -8585794853142891333
     List:
     - name: Event_Attaque_Ennemi
       guid: d9a91c085849c54cafb2e2e995ec4918
@@ -613,40 +613,6 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
-    - name: Event_Fighting_Musique
-      guid: a49521a1a635d3449cc895b33ffc049c
-      id: 4086306696
-      PathAndIcons:
-      - ElementName: Events
-        ObjectType: 5
-        guid: 00000000000000000000000000000000
-      - ElementName: Default Work Unit
-        ObjectType: 12
-        guid: af4625c0e4e9ed43a62873aec7c92b52
-      - ElementName: Event_Fighting_Musique
-        ObjectType: 3
-        guid: a49521a1a635d3449cc895b33ffc049c
-      Path: Events\Default Work Unit\Event_Fighting_Musique
-      maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
-    - name: Event_InGame_Musique
-      guid: 59024d5f52c878418c6f60f26c616d50
-      id: 3451542069
-      PathAndIcons:
-      - ElementName: Events
-        ObjectType: 5
-        guid: 00000000000000000000000000000000
-      - ElementName: Default Work Unit
-        ObjectType: 12
-        guid: af4625c0e4e9ed43a62873aec7c92b52
-      - ElementName: Event_InGame_Musique
-        ObjectType: 3
-        guid: 59024d5f52c878418c6f60f26c616d50
-      Path: Events\Default Work Unit\Event_InGame_Musique
-      maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
     - name: Event_Interaction_Recrutement
       guid: 4ff666fafc6e0749ae67cbc5d059538d
       id: 4092098687
@@ -661,23 +627,6 @@ MonoBehaviour:
         ObjectType: 3
         guid: 4ff666fafc6e0749ae67cbc5d059538d
       Path: Events\Default Work Unit\Event_Interaction_Recrutement
-      maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
-    - name: Event_Menu_Musique
-      guid: fbfea043aae00c4ba2cb6aa18e4974ad
-      id: 4260672095
-      PathAndIcons:
-      - ElementName: Events
-        ObjectType: 5
-        guid: 00000000000000000000000000000000
-      - ElementName: Default Work Unit
-        ObjectType: 12
-        guid: af4625c0e4e9ed43a62873aec7c92b52
-      - ElementName: Event_Menu_Musique
-        ObjectType: 3
-        guid: fbfea043aae00c4ba2cb6aa18e4974ad
-      Path: Events\Default Work Unit\Event_Menu_Musique
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
@@ -1220,9 +1169,9 @@ MonoBehaviour:
     GuidInternal: 
     m_lastTime: -8585800845685924486
     List: []
-  ExpandedFileSystemItemIds: 0200000003000000
-  ExpandedWaapiItemIds: 01000000020000000300000004000000050000000700000008000000
+  ExpandedFileSystemItemIds: 010000000200000003000000
+  ExpandedWaapiItemIds: 0200000003000000040000000700000008000000
   AutoSyncSelection: 1
   autoPopulateEnabled: 1
-  currentDataSource: 1
+  currentDataSource: 0
   CurrentPluginConfig: 
