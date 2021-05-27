@@ -357,6 +357,17 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Event Name="Event_Musique_InGame" ID="{74B929CB-037E-4D7B-9B78-640C099D9242}">
+					<ChildrenList>
+						<Action Name="" ID="{4442BF28-4D48-4398-86CE-340171FB7184}" ShortID="727403992">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Musique en jeu" ID="{707CCC32-92B0-4E36-B725-5A68BD4CB5AC}" WorkUnitID="{961EADD6-4800-4D30-B7C5-4203C2A7B882}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>
