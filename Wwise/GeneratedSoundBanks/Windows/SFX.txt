@@ -40,6 +40,10 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	83271106	Mouv_attrape_5	C:\Users\Burea\OneDrive\Documents\MaisMaReine\Wwise\.cache\Windows\SFX\Mouv_attrape_5_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Mouv_Attrape\Mouv_attrape_5		51264
 	89893094	Cris_1	C:\Users\Burea\OneDrive\Documents\MaisMaReine\Wwise\.cache\Windows\SFX\Mort\Cris_1_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Mort\Cris_1		83368
 	104179137	Nt nt nt_6	C:\Users\Burea\OneDrive\Documents\MaisMaReine\Wwise\.cache\Windows\SFX\Fidèle non recrutable\Nt nt nt_6_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Non_recrutable\Nt nt nt_6		139328
+<<<<<<< HEAD
+=======
+	109764714	Musique en jeu	C:\Users\Burea\OneDrive\Documents\MaisMaReine\Wwise\.cache\Windows\SFX\Musique en jeu_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Musique en jeu		29344520
+>>>>>>> parent of 31b5a09... Test son OK + reajustement Mongolfiere et particuleEffects rivière
 	117796181	Cris_11	C:\Users\Burea\OneDrive\Documents\MaisMaReine\Wwise\.cache\Windows\SFX\Mort\Cris_11_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Mort\Cris_11		194728
 	131443977	Okay_1	C:\Users\Burea\OneDrive\Documents\MaisMaReine\Wwise\.cache\Windows\SFX\Fidèle en action\Okay_1_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Clique_Fidele_Bandeau\Okay_1		243776
 	137939270	Kiap_8	C:\Users\Burea\OneDrive\Documents\MaisMaReine\Wwise\.cache\Windows\SFX\Combat\Kiap_8_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Clique_Fidele_Combat\Kiap_8		53568

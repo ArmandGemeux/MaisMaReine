@@ -12,6 +12,7 @@
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
 <<<<<<< HEAD
+<<<<<<< HEAD
 		<SoundBank Id="69765534" Language="SFX" Hash="657843640">
 			<ObjectPath>\SoundBanks\Default Work Unit\Musique</ObjectPath>
 			<ShortName>Musique</ShortName>
@@ -39,6 +40,9 @@
 =======
 		<SoundBank Id="393239870" Language="SFX" Hash="1673028105">
 >>>>>>> f2203e87a186eb8c8602f362925af94c93d9ed11
+=======
+		<SoundBank Id="393239870" Language="SFX" Hash="949136688">
+>>>>>>> parent of 31b5a09... Test son OK + reajustement Mongolfiere et particuleEffects rivière
 			<ObjectPath>\SoundBanks\Default Work Unit\SFX</ObjectPath>
 			<ShortName>SFX</ShortName>
 			<Path>SFX.bnk</Path>
