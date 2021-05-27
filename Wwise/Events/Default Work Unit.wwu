@@ -312,8 +312,28 @@
 						</Action>
 					</ChildrenList>
 				</Event>
-				<Event Name="Event_Fighting_Musique" ID="{A12195A4-35A6-44D3-9CC8-95B33FFC049C}"/>
-				<Event Name="Event_InGame_Musique" ID="{5F4D0259-C852-4178-8C6F-60F26C616D50}"/>
+				<Event Name="Event_Territoire_Musique" ID="{A12195A4-35A6-44D3-9CC8-95B33FFC049C}">
+					<ChildrenList>
+						<Action Name="" ID="{28D6778C-D43A-4B0C-9D5B-F327DBDB3390}" ShortID="268014040">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Musique Territoire" ID="{E62B6EB4-1305-46B5-8372-BB1FE5BE20B6}" WorkUnitID="{961EADD6-4800-4D30-B7C5-4203C2A7B882}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Event_InGame_Musique" ID="{5F4D0259-C852-4178-8C6F-60F26C616D50}">
+					<ChildrenList>
+						<Action Name="" ID="{9B3CC627-E049-4626-A854-7A25A9DF6820}" ShortID="801791830">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Musique en jeu" ID="{52F920E8-8FFC-452B-AA26-89DD82C433CD}" WorkUnitID="{961EADD6-4800-4D30-B7C5-4203C2A7B882}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 				<Event Name="Event_UI_Clique_Territoire" ID="{65B96822-F0FC-401D-82A3-C2532FD03FB7}">
 					<ChildrenList>
 						<Action Name="" ID="{6F871AF7-67E2-41BF-992E-A7FA6DD44CD3}" ShortID="694086385">
