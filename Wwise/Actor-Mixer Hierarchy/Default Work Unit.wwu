@@ -3294,6 +3294,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 				<Sound Name="Musique menu" ID="{440473EA-943C-44BE-AE1A-29BF45706DA9}" ShortID="470377113">
 					<PropertyList>
 						<Property Name="Volume" Type="Real64">
@@ -3339,6 +3340,8 @@
 >>>>>>> parent of 1499fac... Push Menu Musique
 =======
 >>>>>>> parent of 1499fac... Push Menu Musique
+=======
+>>>>>>> parent of f2203e8... Part 1 of the push for Musique Menu
 			</ChildrenList>
 		</WorkUnit>
 	</AudioObjects>

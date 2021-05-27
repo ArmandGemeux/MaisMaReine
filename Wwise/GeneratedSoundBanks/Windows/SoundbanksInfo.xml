@@ -14,6 +14,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 		<SoundBank Id="69765534" Language="SFX" Hash="657843640">
 			<ObjectPath>\SoundBanks\Default Work Unit\Musique</ObjectPath>
 			<ShortName>Musique</ShortName>
@@ -47,6 +48,9 @@
 =======
 		<SoundBank Id="393239870" Language="SFX" Hash="1749413395">
 >>>>>>> parent of 1499fac... Push Menu Musique
+=======
+		<SoundBank Id="393239870" Language="SFX" Hash="1749413395">
+>>>>>>> parent of f2203e8... Part 1 of the push for Musique Menu
 			<ObjectPath>\SoundBanks\Default Work Unit\SFX</ObjectPath>
 			<ShortName>SFX</ShortName>
 			<Path>SFX.bnk</Path>
@@ -477,6 +481,7 @@
 				</Event>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 				<Event Id="3273629223" Name="Event_Musique_Menu" ObjectPath="\Events\Default Work Unit\Event_Musique_Menu" DurationType="OneShot" DurationMin="332.205719" DurationMax="332.205719">
 					<IncludedMemoryFiles>
 						<File Id="928275369" Language="SFX">
@@ -490,6 +495,8 @@
 >>>>>>> parent of 1499fac... Push Menu Musique
 =======
 >>>>>>> parent of 1499fac... Push Menu Musique
+=======
+>>>>>>> parent of f2203e8... Part 1 of the push for Musique Menu
 				<Event Id="164432226" Name="Event_Pause_Vent" ObjectPath="\Events\Default Work Unit\Event_Pause_Vent" DurationType="Infinite">
 					<IncludedMemoryFiles>
 						<File Id="556261491" Language="SFX">
