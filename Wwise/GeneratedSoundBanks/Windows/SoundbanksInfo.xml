@@ -11,7 +11,7 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="393239870" Language="SFX" Hash="855002402">
+		<SoundBank Id="393239870" Language="SFX" Hash="3036332495">
 			<ObjectPath>\SoundBanks\Default Work Unit\SFX</ObjectPath>
 			<ShortName>SFX</ShortName>
 			<Path>SFX.bnk</Path>
@@ -284,7 +284,6 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="4260672095" Name="Event_Menu_Musique" ObjectPath="\Events\Default Work Unit\Event_Menu_Musique" MaxAttenuation="0.000000" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000"/>
 				<Event Id="1699538348" Name="Event_Mort" ObjectPath="\Events\Default Work Unit\Event_Mort" DurationType="OneShot" DurationMin="0.366893" DurationMax="1.449524">
 					<IncludedMemoryFiles>
 						<File Id="89893094" Language="SFX">

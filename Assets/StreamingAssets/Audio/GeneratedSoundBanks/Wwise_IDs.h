@@ -26,7 +26,6 @@ namespace AK
         static const AkUniqueID EVENT_ECHEC_CRITIQUE = 1779567033U;
         static const AkUniqueID EVENT_FIDELE_SANS_ACTION = 965117638U;
         static const AkUniqueID EVENT_INTERACTION_RECRUTEMENT = 4092098687U;
-        static const AkUniqueID EVENT_MENU_MUSIQUE = 4260672095U;
         static const AkUniqueID EVENT_MORT = 1699538348U;
         static const AkUniqueID EVENT_MOUV_FIDELE_ATTRAPE = 489201999U;
         static const AkUniqueID EVENT_MOUV_FIDELE_CHUTE = 2880414047U;

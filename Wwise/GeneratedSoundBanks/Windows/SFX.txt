@@ -28,7 +28,6 @@ Event	ID	Name			Wwise Object Path	Notes
 	3811235563	Event_Attaque_Epee			\Default Work Unit\Event_Attaque_Epee	
 	4014485723	Event_Reussite_Critique			\Default Work Unit\Event_Reussite_Critique	
 	4092098687	Event_Interaction_Recrutement			\Default Work Unit\Event_Interaction_Recrutement	
-	4260672095	Event_Menu_Musique			\Default Work Unit\Event_Menu_Musique	
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	2081404	Nt nt nt_4	C:\Users\Burea\OneDrive\Documents\MaisMaReine\Wwise\.cache\Windows\SFX\Fidèle non recrutable\Nt nt nt_4_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Non_recrutable\Nt nt nt_4		147520
