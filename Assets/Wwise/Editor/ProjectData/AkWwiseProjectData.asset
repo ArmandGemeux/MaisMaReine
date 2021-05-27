@@ -345,8 +345,22 @@ MonoBehaviour:
     ParentPath: SoundBanks\Default Work Unit
     guid: b311a2bd52a23c4dbdcf8844b631cdf1
     GuidInternal: 
-    m_lastTime: -8585794848276197428
+    m_lastTime: -8585794831935557676
     List:
+    - name: Musique
+      guid: f802f58c41a66a488453631057760963
+      id: 69765534
+      PathAndIcons:
+      - ElementName: SoundBanks
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: b311a2bd52a23c4dbdcf8844b631cdf1
+      - ElementName: Musique
+        ObjectType: 7
+        guid: f802f58c41a66a488453631057760963
+      Path: SoundBanks\Default Work Unit\Musique
     - name: SFX
       guid: e099aefcf0f1f245962d19205b1d628d
       id: 393239870
@@ -373,7 +387,7 @@ MonoBehaviour:
     ParentPath: Events\Default Work Unit
     guid: af4625c0e4e9ed43a62873aec7c92b52
     GuidInternal: 
-    m_lastTime: -8585794848282352643
+    m_lastTime: -8585794831935248495
     List:
     - name: Event_Attaque_Ennemi
       guid: d9a91c085849c54cafb2e2e995ec4918
@@ -695,6 +709,23 @@ MonoBehaviour:
         ObjectType: 3
         guid: cb29b9747e037b4d9b78640c099d9242
       Path: Events\Default Work Unit\Event_Musique_InGame
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: Event_Musique_Menu
+      guid: 78f7dbf81f19004aa3bc55d89810c8a9
+      id: 3273629223
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: af4625c0e4e9ed43a62873aec7c92b52
+      - ElementName: Event_Musique_Menu
+        ObjectType: 3
+        guid: 78f7dbf81f19004aa3bc55d89810c8a9
+      Path: Events\Default Work Unit\Event_Musique_Menu
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
@@ -1187,7 +1218,7 @@ MonoBehaviour:
     m_lastTime: -8585800845685924486
     List: []
   ExpandedFileSystemItemIds: 010000000200000003000000
-  ExpandedWaapiItemIds: 010000000200000003000000040000000700000008000000190000001a000000
+  ExpandedWaapiItemIds: 01000000020000000300000004000000070000000800000010000000110000001300000014000000190000001a0000002d0000002e000000
   AutoSyncSelection: 1
   autoPopulateEnabled: 1
   currentDataSource: 0
