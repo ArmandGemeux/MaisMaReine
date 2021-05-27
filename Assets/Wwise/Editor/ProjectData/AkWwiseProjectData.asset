@@ -345,11 +345,7 @@ MonoBehaviour:
     ParentPath: SoundBanks\Default Work Unit
     guid: b311a2bd52a23c4dbdcf8844b631cdf1
     GuidInternal: 
-<<<<<<< HEAD
     m_lastTime: -8585794825944149443
-=======
-    m_lastTime: -8585794849435621264
->>>>>>> parent of 31b5a09... Test son OK + reajustement Mongolfiere et particuleEffects rivière
     List:
     - name: Musique
       guid: f802f58c41a66a488453631057760963
@@ -391,11 +387,7 @@ MonoBehaviour:
     ParentPath: Events\Default Work Unit
     guid: af4625c0e4e9ed43a62873aec7c92b52
     GuidInternal: 
-<<<<<<< HEAD
     m_lastTime: -8585794825957409569
-=======
-    m_lastTime: -8585794849436010298
->>>>>>> parent of 31b5a09... Test son OK + reajustement Mongolfiere et particuleEffects rivière
     List:
     - name: Event_Clique_Fidele_Combat
       guid: a9b55e2c6ec7b34ea2462952446b7e4a
