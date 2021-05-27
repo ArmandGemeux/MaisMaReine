@@ -3293,6 +3293,7 @@
 				</Sound>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 				<Sound Name="Musique menu" ID="{440473EA-943C-44BE-AE1A-29BF45706DA9}" ShortID="470377113">
 					<PropertyList>
 						<Property Name="Volume" Type="Real64">
@@ -3334,6 +3335,8 @@
 >>>>>>> f2203e87a186eb8c8602f362925af94c93d9ed11
 					</ActiveSourceList>
 				</Sound>
+=======
+>>>>>>> parent of 1499fac... Push Menu Musique
 =======
 >>>>>>> parent of 1499fac... Push Menu Musique
 			</ChildrenList>
