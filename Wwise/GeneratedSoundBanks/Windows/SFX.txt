@@ -3,7 +3,6 @@ Event	ID	Name			Wwise Object Path	Notes
 	184803725	Event_Deplacement_Bandit			\Default Work Unit\Event_Deplacement_Bandit	
 	349269192	Event_UI_Bandeau_Fidele_Lefttoright			\Default Work Unit\Event_UI_Bandeau_Fidele_Lefttoright	
 	489201999	Event_Mouv_Fidele_Attrape			\Default Work Unit\Event_Mouv_Fidele_Attrape	
-	503339173	Event_Musique_InGame			\Default Work Unit\Event_Musique_InGame	
 	552716342	Event_UI_Quete_Termine			\Default Work Unit\Event_UI_Quete_Termine	
 	694759564	Event_UI_Bandeau_Fidele_Righttoleft			\Default Work Unit\Event_UI_Bandeau_Fidele_Righttoleft	
 	756834820	Event_Clique_Fidele_Combat			\Default Work Unit\Event_Clique_Fidele_Combat	
@@ -41,7 +40,6 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	83271106	Mouv_attrape_5	C:\Users\Burea\OneDrive\Documents\MaisMaReine\Wwise\.cache\Windows\SFX\Mouv_attrape_5_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Mouv_Attrape\Mouv_attrape_5		51264
 	89893094	Cris_1	C:\Users\Burea\OneDrive\Documents\MaisMaReine\Wwise\.cache\Windows\SFX\Mort\Cris_1_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Mort\Cris_1		83368
 	104179137	Nt nt nt_6	C:\Users\Burea\OneDrive\Documents\MaisMaReine\Wwise\.cache\Windows\SFX\Fidèle non recrutable\Nt nt nt_6_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Non_recrutable\Nt nt nt_6		139328
-	109764714	Musique en jeu	C:\Users\Burea\OneDrive\Documents\MaisMaReine\Wwise\.cache\Windows\SFX\Musique en jeu_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Musique en jeu		29344520
 	117796181	Cris_11	C:\Users\Burea\OneDrive\Documents\MaisMaReine\Wwise\.cache\Windows\SFX\Mort\Cris_11_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Mort\Cris_11		194728
 	131443977	Okay_1	C:\Users\Burea\OneDrive\Documents\MaisMaReine\Wwise\.cache\Windows\SFX\Fidèle en action\Okay_1_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Clique_Fidele_Bandeau\Okay_1		243776
 	137939270	Kiap_8	C:\Users\Burea\OneDrive\Documents\MaisMaReine\Wwise\.cache\Windows\SFX\Combat\Kiap_8_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Clique_Fidele_Combat\Kiap_8		53568

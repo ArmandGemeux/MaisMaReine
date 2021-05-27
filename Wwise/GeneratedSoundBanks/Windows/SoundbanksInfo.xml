@@ -11,7 +11,34 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="393239870" Language="SFX" Hash="949136688">
+<<<<<<< HEAD
+		<SoundBank Id="69765534" Language="SFX" Hash="657843640">
+			<ObjectPath>\SoundBanks\Default Work Unit\Musique</ObjectPath>
+			<ShortName>Musique</ShortName>
+			<Path>Musique.bnk</Path>
+			<IncludedEvents>
+				<Event Id="503339173" Name="Event_Musique_InGame" ObjectPath="\Events\Default Work Unit\Event_Musique_InGame" DurationType="OneShot" DurationMin="152.835709" DurationMax="152.835709">
+					<IncludedMemoryFiles>
+						<File Id="109764714" Language="SFX">
+							<ShortName>Musique en jeu.wav</ShortName>
+							<Path>SFX\Musique en jeu_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3273629223" Name="Event_Musique_Menu" ObjectPath="\Events\Default Work Unit\Event_Musique_Menu" DurationType="OneShot" DurationMin="332.205719" DurationMax="332.205719">
+					<IncludedMemoryFiles>
+						<File Id="928275369" Language="SFX">
+							<ShortName>Musique menu.wav</ShortName>
+							<Path>SFX\Musique menu_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+			</IncludedEvents>
+		</SoundBank>
+		<SoundBank Id="393239870" Language="SFX" Hash="3036332495">
+=======
+		<SoundBank Id="393239870" Language="SFX" Hash="1673028105">
+>>>>>>> f2203e87a186eb8c8602f362925af94c93d9ed11
 			<ObjectPath>\SoundBanks\Default Work Unit\SFX</ObjectPath>
 			<ShortName>SFX</ShortName>
 			<Path>SFX.bnk</Path>
@@ -424,6 +451,8 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
+<<<<<<< HEAD
+=======
 				<Event Id="503339173" Name="Event_Musique_InGame" ObjectPath="\Events\Default Work Unit\Event_Musique_InGame" DurationType="OneShot" DurationMin="152.835709" DurationMax="152.835709">
 					<IncludedMemoryFiles>
 						<File Id="109764714" Language="SFX">
@@ -432,6 +461,15 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
+				<Event Id="3273629223" Name="Event_Musique_Menu" ObjectPath="\Events\Default Work Unit\Event_Musique_Menu" DurationType="OneShot" DurationMin="332.205719" DurationMax="332.205719">
+					<IncludedMemoryFiles>
+						<File Id="928275369" Language="SFX">
+							<ShortName>Musique menu.wav</ShortName>
+							<Path>SFX\Musique menu_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+>>>>>>> f2203e87a186eb8c8602f362925af94c93d9ed11
 				<Event Id="164432226" Name="Event_Pause_Vent" ObjectPath="\Events\Default Work Unit\Event_Pause_Vent" DurationType="Infinite">
 					<IncludedMemoryFiles>
 						<File Id="556261491" Language="SFX">
